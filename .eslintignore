@@ -1,0 +1,5 @@
+node_modules
+.eslintrc.cjs
+src/shared/contracts
+tailwind.config.js
+vite.config.ts
