@@ -1,23 +1,3 @@
-const FS_LAYERS = [
-  "app",
-  "processes",
-  "pages",
-  "widgets",
-  "features",
-  "entities",
-  "shared",
-];
-
-const FS_SEGMENTS = ["ui", "hooks", "utils", "config", "assets"];
-
-const getUpperLayers = (layer) => FS_LAYERS.slice(0, FS_LAYERS.indexOf(layer));
-
-const FS_SLICED_LAYERS_REG = getUpperLayers("shared").join("|");
-const FS_SEGMENTS_REG = [
-  ...FS_SEGMENTS,
-  ...FS_SEGMENTS.map((seg) => `${seg}.*`),
-].join("|");
-
 /** @type {import("eslint").ESLint.ConfigData} */
 module.exports = {
   env: {
@@ -43,6 +23,7 @@ module.exports = {
     "react-hooks",
     "@typescript-eslint",
     "boundaries",
+    "check-file",
     "typescript-enum",
     "prettier",
   ],
@@ -131,6 +112,19 @@ module.exports = {
             message: "Pages must not import more complex 'business' logic",
           },
         ],
+      },
+    ],
+    "check-file/folder-naming-convention": [
+      "error",
+      {
+        "src/**/": "KEBAB_CASE",
+      },
+    ],
+    "check-file/filename-naming-convention": [
+      "error",
+      {
+        "**/*.{jsx,tsx}": "KEBAB_CASE",
+        "**/*.{js,ts}": "KEBAB_CASE",
       },
     ],
   },
