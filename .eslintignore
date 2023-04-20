@@ -3,3 +3,5 @@ node_modules
 src/shared/contracts
 tailwind.config.js
 vite.config.ts
+global.d.ts
+vite-env.d.ts
