@@ -5,6 +5,10 @@ export default {
     colors: {
       // Use this service to name color
       // https://chir.ag/projects/name-that-color
+      white: "#ffffff",
+      mineShaft: "#2B2B2B",
+      sandyBrown: "#F49756",
+      grayNickel: "#C9C9C7",
       transparent: "transparent",
     },
     extend: {},

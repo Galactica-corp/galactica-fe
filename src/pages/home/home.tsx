@@ -1,5 +1,6 @@
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
+import { Layout } from "pages/ui";
 
 export const Home = () => {
   const { address, isConnected } = useAccount();
@@ -16,5 +17,9 @@ export const Home = () => {
       </div>
     );
 
-  return <button onClick={() => connect()}> HELLO Connect Wallet</button>;
+  return (
+    <Layout>
+      <button onClick={() => connect()}>HELLO Connect Wallet</button>
+    </Layout>
+  );
 };
