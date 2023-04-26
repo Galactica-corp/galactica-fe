@@ -97,3 +97,38 @@
     );
   }
 }
+
+/* React tooltip overries */
+
+.react-tooltip-custom {
+  /* position: absolute; */
+  color: #2b2b2b !important;
+  font-size: 0.8rem !important;
+  background: white !important;
+  box-shadow: 0.4rem 1.1rem 0.95rem 0px #0000001c;
+  opacity: 1 !important;
+  text-transform: initial !important;
+  padding: 0.4rem 0.4rem !important;
+  z-index: 1000 !important;
+  max-width: 17rem !important;
+}
+.react-tooltip-custom.place-top::after {
+  border-top-color: white !important;
+  border-top-style: white !important;
+  border-top-width: 1px !important;
+}
+.react-tooltip-custom.place-bottom::after {
+  border-bottom-color: white !important;
+  border-bottom-style: white !important;
+  border-bottom-width: 1px !important;
+}
+.react-tooltip-custom.place-right::after {
+  border-right-color: white !important;
+  border-right-style: white !important;
+  border-right-width: 1px !important;
+}
+.react-tooltip-custom.place-left::after {
+  border-left-color: white !important;
+  border-left-style: white !important;
+  border-left-width: 1px !important;
+}

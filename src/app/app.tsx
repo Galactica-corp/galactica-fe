@@ -1,4 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
+import "react-tooltip/dist/react-tooltip.css";
 import "./index.css";
 import { RQProvider } from "./providers/rq";
 import { WagmiProvider } from "./providers/wagmi";

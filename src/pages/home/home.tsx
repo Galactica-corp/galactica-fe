@@ -1,3 +1,5 @@
+import { CARDS_MAP, KYCCard } from "entities/kyc-card";
+import { KYCName } from "entities/kyc-card/kyc-card";
 import { useAccount } from "wagmi";
 import { ConnectButton } from "features/connect-button";
 import { Layout } from "pages/ui";
@@ -19,6 +21,16 @@ export const Home = () => {
         </div>
       ) : (
         <Layout>
+          <div className="grid grid-cols-3 gap-x-4 gap-y-6">
+            {Object.keys(CARDS_MAP).map((kycName, i) => (
+              <KYCCard
+                key={kycName}
+                kyc={kycName as KYCName}
+                level={`Level ${i + 1}`}
+                expiration="24.01.2025"
+              />
+            ))}
+          </div>
           <div className="mt-10 space-y-4">
             <div>simple</div>
             <Button>Start the KYC procedure</Button>
