@@ -11,6 +11,10 @@ export default {
       grayNickel: "#C9C9C7",
       transparent: "transparent",
     },
+    fontFamily: {
+      publicoTextMono: ["Publico Text Mono", "sans-serif"],
+      antiqueLegacy: ["Antique Legacy", "sans-serif"],
+    },
     extend: {},
   },
   plugins: [],
