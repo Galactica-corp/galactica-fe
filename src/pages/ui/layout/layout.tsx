@@ -6,10 +6,12 @@ export const Layout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <Header />
-      <Button size="32" reverse iconName="close" theme="grayNickel" outline>
-        Hello
-      </Button>
-      {children}
+      <div className="mx-auto w-[300px] ml:w-[590px] t:w-[680px] dxs:w-[980px] ds:w-[1190px]">
+        <Button size="32" reverse iconName="close" theme="grayNickel" outline>
+          Hello
+        </Button>
+        {children}
+      </div>
     </>
   );
 };

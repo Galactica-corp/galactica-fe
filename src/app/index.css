@@ -58,7 +58,9 @@
 
 :root {
   font-family: Antique Legacy;
-
+  font-size: 16px; /* 1rem (now for any resolution) */
+  background-color: #FEFDFB;
+  color: #2B2B2B;
   line-height: 130%;
   font-synthesis: none;
 

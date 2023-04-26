@@ -26,18 +26,22 @@ export const HEADERS_LINKS = [
 
 export const Header = () => {
   return (
-    <div className="flex flex-row items-center justify-between">
-      <div>
-        <Logo />
+    <div className="py-[2.5rem]">
+      <div className="mx-auto w-[300px] ml:w-[590px] t:w-[680px] dxs:w-[980px] ds:w-[1190px]">
+        <div className="flex flex-row items-center justify-between">
+          <div>
+            <Logo className="w-[16.8rem]" />
+          </div>
+          <div className="flex gap-2.5">
+            {HEADERS_LINKS.map((link) => (
+              <HeaderLink key={link.name} to={link.to}>
+                {link.name}
+              </HeaderLink>
+            ))}
+          </div>
+          <div>Button</div>
+        </div>
       </div>
-      <div className="flex gap-2.5">
-        {HEADERS_LINKS.map((link) => (
-          <HeaderLink key={link.name} to={link.to}>
-            {link.name}
-          </HeaderLink>
-        ))}
-      </div>
-      <div>Button</div>
     </div>
   );
 };

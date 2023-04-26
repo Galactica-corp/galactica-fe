@@ -16,8 +16,9 @@ export const HeaderLink = ({
       className={({ isActive }) => {
         return cn(
           className,
-          isActive && "rounded-md bg-sandyBrown bg-opacity-5 text-sandyBrown",
-          "inline-flex items-center rounded px-5 py-2.5 font-publicoTextMono uppercase text-mineShaft transition-colors hover:bg-sandyBrown hover:bg-opacity-5"
+          isActive &&
+            "rounded-md bg-sandyBrown bg-opacity-5 text-sandyBrown/100",
+          "inline-flex items-center rounded px-5 py-2.5 font-publicoTextMono uppercase text-mineShaft/50  transition-colors hover:bg-sandyBrown hover:bg-opacity-5"
         );
       }}
       {...navProps}
