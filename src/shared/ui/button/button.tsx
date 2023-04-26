@@ -1,74 +1,46 @@
 import { PropsWithChildren } from "react";
 import cn from "classnames";
-import { Icon, IconName } from "../icon";
+import { tw } from "shared/utils";
 import { Spinner } from "../spinner";
-import {
-  BUTTON_SIZE_TO_ICON_MAP,
-  OUTLINE_THEMES,
-  SIZES,
-  Size,
-  THEMES,
-  Theme,
-} from "./styles";
 
 type Props = {
   className?: string;
-  theme?: Theme;
-  size?: Size;
-
-  iconName?: IconName;
-  iconClassName?: string;
-
+  type?: "primary" | "primaryTransparent";
   isLoading?: boolean;
-  reverse?: boolean;
-  outline?: boolean;
+  disabled?: boolean;
 } & Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, "onClick">;
 
-export const Button = ({
-  className,
+export function Button({
   children,
-  theme = "sandyBrown",
-  size = "42",
-  iconName,
-  iconClassName,
-  isLoading = false,
-  reverse = false,
-  outline = false,
+  className,
+  onClick,
+  isLoading,
+  type = "primary",
+  disabled = false,
 
   ...btnProps
-}: PropsWithChildren<Props>) => {
+}: PropsWithChildren<Props>) {
+  const base = tw`relative text-[1rem] font-publicoTextMono tracking-[-0.02em] px-[1.55rem] h-[2.5rem] flex items-center justify-center rounded-[0.3rem]`;
+
+  const primary = tw`buttonPrimary text-white uppercase`;
+
+  const primaryTransparent = tw`buttonPrimaryTransparent text-mineShaft uppercase`;
+
   return (
     <button
       {...btnProps}
       className={cn(
-        "relative inline-flex items-center justify-center",
-        outline ? "bg-transparent" : "border border-transparent",
-        outline ? OUTLINE_THEMES[theme] : THEMES[theme],
-        SIZES[size],
+        base,
+        {
+          [primary]: type === "primary",
+          [primaryTransparent]: type === "primaryTransparent",
+        },
         className
       )}
+      onClick={onClick}
+      disabled={disabled}
     >
-      {isLoading && (
-        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <Spinner />
-        </span>
-      )}
-      <span
-        className={cn(
-          "inline-flex items-center gap-2",
-          reverse && "flex-row-reverse",
-          isLoading && "opacity-0"
-        )}
-      >
-        {iconName && (
-          <Icon
-            className={iconClassName}
-            size={BUTTON_SIZE_TO_ICON_MAP[size]}
-            name={iconName}
-          />
-        )}
-        {children}
-      </span>
+      {isLoading ? <Spinner /> : children}
     </button>
   );
-};
+}

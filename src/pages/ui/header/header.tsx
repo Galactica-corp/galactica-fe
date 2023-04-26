@@ -1,3 +1,4 @@
+import { LogoutButton } from "features/logout-button";
 import { Logo } from "shared/ui/logo";
 import { HeaderLink } from "./header-link";
 
@@ -39,7 +40,8 @@ export const Header = () => {
               </HeaderLink>
             ))}
           </div>
-          <div>Button</div>
+
+          <LogoutButton />
         </div>
       </div>
     </div>

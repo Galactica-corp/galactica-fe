@@ -59,8 +59,8 @@
 :root {
   font-family: Antique Legacy;
   font-size: 16px; /* 1rem (now for any resolution) */
-  background-color: #FEFDFB;
-  color: #2B2B2B;
+  background-color: #fefdfb;
+  color: #2b2b2b;
   line-height: 130%;
   font-synthesis: none;
 
@@ -68,4 +68,32 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+@layer utilities {
+  .buttonPrimary {
+    background: linear-gradient(106.71deg, #f26f56 7.28%, #f49756 110.04%);
+    box-shadow: 0px 0px 25px rgba(247, 120, 27, 0.1);
+  }
+  .buttonPrimary:hover {
+    background: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.1)
+      ),
+      linear-gradient(106.71deg, #f26f56 7.28%, #f49756 110.04%);
+    box-shadow: 0px 0px 25px rgba(247, 120, 27, 0.25);
+  }
+
+  .buttonPrimaryTransparent {
+    border: 1px solid rgba(243, 117, 87, 0.75);
+  }
+
+  .buttonPrimaryTransparent:hover {
+    background: linear-gradient(
+      106.71deg,
+      rgba(242, 111, 86, 0.07) 7.28%,
+      rgba(244, 151, 86, 0.07) 110.04%
+    );
+  }
 }
