@@ -2,6 +2,7 @@ import { CARDS_MAP, KYCCard } from "entities/kyc-card";
 import { KYCName } from "entities/kyc-card/kyc-card";
 import { useAccount } from "wagmi";
 import { ConnectButton } from "features/connect-button";
+import { UploadKYCKeyCard } from "features/upload-kyc-key-card";
 import { Layout } from "pages/ui";
 import { ReactComponent as LinkIcon } from "shared/icons/link.svg";
 import { ReactComponent as MetamaskIcon } from "shared/icons/metamask.svg";
@@ -22,6 +23,7 @@ export const Home = () => {
       ) : (
         <Layout>
           <div className="grid grid-cols-3 gap-x-4 gap-y-6">
+            <UploadKYCKeyCard />
             {Object.keys(CARDS_MAP).map((kycName, i) => (
               <KYCCard
                 key={kycName}
