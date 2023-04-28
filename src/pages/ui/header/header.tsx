@@ -1,4 +1,4 @@
-import { LogoutButton } from "features/logout-button";
+import { ConnectButton } from "features/connect-button";
 import { Logo } from "shared/ui/logo";
 import { HeaderLink } from "./header-link";
 
@@ -41,7 +41,7 @@ export const Header = () => {
             ))}
           </div>
 
-          <LogoutButton />
+          <ConnectButton />
         </div>
       </div>
     </div>
