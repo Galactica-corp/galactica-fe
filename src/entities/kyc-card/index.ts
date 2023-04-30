@@ -1,1 +1,1 @@
-export { KYCCard, CARDS_MAP } from "./kyc-card";
+export { KYCCard } from "./kyc-card";

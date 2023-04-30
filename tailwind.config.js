@@ -33,6 +33,7 @@ export default {
     extend: {
       boxShadow: {
         card: "0px 2px 0px #E3E2E1, 12px 12px 26px rgba(0, 0, 0, 0.05)",
+        cardRed: "0px 2px 0px #FA9993, 8px 8px 40px rgba(0, 0, 0, 0.05)",
       },
     },
   },

@@ -1,4 +1,5 @@
 import { Button } from "shared/ui/button";
+import { cardDefaultStyle } from "shared/utils";
 
 export function UploadKYCKeyCard() {
   const handler = () => {
@@ -7,10 +8,11 @@ export function UploadKYCKeyCard() {
 
   return (
     <div
-      className="
-        flex h-[14.875rem] w-[23.75rem] flex-col items-center justify-center
-        rounded-[0.625rem] border border-dashed border-naturalGray/30 
-      "
+      className={`
+        ${cardDefaultStyle}
+        flex-col items-center justify-center
+        border-dashed border-naturalGray/30 shadow-none
+      `}
     >
       <Button type="primaryTransparent" onClick={handler}>
         Upload KYC-key
