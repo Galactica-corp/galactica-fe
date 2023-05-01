@@ -4,9 +4,9 @@ export function EcosystemBanner() {
   return (
     <div
       className="
-        relative min-h-[11.187rem] w-full rounded-[0.41rem]
-        bg-gradient-to-r from-burntSienna to-sandyBrown
-        px-[3.125rem] py-[2.5rem] text-white
+        relative mb-[3.75rem] min-h-[10.9rem] w-full
+        rounded-[0.41rem] bg-gradient-to-r from-burntSienna
+        to-sandyBrown px-[3.125rem] py-[2.5rem] text-white
       "
     >
       <div
