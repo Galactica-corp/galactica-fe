@@ -21,6 +21,7 @@ export default {
       sandyBrown: "#F49756",
       grayNickel: "#C9C9C7",
       salmon: "#FF8A71",
+      burntSienna: "#F26F56",
       scarlet: "#F31C0E",
       pampas: "#FCFBFA",
       naturalGray: "#91908E",
