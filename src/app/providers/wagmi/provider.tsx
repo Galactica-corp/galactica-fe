@@ -4,6 +4,8 @@ import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { publicProvider } from "wagmi/providers/public";
 import { supportedChains } from "shared/config/networks";
 
+// import { MetaMaskConnector } from "./flask-provider";
+
 const { chains, provider } = configureChains(supportedChains, [
   publicProvider(),
 ]);
@@ -18,7 +20,13 @@ const client = createClient({
     warn: (message) => console.warn(message),
   },
   connectors: [
-    new MetaMaskConnector({ chains, options: { shimDisconnect: true } }),
+    new MetaMaskConnector({
+      chains,
+      options: {
+        shimDisconnect: true,
+        UNSTABLE_shimOnConnectSelectAccount: true,
+      },
+    }),
   ],
   provider: provider,
 });

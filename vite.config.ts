@@ -20,6 +20,10 @@ export default defineConfig(({ mode }) => {
         eslint: {
           lintCommand: 'eslint "./src/**/*.{ts,tsx}"',
         },
+        overlay: {
+          initialIsOpen: false,
+          position: "br",
+        },
       }),
     ].filter(Boolean),
   };
