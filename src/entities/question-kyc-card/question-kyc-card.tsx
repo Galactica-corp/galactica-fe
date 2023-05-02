@@ -14,7 +14,9 @@ export function QuestionKYCCard() {
       style={{ backgroundImage: `url(${questionKYCCardBgUrl})` }}
     >
       <div>
-        <div className="text-[1.75rem] font-light">Can’t find your KYC?</div>
+        <div className="mb-[0.6rem] text-[1.75rem] font-light">
+          Can’t find your KYC?
+        </div>
         <Link href="https://google.com" target="_blank" rel="noreferrer">
           Learn More about KYC{" "}
           <InfoOrangeIcon

@@ -21,9 +21,11 @@ export default {
       sandyBrown: "#F49756",
       grayNickel: "#C9C9C7",
       salmon: "#FF8A71",
+      burntSienna: "#F26F56",
       scarlet: "#F31C0E",
       pampas: "#FCFBFA",
       naturalGray: "#91908E",
+      alabaster: "#FCFCFC",
       transparent: "transparent",
     },
     fontFamily: {
@@ -34,6 +36,9 @@ export default {
       boxShadow: {
         card: "0px 2px 0px #E3E2E1, 12px 12px 26px rgba(0, 0, 0, 0.05)",
         cardRed: "0px 2px 0px #FA9993, 8px 8px 40px rgba(0, 0, 0, 0.05)",
+      },
+      opacity: {
+        35: "0.35",
       },
     },
   },

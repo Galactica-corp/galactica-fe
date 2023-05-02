@@ -13,7 +13,9 @@ export function QuestionSBTCard() {
       style={{ backgroundImage: `url(${questionSBTCardBgUrl})` }}
     >
       <div>
-        <div className="text-[1.75rem] font-light">What are the SBTs?</div>
+        <div className="mb-[0.6rem] text-[1.75rem] font-light">
+          What are the SBTs?
+        </div>
         <Link href="https://google.com" target="_blank" rel="noreferrer">
           Learn More about SBT{" "}
           <InfoOrangeIcon
