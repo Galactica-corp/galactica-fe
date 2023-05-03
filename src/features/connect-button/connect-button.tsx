@@ -28,7 +28,9 @@ export function ConnectButton() {
       }}
       isLoading={status === "loading"}
       type="primaryTransparent"
-      className="w-[18.75rem] space-x-[0.9rem]"
+      className={`space-x-[0.9rem] ${
+        status === "connect" ? "w-[18.75rem]" : ""
+      }`}
     >
       {status === "connect" && (
         <>
