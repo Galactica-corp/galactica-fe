@@ -14,6 +14,7 @@ import { ReactComponent as LinkIcon } from "shared/icons/link.svg";
 import { ReactComponent as MetamaskIcon } from "shared/icons/metamask.svg";
 import { Button } from "shared/ui/button";
 import { CARDS_MAP } from "shared/utils/cards-map";
+import { toastError, toastSuccess } from "shared/utils/toasts";
 
 export const Home = () => {
   const { isConnected } = useAccount();
@@ -29,6 +30,15 @@ export const Home = () => {
         </div>
       ) : (
         <Layout>
+          <div className="mb-4 space-y-4">
+            <div>Toasts</div>
+            <Button onClick={() => toastSuccess("Success toast text")}>
+              toast success
+            </Button>
+            <Button onClick={() => toastError("Error toast text")}>
+              toast error
+            </Button>
+          </div>
           <div className="grid grid-cols-3 gap-x-4 gap-y-6">
             <UploadKYCKeyCard />
             <QuestionKYCCard />
