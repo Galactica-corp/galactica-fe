@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Ecosystem } from "pages/ecosystem";
+import { Help } from "pages/help";
 import { Fallback } from "./fallback";
 
 const Home = lazy(() =>
@@ -12,6 +13,7 @@ export const AppRoutes = () => {
     <Suspense fallback={<Fallback />}>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/help" element={<Help />} />
         <Route path="/ecosystem" element={<Ecosystem />} />
       </Routes>
     </Suspense>
