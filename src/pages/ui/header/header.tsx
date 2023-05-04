@@ -1,4 +1,4 @@
-import { ConnectButton } from "features/connect-button";
+import { WalletButton } from "widgets/wallet-button";
 import { Logo } from "shared/ui/logo";
 import { HeaderLink } from "./header-link";
 
@@ -41,7 +41,7 @@ export const Header = () => {
             ))}
           </div>
 
-          <ConnectButton />
+          <WalletButton />
         </div>
       </div>
     </div>

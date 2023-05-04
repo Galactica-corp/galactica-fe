@@ -1,1 +1,1 @@
-export { KYCProvidersPage } from "./kyc-providers";
+export { KYCProvidersPage } from "./ui";

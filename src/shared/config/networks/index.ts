@@ -1,12 +1,6 @@
-import { milkomedaC1Chain } from "./milkomeda-c1";
-import { milkomedaC1TestnetChain } from "./milkomeda-testnet-c1";
+import { galacticaTestnet } from "./galactica-testnet";
 
-const supportedChains = [milkomedaC1Chain, milkomedaC1TestnetChain];
-const DEFAULT_CHAIN = milkomedaC1Chain;
+const supportedChains = [galacticaTestnet];
+const DEFAULT_CHAIN = galacticaTestnet;
 
-export {
-  milkomedaC1Chain,
-  milkomedaC1TestnetChain,
-  supportedChains,
-  DEFAULT_CHAIN,
-};
+export { galacticaTestnet, supportedChains, DEFAULT_CHAIN };

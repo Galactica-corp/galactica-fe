@@ -1,10 +1,8 @@
-import { Navigate } from "react-router-dom";
 import { KYCCard } from "entities/kyc-card";
 import { KYCName } from "entities/kyc-card/kyc-card";
 import { KYCProofCard } from "entities/kyc-proof-card";
 import { QuestionKYCCard } from "entities/question-kyc-card";
 import { QuestionSBTCard } from "entities/question-sbt-card";
-import { useReadLocalStorage } from "usehooks-ts";
 import { ChooseKycProviderCard } from "features/choose-kyc-provider-card";
 import { GenerateBasicZkProofCard } from "features/generate-basic-zkproof-card";
 import { GenerateKYCProofSBTCard } from "features/generate-kyc-proof-sbt-card";
@@ -15,10 +13,6 @@ import { Button } from "shared/ui/button";
 import { CARDS_MAP } from "shared/utils/cards-map";
 
 export const Home = () => {
-  const isWelcomeShown = useReadLocalStorage("isWelcomeShown");
-
-  if (!isWelcomeShown) return <Navigate to="welcome" />;
-
   return (
     <>
       <div className="grid grid-cols-3 gap-x-4 gap-y-6">

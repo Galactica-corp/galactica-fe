@@ -2,7 +2,7 @@
 /// <reference types="vite-plugin-svgr/client" />
 
 interface ImportMetaEnv {
-  readonly VITE_EXAMPLE_ENV: string;
+  readonly VITE_SNAP_ID: string;
 }
 
 interface ImportMeta {

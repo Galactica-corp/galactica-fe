@@ -19,5 +19,16 @@ export const connectSnap = async (
     },
   });
 
-  console.log(JSON.stringify(res, null, 2));
+  return res;
+};
+
+/**
+ * Get the installed snaps in MetaMask.
+ *
+ * @returns The snaps installed in MetaMask.
+ */
+export const getSnaps = async () => {
+  return await window.ethereum?.request({
+    method: "wallet_getSnaps",
+  });
 };
