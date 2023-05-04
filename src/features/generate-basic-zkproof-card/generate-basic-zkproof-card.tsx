@@ -1,7 +1,8 @@
 import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
 import { Button } from "shared/ui/button";
 import { cardDefaultStyle } from "shared/utils";
-import GenerateBasicZkProofCardBgUrl from "./images/generate-basic-zkproof-card-bg.svg";
+
+// import GenerateBasicZkProofCardBgUrl from "./images/generate-basic-zkproof-card-bg.svg";
 
 export function GenerateBasicZkProofCard() {
   const handler = () => {
@@ -14,7 +15,7 @@ export function GenerateBasicZkProofCard() {
         ${cardDefaultStyle}
         flex-col justify-between bg-cover bg-center bg-no-repeat shadow-cardRed
       `}
-      style={{ backgroundImage: `url(${GenerateBasicZkProofCardBgUrl})` }}
+      // style={{ backgroundImage: `url(${GenerateBasicZkProofCardBgUrl})` }}
     >
       <div>
         <div className="text-[1.75rem] font-light">
