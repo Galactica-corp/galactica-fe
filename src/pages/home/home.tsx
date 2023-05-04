@@ -9,11 +9,16 @@ import { GenerateKYCProofSBTCard } from "features/generate-kyc-proof-sbt-card";
 import { UploadKYCKeyCard } from "features/upload-kyc-key-card";
 import { ReactComponent as LinkIcon } from "shared/icons/link.svg";
 import { ReactComponent as MetamaskIcon } from "shared/icons/metamask.svg";
+import { useSnap } from "shared/snap";
 import { Button } from "shared/ui/button";
 import { CARDS_MAP } from "shared/utils/cards-map";
 import { toastError, toastSuccess } from "shared/utils/toasts";
 
 export const Home = () => {
+  const snap = useSnap();
+
+  console.log({ snap });
+
   return (
     <>
       <div className="mb-4 space-y-4">

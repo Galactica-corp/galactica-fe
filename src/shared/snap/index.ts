@@ -1,4 +1,3 @@
-export { connectSnap } from "./connect";
 export { SnapContext, useSnap } from "./context";
 export type { GetSnapsResponse, Snap } from "./types";
 

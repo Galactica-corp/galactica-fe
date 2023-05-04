@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import { useWalletButtonStatus } from "widgets/wallet-button";
-import { useGetSnapQuery } from "shared/snap";
+import { SnapContext, useGetSnapQuery } from "shared/snap";
 import { SnapStep } from "./snap-step";
 import { WalletStep } from "./wallet-step";
 
@@ -9,14 +9,20 @@ export const ConnectGuard = ({ children }: PropsWithChildren) => {
 
   const snapQuery = useGetSnapQuery();
 
-  console.log(snapQuery.data);
   return (
     <>
       {(walletStatus === "connectNeeded" ||
         walletStatus === "switchNeeded") && <WalletStep />}
-      {walletStatus === "canDisconnect" && <SnapStep />}
 
-      {snapQuery.data && walletStatus === "canDisconnect" && children}
+      {walletStatus === "canDisconnect" && snapQuery.data === null && (
+        <SnapStep />
+      )}
+
+      {snapQuery.data && walletStatus === "canDisconnect" && (
+        <SnapContext.Provider value={snapQuery.data}>
+          {children}
+        </SnapContext.Provider>
+      )}
     </>
   );
 };
