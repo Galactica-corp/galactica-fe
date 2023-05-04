@@ -2,7 +2,9 @@ import { Tooltip } from "react-tooltip";
 import { ReactComponent as InfoOrangeIcon } from "shared/icons/info-orange.svg";
 import { Link } from "shared/ui/link";
 import { cardDefaultStyle } from "shared/utils";
-import questionSBTCardBgUrl from "./images/question-sbt-card-bg.svg";
+
+// TODO: use png
+// import questionSBTCardBgUrl from "./images/question-sbt-card-bg.svg";
 
 export function QuestionSBTCard() {
   const id = Math.random().toString(36).substring(2);
@@ -10,7 +12,7 @@ export function QuestionSBTCard() {
   return (
     <div
       className={`${cardDefaultStyle} flex-col justify-between bg-cover bg-center bg-no-repeat`}
-      style={{ backgroundImage: `url(${questionSBTCardBgUrl})` }}
+      // style={{ backgroundImage: `url(${questionSBTCardBgUrl})` }}
     >
       <div>
         <div className="mb-[0.6rem] text-[1.75rem] font-light">
