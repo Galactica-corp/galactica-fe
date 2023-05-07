@@ -26,7 +26,7 @@ export const DisconnectButton = ({ onDisconnect }: Props) => {
     <Button
       onClick={handleDisconnect}
       isLoading={isLoading}
-      type="primaryTransparent"
+      theme="primaryTransparent"
       className="w-[18.75rem] space-x-[0.9rem]"
     >
       <span>{shortenAddress(address)}</span>

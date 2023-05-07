@@ -5,17 +5,17 @@ import { Spinner } from "../spinner";
 
 type Props = {
   className?: string;
-  type?: "primary" | "primaryTransparent";
+  theme?: "primary" | "primaryTransparent";
   isLoading?: boolean;
   disabled?: boolean;
-} & Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, "onClick">;
+} & Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, "onClick" | "type">;
 
 export function Button({
   children,
   className,
   onClick,
   isLoading,
-  type = "primary",
+  theme = "primary",
   disabled = false,
 
   ...btnProps
@@ -32,8 +32,8 @@ export function Button({
       className={cn(
         base,
         {
-          [primary]: type === "primary",
-          [primaryTransparent]: type === "primaryTransparent",
+          [primary]: theme === "primary",
+          [primaryTransparent]: theme === "primaryTransparent",
         },
         className
       )}

@@ -60,7 +60,7 @@ export const Home = () => {
       <div className="mt-10 space-y-4">
         <div>simple</div>
         <Button>Start the KYC procedure</Button>
-        <Button type="primaryTransparent">Start the KYC procedure</Button>
+        <Button theme="primaryTransparent">Start the KYC procedure</Button>
         <Button isLoading>Start the KYC procedure</Button>
 
         <div>with icon</div>
@@ -69,7 +69,7 @@ export const Home = () => {
           <span>Metamask</span>
         </Button>
         <Button
-          type="primaryTransparent"
+          theme="primaryTransparent"
           className="w-[16rem] space-x-[0.8rem]"
         >
           <MetamaskIcon className="relative top-[-0.15rem]" />
@@ -81,14 +81,17 @@ export const Home = () => {
           Metamask
           <MetamaskIcon className="relative top-[-0.15rem]" />
         </Button>
-        <Button type="primaryTransparent" className="w-[16rem] justify-between">
+        <Button
+          theme="primaryTransparent"
+          className="w-[16rem] justify-between"
+        >
           Metamask
           <MetamaskIcon className="relative top-[-0.15rem]" />
         </Button>
 
         <div>another font</div>
         <Button
-          type="primaryTransparent"
+          theme="primaryTransparent"
           className="space-x-[0.45rem] !font-antiqueLegacy normal-case"
         >
           <span>Check status</span> <LinkIcon />

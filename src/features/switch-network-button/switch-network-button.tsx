@@ -26,7 +26,7 @@ export const SwitchNetworkButton = ({ onSwitch }: Props) => {
     <Button
       onClick={handleSwitch}
       isLoading={isLoading}
-      type="primaryTransparent"
+      theme="primaryTransparent"
       className="w-[18.75rem] space-x-[0.9rem]"
     >
       <span>Switch network</span>

@@ -14,7 +14,7 @@ export function UploadKYCKeyCard() {
         border-dashed border-naturalGray/30 shadow-none
       `}
     >
-      <Button type="primaryTransparent" onClick={handler}>
+      <Button theme="primaryTransparent" onClick={handler}>
         Upload KYC-key
       </Button>
       <div className="mt-[1.05rem] w-[15rem] text-center text-[0.875rem] text-mineShaft/50">

@@ -30,7 +30,7 @@ export function ConnectWalletButton({ onConnect }: Props) {
     <Button
       onClick={handleConnect}
       isLoading={isConnecting}
-      type="primaryTransparent"
+      theme="primaryTransparent"
       className="w-[18.75rem] space-x-[0.9rem]"
     >
       <MetamaskIcon className="relative top-[-0.15rem]" />
