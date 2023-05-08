@@ -1,6 +1,7 @@
 import { KYCCard } from "entities/kyc-card";
 import { KYCName } from "entities/kyc-card/kyc-card";
 import { KYCProofCard } from "entities/kyc-proof-card";
+import { ModalStartKYCProcedure } from "entities/modal-start-kyc-procedure";
 import { QuestionKYCCard } from "entities/question-kyc-card";
 import { QuestionSBTCard } from "entities/question-sbt-card";
 import { ChooseKycProviderCard } from "features/choose-kyc-provider-card";
@@ -21,6 +22,7 @@ export const Home = () => {
 
   return (
     <>
+      <ModalStartKYCProcedure />
       <div className="mb-4 space-y-4">
         <div>Toasts</div>
         <Button onClick={() => toastSuccess("Success toast text")}>
