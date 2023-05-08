@@ -23,8 +23,8 @@ export const Help = () => {
         title="How to get a KYC?"
         button={
           <Button
-            type="primaryTransparent"
-            className="h-[2rem] w-[14.06rem] !font-antiqueLegacy text-[0.875rem] font-light normal-case"
+            theme="primaryTransparent"
+            className="h-[2rem] w-[14.06rem] font-antiqueLegacy text-[0.875rem] font-light normal-case"
           >
             Go to KYC provider list
           </Button>
@@ -41,8 +41,8 @@ export const Help = () => {
         title="I passed my KYC. What's next?"
         button={
           <Button
-            type="primary"
-            className="h-[2rem] w-[14.06rem] !font-antiqueLegacy text-[0.875rem] font-light normal-case"
+            theme="primary"
+            className="h-[2rem] w-[14.06rem] font-antiqueLegacy text-[0.875rem] font-light normal-case"
           >
             Upload KYC-KEY
           </Button>
@@ -61,7 +61,7 @@ export const Help = () => {
         title="What does Publish KYC mean?"
         button={
           <Button
-            type="primaryTransparent"
+            theme="primaryTransparent"
             className="
               h-[2rem] w-[14.06rem] 
               !border-naturalGray/50 !p-0 

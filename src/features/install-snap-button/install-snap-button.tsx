@@ -32,8 +32,8 @@ export const InstallSnapButton = ({ onInstall }: Props) => {
       onClick={handleInstall}
       isLoading={mutation.isLoading || query.isLoading}
       disabled={!query.isSuccess}
-      type="primary"
-      className="w-[18.75rem] space-x-[0.9rem]"
+      theme="primary"
+      className="space-x-[0.9rem] px-14"
     >
       {disabled ? (
         "Enable galactica snap"
