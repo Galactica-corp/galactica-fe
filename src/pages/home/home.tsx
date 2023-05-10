@@ -6,7 +6,7 @@ import { QuestionSBTCard } from "entities/question-sbt-card";
 import { ChooseKycProviderCard } from "features/choose-kyc-provider-card";
 import { GenerateBasicZkProofCard } from "features/generate-basic-zkproof-card";
 import { GenerateKYCProofSBTCard } from "features/generate-kyc-proof-sbt-card";
-import { UploadKYCKeyCard } from "features/upload-kyc-key-card";
+import { UploadKYCKeyCard } from "features/upload-kyc";
 import { ReactComponent as LinkIcon } from "shared/icons/link.svg";
 import { ReactComponent as MetamaskIcon } from "shared/icons/metamask.svg";
 import { useSnap } from "shared/snap";

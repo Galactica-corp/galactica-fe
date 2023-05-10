@@ -16,6 +16,7 @@ const { chains, provider } = configureChains(supportedChains, [
 //   !window.ethereum.isMetaMask;
 
 const client = createClient({
+  autoConnect: true,
   logger: {
     warn: (message) => console.warn(message),
   },
