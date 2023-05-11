@@ -1,9 +1,6 @@
 import { KYCCard } from "entities/kyc-card";
 import { KYCName } from "entities/kyc-card/kyc-card";
-import { KYCProofCard } from "entities/kyc-proof-card";
 import { QuestionKYCCard } from "entities/question-kyc-card";
-import { QuestionSBTCard } from "entities/question-sbt-card";
-import { ChooseKycProviderCard } from "features/choose-kyc-provider-card";
 import { GenerateBasicZkProofCard } from "features/generate-basic-zkproof-card";
 import { GenerateKYCProofSBTCard } from "features/generate-kyc-proof-sbt-card";
 import { UploadKYCKeyCard } from "features/upload-kyc";
@@ -56,10 +53,7 @@ export const Home = () => {
       <div className="grid grid-cols-3 gap-x-4 gap-y-6">
         <UploadKYCKeyCard />
         <QuestionKYCCard />
-        <QuestionSBTCard />
         <GenerateBasicZkProofCard />
-        <GenerateKYCProofSBTCard />
-        <ChooseKycProviderCard />
         {Object.keys(CARDS_MAP).map((kycName, i) => (
           <KYCCard
             key={kycName}
@@ -68,17 +62,6 @@ export const Home = () => {
             expiration="24.01.2025"
           />
         ))}
-        {Object.keys(CARDS_MAP).map((kycName, i) => {
-          if (kycName === "accreditation") return;
-          return (
-            <KYCProofCard
-              key={kycName}
-              kyc={kycName as KYCName}
-              level={`Level ${i + 1}`}
-              expiration="24.01.2025"
-            />
-          );
-        })}
       </div>
       <div className="mt-10 space-y-4">
         <div>simple</div>

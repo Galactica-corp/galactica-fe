@@ -10,7 +10,7 @@ export const Link = ({ className = "", href, children, ...rest }: Props) => (
     href={href}
     className={`
       ${className}
-      flex items-baseline text-[0.875rem] text-salmon
+      inline-flex items-baseline text-[0.875rem] text-salmon
       hover:underline
     `}
     {...rest}

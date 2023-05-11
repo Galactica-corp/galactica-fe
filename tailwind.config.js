@@ -26,6 +26,7 @@ export default {
       pampas: "#FCFBFA",
       naturalGray: "#91908E",
       alabaster: "#FCFCFC",
+      alto: "#D8D8D8",
       transparent: "transparent",
     },
     fontFamily: {

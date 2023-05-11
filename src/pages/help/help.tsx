@@ -65,7 +65,7 @@ export const Help = () => {
             className="
               h-[2rem] w-[14.06rem] 
               !border-naturalGray/50 !p-0 
-              font-antiqueLegacy text-[0.875rem] font-light normal-case"
+              !font-antiqueLegacy text-[0.875rem] font-light normal-case"
           >
             Non-published documents
           </Button>
