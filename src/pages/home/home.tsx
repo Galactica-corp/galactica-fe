@@ -6,8 +6,12 @@ import { GenerateKYCProofSBTCard } from "features/generate-kyc-proof-sbt-card";
 import { UploadKYCKeyCard } from "features/upload-kyc";
 import { ReactComponent as LinkIcon } from "shared/icons/link.svg";
 import { ReactComponent as MetamaskIcon } from "shared/icons/metamask.svg";
-import { useSetupHoldingKeyMutation, useSnap } from "shared/snap";
-import { useGenerateCommitmentHashMutation } from "shared/snap/use-generate-commitment-hash-mutation";
+import {
+  useClearStorageMutation,
+  useGenerateCommitmentHashMutation,
+  useSetupHoldingKeyMutation,
+  useSnap,
+} from "shared/snap";
 import { Button } from "shared/ui/button";
 import { CARDS_MAP } from "shared/utils/cards-map";
 import { toastError, toastSuccess } from "shared/utils/toasts";
@@ -17,6 +21,15 @@ export const Home = () => {
 
   const generateCommitmentMutation = useGenerateCommitmentHashMutation();
   const setupHoldingKeyMutation = useSetupHoldingKeyMutation();
+  const clearStorageMutation = useClearStorageMutation();
+
+  const onClearStorageMutation = () => {
+    clearStorageMutation.mutate(undefined, {
+      onSuccess: (data) => {
+        console.log("clear storage", data);
+      },
+    });
+  };
 
   const onSetupHoldingKey = () => {
     setupHoldingKeyMutation.mutate(undefined, {
@@ -38,6 +51,7 @@ export const Home = () => {
   return (
     <>
       <div className="mb-4 space-y-4">
+        <Button onClick={onClearStorageMutation}>Clear storage</Button>
         <Button onClick={onSetupHoldingKey}>setup holding key</Button>
         <Button onClick={onGenerateCommitmentHash}>
           generate commitment Hash
