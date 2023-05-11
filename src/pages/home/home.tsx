@@ -9,7 +9,8 @@ import { GenerateKYCProofSBTCard } from "features/generate-kyc-proof-sbt-card";
 import { UploadKYCKeyCard } from "features/upload-kyc";
 import { ReactComponent as LinkIcon } from "shared/icons/link.svg";
 import { ReactComponent as MetamaskIcon } from "shared/icons/metamask.svg";
-import { useSnap } from "shared/snap";
+import { useSetupHoldingKeyMutation, useSnap } from "shared/snap";
+import { useGenerateCommitmentHashMutation } from "shared/snap/use-generate-commitment-hash-mutation";
 import { Button } from "shared/ui/button";
 import { CARDS_MAP } from "shared/utils/cards-map";
 import { toastError, toastSuccess } from "shared/utils/toasts";
@@ -17,11 +18,33 @@ import { toastError, toastSuccess } from "shared/utils/toasts";
 export const Home = () => {
   const snap = useSnap();
 
-  console.log({ snap });
+  const generateCommitmentMutation = useGenerateCommitmentHashMutation();
+  const setupHoldingKeyMutation = useSetupHoldingKeyMutation();
+
+  const onSetupHoldingKey = () => {
+    setupHoldingKeyMutation.mutate(undefined, {
+      onSuccess: (data) => {
+        console.log({ name: "setup", data });
+      },
+    });
+  };
+
+  const onGenerateCommitmentHash = () => {
+    console.log("hello");
+    generateCommitmentMutation.mutate(undefined, {
+      onSuccess: (data) => {
+        console.log({ name: "generateCommitment", data });
+      },
+    });
+  };
 
   return (
     <>
       <div className="mb-4 space-y-4">
+        <Button onClick={onSetupHoldingKey}>setup holding key</Button>
+        <Button onClick={onGenerateCommitmentHash}>
+          generate commitment Hash
+        </Button>
         <div>Toasts</div>
         <Button onClick={() => toastSuccess("Success toast text")}>
           toast success

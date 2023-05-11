@@ -1,10 +1,11 @@
+import { ComponentProps } from "react";
 import cn from "classnames";
 import { Spinner } from "../spinner";
 import { getCls } from "./styles";
 import { CommonButtonProps } from "./types";
 
 export type Props = CommonButtonProps &
-  Pick<React.ComponentProps<"button">, "onClick" | "type">;
+  Pick<ComponentProps<"button">, "onClick" | "type">;
 
 export function Button({
   children,

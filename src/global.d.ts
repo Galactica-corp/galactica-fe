@@ -16,6 +16,17 @@ declare module "@wagmi/core" {
       method: "wallet_getSnaps";
       params?: Record<string, unknown>;
     }): Promise<GetSnapsResponse>;
+
+    request(args: {
+      method: "wallet_invokeSnap";
+      params?: {
+        snapId: string;
+        request: {
+          method: string;
+          params?: Record<string, unknown>;
+        };
+      };
+    }): Promise<GetSnapsResponse>;
   }
 }
 
