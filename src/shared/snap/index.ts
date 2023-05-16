@@ -7,3 +7,4 @@ export { useInstallSnapMutation } from "./use-install-snap-mutation";
 export { useGenerateCommitmentHashMutation } from "./use-generate-commitment-hash-mutation";
 export { useSetupHoldingKeyMutation } from "./use-setup-holding-key-mutation";
 export { useClearStorageMutation } from "./use-clear-storage-mutation";
+export { useListZkCertsQuery } from "./use-list-zk-certs-query";

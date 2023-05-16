@@ -15,9 +15,9 @@ export const AppRoutes = () => {
     <Suspense fallback={<Fallback />}>
       <Routes>
         <Route path="/onboarding" element={<OnboardingPage />} />
-        <Route path="/" element={<Layout />}>
-          <Route index path="/" element={<HomePage />} />
-          <Route path="/my-kyc" element={<MyKYCPage />} />
+        <Route element={<Layout />}>
+          <Route index path="/" element={<MyKYCPage />} />
+          <Route path="/kit" element={<HomePage />} />
           <Route path="/my-sbt" element={<MySBTPage />} />
           <Route path="/kyc-providers" element={<KYCProvidersPage />} />
           <Route path="/help" element={<HelpPage />} />

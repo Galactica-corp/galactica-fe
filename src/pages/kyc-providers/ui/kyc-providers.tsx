@@ -41,7 +41,14 @@ const Row = ({
       <div>{mock.totalDocs}</div>
       <div>{mock.docsPerMonth}</div>
       <div>{mock.avgTime}</div>
-      <button className="w-[9.1875rem] py-[0.5313rem]">Start KYC</button>
+      <button
+        className="w-[9.1875rem] py-[0.5313rem]"
+        onClick={() => {
+          console.log("Hello");
+        }}
+      >
+        Start KYC
+      </button>
     </div>
   );
 };

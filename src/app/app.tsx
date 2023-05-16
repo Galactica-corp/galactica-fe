@@ -11,12 +11,12 @@ export function App() {
   return (
     <RQProvider>
       <WagmiProvider>
-        <ConnectGuard>
-          <BrowserRouter>
+        <BrowserRouter>
+          <ConnectGuard>
             <AppRoutes />
-          </BrowserRouter>
+          </ConnectGuard>
           <Toaster position="top-right" reverseOrder={false} />
-        </ConnectGuard>
+        </BrowserRouter>
       </WagmiProvider>
     </RQProvider>
   );
