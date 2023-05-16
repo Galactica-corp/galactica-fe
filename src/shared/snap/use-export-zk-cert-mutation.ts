@@ -1,8 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { SNAP_ID } from "shared/config/const";
 
-type ZkStandtart = "gip69";
-
 export const useExportZkCertMutation = () => {
   return useMutation({
     mutationFn: async () => {

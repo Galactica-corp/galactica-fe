@@ -1,5 +1,4 @@
 import { PropsWithChildren } from "react";
-import { Link } from "react-router-dom";
 import { useWalletButtonStatus } from "widgets/wallet-button";
 import { SnapContext, useGetSnapQuery, useIsFlaskQuery } from "shared/snap";
 import { InstallFlaskStep } from "./install-flask-step";
@@ -10,6 +9,8 @@ export const ConnectGuard = ({ children }: PropsWithChildren) => {
   const walletStatus = useWalletButtonStatus();
   const snapQuery = useGetSnapQuery();
   const isFlaskQuery = useIsFlaskQuery();
+
+  console.log(isFlaskQuery);
 
   return (
     <>

@@ -2,26 +2,26 @@ import { KYCCard } from "entities/kyc-card";
 import { KYCName } from "entities/kyc-card/kyc-card";
 import { QuestionKYCCard } from "entities/question-kyc-card";
 import { GenerateBasicZkProofCard } from "features/generate-basic-zkproof-card";
-import { GenerateKYCProofSBTCard } from "features/generate-kyc-proof-sbt-card";
 import { UploadKYCKeyCard } from "features/upload-kyc";
 import { ReactComponent as LinkIcon } from "shared/icons/link.svg";
 import { ReactComponent as MetamaskIcon } from "shared/icons/metamask.svg";
 import {
   useClearStorageMutation,
   useGenerateCommitmentHashMutation,
+  useListZkCertsMutation,
   useSetupHoldingKeyMutation,
-  useSnap,
 } from "shared/snap";
+import { useExportZkCertMutation } from "shared/snap/use-export-zk-cert-mutation";
 import { Button } from "shared/ui/button";
 import { CARDS_MAP } from "shared/utils/cards-map";
 import { toastError, toastSuccess } from "shared/utils/toasts";
 
 export const Home = () => {
-  const snap = useSnap();
-
   const generateCommitmentMutation = useGenerateCommitmentHashMutation();
   const setupHoldingKeyMutation = useSetupHoldingKeyMutation();
   const clearStorageMutation = useClearStorageMutation();
+  const exportMutation = useExportZkCertMutation();
+  const listZkCertsMutation = useListZkCertsMutation();
 
   const onClearStorageMutation = () => {
     clearStorageMutation.mutate(undefined, {
@@ -48,9 +48,29 @@ export const Home = () => {
     });
   };
 
+  const onExportCert = () => {
+    console.log("onExportCert");
+    exportMutation.mutate(undefined, {
+      onSuccess: (data) => {
+        console.log({ name: "onExportCert", data });
+      },
+    });
+  };
+
+  const onListZkCerts = () => {
+    console.log("onListZkCerts");
+    listZkCertsMutation.mutate(undefined, {
+      onSuccess: (data) => {
+        console.log({ name: "onListZkCerts", data });
+      },
+    });
+  };
+
   return (
     <>
       <div className="mb-4 space-y-4">
+        <Button onClick={onListZkCerts}>list zk certs</Button>
+        <Button onClick={onExportCert}>Export cert</Button>
         <Button onClick={onClearStorageMutation}>Clear storage</Button>
         <Button onClick={onSetupHoldingKey}>setup holding key</Button>
         <Button onClick={onGenerateCommitmentHash}>

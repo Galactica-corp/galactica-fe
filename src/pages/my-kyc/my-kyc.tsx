@@ -3,8 +3,6 @@ import { QuestionKYCCard } from "entities/question-kyc-card";
 import { UploadKYCKeyCard } from "features/upload-kyc";
 
 export const MyKYC = () => {
-  // const zkCertsQuery = useListZkCertsQuery();
-
   return (
     <div className="grid grid-cols-3 gap-x-8">
       <UploadKYCKeyCard />

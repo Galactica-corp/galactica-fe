@@ -3,6 +3,4 @@ export const snapsKeys = {
   isFlask: () => [...snapsKeys.all, "isFlask"],
   allSnap: () => [...snapsKeys.all, "snap"],
   snap: (snapId = "") => [...snapsKeys.allSnap(), snapId],
-
-  listZKCerts: (snapId = "") => [...snapsKeys.snap(snapId), "listZKCerts"],
 };

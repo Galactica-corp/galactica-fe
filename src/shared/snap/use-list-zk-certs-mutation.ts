@@ -1,11 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { SNAP_ID } from "shared/config/const";
-import { snapsKeys } from "./keys";
 
-export const useListZkCertsQuery = () => {
-  return useQuery({
-    queryKey: snapsKeys.listZKCerts(SNAP_ID),
-    queryFn: async () => {
+export const useListZkCertsMutation = () => {
+  return useMutation({
+    mutationFn: async () => {
       const response = await window.ethereum?.request({
         method: "wallet_invokeSnap",
         params: {
