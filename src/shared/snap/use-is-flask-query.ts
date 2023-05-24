@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import invariant from "tiny-invariant";
 import { snapsKeys } from "./keys";
 
-export const useIsFlaskQuery = (options) => {
+export const useIsFlaskQuery = () => {
   const ethereum = window.ethereum;
 
   return useQuery({
