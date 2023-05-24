@@ -24,7 +24,7 @@ export const Help = () => {
         button={
           <Button
             theme="primaryTransparent"
-            className="h-[2rem] w-[14.06rem] font-antiqueLegacy text-[0.875rem] font-light normal-case"
+            className="h-[2rem] w-[14.06rem] !font-antiqueLegacy text-[0.875rem] font-light normal-case"
           >
             Go to KYC provider list
           </Button>
@@ -42,7 +42,7 @@ export const Help = () => {
         button={
           <Button
             theme="primary"
-            className="h-[2rem] w-[14.06rem] font-antiqueLegacy text-[0.875rem] font-light normal-case"
+            className="h-[2rem] w-[14.06rem] !font-antiqueLegacy text-[0.875rem] font-light normal-case"
           >
             Upload KYC-KEY
           </Button>

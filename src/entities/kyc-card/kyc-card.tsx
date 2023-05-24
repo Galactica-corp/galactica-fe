@@ -16,9 +16,10 @@ type Props = {
   kyc: KYCName;
   level: string;
   expiration: string;
+  isActive: boolean;
 };
 
-export function KYCCard({ kyc, level, expiration }: Props) {
+export function KYCCard({ kyc, level, expiration, isActive }: Props) {
   const map = CARDS_MAP[kyc];
 
   return (
@@ -32,9 +33,15 @@ export function KYCCard({ kyc, level, expiration }: Props) {
           title="KYC-status"
           tooltip="TODO some text"
           value={
-            <div className="flex items-center text-sandyBrown">
-              Active <CheckIcon className="ml-[0.5rem]" />
-            </div>
+            <>
+              {isActive ? (
+                <div className="flex items-center text-sandyBrown">
+                  Active <CheckIcon className="ml-[0.5rem]" />
+                </div>
+              ) : (
+                "Expired"
+              )}
+            </>
           }
         />
         <Field title="KYC-level" value={level} tooltip="TODO some text" />
