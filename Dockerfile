@@ -9,6 +9,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm i --frozen-lockfile
 COPY . .
+ENV VITE_SNAP_ID=npm:@galactica-corp/snap
 RUN pnpm run build
 
 
