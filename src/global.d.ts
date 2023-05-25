@@ -16,7 +16,8 @@ declare module "@wagmi/core" {
       method: "wallet_getSnaps";
       params?: Record<string, unknown>;
     }): Promise<GetSnapsResponse>;
-
+    // TODO: this is wrong type (GetSnapsResponse)
+    // for different params.method need different types for return
     request(args: {
       method: "wallet_invokeSnap";
       params?: {

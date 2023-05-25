@@ -18,6 +18,7 @@ export const UploadCertButton = () => {
 
   return (
     <FileInputButton
+      theme="primaryTransparent"
       accept=".json"
       onChange={async (e) => {
         const file = e.target.files?.[0];

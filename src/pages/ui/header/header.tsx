@@ -5,7 +5,7 @@ import { HeaderLink } from "./header-link";
 export const HEADERS_LINKS = [
   {
     name: "My KYC",
-    to: "/my-kyc",
+    to: "/",
   },
   {
     name: "My SBT",
