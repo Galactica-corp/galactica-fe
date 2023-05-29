@@ -90,6 +90,7 @@ export const Home = () => {
         <GenerateBasicZkProofCard />
         {Object.keys(CARDS_MAP).map((kycName, i) => (
           <KYCCard
+            isActive={true}
             key={kycName}
             kyc={kycName as KYCName}
             level={`Level ${i + 1}`}

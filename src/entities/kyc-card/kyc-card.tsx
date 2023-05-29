@@ -16,7 +16,7 @@ type Props = {
   kyc: KYCName;
   level: string;
   expiration: string;
-  isActive: boolean;
+  isActive?: boolean;
 };
 
 export function KYCCard({ kyc, level, expiration, isActive }: Props) {

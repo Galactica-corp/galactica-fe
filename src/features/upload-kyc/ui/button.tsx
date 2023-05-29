@@ -1,14 +1,19 @@
+import { useQueryClient } from "wagmi";
+import { SNAP_ID } from "shared/config/const";
+import { snapsKeys } from "shared/snap/keys";
 import { useImportZkCertMutation } from "shared/snap/use-import-zk-cert-mutation";
 import { FileInputButton } from "shared/ui/button";
 import { parseJSONFile } from "shared/utils";
 
 export const UploadCertButton = () => {
   const importCertMutation = useImportZkCertMutation();
+  const queryClient = useQueryClient();
 
   const onUpload = async (parsedFile: unknown) => {
     importCertMutation.mutate(parsedFile, {
       onSuccess: (data) => {
-        console.log(data);
+        console.log("UploadCertButton", data);
+        queryClient.invalidateQueries(snapsKeys.zkCertStorageHashes(SNAP_ID));
       },
       onError: (err) => {
         console.error(err);
