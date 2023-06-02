@@ -32,6 +32,8 @@ export const MyKYC = () => {
         if (!data || Object.keys(data as object).length === 0) return;
 
         // TODO: need to fix types for request in global.d.ts
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         setCertsList(data.gip69);
         setZkHash(newHash as string);
       },
