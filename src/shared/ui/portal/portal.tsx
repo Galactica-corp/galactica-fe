@@ -1,6 +1,5 @@
-import { PropsWithChildren, useEffect, useMemo } from "react";
+import { PropsWithChildren, useRef } from "react";
 import { createPortal } from "react-dom";
-import cn from "classnames";
 
 type Props = {
   className?: string;
@@ -9,33 +8,32 @@ type Props = {
 
 export const Portal = ({
   className,
-  portalElement = getDefaultPortalElement(),
+  portalElement: portalElementProp,
   children,
 }: PropsWithChildren<Props>) => {
-  const el = useMemo(() => document.createElement("div"), []);
-  const cls = cn("target", className);
-  el.classList.add(...cls.split(" "));
+  const portalElementRef = useRef(
+    portalElementProp ?? getDefaultPortalElement(className)
+  );
 
-  useEffect(() => {
-    portalElement?.appendChild(el);
-    portalElement?.classList.add("portal");
-
-    return () => {
-      portalElement?.removeChild(el);
-    };
-  }, [el, className, portalElement]);
-
-  return portalElement ? createPortal(children, el) : null;
+  return (
+    <>
+      {portalElementRef.current
+        ? createPortal(children, portalElementRef.current)
+        : children}
+    </>
+  );
 };
 
-function getDefaultPortalElement() {
-  const portalRoot = document.getElementById("portal-root");
-  if (portalRoot) return portalRoot;
+function getDefaultPortalElement(className: string | undefined) {
+  const portal = document.getElementById("portal-root");
+  className && portal?.classList.add(className);
+  if (portal) return portal;
 
   const root = document.getElementById("root") ?? document.body;
   const fallbackPortal = document.createElement("div");
   fallbackPortal.id = "portal-root";
   root.appendChild(fallbackPortal);
+  className && fallbackPortal.classList.add(className);
 
   return fallbackPortal;
 }

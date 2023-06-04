@@ -1,45 +1,38 @@
 import { ReactNode } from "react";
-import { ReactComponent as CloseIcon } from "shared/icons/close.svg";
-import spinnerModalUrl from "shared/images/spinner-modal.png";
+import { animated, useSpring } from "@react-spring/web";
+import classNames from "classnames";
+import { useLockedBody } from "usehooks-ts";
+import { ClassName } from "shared/types";
+import { Portal } from "../portal";
+import { Body } from "./body";
 
 type Props = {
-  withSpinner?: boolean;
-  className?: string;
   children: ReactNode;
-};
+  onClose?: () => void;
+} & ClassName;
 
-export function Modal({ className, children, withSpinner }: Props) {
-  const handlerClose = () => {
-    alert("TODO close modal");
-  };
+export function Modal({ children, onClose, className }: Props) {
+  useLockedBody(true);
+
+  const springs = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  });
 
   return (
-    <div
-      className="
-        fixed left-0 top-0 z-20 flex h-full w-full items-center
-        justify-center bg-mineShaft/70
-      "
-    >
-      <div
-        className={`
-        p-[1.95rem]t absolute h-[29.18rem] 
-        w-[41.87rem] rounded-[0.5rem] border border-alto bg-white
-        text-center
-        ${className}
-      `}
-      >
-        <CloseIcon
-          onClick={handlerClose}
-          className="absolute right-[1.95rem] top-[1.95rem] cursor-pointer opacity-50 hover:opacity-100"
-        />
-        {withSpinner && (
-          <div
-            className="m-auto mb-[1.875rem] mt-[3.18rem] h-[6.625rem] w-[6.625rem] animate-spin"
-            style={{ backgroundImage: `url(${spinnerModalUrl})` }}
-          />
+    <Portal>
+      <animated.div
+        style={springs}
+        onClick={onClose}
+        className={classNames(
+          className,
+          "fixed inset-0 z-10 flex overflow-y-auto bg-mineShaft/70 p-5"
         )}
+      >
         {children}
-      </div>
-    </div>
+      </animated.div>
+    </Portal>
   );
 }
+
+Modal.Body = Body;

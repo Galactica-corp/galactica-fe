@@ -1,6 +1,6 @@
 import { useMutation } from "wagmi";
 import { z } from "zod";
-import { SNAP_ID } from "shared/config/const";
+import { invokeSnap } from "./api-sdk";
 
 export const zkCertSchema = z.object({
   holderCommitment: z.string().nonempty(),
@@ -33,19 +33,10 @@ export type ZkCert = z.infer<typeof zkCertSchema>;
 export const useImportZkCertMutation = () => {
   return useMutation(async (objContent: unknown) => {
     const parsedJson = zkCertSchema.parse(objContent);
-    const response = await window.ethereum?.request({
-      method: "wallet_invokeSnap",
-      params: {
-        snapId: SNAP_ID,
-        request: {
-          method: "importZkCert",
-          params: {
-            zkCert: parsedJson,
-          },
-        },
-      },
-    });
 
-    console.log(response);
+    return invokeSnap({
+      method: "importZkCert",
+      params: { zkCert: parsedJson },
+    });
   });
 };
