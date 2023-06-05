@@ -3,5 +3,5 @@ export const SNAP_ID =
 
 export const LS_KEYS = {
   zkCerts: "zk-certs-list",
-  zkHash: "zk-hash",
+  zkHashGip69: "zk-hash-gip69",
 };

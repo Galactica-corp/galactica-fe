@@ -27,6 +27,7 @@ export default {
       naturalGray: "#91908E",
       alabaster: "#FCFCFC",
       alto: "#D8D8D8",
+      oldLace: "#FDF5EE",
       transparent: "transparent",
     },
     fontFamily: {

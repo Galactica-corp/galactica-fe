@@ -7,14 +7,16 @@ import { Portal } from "../portal";
 import { Body } from "./body";
 
 type Props = {
+  delay?: number;
   children: ReactNode;
   onClose?: () => void;
 } & ClassName;
 
-export function Modal({ children, onClose, className }: Props) {
+export function Modal({ delay = 0, children, onClose, className }: Props) {
   useLockedBody(true);
 
   const springs = useSpring({
+    delay,
     from: { opacity: 0 },
     to: { opacity: 1 },
   });
@@ -23,12 +25,12 @@ export function Modal({ children, onClose, className }: Props) {
     <Portal>
       <animated.div
         style={springs}
-        onClick={onClose}
         className={classNames(
           className,
-          "fixed inset-0 z-10 flex overflow-y-auto bg-mineShaft/70 p-5"
+          "fixed inset-0 flex overflow-y-auto p-5"
         )}
       >
+        <div className="fixed inset-0 bg-mineShaft/70" onClick={onClose} />
         {children}
       </animated.div>
     </Portal>

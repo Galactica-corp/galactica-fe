@@ -1,6 +1,7 @@
 import { KYCCard } from "entities/kyc-card";
 import { QuestionKYCCard } from "entities/question-kyc-card";
 import { useLocalStorage } from "usehooks-ts";
+import { UpdateKycListAlert } from "features/update-kyc-list";
 import { UploadKYCKeyCard } from "features/upload-kyc";
 import {
   useGetZkCertStorageHashesQuery,
@@ -48,32 +49,35 @@ export const MyKYC = () => {
   };
 
   return (
-    <div className="grid grid-cols-3 gap-8">
-      <UploadKYCKeyCard />
-      {newHash !== zkHash && (
-        <div className="flex flex-col items-center justify-center rounded-lg border border-salmon">
-          <div className="mb-2 text-center">
-            ZK Certs is updated.
-            <br /> You need to update your list.
+    <>
+      <UpdateKycListAlert />
+      <div className="grid grid-cols-3 gap-8">
+        <UploadKYCKeyCard />
+        {newHash !== zkHash && (
+          <div className="flex flex-col items-center justify-center rounded-lg border border-salmon">
+            <div className="mb-2 text-center">
+              ZK Certs is updated.
+              <br /> You need to update your list.
+            </div>
+            <Button onClick={updateHandler}>Update ZK Certs</Button>
           </div>
-          <Button onClick={updateHandler}>Update ZK Certs</Button>
-        </div>
-      )}
-      {certsList?.length > 0 ? (
-        certsList?.map((cert, i) => {
-          return (
-            <KYCCard
-              key={`${cert.expirationDate}-${i}`}
-              kyc="binance"
-              expiration={formatDateFromUnixTime(cert.expirationDate)}
-              level={cert.verificationLevel}
-              isActive={unixTimeMoreThenNow(cert.expirationDate)}
-            />
-          );
-        })
-      ) : (
-        <QuestionKYCCard />
-      )}
-    </div>
+        )}
+        {certsList?.length > 0 ? (
+          certsList?.map((cert, i) => {
+            return (
+              <KYCCard
+                key={`${cert.expirationDate}-${i}`}
+                kyc="binance"
+                expiration={formatDateFromUnixTime(cert.expirationDate)}
+                level={cert.verificationLevel}
+                isActive={unixTimeMoreThenNow(cert.expirationDate)}
+              />
+            );
+          })
+        ) : (
+          <QuestionKYCCard />
+        )}
+      </div>
+    </>
   );
 };

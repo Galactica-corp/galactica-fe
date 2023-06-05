@@ -3,6 +3,7 @@ import cn from "classnames";
 import { ReactComponent as CloseIcon } from "shared/icons/close.svg";
 import spinnerModalUrl from "shared/images/spinner-modal.png";
 import { ClassName } from "shared/types";
+import modalBgPng from "./modal-bg.png";
 
 type Props = {
   onClose?: () => void;
@@ -17,8 +18,9 @@ export const Body = ({
 }: PropsWithChildren<Props>) => {
   return (
     <div
+      style={{ backgroundImage: `url(${modalBgPng})` }}
       className={cn(
-        "relative m-auto flex min-h-[460px] min-w-[650px] flex-col items-center rounded-lg border border-alto bg-white",
+        "relative m-auto flex min-h-[460px] min-w-[650px] flex-col items-center rounded-lg border border-alto bg-white bg-cover",
         className
       )}
     >

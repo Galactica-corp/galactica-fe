@@ -47,6 +47,11 @@ type InvokeRequest =
   | InvokeListZkCertsRequest
   | InvokeGetZkCertStorageHashes;
 
+export type InvokeListZkCertsResponse = Record<
+  ZkCertStandard,
+  ZkCertsListItem[]
+>;
+
 type InvokeResponse<T> = T extends InvokeSetupHoldingKeyRequest
   ? boolean
   : T extends InvokeGetHolderCommitment
@@ -58,7 +63,7 @@ type InvokeResponse<T> = T extends InvokeSetupHoldingKeyRequest
   : T extends InvokeExportZkCertRequest
   ? unknown // TODO: fix this type
   : T extends InvokeListZkCertsRequest
-  ? Record<ZkCertStandard, ZkCertsListItem[]>
+  ? InvokeListZkCertsResponse
   : T extends InvokeGetZkCertStorageHashes
   ? Record<ZkCertStandard, string>
   : never;
