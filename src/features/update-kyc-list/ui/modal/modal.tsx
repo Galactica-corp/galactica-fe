@@ -11,7 +11,7 @@ export const UpdateModal = () => {
   if (!isOpen || !isUpdateNeeded) return null;
 
   return (
-    <Modal delay={200} onClose={toggleOpen} className="px-20">
+    <Modal delay={200} onClose={toggleOpen}>
       <Modal.Body className="w-[670px] px-20" onClose={toggleOpen}>
         <LogoMetamask className="mx-auto mt-20" />
         <h3 className="mt-6 text-[32px] font-light">

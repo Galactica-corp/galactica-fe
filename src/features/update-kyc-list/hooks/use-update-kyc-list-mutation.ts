@@ -31,5 +31,5 @@ export const useUpdateKycList = () => {
       zkHash !== hashQuery.data.gip69
   );
 
-  return [isUpdateNeeded || true, listZkCertsMutation] as const;
+  return [isUpdateNeeded, listZkCertsMutation] as const;
 };
