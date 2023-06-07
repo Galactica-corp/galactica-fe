@@ -41,7 +41,6 @@ module.exports = {
     },
     "import/resolver": {
       typescript: true,
-      node: true,
     },
     "boundaries/elements": [
       {

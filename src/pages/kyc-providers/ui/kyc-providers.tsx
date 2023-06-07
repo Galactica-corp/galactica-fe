@@ -1,19 +1,15 @@
 import classNames from "classnames";
+import { useToggle } from "usehooks-ts";
+import { GenerateCommitmentHashModal } from "features/generate-commitment-hash";
+import { SetupHoldingKeyModal } from "features/setup-holding-key";
+import { ClassName } from "shared/types";
 import binanceLogoPng from "./binance-logo.png";
 import { Score } from "./score";
 
 const mocks = [
   {
     number: 1,
-    title: "Binance",
-    score: "9.9",
-    totalDocs: "32,468",
-    docsPerMonth: "4,324",
-    avgTime: "~11 min",
-  },
-  {
-    number: 2,
-    title: "Binance",
+    title: "Default",
     score: "9.9",
     totalDocs: "32,468",
     docsPerMonth: "4,324",
@@ -21,10 +17,17 @@ const mocks = [
   },
 ];
 
-const Row = ({
-  className,
-  ...mock
-}: (typeof mocks)[number] & { className?: string }) => {
+type RowProps = {
+  number: number;
+  title: string;
+  score: string;
+  totalDocs: string;
+  docsPerMonth: string;
+  avgTime: string;
+  onStart: () => void;
+};
+
+const Row = ({ className, onStart, ...mock }: RowProps & ClassName) => {
   return (
     <div
       className={classNames(
@@ -42,10 +45,8 @@ const Row = ({
       <div>{mock.docsPerMonth}</div>
       <div>{mock.avgTime}</div>
       <button
-        className="w-[9.1875rem] py-[0.5313rem]"
-        onClick={() => {
-          console.log("Hello");
-        }}
+        className="flex w-[147px] items-center justify-center rounded-md border border-grayNickel py-2 transition-colors hover:border-naturalGray"
+        onClick={onStart}
       >
         Start KYC
       </button>
@@ -54,6 +55,13 @@ const Row = ({
 };
 
 export const KYCProvidersPage = () => {
+  const [isSetupHoldingKeyModalOpen, toggleSetupHoldingKeyModalOpen] =
+    useToggle(false);
+  const [
+    isGenerateCommitmentHashModalOpen,
+    toggleGenerateCommitmentHashModalOpen,
+  ] = useToggle(false);
+
   return (
     <>
       {mocks.map((mock) => {
@@ -61,10 +69,32 @@ export const KYCProvidersPage = () => {
           <Row
             className="border-b border-mineShaft border-opacity-5"
             key={mock.number}
+            onStart={() => {
+              toggleSetupHoldingKeyModalOpen();
+            }}
             {...mock}
           />
         );
       })}
+
+      {isSetupHoldingKeyModalOpen && (
+        <SetupHoldingKeyModal
+          onClose={toggleSetupHoldingKeyModalOpen}
+          onSuccess={() => {
+            toggleSetupHoldingKeyModalOpen();
+            toggleGenerateCommitmentHashModalOpen();
+          }}
+        />
+      )}
+
+      {isGenerateCommitmentHashModalOpen && (
+        <GenerateCommitmentHashModal
+          onClose={toggleGenerateCommitmentHashModalOpen}
+          onSuccess={() => {
+            toggleGenerateCommitmentHashModalOpen();
+          }}
+        />
+      )}
     </>
   );
 };

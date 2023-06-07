@@ -5,6 +5,8 @@ import { useLockedBody } from "usehooks-ts";
 import { ClassName } from "shared/types";
 import { Portal } from "../portal";
 import { Body } from "./body";
+import { Description } from "./description";
+import { Title } from "./title";
 
 type Props = {
   delay?: number;
@@ -38,3 +40,5 @@ export function Modal({ delay = 0, children, onClose, className }: Props) {
 }
 
 Modal.Body = Body;
+Modal.Title = Title;
+Modal.Description = Description;
