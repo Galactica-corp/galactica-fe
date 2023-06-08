@@ -13,21 +13,21 @@ export const UpdateModal = () => {
 
   return (
     <Modal delay={200} onClose={toggleOpen}>
-      <Modal.Body className="w-[670px] px-20" onClose={toggleOpen}>
+      <Modal.Body className="w-[670px] px-20 pb-14 pt-20" onClose={toggleOpen}>
         {mutation.isLoading ? (
           <GradientSpinner className="h-[110px] w-[110px]" />
         ) : (
           <LogoMetamask className="h-[110px] text-grayNickel" />
         )}
         <Modal.Title className="mt-6">Your KYC&apos;s have changed</Modal.Title>
-        <Modal.Description>
+        <Modal.Description className="mt-3">
           We&apos;ve noticed that something has changed in your KYCs. Please,
           approve an access request in Metamask to share the actual state of
           your KYC&apos;s to the application.
         </Modal.Description>
         <p className="mt-3 text-center text-xl font-light text-opacity-40"></p>
 
-        <div className="mx-auto mb-14 mt-8 flex gap-x-8">
+        <div className="mx-auto mt-8 flex gap-x-8">
           <Button
             className="w-48"
             isLoading={mutation.isLoading}

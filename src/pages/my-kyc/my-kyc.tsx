@@ -1,6 +1,7 @@
 import { KYCCard } from "entities/kyc-card";
 import { QuestionKYCCard } from "entities/question-kyc-card";
 import { useLocalStorage } from "usehooks-ts";
+import { GenerateBasicZkProofCard } from "features/generate-basic-zkproof-card";
 import { UpdateKycListAlert } from "features/update-kyc-list";
 import { UploadKYCKeyCard } from "features/upload-kyc";
 import { LS_KEYS } from "shared/config/const";
@@ -9,8 +10,6 @@ import { formatDateFromUnixTime, unixTimeMoreThenNow } from "shared/utils";
 
 export const MyKYC = () => {
   const [certsList] = useLocalStorage<ZkCertsListItem[]>(LS_KEYS.zkCerts, []);
-
-  console.log({ certsList });
 
   return (
     <>
@@ -32,6 +31,8 @@ export const MyKYC = () => {
         ) : (
           <QuestionKYCCard />
         )}
+
+        <GenerateBasicZkProofCard />
       </div>
     </>
   );

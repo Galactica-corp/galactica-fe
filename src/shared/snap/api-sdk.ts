@@ -12,6 +12,30 @@ type InvokeGetHolderCommitment = {
   method: "getHolderCommitment";
 };
 
+type InvokeGenZkKycProof = {
+  method: "genZkKycProof";
+  params: {
+    input: {
+      currentTime: number;
+      dAppAddress: string;
+      investigationInstitutionPubKey: string[];
+      // the zkKYC itself is not needed here. It is filled by the snap for user privacy.
+
+      // specific inputs to prove that the holder is at least 18 years old
+      currentYear: string;
+      currentMonth: string;
+      currentDay: string;
+      ageThreshold: string;
+    };
+    requirements: {
+      zkCertStandard: "gip69";
+    };
+    wasm: string;
+    zkeyHeader: Record<string, unknown>;
+    zkeySections: string[];
+  };
+};
+
 type InvokeClearStorageRequest = {
   method: "clearStorage";
 };
@@ -41,6 +65,7 @@ type InvokeGetZkCertStorageHashes = {
 type InvokeRequest =
   | InvokeSetupHoldingKeyRequest
   | InvokeGetHolderCommitment
+  | InvokeGenZkKycProof
   | InvokeClearStorageRequest
   | InvokeImportZkCert
   | InvokeExportZkCertRequest
@@ -56,6 +81,8 @@ type InvokeResponse<T> = T extends InvokeSetupHoldingKeyRequest
   ? boolean
   : T extends InvokeGetHolderCommitment
   ? string
+  : T extends InvokeGenZkKycProof
+  ? unknown // TODO
   : T extends InvokeClearStorageRequest
   ? string
   : T extends InvokeImportZkCert

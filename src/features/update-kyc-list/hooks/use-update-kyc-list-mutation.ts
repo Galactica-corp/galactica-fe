@@ -25,10 +25,7 @@ export const useUpdateKycList = () => {
   });
 
   const isUpdateNeeded = Boolean(
-    hashQuery.isSuccess &&
-      hashQuery.data &&
-      zkHash &&
-      zkHash !== hashQuery.data.gip69
+    hashQuery.isSuccess && hashQuery.data && zkHash !== hashQuery.data.gip69
   );
 
   return [isUpdateNeeded, listZkCertsMutation] as const;
