@@ -8,7 +8,7 @@ export const ageProofZkKYCAddress =
 export const mockDApp = "0xe331bf40260FB9CDA7AdA540DB820A596C47330a";
 export const verificationSBT = "0x3A7b8BCe6ecEC1e64294C8d24C3F5b073e111ec4";
 export const galacticaInstitution =
-  "0x1C75eBcCBAFC9B02167f3d914F0C24d745e3F451";
+  "0x6f318e025977BEb146CBa6376cc642ffe142EB00";
 
 export const useGenZkProofMutation = () => {
   const provider = useProvider();
@@ -36,7 +36,7 @@ export const useGenZkProofMutation = () => {
 
     const proofInput = {
       currentTime: expectedValidationTimestamp,
-      dAppAddress: "0xe331bf40260FB9CDA7AdA540DB820A596C47330a",
+      dAppAddress: "0xc05e8FA7FB5Ff3c8F9fAe95a62c751498EFFF3E7",
       investigationInstitutionPubKey: pubKey,
       // the zkKYC itself is not needed here. It is filled by the snap for user privacy.
 
@@ -48,17 +48,17 @@ export const useGenZkProofMutation = () => {
     };
 
     console.log({ proofInput, ageProofZkKYC });
-    // invokeSnap({
-    //   method: "genZkKycProof",
-    //   params: {
-    //     input: proofInput,
-    //     requirements: {
-    //       zkCertStandard: "gip69",
-    //     },
-    //     wasm: "",
-    //     zkeyHeader: {},
-    //     zkeySections: [""],
-    //   },
-    // });
+    invokeSnap({
+      method: "genZkKycProof",
+      params: {
+        input: proofInput,
+        requirements: {
+          zkCertStandard: "gip69",
+        },
+        wasm: (ageProofZkKYC as any).wasm,
+        zkeyHeader: (ageProofZkKYC as any).zkeyHeader,
+        zkeySections: (ageProofZkKYC as any).zkeySections,
+      },
+    });
   });
 };

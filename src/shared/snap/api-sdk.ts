@@ -17,8 +17,8 @@ type InvokeGenZkKycProof = {
   params: {
     input: {
       currentTime: number;
-      dAppAddress: string;
-      investigationInstitutionPubKey: string[];
+      dAppAddress?: string;
+      investigationInstitutionPubKey?: string[];
       // the zkKYC itself is not needed here. It is filled by the snap for user privacy.
 
       // specific inputs to prove that the holder is at least 18 years old
