@@ -48,6 +48,7 @@ export const useGenZkProofMutation = () => {
     };
 
     console.log({ proofInput, ageProofZkKYC });
+
     invokeSnap({
       method: "genZkKycProof",
       params: {
@@ -55,9 +56,10 @@ export const useGenZkProofMutation = () => {
         requirements: {
           zkCertStandard: "gip69",
         },
-        wasm: (ageProofZkKYC as any).wasm,
-        zkeyHeader: (ageProofZkKYC as any).zkeyHeader,
-        zkeySections: (ageProofZkKYC as any).zkeySections,
+        wasm: (ageProofZkKYC as unknown as { wasm: string }).wasm,
+        zkeyHeader: ageProofZkKYC as unknown as { zkeyHeader: unknown },
+        zkeySections: (ageProofZkKYC as unknown as { zkeySections: string[] })
+          .zkeySections,
       },
     });
   });

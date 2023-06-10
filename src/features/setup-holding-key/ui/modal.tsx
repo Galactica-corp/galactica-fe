@@ -1,9 +1,9 @@
 import { ReactComponent as LogoMetamask } from "shared/icons/metamask-outline.svg";
 import { useSetupHoldingKeyMutation } from "shared/snap";
-import { Button } from "shared/ui/button";
 import { Link } from "shared/ui/link";
 import { Modal } from "shared/ui/modal";
 import { GradientSpinner } from "shared/ui/spinner";
+import { SetupButton } from "./button";
 
 type Props = {
   onClose: () => void;
@@ -29,23 +29,9 @@ export const SetupModal = ({ onClose, onSuccess, onError }: Props) => {
         <Modal.Description className="mt-3">
           The provider will not know your wallet address
         </Modal.Description>
-        <Button
-          className="mt-5"
-          onClick={() => {
-            mutation.mutate(undefined, {
-              onSuccess: (data) => {
-                console.log(data);
-                onSuccess?.();
-              },
-              onError: (error) => {
-                console.error(error);
-                onError?.();
-              },
-            });
-          }}
-        >
+        <SetupButton className="mt-5" onSuccess={onSuccess} onError={onError}>
           Setup holding key
-        </Button>
+        </SetupButton>
         <Link className="mt-10" href="#">
           Learn More about KYC
         </Link>

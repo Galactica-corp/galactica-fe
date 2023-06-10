@@ -3,7 +3,7 @@ import { QuestionKYCCard } from "entities/question-kyc-card";
 import { useLocalStorage } from "usehooks-ts";
 import { GenerateBasicZkProofCard } from "features/generate-basic-zkproof-card";
 import { UpdateKycListAlert } from "features/update-kyc-list";
-import { UploadKYCKeyCard } from "features/upload-kyc";
+import { UploadKycCard } from "features/upload-kyc";
 import { LS_KEYS } from "shared/config/const";
 import { ZkCertsListItem } from "shared/snap/types";
 import { formatDateFromUnixTime, unixTimeMoreThenNow } from "shared/utils";
@@ -15,7 +15,7 @@ export const MyKYC = () => {
     <>
       <UpdateKycListAlert />
       <div className="grid grid-cols-3 gap-8">
-        <UploadKYCKeyCard />
+        <UploadKycCard />
         {certsList?.length > 0 ? (
           certsList?.map((cert, i) => {
             return (
