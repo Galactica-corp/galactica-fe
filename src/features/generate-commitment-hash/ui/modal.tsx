@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { ReactComponent as LogoMetamask } from "shared/icons/metamask-outline.svg";
 import { useGenerateCommitmentHashMutation } from "shared/snap";
 import { Button } from "shared/ui/button";
@@ -9,13 +8,12 @@ import { toastError, toastSuccess } from "shared/utils/toasts";
 
 type Props = {
   onClose: () => void;
-  onSuccess?: () => void;
+  onSuccess?: (data: string) => void;
   onError?: () => void;
 };
 
 export const GenerateModal = ({ onClose, onSuccess, onError }: Props) => {
   const mutation = useGenerateCommitmentHashMutation();
-  const navigate = useNavigate();
   return (
     <Modal onClose={onClose}>
       <Modal.Body className="w-[650px] px-16 pb-12 pt-16" onClose={onClose}>
@@ -40,11 +38,7 @@ export const GenerateModal = ({ onClose, onSuccess, onError }: Props) => {
               onSuccess: (data) => {
                 console.log(data);
                 toastSuccess("Commitment Hash has been generated");
-                onSuccess?.();
-
-                navigate(
-                  `https://develop.sample-provider-devnet-41233.galactica.com/?commitmentHash=${data}`
-                );
+                onSuccess?.(data);
               },
               onError: () => {
                 toastError("Failed to Generate Commitment Hash. Try again");
