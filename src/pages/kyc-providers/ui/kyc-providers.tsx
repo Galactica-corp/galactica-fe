@@ -39,10 +39,14 @@ export const KYCProvidersPage = () => {
           onClose={toggleGenerateCommitmentHashModalOpen}
           onSuccess={(data) => {
             toggleGenerateCommitmentHashModalOpen();
-            window.open(
-              `https://develop.sample-provider-devnet-41233.galactica.com/?commitmentHash=${data}`,
-              "_blank"
+            const url = new URL(
+              "/",
+              import.meta.env.VITE_EXAMPLE_KYC_PROVIDER_ORIGIN ??
+                "https://develop.sample-provider-devnet-41233.galactica.com"
             );
+            url.searchParams.append("commitmentHash", data);
+
+            window.open(url.toString(), "_blank");
           }}
         />
       )}
