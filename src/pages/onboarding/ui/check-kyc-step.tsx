@@ -2,10 +2,10 @@ import { Button } from "shared/ui/button";
 
 type Props = {
   onChooseKycProvider: () => void;
-  onNext: () => void;
+  onHaveKyc: () => void;
 };
 
-export const CheckKycStep = ({ onNext, onChooseKycProvider }: Props) => {
+export const CheckKycStep = ({ onHaveKyc, onChooseKycProvider }: Props) => {
   return (
     <div className="flex h-screen w-full flex-col items-center justify-center font-light">
       <div className="mb-2.5 text-center text-[5.25rem] leading-[120%]">
@@ -23,7 +23,11 @@ export const CheckKycStep = ({ onNext, onChooseKycProvider }: Props) => {
       </p>
       <div className="flex gap-x-8">
         <Button onClick={onChooseKycProvider}>Choose KYC Provider</Button>
-        <Button className="px-14" theme="primaryTransparent" onClick={onNext}>
+        <Button
+          className="px-14"
+          theme="primaryTransparent"
+          onClick={onHaveKyc}
+        >
           I already have a KYC
         </Button>
       </div>

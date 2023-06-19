@@ -10,24 +10,29 @@ type Step = "setupHoldingKey" | "alreadyHaveKyc" | "uploadKyc";
 
 export const Onboarding = () => {
   const navigate = useNavigate();
-  const [isOnboardingCompleted, setIsOnboardingCompleted] = useLocalStorage(
+  const [currentStep, setCurrentStep] = useLocalStorage(
+    LS_KEYS.onboardingCurrentStep,
+    "1"
+  );
+  const [_isOnboardingCompleted, setIsOnboardingCompleted] = useLocalStorage(
     LS_KEYS.isOnboardingCompleted,
     false
   );
   const [step, setStep] = useState<Step>("setupHoldingKey");
 
   const onChooseKycProvider = () => {
+    setCurrentStep("3");
     setIsOnboardingCompleted(true);
     navigate("/kyc-providers");
   };
 
-  if (isOnboardingCompleted) return <Navigate to="/" />;
+  if (currentStep === "5") return <Navigate to="/" />;
 
   return (
     <>
       {step === "setupHoldingKey" && (
         <SetupHoldingKeyStep
-          onNext={() => {
+          onSetup={() => {
             setStep("alreadyHaveKyc");
           }}
         />
@@ -35,7 +40,7 @@ export const Onboarding = () => {
       {step === "alreadyHaveKyc" && (
         <CheckKycStep
           onChooseKycProvider={onChooseKycProvider}
-          onNext={() => {
+          onHaveKyc={() => {
             setStep("uploadKyc");
           }}
         />
@@ -44,8 +49,9 @@ export const Onboarding = () => {
       {step === "uploadKyc" && (
         <UploadKycStep
           onChooseKycProvider={onChooseKycProvider}
-          onNext={() => {
+          onUpload={() => {
             setIsOnboardingCompleted(true);
+            setCurrentStep("5");
           }}
         />
       )}

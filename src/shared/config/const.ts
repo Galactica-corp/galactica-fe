@@ -5,6 +5,7 @@ export const LS_KEYS = {
   isOnboardingCompleted: "isOnboardingCompleted",
   zkCerts: "zk-certs-list",
   zkHashGip69: "zk-hash-gip69",
+  onboardingCurrentStep: "1",
 };
 
 export const CONTRACTS_ADDRESSES = {

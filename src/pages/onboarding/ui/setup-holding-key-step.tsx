@@ -1,10 +1,10 @@
 import { SetupHoldingKeyButton } from "features/setup-holding-key";
 
 type Props = {
-  onNext: () => void;
+  onSetup: () => void;
 };
 
-export const SetupHoldingKeyStep = ({ onNext }: Props) => {
+export const SetupHoldingKeyStep = ({ onSetup }: Props) => {
   return (
     <div className="flex h-screen w-full flex-col items-center justify-center px-10 font-light">
       <div className="mb-2.5 text-center text-[5.25rem] leading-[120%]">
@@ -22,7 +22,7 @@ export const SetupHoldingKeyStep = ({ onNext }: Props) => {
         parties. You control your personal data.
       </p> */}
       <div className="flex gap-x-8">
-        <SetupHoldingKeyButton onSuccess={onNext}>
+        <SetupHoldingKeyButton onSuccess={onSetup}>
           Setup holding Key
         </SetupHoldingKeyButton>
       </div>

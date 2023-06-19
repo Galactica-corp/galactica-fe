@@ -3,10 +3,10 @@ import { Button } from "shared/ui/button";
 
 type Props = {
   onChooseKycProvider: () => void;
-  onNext: () => void;
+  onUpload: () => void;
 };
 
-export const UploadKycStep = ({ onNext, onChooseKycProvider }: Props) => {
+export const UploadKycStep = ({ onUpload, onChooseKycProvider }: Props) => {
   return (
     <div className="flex h-screen w-full flex-col items-center justify-center font-light">
       <div className="mb-2.5 text-[5.25rem] leading-[120%]">
@@ -23,7 +23,7 @@ export const UploadKycStep = ({ onNext, onChooseKycProvider }: Props) => {
         <UploadKycButton
           onSuccessUpload={(data) => {
             console.log(data);
-            onNext();
+            onUpload();
           }}
         >
           Upload secret file

@@ -1,40 +1,50 @@
-import { PropsWithChildren } from "react";
-import { useWalletButtonStatus } from "widgets/wallet-button";
-import { SnapContext, useGetSnapQuery, useIsFlaskQuery } from "shared/snap";
+import { PropsWithChildren, useEffect } from "react";
+import { OnboardingProgress } from "entities/onboarding-progress";
+import { useLocalStorage } from "usehooks-ts";
+import { LS_KEYS } from "shared/config/const";
 import { Spinner } from "shared/ui/spinner";
-import { InstallFlaskStep } from "./install-flask-step";
-import { SnapStep } from "./snap-step";
-import { WalletStep } from "./wallet-step";
+import { InstallFlaskStep } from "./ui/install-flask-step";
+import { SnapStep } from "./ui/snap-step";
+import { WalletStep } from "./ui/wallet-step";
+import { useStep } from "./use-step";
 
 export const ConnectGuard = ({ children }: PropsWithChildren) => {
-  const walletStatus = useWalletButtonStatus();
-  const snapQuery = useGetSnapQuery();
-  const isFlaskQuery = useIsFlaskQuery();
+  const [_, setIsOnboardingCompleted] = useLocalStorage(
+    LS_KEYS.isOnboardingCompleted,
+    false
+  );
 
-  if (isFlaskQuery.isLoading && isFlaskQuery.isInitialLoading) {
-    return <Spinner />;
-  }
+  const [_currentStep, setCurrentStep] = useLocalStorage(
+    LS_KEYS.onboardingCurrentStep,
+    "1"
+  );
+
+  const step = useStep();
+
+  useEffect(() => {
+    if (step === "flaskStep") {
+      setCurrentStep("1");
+    }
+    if (step === "snapStep") {
+      setCurrentStep("2");
+    }
+  }, [step, setCurrentStep]);
 
   return (
     <>
-      {isFlaskQuery.isSuccess && isFlaskQuery.data ? (
-        <>
-          {(walletStatus === "connectNeeded" ||
-            walletStatus === "switchNeeded") && <WalletStep />}
-
-          {walletStatus === "canDisconnect" && snapQuery.data === null && (
-            <SnapStep />
-          )}
-
-          {snapQuery.data && walletStatus === "canDisconnect" && (
-            <SnapContext.Provider value={snapQuery.data}>
-              {children}
-            </SnapContext.Provider>
-          )}
-        </>
-      ) : (
-        <InstallFlaskStep />
+      {step === "initialLoading" && <Spinner />}
+      {step === "walletStep" && <WalletStep />}
+      {step === "flaskStep" && <InstallFlaskStep />}
+      {step === "snapStep" && (
+        <SnapStep
+          onInstall={() => {
+            setCurrentStep("3");
+            setIsOnboardingCompleted(false);
+          }}
+        />
       )}
+      {step === "finish" && children}
+      <OnboardingProgress />
     </>
   );
 };

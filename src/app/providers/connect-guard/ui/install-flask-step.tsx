@@ -2,7 +2,7 @@ import { LinkButton } from "shared/ui/button";
 
 export const InstallFlaskStep = () => {
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center">
+    <div className="flex h-screen w-full flex-col items-center justify-center bg-opacity-20 bg-onboarding bg-cover bg-center">
       <div className="mb-[2.125rem] text-[5.25rem] leading-[120%]">
         Welcome, <span className="font-semibold ">Citizen!</span>
       </div>
