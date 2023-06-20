@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode } from "react";
+import { CSSProperties, PropsWithChildren, ReactNode } from "react";
 import classNames from "classnames";
 import { ClassName } from "shared/types";
 import { Desc } from "./desc";
@@ -6,8 +6,9 @@ import { Info } from "./info";
 import { Title } from "./title";
 
 type Props = {
-  title: ReactNode;
-  desc: ReactNode;
+  title?: ReactNode;
+  desc?: ReactNode;
+  style?: CSSProperties;
 } & ClassName;
 
 export const Card = ({
@@ -15,11 +16,12 @@ export const Card = ({
   title,
   desc,
   children,
+  style,
 }: PropsWithChildren<Props>) => {
   return (
-    <div className={classNames(className, "card")}>
-      {typeof title === "string" ? <Title>{title}</Title> : title}
-      {typeof desc === "string" ? <Desc>{desc}</Desc> : desc}
+    <div style={style} className={classNames(className, "card")}>
+      {title && <Title>{title}</Title>}
+      {desc && <Desc>{desc}</Desc>}
       {children}
     </div>
   );

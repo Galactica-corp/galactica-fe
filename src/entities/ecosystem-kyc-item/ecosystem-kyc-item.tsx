@@ -1,5 +1,4 @@
 import { ReactComponent as LinkIcon } from "shared/icons/link.svg";
-import { ExternalLink } from "shared/ui/link";
 import { SocialLink } from "shared/ui/social-link";
 
 export type EcosystemKYCItemT = {
@@ -42,13 +41,10 @@ export function EcosystemKYCItem({
       <div className="mb-[0.3rem] text-center text-[1.56rem] font-medium tracking-tighter">
         {name}
       </div>
-      <ExternalLink
-        href={link}
-        className="mb-[1.56rem] flex items-center justify-center"
-      >
+      <a href={link} className="mb-[1.56rem] flex items-center justify-center">
         {link.replace(/^https?:\/\//, "")}
         <LinkIcon className="relative top-[0.1rem] ml-[0.35rem]" />
-      </ExternalLink>
+      </a>
       <div className="flex items-center justify-center space-x-[2.18rem]">
         {social.map((item) => {
           return (

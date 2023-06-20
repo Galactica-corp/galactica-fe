@@ -1,6 +1,5 @@
 import { ReactComponent as LogoMetamask } from "shared/icons/metamask-outline.svg";
 import { useSetupHoldingKeyMutation } from "shared/snap";
-import { ExternalLink } from "shared/ui/link";
 import { Modal } from "shared/ui/modal";
 import { GradientSpinner } from "shared/ui/spinner";
 import { SetupButton } from "./button";
@@ -32,9 +31,9 @@ export const SetupModal = ({ onClose, onSuccess, onError }: Props) => {
         <SetupButton className="mt-5" onSuccess={onSuccess} onError={onError}>
           Setup holding key
         </SetupButton>
-        <ExternalLink className="mt-10" href="#">
+        <a className="link mt-10" href="#">
           Learn More about KYC
-        </ExternalLink>
+        </a>
       </Modal.Body>
     </Modal>
   );

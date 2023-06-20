@@ -25,9 +25,10 @@ export function Button({
       disabled={disabled}
     >
       {isLoading && (
+        // Avoid reflow button width
         <div
           className={cn(
-            "absolute inset-0 flex items-center justify-center",
+            "absolute inset-0 z-10 flex items-center justify-center",
             THEME[theme]
           )}
         >

@@ -80,7 +80,11 @@ p {
 
 @layer components {
   .card {
-    @apply flex rounded-[10px] border border-naturalGray/20 bg-pampas px-[30px] py-[26px] shadow-card;
+    @apply flex flex-col rounded-[10px] border border-naturalGray/20 bg-pampas px-[30px] py-[26px] shadow-card;
+  }
+
+  .link {
+    @apply inline-flex cursor-pointer items-baseline text-sm text-salmon hover:underline;
   }
 }
 

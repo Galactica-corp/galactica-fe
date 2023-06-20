@@ -1,5 +1,5 @@
-import { KYCCard } from "entities/kyc-card";
-import { KYCName } from "entities/kyc-card/kyc-card";
+// import { KYCCard } from "entities/kyc";
+// import { KYCName } from "entities/kyc/ui/card";
 import { QuestionKYCCard } from "entities/question-kyc-card";
 import { GenerateBasicZkProofCard } from "features/generate-basic-zkproof-card";
 import { UploadKycCard } from "features/upload-kyc";
@@ -13,7 +13,7 @@ import {
 } from "shared/snap";
 import { useExportZkCertMutation } from "shared/snap/use-export-zk-cert-mutation";
 import { Button } from "shared/ui/button";
-import { CARDS_MAP } from "shared/utils/cards-map";
+// import { CARDS_MAP } from "shared/utils/cards-map";
 import { toastError, toastSuccess } from "shared/utils/toasts";
 
 export const Home = () => {
@@ -88,7 +88,7 @@ export const Home = () => {
         <UploadKycCard />
         <QuestionKYCCard />
         <GenerateBasicZkProofCard />
-        {Object.keys(CARDS_MAP).map((kycName, i) => (
+        {/* {Object.keys(CARDS_MAP).map((kycName, i) => (
           <KYCCard
             isActive={true}
             key={kycName}
@@ -96,7 +96,7 @@ export const Home = () => {
             level={`Level ${i + 1}`}
             expiration="24.01.2025"
           />
-        ))}
+        ))} */}
       </div>
       <div className="mt-10 space-y-4">
         <div>simple</div>

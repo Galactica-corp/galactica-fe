@@ -3,13 +3,7 @@ import cn from "classnames";
 
 export const InternalLink = ({ className, children, ...props }: LinkProps) => {
   return (
-    <RouterLink
-      className={cn(
-        className,
-        "inline-flex items-baseline text-sm text-salmon hover:underline"
-      )}
-      {...props}
-    >
+    <RouterLink className={cn(className, "link")} {...props}>
       {children}
     </RouterLink>
   );
