@@ -2,7 +2,7 @@ import { ReactComponent as InfoOrangeIcon } from "shared/icons/info-orange.svg";
 import { ReactComponent as MetamaskOutlineIcon } from "shared/icons/metamask-outline.svg";
 import { ReactComponent as MetamaskIcon } from "shared/icons/metamask.svg";
 import { Button } from "shared/ui/button";
-import { Link } from "shared/ui/link";
+import { ExternalLink } from "shared/ui/link";
 import { Modal } from "shared/ui/modal";
 
 export function ModalStartKYCProcedure() {
@@ -19,10 +19,10 @@ export function ModalStartKYCProcedure() {
         Generate & start KYC
         <MetamaskIcon className="relative top-[-0.15rem]" />
       </Button>
-      <Link href="https://google.com" target="_blank" rel="noreferrer">
+      <ExternalLink href="https://google.com" target="_blank" rel="noreferrer">
         Learn More about KYC{" "}
         <InfoOrangeIcon className="relative ml-[0.31rem]" />
-      </Link>
+      </ExternalLink>
     </Modal>
   );
 }

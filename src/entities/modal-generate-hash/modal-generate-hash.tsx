@@ -1,5 +1,5 @@
 import { ReactComponent as InfoOrangeIcon } from "shared/icons/info-orange.svg";
-import { Link } from "shared/ui/link";
+import { ExternalLink } from "shared/ui/link";
 import { Modal } from "shared/ui/modal";
 
 export function ModalGenerateHash() {
@@ -12,10 +12,14 @@ export function ModalGenerateHash() {
         <p className="mb-[1.875rem] text-[1.25rem] font-light text-mineShaft/40">
           The provider will not know your wallet address
         </p>
-        <Link href="https://google.com" target="_blank" rel="noreferrer">
+        <ExternalLink
+          href="https://google.com"
+          target="_blank"
+          rel="noreferrer"
+        >
           Learn More about KYC{" "}
           <InfoOrangeIcon className="relative ml-[0.31rem]" />
-        </Link>
+        </ExternalLink>
       </Modal.Body>
     </Modal>
   );

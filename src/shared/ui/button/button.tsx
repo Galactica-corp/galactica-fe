@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
 import cn from "classnames";
 import { Spinner } from "../spinner";
-import { getCls } from "./styles";
+import { THEME, baseCls } from "./styles";
 import { CommonButtonProps } from "./types";
 
 export type Props = CommonButtonProps &
@@ -20,11 +20,21 @@ export function Button({
   return (
     <button
       {...btnProps}
-      className={cn(getCls(theme), className)}
+      className={cn(baseCls, THEME[theme], className)}
       onClick={onClick}
       disabled={disabled}
     >
-      {isLoading ? <Spinner /> : children}
+      {isLoading && (
+        <div
+          className={cn(
+            "absolute inset-0 flex items-center justify-center",
+            THEME[theme]
+          )}
+        >
+          <Spinner />
+        </div>
+      )}
+      {children}
     </button>
   );
 }

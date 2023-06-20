@@ -78,6 +78,12 @@ p {
   line-height: 120%;
 }
 
+@layer components {
+  .card {
+    @apply flex rounded-[10px] border border-naturalGray/20 bg-pampas px-[30px] py-[26px] shadow-card;
+  }
+}
+
 @layer utilities {
   .buttonPrimary {
     background: linear-gradient(106.71deg, #f26f56 7.28%, #f49756 110.04%);
@@ -103,12 +109,6 @@ p {
       rgba(242, 111, 86, 0.07) 7.28%,
       rgba(244, 151, 86, 0.07) 110.04%
     );
-  }
-}
-
-@layer components {
-  .card {
-    @apply flex h-[238px] w-[380px] rounded-[10px] border border-naturalGray/20 px-7 py-6 shadow-card;
   }
 }
 

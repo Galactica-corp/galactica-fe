@@ -1,7 +1,7 @@
 import { ReactComponent as LogoMetamask } from "shared/icons/metamask-outline.svg";
 import { useGenerateCommitmentHashMutation } from "shared/snap";
 import { Button } from "shared/ui/button";
-import { Link } from "shared/ui/link";
+import { ExternalLink } from "shared/ui/link";
 import { Modal } from "shared/ui/modal";
 import { GradientSpinner } from "shared/ui/spinner";
 import { toastError, toastSuccess } from "shared/utils/toasts";
@@ -50,9 +50,9 @@ export const GenerateModal = ({ onClose, onSuccess, onError }: Props) => {
           Generate & start kyc
         </Button>
 
-        <Link className="mt-10" href="#">
+        <ExternalLink className="mt-10" href="#">
           Learn More about KYC
-        </Link>
+        </ExternalLink>
       </Modal.Body>
     </Modal>
   );

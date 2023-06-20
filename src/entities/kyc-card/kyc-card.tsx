@@ -22,10 +22,7 @@ export function KYCCard({ kyc, level, expiration, isActive }: Props) {
   const map = CARDS_MAP[kyc];
 
   return (
-    <div
-      className={`card flex-col justify-between bg-pampas bg-right-top bg-no-repeat shadow-card`}
-      style={{ backgroundImage: `url(${map.background})` }}
-    >
+    <div className="card" style={{ backgroundImage: `url(${map.background})` }}>
       <div className="text-[1.75rem] font-light">{map.kycTitle}</div>
       <div className="flex justify-between">
         <Field

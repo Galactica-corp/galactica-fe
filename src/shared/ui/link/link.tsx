@@ -1,20 +1,16 @@
-import { AnchorHTMLAttributes } from "react";
+import { LinkProps, Link as RouterLink } from "react-router-dom";
+import cn from "classnames";
 
-interface Props extends AnchorHTMLAttributes<HTMLAnchorElement> {
-  className?: string;
-  href: string;
-}
-
-export const Link = ({ className = "", href, children, ...rest }: Props) => (
-  <a
-    href={href}
-    className={`
-      ${className}
-      inline-flex items-baseline text-[0.875rem] text-salmon
-      hover:underline
-    `}
-    {...rest}
-  >
-    {children}
-  </a>
-);
+export const InternalLink = ({ className, children, ...props }: LinkProps) => {
+  return (
+    <RouterLink
+      className={cn(
+        className,
+        "inline-flex items-baseline text-sm text-salmon hover:underline"
+      )}
+      {...props}
+    >
+      {children}
+    </RouterLink>
+  );
+};

@@ -1,6 +1,6 @@
 import { Tooltip } from "react-tooltip";
 import { ReactComponent as InfoOrangeIcon } from "shared/icons/info-orange.svg";
-import { Link } from "shared/ui/link";
+import { ExternalLink } from "shared/ui/link";
 
 // TODO: use png
 // import questionSBTCardBgUrl from "./images/question-sbt-card-bg.svg";
@@ -17,14 +17,18 @@ export function QuestionSBTCard() {
         <div className="mb-[0.6rem] text-[1.75rem] font-light">
           What are the SBTs?
         </div>
-        <Link href="https://google.com" target="_blank" rel="noreferrer">
+        <ExternalLink
+          href="https://google.com"
+          target="_blank"
+          rel="noreferrer"
+        >
           Learn More about SBT{" "}
           <InfoOrangeIcon
             className="relative ml-[0.31rem]"
             data-tooltip-id={`question-kyc-tooltip-${id}`}
             data-tooltip-content={"TODO some text"}
           />
-        </Link>
+        </ExternalLink>
       </div>
       <Tooltip
         className="react-tooltip-custom"

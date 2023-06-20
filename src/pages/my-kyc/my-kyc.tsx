@@ -14,6 +14,7 @@ export const MyKYC = () => {
   return (
     <>
       <UpdateKycListAlert />
+
       <div className="grid grid-cols-3 gap-8">
         <UploadKycCard />
         {certsList?.length > 0 ? (

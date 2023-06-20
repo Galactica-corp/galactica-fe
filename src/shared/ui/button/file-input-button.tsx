@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
 import cn from "classnames";
 import { Spinner } from "../spinner";
-import { getCls } from "./styles";
+import { THEME, baseCls } from "./styles";
 import { CommonButtonProps } from "./types";
 
 type Props = CommonButtonProps & Omit<ComponentProps<"input">, "type">;
@@ -15,7 +15,7 @@ export const FileInputButton = ({
   ...props
 }: Props) => {
   return (
-    <label className={cn(getCls(theme), className)}>
+    <label className={cn(baseCls, THEME[theme], className)}>
       <input {...props} className="hidden" disabled={disabled} type="file" />
       {isLoading ? <Spinner /> : children}
     </label>
