@@ -1,23 +1,60 @@
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
-import { StartStep } from "./ui";
-import { UploadKYCStep } from "./ui/upload-kyc-step";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useLocalStorage } from "usehooks-ts";
+import { LS_KEYS } from "shared/config/const";
+import { CheckKycStep } from "./ui/check-kyc-step";
+import { SetupHoldingKeyStep } from "./ui/setup-holding-key-step";
+import { UploadKycStep } from "./ui/upload-kyc-step";
 
-type State = "start" | "uploadKyc";
+type Step = "setupHoldingKey" | "alreadyHaveKyc" | "uploadKyc";
 
 export const Onboarding = () => {
-  const [step, setStep] = useState<State>("start");
+  const navigate = useNavigate();
+  const [currentStep, setCurrentStep] = useLocalStorage(
+    LS_KEYS.onboardingCurrentStep,
+    "1"
+  );
+  const [_isOnboardingCompleted, setIsOnboardingCompleted] = useLocalStorage(
+    LS_KEYS.isOnboardingCompleted,
+    false
+  );
+  const [step, setStep] = useState<Step>("setupHoldingKey");
 
-  if (step === "start")
-    return (
-      <StartStep
-        onNext={() => {
-          setStep("uploadKyc");
-        }}
-      />
-    );
+  const onChooseKycProvider = () => {
+    setCurrentStep("3");
+    setIsOnboardingCompleted(true);
+    navigate("/kyc-providers");
+  };
 
-  if (step === "uploadKyc") return <UploadKYCStep />;
+  if (currentStep === "5") return <Navigate to="/" />;
 
-  return <Navigate to="home" />;
+  return (
+    <>
+      {step === "setupHoldingKey" && (
+        <SetupHoldingKeyStep
+          onSetup={() => {
+            setStep("alreadyHaveKyc");
+          }}
+        />
+      )}
+      {step === "alreadyHaveKyc" && (
+        <CheckKycStep
+          onChooseKycProvider={onChooseKycProvider}
+          onHaveKyc={() => {
+            setStep("uploadKyc");
+          }}
+        />
+      )}
+
+      {step === "uploadKyc" && (
+        <UploadKycStep
+          onChooseKycProvider={onChooseKycProvider}
+          onUpload={() => {
+            setIsOnboardingCompleted(true);
+            setCurrentStep("5");
+          }}
+        />
+      )}
+    </>
+  );
 };

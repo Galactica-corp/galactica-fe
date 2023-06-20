@@ -9,3 +9,4 @@ export { useSetupHoldingKeyMutation } from "./use-setup-holding-key-mutation";
 export { useClearStorageMutation } from "./use-clear-storage-mutation";
 export { useListZkCertsMutation } from "./use-list-zk-certs-mutation";
 export { useGetZkCertStorageHashesQuery } from "./use-get-zk-cert-storage-hashes-query";
+export { useGenZkProofMutation } from "./use-gen-zk-proof-mutation";

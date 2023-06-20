@@ -27,6 +27,7 @@ export default {
       naturalGray: "#91908E",
       alabaster: "#FCFCFC",
       alto: "#D8D8D8",
+      oldLace: "#FDF5EE",
       transparent: "transparent",
     },
     fontFamily: {
@@ -34,6 +35,11 @@ export default {
       antiqueLegacy: ["Antique Legacy", "sans-serif"],
     },
     extend: {
+      backgroundImage: {
+        onboarding:
+          "linear-gradient(25.7deg, #FFFFFF 14.79%, rgba(255, 255, 255, 0.8) 114.34%), url('/onboarding-bg.jpg')",
+      },
+
       boxShadow: {
         card: "0px 2px 0px #E3E2E1, 12px 12px 26px rgba(0, 0, 0, 0.05)",
         cardRed: "0px 2px 0px #FA9993, 8px 8px 40px rgba(0, 0, 0, 0.05)",

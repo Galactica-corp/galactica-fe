@@ -16,10 +16,10 @@ export const useIsFlaskQuery = () => {
       });
 
       const isFlaskDetected = (clientVersion as string[])?.includes("flask");
-
       return Boolean(ethereum && isFlaskDetected);
     },
-    staleTime: 0,
+    staleTime: Infinity,
+    refetchOnWindowFocus: "always",
     enabled: Boolean(ethereum?.isMetaMask),
   });
 };

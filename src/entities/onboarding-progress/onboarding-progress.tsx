@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useLocalStorage } from "usehooks-ts";
+import { LS_KEYS } from "shared/config/const";
 import { ReactComponent as CheckGrayIcon } from "shared/icons/check-gray.svg";
 import { ReactComponent as ProgressArrowIcon } from "./images/progress-arrow.svg";
 import progressGrayUrl from "./images/progress-gray.png";
@@ -33,7 +34,12 @@ const STEPS_MAP = [
 ];
 
 export function OnboardingProgress() {
-  const [currentStep] = useState(3);
+  const [currentStepStringified] = useLocalStorage(
+    LS_KEYS.onboardingCurrentStep,
+    "1"
+  );
+
+  const currentStep = Number.parseInt(currentStepStringified);
 
   return (
     <div className="fixed bottom-0 z-20 w-full space-y-[1rem] bg-white pt-[0.8rem]">
@@ -89,7 +95,7 @@ export function OnboardingProgress() {
             backgroundImage: `url(${progressOrangeUrl})`,
             backgroundColor: "#F5B3A6",
           }}
-          className={`relative right-[50%] h-full w-full bg-repeat-x transition-transform ${
+          className={`relative right-[50%] h-[4px] w-full bg-repeat-x transition-transform ${
             STEPS_MAP[currentStep - 1].position
           }`}
         >

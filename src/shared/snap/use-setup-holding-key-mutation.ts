@@ -1,25 +1,19 @@
 import { useMutation } from "@tanstack/react-query";
+import invariant from "tiny-invariant";
 import { useAccount } from "wagmi";
-import { SNAP_ID } from "shared/config/const";
+import { invokeSnap } from "./api-sdk";
 
 export const useSetupHoldingKeyMutation = () => {
   const { address } = useAccount();
   return useMutation({
     mutationFn: async () => {
-      const response = await window.ethereum?.request({
-        method: "wallet_invokeSnap",
+      invariant(address, "useSetupHoldingKeyMutation. address is undefined");
+      return invokeSnap({
+        method: "setupHoldingKey",
         params: {
-          snapId: SNAP_ID,
-          request: {
-            method: "setupHoldingKey",
-            params: {
-              holderAddr: address,
-            },
-          },
+          holderAddr: address,
         },
       });
-
-      console.log({ response });
     },
   });
 };

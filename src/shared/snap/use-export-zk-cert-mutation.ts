@@ -1,23 +1,15 @@
 import { useMutation } from "@tanstack/react-query";
-import { SNAP_ID } from "shared/config/const";
+import { invokeSnap } from "./api-sdk";
 
 export const useExportZkCertMutation = () => {
   return useMutation({
     mutationFn: async () => {
-      const response = await window.ethereum?.request({
-        method: "wallet_invokeSnap",
+      return invokeSnap({
+        method: "exportZkCert",
         params: {
-          snapId: SNAP_ID,
-          request: {
-            method: "exportZkCert",
-            params: {
-              zkCertStandard: "gip69",
-            },
-          },
+          zkCertStandard: "gip69",
         },
       });
-
-      console.log(response);
     },
   });
 };

@@ -1,1 +1,1 @@
-export { GenerateBasicZkProofCard } from "./generate-basic-zkproof-card";
+export { Card as GenerateBasicZkProofCard } from "./ui/card";

@@ -2,7 +2,7 @@ import { KYCCard } from "entities/kyc-card";
 import { KYCName } from "entities/kyc-card/kyc-card";
 import { QuestionKYCCard } from "entities/question-kyc-card";
 import { GenerateBasicZkProofCard } from "features/generate-basic-zkproof-card";
-import { UploadKYCKeyCard } from "features/upload-kyc";
+import { UploadKycCard } from "features/upload-kyc";
 import { ReactComponent as LinkIcon } from "shared/icons/link.svg";
 import { ReactComponent as MetamaskIcon } from "shared/icons/metamask.svg";
 import {
@@ -85,7 +85,7 @@ export const Home = () => {
         </Button>
       </div>
       <div className="grid grid-cols-3 gap-x-4 gap-y-6">
-        <UploadKYCKeyCard />
+        <UploadKycCard />
         <QuestionKYCCard />
         <GenerateBasicZkProofCard />
         {Object.keys(CARDS_MAP).map((kycName, i) => (

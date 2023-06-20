@@ -41,7 +41,6 @@ module.exports = {
     },
     "import/resolver": {
       typescript: true,
-      node: true,
     },
     "boundaries/elements": [
       {
@@ -75,6 +74,8 @@ module.exports = {
     "prettier/prettier": ["error"],
     "import/no-unresolved": "error",
     "import/namespace": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["warn", { varsIgnorePattern: "^_" }],
     "boundaries/element-types": [
       2,
       {

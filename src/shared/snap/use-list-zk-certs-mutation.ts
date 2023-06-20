@@ -1,21 +1,13 @@
-import { useMutation } from "@tanstack/react-query";
-import { SNAP_ID } from "shared/config/const";
+import { UseMutationOptions, useMutation } from "@tanstack/react-query";
+import { InvokeListZkCertsResponse, invokeSnap } from "./api-sdk";
 
-export const useListZkCertsMutation = () => {
+export const useListZkCertsMutation = (
+  options?: UseMutationOptions<InvokeListZkCertsResponse, Error, unknown>
+) => {
   return useMutation({
     mutationFn: async () => {
-      const response = await window.ethereum?.request({
-        method: "wallet_invokeSnap",
-        params: {
-          snapId: SNAP_ID,
-          request: {
-            method: "listZkCerts",
-          },
-        },
-      });
-      console.log({ response });
-
-      return response;
+      return invokeSnap({ method: "listZkCerts" });
     },
+    ...options,
   });
 };
