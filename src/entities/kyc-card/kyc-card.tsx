@@ -1,6 +1,5 @@
 import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
 import { Field } from "shared/ui/field";
-import { cardDefaultStyle } from "shared/utils";
 import { CARDS_MAP } from "shared/utils/cards-map";
 
 export type KYCName =
@@ -24,7 +23,7 @@ export function KYCCard({ kyc, level, expiration, isActive }: Props) {
 
   return (
     <div
-      className={`${cardDefaultStyle} flex-col justify-between bg-pampas bg-right-top bg-no-repeat shadow-card`}
+      className={`card flex-col justify-between bg-pampas bg-right-top bg-no-repeat shadow-card`}
       style={{ backgroundImage: `url(${map.background})` }}
     >
       <div className="text-[1.75rem] font-light">{map.kycTitle}</div>

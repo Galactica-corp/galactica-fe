@@ -8,23 +8,25 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
+  const isProdMode = mode === "production";
   return {
     plugins: [
       react(),
-      mode === "production" && removeConsole(),
+      isProdMode && removeConsole(),
       tsconfigPaths(),
       svgr(),
       ViteEjsPlugin(),
-      checker({
-        typescript: true,
-        eslint: {
-          lintCommand: 'eslint "./src/**/*.{ts,tsx}"',
-        },
-        overlay: {
-          initialIsOpen: false,
-          position: "br",
-        },
-      }),
+      !isProdMode &&
+        checker({
+          typescript: true,
+          eslint: {
+            lintCommand: 'eslint "./src/**/*.{ts,tsx}"',
+          },
+          overlay: {
+            initialIsOpen: false,
+            position: "br",
+          },
+        }),
     ].filter(Boolean),
   };
 });

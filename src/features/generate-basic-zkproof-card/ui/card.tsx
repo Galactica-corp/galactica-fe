@@ -3,11 +3,8 @@ import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
 import { useGenZkProofMutation } from "shared/snap";
 import { ClassName } from "shared/types";
 import { Button } from "shared/ui/button";
-import { cardDefaultStyle } from "shared/utils";
 
 export const Card = ({ className }: ClassName) => {
-  // const
-
   const mutation = useGenZkProofMutation();
 
   const onClick = () => {
@@ -18,10 +15,8 @@ export const Card = ({ className }: ClassName) => {
     <div
       className={classNames(
         className,
-        cardDefaultStyle,
-        "flex-col justify-between bg-cover bg-center bg-no-repeat shadow-cardRed"
+        "card flex-col justify-between bg-cover bg-center bg-no-repeat shadow-cardRed"
       )}
-      // style={{ backgroundImage: `url(${GenerateBasicZkProofCardBgUrl})` }}
     >
       <div>
         <div className="text-[1.75rem] font-light">

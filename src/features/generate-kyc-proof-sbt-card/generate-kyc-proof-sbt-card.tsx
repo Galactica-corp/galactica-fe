@@ -1,6 +1,5 @@
 import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
 import { Button } from "shared/ui/button";
-import { cardDefaultStyle } from "shared/utils";
 
 // TODO: use png
 // import GenerateKYCProofSBTCardBgUrl from "./images/generate-kyc-proof-sbt-bg.svg";
@@ -13,7 +12,7 @@ export function GenerateKYCProofSBTCard() {
   return (
     <div
       className={`
-        ${cardDefaultStyle}
+        card
         flex-col justify-between bg-cover bg-center bg-no-repeat shadow-cardRed
       `}
       // style={{ backgroundImage: `url(${GenerateKYCProofSBTCardBgUrl})` }}

@@ -1,7 +1,6 @@
 import { useMutation, useProvider, useSigner } from "wagmi";
 import { IGalacticaInstitution__factory } from "shared/contracts";
 import { invokeSnap } from "./api-sdk";
-import ageProofZkKYC from "./provers/ageProofZkKYC.json";
 
 export const ageProofZkKYCAddress =
   "0xbc196948e8c1Bc416aEaCf309a63DCEFfdf0cE31";
@@ -47,20 +46,22 @@ export const useGenZkProofMutation = () => {
       ageThreshold: "18",
     };
 
-    console.log({ proofInput, ageProofZkKYC });
+    console.log({ proofInput });
 
-    invokeSnap({
-      method: "genZkKycProof",
-      params: {
-        input: proofInput,
-        requirements: {
-          zkCertStandard: "gip69",
-        },
-        wasm: (ageProofZkKYC as unknown as { wasm: string }).wasm,
-        zkeyHeader: ageProofZkKYC as unknown as { zkeyHeader: unknown },
-        zkeySections: (ageProofZkKYC as unknown as { zkeySections: string[] })
-          .zkeySections,
-      },
-    });
+    // console.log({ proofInput, ageProofZkKYC });
+
+    // invokeSnap({
+    //   method: "genZkKycProof",
+    //   params: {
+    //     input: proofInput,
+    //     requirements: {
+    //       zkCertStandard: "gip69",
+    //     },
+    //     wasm: (ageProofZkKYC as unknown as { wasm: string }).wasm,
+    //     zkeyHeader: ageProofZkKYC as unknown as { zkeyHeader: unknown },
+    //     zkeySections: (ageProofZkKYC as unknown as { zkeySections: string[] })
+    //       .zkeySections,
+    //   },
+    // });
   });
 };
