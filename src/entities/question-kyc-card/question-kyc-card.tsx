@@ -2,16 +2,13 @@ import { Tooltip } from "react-tooltip";
 import { ReactComponent as CardSpinnerIcon } from "shared/icons/card-spinner.svg";
 import { ReactComponent as InfoOrangeIcon } from "shared/icons/info-orange.svg";
 import { Link } from "shared/ui/link";
-import { cardDefaultStyle } from "shared/utils";
-import questionKYCCardBgUrl from "./images/question-kyc-card-bg.svg";
 
 export function QuestionKYCCard() {
   const id = Math.random().toString(36).substring(2);
 
   return (
     <div
-      className={`${cardDefaultStyle} flex-col justify-between bg-cover bg-center bg-no-repeat`}
-      style={{ backgroundImage: `url(${questionKYCCardBgUrl})` }}
+      className={`card flex-col justify-between bg-cover bg-center bg-no-repeat`}
     >
       <div>
         <div className="mb-[0.6rem] text-[1.75rem] font-light">

@@ -106,6 +106,12 @@ p {
   }
 }
 
+@layer components {
+  .card {
+    @apply flex h-[238px] w-[380px] rounded-[10px] border border-naturalGray/20 px-7 py-6 shadow-card;
+  }
+}
+
 /* React tooltip overries */
 
 .react-tooltip-custom {

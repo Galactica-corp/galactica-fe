@@ -1,6 +1,5 @@
 // import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
 import { Field } from "shared/ui/field";
-import { cardDefaultStyle } from "shared/utils";
 import { CARDS_MAP } from "shared/utils/cards-map";
 
 export type KYCName =
@@ -22,7 +21,7 @@ export function KYCProofCard({ kyc, level, expiration }: Props) {
   const map = CARDS_MAP[kyc];
 
   return (
-    <div className={`${cardDefaultStyle} relative  bg-pampas`}>
+    <div className={`card relative  bg-pampas`}>
       <div
         className="absolute left-0 top-0 z-0 h-full w-full bg-right-top  bg-no-repeat shadow-card grayscale"
         style={{ backgroundImage: `url(${map.background})` }}

@@ -1,7 +1,6 @@
 import { Tooltip } from "react-tooltip";
 import { ReactComponent as InfoOrangeIcon } from "shared/icons/info-orange.svg";
 import { Link } from "shared/ui/link";
-import { cardDefaultStyle } from "shared/utils";
 
 // TODO: use png
 // import questionSBTCardBgUrl from "./images/question-sbt-card-bg.svg";
@@ -11,7 +10,7 @@ export function QuestionSBTCard() {
 
   return (
     <div
-      className={`${cardDefaultStyle} flex-col justify-between bg-cover bg-center bg-no-repeat`}
+      className={`card flex-col justify-between bg-cover bg-center bg-no-repeat`}
       // style={{ backgroundImage: `url(${questionSBTCardBgUrl})` }}
     >
       <div>

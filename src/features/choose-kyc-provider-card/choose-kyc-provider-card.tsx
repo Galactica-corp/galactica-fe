@@ -1,9 +1,5 @@
 import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
 import { Button } from "shared/ui/button";
-import { cardDefaultStyle } from "shared/utils";
-
-// TODO: use png
-// import ChooseKycProviderCardBgUrl from "./images/choose-kyc-provider-card-bg.svg";
 
 export function ChooseKycProviderCard() {
   const handler = () => {
@@ -13,7 +9,7 @@ export function ChooseKycProviderCard() {
   return (
     <div
       className={`
-        ${cardDefaultStyle}
+        card
         flex-col justify-between bg-cover bg-center bg-no-repeat shadow-cardRed
       `}
       // style={{ backgroundImage: `url(${ChooseKycProviderCardBgUrl})` }}
