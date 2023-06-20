@@ -1,6 +1,5 @@
 import { useMutation, useProvider, useSigner } from "wagmi";
 import { IGalacticaInstitution__factory } from "shared/contracts";
-import { invokeSnap } from "./api-sdk";
 
 export const ageProofZkKYCAddress =
   "0xbc196948e8c1Bc416aEaCf309a63DCEFfdf0cE31";
