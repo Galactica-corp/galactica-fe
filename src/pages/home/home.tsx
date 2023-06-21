@@ -1,6 +1,5 @@
 // import { KYCCard } from "entities/kyc";
 // import { KYCName } from "entities/kyc/ui/card";
-import { QuestionKYCCard } from "entities/question-kyc-card";
 import { GenerateBasicZkProofCard } from "features/generate-basic-zkproof-card";
 import { UploadKycCard } from "features/upload-kyc";
 import { ReactComponent as LinkIcon } from "shared/icons/link.svg";
@@ -86,7 +85,6 @@ export const Home = () => {
       </div>
       <div className="grid grid-cols-3 gap-x-4 gap-y-6">
         <UploadKycCard />
-        <QuestionKYCCard />
         <GenerateBasicZkProofCard />
         {/* {Object.keys(CARDS_MAP).map((kycName, i) => (
           <KYCCard
