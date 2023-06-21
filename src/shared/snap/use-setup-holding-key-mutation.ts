@@ -8,6 +8,7 @@ export const useSetupHoldingKeyMutation = () => {
   return useMutation({
     mutationFn: async () => {
       invariant(address, "useSetupHoldingKeyMutation. address is undefined");
+
       return invokeSnap({
         method: "setupHoldingKey",
         params: {
