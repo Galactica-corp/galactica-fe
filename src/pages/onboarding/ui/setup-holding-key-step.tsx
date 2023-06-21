@@ -4,6 +4,7 @@ type Props = {
   onSetup: () => void;
 };
 
+/** @deprecated */
 export const SetupHoldingKeyStep = ({ onSetup }: Props) => {
   return (
     <div className="flex h-screen w-full flex-col items-center justify-center px-10 font-light">
