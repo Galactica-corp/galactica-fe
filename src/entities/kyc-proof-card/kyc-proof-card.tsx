@@ -11,13 +11,13 @@ export type KYCName =
   | "kraken"
   | "accreditation";
 
-type Props = {
-  kyc: KYCName;
-  level: string;
-  expiration: string;
-};
+// type Props = {
+//   kyc: KYCName;
+//   level: string;
+//   expiration: string;
+// };
 
-export function KYCProofCard({ kyc, level, expiration }: Props) {
+export function KYCProofCard() {
   // const map = CARDS_MAP[kyc];
 
   return <div>Hello world</div>;

@@ -3,7 +3,6 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "usehooks-ts";
 import { LS_KEYS } from "shared/config/const";
 import { CheckKycStep } from "./ui/check-kyc-step";
-// import { SetupHoldingKeyStep } from "./ui/setup-holding-key-step";
 import { UploadKycStep } from "./ui/upload-kyc-step";
 
 type Step = "alreadyHaveKyc" | "uploadKyc";
@@ -30,13 +29,6 @@ export const Onboarding = () => {
 
   return (
     <>
-      {/* {step === "setupHoldingKey" && (
-        <SetupHoldingKeyStep
-          onSetup={() => {
-            setStep("alreadyHaveKyc");
-          }}
-        />
-      )} */}
       {step === "alreadyHaveKyc" && (
         <CheckKycStep
           onChooseKycProvider={onChooseKycProvider}

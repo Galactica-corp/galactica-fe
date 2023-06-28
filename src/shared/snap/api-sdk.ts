@@ -1,13 +1,6 @@
 import { SNAP_ID } from "shared/config/const";
 import { ZkCertStandard, ZkCertsListItem } from "./types";
 
-type InvokeSetupHoldingKeyRequest = {
-  method: "setupHoldingKey";
-  params: {
-    holderAddr: string | `0x${string}`;
-  };
-};
-
 type InvokeGetHolderCommitment = {
   method: "getHolderCommitment";
 };
@@ -63,7 +56,6 @@ type InvokeGetZkCertStorageHashes = {
 };
 
 type InvokeRequest =
-  | InvokeSetupHoldingKeyRequest
   | InvokeGetHolderCommitment
   | InvokeGenZkKycProof
   | InvokeClearStorageRequest
@@ -77,9 +69,7 @@ export type InvokeListZkCertsResponse = Record<
   ZkCertsListItem[]
 >;
 
-type InvokeResponse<T> = T extends InvokeSetupHoldingKeyRequest
-  ? boolean
-  : T extends InvokeGetHolderCommitment
+type InvokeResponse<T> = T extends InvokeGetHolderCommitment
   ? string
   : T extends InvokeGenZkKycProof
   ? unknown // TODO

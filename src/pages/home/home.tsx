@@ -8,7 +8,6 @@ import {
   useClearStorageMutation,
   useGenerateCommitmentHashMutation,
   useListZkCertsMutation,
-  useSetupHoldingKeyMutation,
 } from "shared/snap";
 import { useExportZkCertMutation } from "shared/snap/use-export-zk-cert-mutation";
 import { Button } from "shared/ui/button";
@@ -17,7 +16,6 @@ import { toastError, toastSuccess } from "shared/utils/toasts";
 
 export const Home = () => {
   const generateCommitmentMutation = useGenerateCommitmentHashMutation();
-  const setupHoldingKeyMutation = useSetupHoldingKeyMutation();
   const clearStorageMutation = useClearStorageMutation();
   const exportMutation = useExportZkCertMutation();
   const listZkCertsMutation = useListZkCertsMutation();
@@ -26,14 +24,6 @@ export const Home = () => {
     clearStorageMutation.mutate(undefined, {
       onSuccess: (data) => {
         console.log("clear storage", data);
-      },
-    });
-  };
-
-  const onSetupHoldingKey = () => {
-    setupHoldingKeyMutation.mutate(undefined, {
-      onSuccess: (data) => {
-        console.log({ name: "setup", data });
       },
     });
   };
@@ -71,7 +61,6 @@ export const Home = () => {
         <Button onClick={onListZkCerts}>list zk certs</Button>
         <Button onClick={onExportCert}>Export cert</Button>
         <Button onClick={onClearStorageMutation}>Clear storage</Button>
-        <Button onClick={onSetupHoldingKey}>setup holding key</Button>
         <Button onClick={onGenerateCommitmentHash}>
           generate commitment Hash
         </Button>
