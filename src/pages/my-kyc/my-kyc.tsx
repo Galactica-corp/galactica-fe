@@ -10,7 +10,7 @@ export const MyKYC = () => {
 
   return (
     <>
-      <UpdateKycListAlert />
+      <UpdateKycListAlert className="mb-10" />
 
       <div className="grid grid-cols-3 gap-8">
         <UploadKycCard />

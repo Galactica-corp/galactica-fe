@@ -19,10 +19,10 @@ export const HEADERS_LINKS = [
     name: "Help",
     to: "/help",
   },
-  {
-    name: "ecosystem",
-    to: "/ecosystem",
-  },
+  // {
+  //   name: "ecosystem",
+  //   to: "/ecosystem",
+  // },
 ];
 
 export const Header = () => {
