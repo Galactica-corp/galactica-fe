@@ -24,18 +24,21 @@ export function Button({
       onClick={onClick}
       disabled={disabled}
     >
-      {isLoading && (
+      {isLoading ? (
         // Avoid reflow button width
-        <div
-          className={cn(
-            "absolute inset-0 z-10 flex items-center justify-center",
-            THEME[theme]
-          )}
-        >
-          <Spinner />
-        </div>
+        <>
+          <span className="opacity-0">{children}</span>
+          <div className="absolute inset-0 z-10 flex items-center justify-center">
+            <Spinner
+              theme={
+                theme === "primary" ? "sandyBrown" : "sandyBrownTransparent"
+              }
+            />
+          </div>
+        </>
+      ) : (
+        children
       )}
-      {children}
     </button>
   );
 }

@@ -8,6 +8,7 @@ export const SIZES = {
 
 export const THEMES = {
   sandyBrown: tw`border-sandyBrown border-b-white`,
+  sandyBrownTransparent: tw`border-sandyBrown border-b-transparent`,
 };
 
 export type Theme = keyof typeof THEMES;

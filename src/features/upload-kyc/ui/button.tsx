@@ -1,7 +1,4 @@
-import { PropsWithChildren } from "react";
-import { useQueryClient } from "wagmi";
-import { SNAP_ID } from "shared/config/const";
-import { snapsKeys } from "shared/snap/keys";
+import { ComponentProps, PropsWithChildren } from "react";
 import { useImportZkCertMutation } from "shared/snap/use-import-zk-cert-mutation";
 import { ClassName } from "shared/types";
 import { FileInputButton } from "shared/ui/button";
@@ -10,21 +7,21 @@ import { parseJSONFile } from "shared/utils";
 type Props = {
   onSuccessUpload?: (data: unknown) => void;
   onErrorUpload?: () => void;
-} & ClassName;
+} & ClassName &
+  Omit<ComponentProps<"input">, "type" | "ref">;
 
 export const UploadKycButton = ({
   children,
   className,
   onSuccessUpload,
   onErrorUpload,
+  ...props
 }: PropsWithChildren<Props>) => {
   const importCertMutation = useImportZkCertMutation();
-  const queryClient = useQueryClient();
 
   const onUpload = async (parsedFile: unknown) => {
     importCertMutation.mutate(parsedFile, {
       onSuccess: (data) => {
-        queryClient.invalidateQueries(snapsKeys.zkCertStorageHashes(SNAP_ID));
         onSuccessUpload?.(data);
       },
       onError: (err) => {
@@ -46,6 +43,7 @@ export const UploadKycButton = ({
             onUpload(data);
           });
       }}
+      {...props}
     >
       {children ?? "Upload zk cert"}
     </FileInputButton>

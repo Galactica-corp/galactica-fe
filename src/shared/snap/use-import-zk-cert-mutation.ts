@@ -1,6 +1,9 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { useMutation } from "wagmi";
 import { z } from "zod";
+import { SNAP_ID } from "shared/config/const";
 import { invokeSnap } from "./api-sdk";
+import { snapsKeys } from "./keys";
 
 export const zkCertSchema = z.object({
   holderCommitment: z.string().nonempty(),
@@ -31,12 +34,20 @@ export const zkCertSchema = z.object({
 export type ZkCert = z.infer<typeof zkCertSchema>;
 
 export const useImportZkCertMutation = () => {
-  return useMutation(async (objContent: unknown) => {
-    const parsedJson = zkCertSchema.parse(objContent);
+  const queryClient = useQueryClient();
+  return useMutation(
+    async (objContent: unknown) => {
+      const parsedJson = zkCertSchema.parse(objContent);
 
-    return invokeSnap({
-      method: "importZkCert",
-      params: { zkCert: parsedJson },
-    });
-  });
+      return invokeSnap({
+        method: "importZkCert",
+        params: { zkCert: parsedJson },
+      });
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(snapsKeys.zkCertStorageHashes(SNAP_ID));
+      },
+    }
+  );
 };

@@ -29,7 +29,21 @@ export const LinkButton = ({
         className
       )}
     >
-      {isLoading ? <Spinner /> : children}
+      {isLoading ? (
+        // Avoid reflow button width
+        <>
+          <span className="opacity-0">{children}</span>
+          <div className="absolute inset-0 z-10 flex items-center justify-center">
+            <Spinner
+              theme={
+                theme === "primary" ? "sandyBrown" : "sandyBrownTransparent"
+              }
+            />
+          </div>
+        </>
+      ) : (
+        children
+      )}
     </Link>
   );
 };
