@@ -29,8 +29,6 @@ export const MyKYC = () => {
         ) : (
           <KycNotFoundCard />
         )}
-
-        {/* <GenerateBasicZkProofCard /> */}
       </div>
     </>
   );

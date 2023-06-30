@@ -21,7 +21,7 @@ export const Card = ({
   return (
     <div style={style} className={classNames(className, "card")}>
       {title && <Title>{title}</Title>}
-      {desc && <Desc>{desc}</Desc>}
+      {desc && <Desc className="mt-2.5">{desc}</Desc>}
       {children}
     </div>
   );
