@@ -29,6 +29,11 @@ export const zkCertSchema = z.object({
   }),
   providerData: z.record(z.string(), z.string().nonempty()),
   randomSalt: z.number(),
+  merkleProof: z.object({
+    root: z.string(),
+    pathIndices: z.number(),
+    pathElements: z.array(z.string()),
+  }),
 });
 
 export type ZkCert = z.infer<typeof zkCertSchema>;
@@ -38,6 +43,8 @@ export const useImportZkCertMutation = () => {
   return useMutation(
     async (objContent: unknown) => {
       const parsedJson = zkCertSchema.parse(objContent);
+
+      console.log(parsedJson);
 
       return invokeSnap({
         method: "importZkCert",
