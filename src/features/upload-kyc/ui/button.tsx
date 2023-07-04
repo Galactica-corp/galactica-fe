@@ -33,17 +33,18 @@ export const UploadKycButton = ({
 
   return (
     <FileInputButton
+      {...props}
       className={className}
       theme="primaryTransparent"
       accept=".json"
       onChange={async (e) => {
+        console.log("hello");
         const file = e.target.files?.[0];
         if (file)
           parseJSONFile(file).then((data) => {
             onUpload(data);
           });
       }}
-      {...props}
     >
       {children ?? "Upload zk cert"}
     </FileInputButton>

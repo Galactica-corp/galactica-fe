@@ -23,7 +23,7 @@ export const FileInputButton = forwardRef<HTMLInputElement, Props>(
         <input
           {...props}
           ref={ref}
-          className="hidden"
+          className="invisible absolute"
           disabled={disabled}
           type="file"
         />
