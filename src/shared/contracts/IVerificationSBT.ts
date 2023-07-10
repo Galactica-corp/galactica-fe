@@ -29,7 +29,7 @@ export declare namespace IVerificationSBT {
     verifierWrapper: PromiseOrValue<string>;
     expirationTime: PromiseOrValue<BigNumberish>;
     verifierCodehash: PromiseOrValue<BytesLike>;
-    encryptedData: [PromiseOrValue<BytesLike>, PromiseOrValue<BytesLike>];
+    encryptedData: PromiseOrValue<BytesLike>[];
     userPubKey: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>];
     humanID: PromiseOrValue<BytesLike>;
     providerPubKey: [
@@ -43,7 +43,7 @@ export declare namespace IVerificationSBT {
     string,
     BigNumber,
     string,
-    [string, string],
+    string[],
     [BigNumber, BigNumber],
     string,
     [BigNumber, BigNumber]
@@ -52,7 +52,7 @@ export declare namespace IVerificationSBT {
     verifierWrapper: string;
     expirationTime: BigNumber;
     verifierCodehash: string;
-    encryptedData: [string, string];
+    encryptedData: string[];
     userPubKey: [BigNumber, BigNumber];
     humanID: string;
     providerPubKey: [BigNumber, BigNumber];
@@ -61,20 +61,26 @@ export declare namespace IVerificationSBT {
 
 export interface IVerificationSBTInterface extends utils.Interface {
   functions: {
+    "deploymentBlock()": FunctionFragment;
     "getHumanID(address,address)": FunctionFragment;
     "getVerificationSBTInfo(address,address)": FunctionFragment;
     "isVerificationSBTValid(address,address)": FunctionFragment;
-    "mintVerificationSBT(address,address,uint256,bytes32[2],uint256[2],bytes32,uint256[2])": FunctionFragment;
+    "mintVerificationSBT(address,address,uint256,bytes32[],uint256[2],bytes32,uint256[2])": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
+      | "deploymentBlock"
       | "getHumanID"
       | "getVerificationSBTInfo"
       | "isVerificationSBTValid"
       | "mintVerificationSBT"
   ): FunctionFragment;
 
+  encodeFunctionData(
+    functionFragment: "deploymentBlock",
+    values?: undefined
+  ): string;
   encodeFunctionData(
     functionFragment: "getHumanID",
     values: [PromiseOrValue<string>, PromiseOrValue<string>]
@@ -93,13 +99,17 @@ export interface IVerificationSBTInterface extends utils.Interface {
       PromiseOrValue<string>,
       PromiseOrValue<string>,
       PromiseOrValue<BigNumberish>,
-      [PromiseOrValue<BytesLike>, PromiseOrValue<BytesLike>],
+      PromiseOrValue<BytesLike>[],
       [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>],
       PromiseOrValue<BytesLike>,
       [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
     ]
   ): string;
 
+  decodeFunctionResult(
+    functionFragment: "deploymentBlock",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "getHumanID", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getVerificationSBTInfo",
@@ -144,6 +154,8 @@ export interface IVerificationSBT extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
+    deploymentBlock(overrides?: CallOverrides): Promise<[BigNumber]>;
+
     getHumanID(
       user: PromiseOrValue<string>,
       dApp: PromiseOrValue<string>,
@@ -166,7 +178,7 @@ export interface IVerificationSBT extends BaseContract {
       user: PromiseOrValue<string>,
       _verifierWrapper: PromiseOrValue<string>,
       _expirationTime: PromiseOrValue<BigNumberish>,
-      _encryptedData: [PromiseOrValue<BytesLike>, PromiseOrValue<BytesLike>],
+      _encryptedData: PromiseOrValue<BytesLike>[],
       _userPubKey: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>],
       _humanID: PromiseOrValue<BytesLike>,
       _providerPubKey: [
@@ -176,6 +188,8 @@ export interface IVerificationSBT extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
   };
+
+  deploymentBlock(overrides?: CallOverrides): Promise<BigNumber>;
 
   getHumanID(
     user: PromiseOrValue<string>,
@@ -199,7 +213,7 @@ export interface IVerificationSBT extends BaseContract {
     user: PromiseOrValue<string>,
     _verifierWrapper: PromiseOrValue<string>,
     _expirationTime: PromiseOrValue<BigNumberish>,
-    _encryptedData: [PromiseOrValue<BytesLike>, PromiseOrValue<BytesLike>],
+    _encryptedData: PromiseOrValue<BytesLike>[],
     _userPubKey: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>],
     _humanID: PromiseOrValue<BytesLike>,
     _providerPubKey: [
@@ -210,6 +224,8 @@ export interface IVerificationSBT extends BaseContract {
   ): Promise<ContractTransaction>;
 
   callStatic: {
+    deploymentBlock(overrides?: CallOverrides): Promise<BigNumber>;
+
     getHumanID(
       user: PromiseOrValue<string>,
       dApp: PromiseOrValue<string>,
@@ -232,7 +248,7 @@ export interface IVerificationSBT extends BaseContract {
       user: PromiseOrValue<string>,
       _verifierWrapper: PromiseOrValue<string>,
       _expirationTime: PromiseOrValue<BigNumberish>,
-      _encryptedData: [PromiseOrValue<BytesLike>, PromiseOrValue<BytesLike>],
+      _encryptedData: PromiseOrValue<BytesLike>[],
       _userPubKey: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>],
       _humanID: PromiseOrValue<BytesLike>,
       _providerPubKey: [
@@ -246,6 +262,8 @@ export interface IVerificationSBT extends BaseContract {
   filters: {};
 
   estimateGas: {
+    deploymentBlock(overrides?: CallOverrides): Promise<BigNumber>;
+
     getHumanID(
       user: PromiseOrValue<string>,
       dApp: PromiseOrValue<string>,
@@ -268,7 +286,7 @@ export interface IVerificationSBT extends BaseContract {
       user: PromiseOrValue<string>,
       _verifierWrapper: PromiseOrValue<string>,
       _expirationTime: PromiseOrValue<BigNumberish>,
-      _encryptedData: [PromiseOrValue<BytesLike>, PromiseOrValue<BytesLike>],
+      _encryptedData: PromiseOrValue<BytesLike>[],
       _userPubKey: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>],
       _humanID: PromiseOrValue<BytesLike>,
       _providerPubKey: [
@@ -280,6 +298,8 @@ export interface IVerificationSBT extends BaseContract {
   };
 
   populateTransaction: {
+    deploymentBlock(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     getHumanID(
       user: PromiseOrValue<string>,
       dApp: PromiseOrValue<string>,
@@ -302,7 +322,7 @@ export interface IVerificationSBT extends BaseContract {
       user: PromiseOrValue<string>,
       _verifierWrapper: PromiseOrValue<string>,
       _expirationTime: PromiseOrValue<BigNumberish>,
-      _encryptedData: [PromiseOrValue<BytesLike>, PromiseOrValue<BytesLike>],
+      _encryptedData: PromiseOrValue<BytesLike>[],
       _userPubKey: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>],
       _humanID: PromiseOrValue<BytesLike>,
       _providerPubKey: [

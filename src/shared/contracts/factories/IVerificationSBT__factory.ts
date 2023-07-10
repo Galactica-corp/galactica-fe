@@ -11,6 +11,19 @@ import type {
 
 const _abi = [
   {
+    inputs: [],
+    name: "deploymentBlock",
+    outputs: [
+      {
+        internalType: "uint64",
+        name: "",
+        type: "uint64",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "address",
@@ -72,9 +85,9 @@ const _abi = [
             type: "bytes32",
           },
           {
-            internalType: "bytes32[2]",
+            internalType: "bytes32[]",
             name: "encryptedData",
-            type: "bytes32[2]",
+            type: "bytes32[]",
           },
           {
             internalType: "uint256[2]",
@@ -142,9 +155,9 @@ const _abi = [
         type: "uint256",
       },
       {
-        internalType: "bytes32[2]",
+        internalType: "bytes32[]",
         name: "_encryptedData",
-        type: "bytes32[2]",
+        type: "bytes32[]",
       },
       {
         internalType: "uint256[2]",

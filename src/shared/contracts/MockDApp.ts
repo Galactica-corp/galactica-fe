@@ -26,7 +26,7 @@ import type {
 export interface MockDAppInterface extends utils.Interface {
   functions: {
     "SBT()": FunctionFragment;
-    "airdropToken(uint256,uint256[2],uint256[2][2],uint256[2],uint256[19])": FunctionFragment;
+    "airdropToken(uint256,uint256[2],uint256[2][2],uint256[2],uint256[])": FunctionFragment;
     "hasReceivedToken1(bytes32)": FunctionFragment;
     "hasReceivedToken2(bytes32)": FunctionFragment;
     "setToken1(address)": FunctionFragment;

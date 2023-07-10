@@ -35,11 +35,7 @@ export interface AgeProofZkKYCInterface extends utils.Interface {
     "INDEX_CURRENT_TIME()": FunctionFragment;
     "INDEX_CURRENT_YEAR()": FunctionFragment;
     "INDEX_DAPP_ID()": FunctionFragment;
-    "INDEX_ENCRYPTED_DATA_0()": FunctionFragment;
-    "INDEX_ENCRYPTED_DATA_1()": FunctionFragment;
     "INDEX_HUMAN_ID()": FunctionFragment;
-    "INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AX()": FunctionFragment;
-    "INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AY()": FunctionFragment;
     "INDEX_IS_VALID()": FunctionFragment;
     "INDEX_PROVIDER_PUBKEY_AX()": FunctionFragment;
     "INDEX_PROVIDER_PUBKEY_AY()": FunctionFragment;
@@ -49,18 +45,21 @@ export interface AgeProofZkKYCInterface extends utils.Interface {
     "INDEX_USER_PUBKEY_AY()": FunctionFragment;
     "INDEX_VERIFICATION_EXPIRATION()": FunctionFragment;
     "KYCRegistry()": FunctionFragment;
-    "galacticaInstitution()": FunctionFragment;
+    "START_INDEX_ENCRYPTED_DATA()": FunctionFragment;
+    "START_INDEX_INVESTIGATION_INSTITUTIONS()": FunctionFragment;
+    "fraudInvestigationInstitutions(uint256)": FunctionFragment;
+    "getAmountFraudInvestigationInstitutions()": FunctionFragment;
     "newOwner()": FunctionFragment;
     "owner()": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
-    "setGalacticaInstituion(address)": FunctionFragment;
+    "setGalacticaInstituion(address[])": FunctionFragment;
     "setKYCRegistry(address)": FunctionFragment;
     "setNewOwner(address)": FunctionFragment;
     "setVerifier(address)": FunctionFragment;
     "timeDifferenceTolerance()": FunctionFragment;
     "transferOwnership()": FunctionFragment;
     "verifier()": FunctionFragment;
-    "verifyProof(uint256[2],uint256[2][2],uint256[2],uint256[19])": FunctionFragment;
+    "verifyProof(uint256[2],uint256[2][2],uint256[2],uint256[])": FunctionFragment;
   };
 
   getFunction(
@@ -71,11 +70,7 @@ export interface AgeProofZkKYCInterface extends utils.Interface {
       | "INDEX_CURRENT_TIME"
       | "INDEX_CURRENT_YEAR"
       | "INDEX_DAPP_ID"
-      | "INDEX_ENCRYPTED_DATA_0"
-      | "INDEX_ENCRYPTED_DATA_1"
       | "INDEX_HUMAN_ID"
-      | "INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AX"
-      | "INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AY"
       | "INDEX_IS_VALID"
       | "INDEX_PROVIDER_PUBKEY_AX"
       | "INDEX_PROVIDER_PUBKEY_AY"
@@ -85,7 +80,10 @@ export interface AgeProofZkKYCInterface extends utils.Interface {
       | "INDEX_USER_PUBKEY_AY"
       | "INDEX_VERIFICATION_EXPIRATION"
       | "KYCRegistry"
-      | "galacticaInstitution"
+      | "START_INDEX_ENCRYPTED_DATA"
+      | "START_INDEX_INVESTIGATION_INSTITUTIONS"
+      | "fraudInvestigationInstitutions"
+      | "getAmountFraudInvestigationInstitutions"
       | "newOwner"
       | "owner"
       | "renounceOwnership"
@@ -124,23 +122,7 @@ export interface AgeProofZkKYCInterface extends utils.Interface {
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "INDEX_ENCRYPTED_DATA_0",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "INDEX_ENCRYPTED_DATA_1",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
     functionFragment: "INDEX_HUMAN_ID",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AX",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AY",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -180,7 +162,19 @@ export interface AgeProofZkKYCInterface extends utils.Interface {
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "galacticaInstitution",
+    functionFragment: "START_INDEX_ENCRYPTED_DATA",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "START_INDEX_INVESTIGATION_INSTITUTIONS",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "fraudInvestigationInstitutions",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getAmountFraudInvestigationInstitutions",
     values?: undefined
   ): string;
   encodeFunctionData(functionFragment: "newOwner", values?: undefined): string;
@@ -191,7 +185,7 @@ export interface AgeProofZkKYCInterface extends utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "setGalacticaInstituion",
-    values: [PromiseOrValue<string>]
+    values: [PromiseOrValue<string>[]]
   ): string;
   encodeFunctionData(
     functionFragment: "setKYCRegistry",
@@ -252,23 +246,7 @@ export interface AgeProofZkKYCInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "INDEX_ENCRYPTED_DATA_0",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "INDEX_ENCRYPTED_DATA_1",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "INDEX_HUMAN_ID",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AX",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AY",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -305,7 +283,19 @@ export interface AgeProofZkKYCInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "galacticaInstitution",
+    functionFragment: "START_INDEX_ENCRYPTED_DATA",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "START_INDEX_INVESTIGATION_INSTITUTIONS",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "fraudInvestigationInstitutions",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getAmountFraudInvestigationInstitutions",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "newOwner", data: BytesLike): Result;
@@ -402,19 +392,7 @@ export interface AgeProofZkKYC extends BaseContract {
 
     INDEX_DAPP_ID(overrides?: CallOverrides): Promise<[number]>;
 
-    INDEX_ENCRYPTED_DATA_0(overrides?: CallOverrides): Promise<[number]>;
-
-    INDEX_ENCRYPTED_DATA_1(overrides?: CallOverrides): Promise<[number]>;
-
     INDEX_HUMAN_ID(overrides?: CallOverrides): Promise<[number]>;
-
-    INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AX(
-      overrides?: CallOverrides
-    ): Promise<[number]>;
-
-    INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AY(
-      overrides?: CallOverrides
-    ): Promise<[number]>;
 
     INDEX_IS_VALID(overrides?: CallOverrides): Promise<[number]>;
 
@@ -434,7 +412,20 @@ export interface AgeProofZkKYC extends BaseContract {
 
     KYCRegistry(overrides?: CallOverrides): Promise<[string]>;
 
-    galacticaInstitution(overrides?: CallOverrides): Promise<[string]>;
+    START_INDEX_ENCRYPTED_DATA(overrides?: CallOverrides): Promise<[number]>;
+
+    START_INDEX_INVESTIGATION_INSTITUTIONS(
+      overrides?: CallOverrides
+    ): Promise<[number]>;
+
+    fraudInvestigationInstitutions(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
+    getAmountFraudInvestigationInstitutions(
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
 
     newOwner(overrides?: CallOverrides): Promise<[string]>;
 
@@ -445,7 +436,7 @@ export interface AgeProofZkKYC extends BaseContract {
     ): Promise<ContractTransaction>;
 
     setGalacticaInstituion(
-      newGalacticaInstitution: PromiseOrValue<string>,
+      _fraudInvestigationInstitutions: PromiseOrValue<string>[],
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
@@ -496,19 +487,7 @@ export interface AgeProofZkKYC extends BaseContract {
 
   INDEX_DAPP_ID(overrides?: CallOverrides): Promise<number>;
 
-  INDEX_ENCRYPTED_DATA_0(overrides?: CallOverrides): Promise<number>;
-
-  INDEX_ENCRYPTED_DATA_1(overrides?: CallOverrides): Promise<number>;
-
   INDEX_HUMAN_ID(overrides?: CallOverrides): Promise<number>;
-
-  INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AX(
-    overrides?: CallOverrides
-  ): Promise<number>;
-
-  INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AY(
-    overrides?: CallOverrides
-  ): Promise<number>;
 
   INDEX_IS_VALID(overrides?: CallOverrides): Promise<number>;
 
@@ -528,7 +507,20 @@ export interface AgeProofZkKYC extends BaseContract {
 
   KYCRegistry(overrides?: CallOverrides): Promise<string>;
 
-  galacticaInstitution(overrides?: CallOverrides): Promise<string>;
+  START_INDEX_ENCRYPTED_DATA(overrides?: CallOverrides): Promise<number>;
+
+  START_INDEX_INVESTIGATION_INSTITUTIONS(
+    overrides?: CallOverrides
+  ): Promise<number>;
+
+  fraudInvestigationInstitutions(
+    arg0: PromiseOrValue<BigNumberish>,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  getAmountFraudInvestigationInstitutions(
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
 
   newOwner(overrides?: CallOverrides): Promise<string>;
 
@@ -539,7 +531,7 @@ export interface AgeProofZkKYC extends BaseContract {
   ): Promise<ContractTransaction>;
 
   setGalacticaInstituion(
-    newGalacticaInstitution: PromiseOrValue<string>,
+    _fraudInvestigationInstitutions: PromiseOrValue<string>[],
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -590,19 +582,7 @@ export interface AgeProofZkKYC extends BaseContract {
 
     INDEX_DAPP_ID(overrides?: CallOverrides): Promise<number>;
 
-    INDEX_ENCRYPTED_DATA_0(overrides?: CallOverrides): Promise<number>;
-
-    INDEX_ENCRYPTED_DATA_1(overrides?: CallOverrides): Promise<number>;
-
     INDEX_HUMAN_ID(overrides?: CallOverrides): Promise<number>;
-
-    INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AX(
-      overrides?: CallOverrides
-    ): Promise<number>;
-
-    INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AY(
-      overrides?: CallOverrides
-    ): Promise<number>;
 
     INDEX_IS_VALID(overrides?: CallOverrides): Promise<number>;
 
@@ -622,7 +602,20 @@ export interface AgeProofZkKYC extends BaseContract {
 
     KYCRegistry(overrides?: CallOverrides): Promise<string>;
 
-    galacticaInstitution(overrides?: CallOverrides): Promise<string>;
+    START_INDEX_ENCRYPTED_DATA(overrides?: CallOverrides): Promise<number>;
+
+    START_INDEX_INVESTIGATION_INSTITUTIONS(
+      overrides?: CallOverrides
+    ): Promise<number>;
+
+    fraudInvestigationInstitutions(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    getAmountFraudInvestigationInstitutions(
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     newOwner(overrides?: CallOverrides): Promise<string>;
 
@@ -631,7 +624,7 @@ export interface AgeProofZkKYC extends BaseContract {
     renounceOwnership(overrides?: CallOverrides): Promise<void>;
 
     setGalacticaInstituion(
-      newGalacticaInstitution: PromiseOrValue<string>,
+      _fraudInvestigationInstitutions: PromiseOrValue<string>[],
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -692,19 +685,7 @@ export interface AgeProofZkKYC extends BaseContract {
 
     INDEX_DAPP_ID(overrides?: CallOverrides): Promise<BigNumber>;
 
-    INDEX_ENCRYPTED_DATA_0(overrides?: CallOverrides): Promise<BigNumber>;
-
-    INDEX_ENCRYPTED_DATA_1(overrides?: CallOverrides): Promise<BigNumber>;
-
     INDEX_HUMAN_ID(overrides?: CallOverrides): Promise<BigNumber>;
-
-    INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AX(
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AY(
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
 
     INDEX_IS_VALID(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -726,7 +707,20 @@ export interface AgeProofZkKYC extends BaseContract {
 
     KYCRegistry(overrides?: CallOverrides): Promise<BigNumber>;
 
-    galacticaInstitution(overrides?: CallOverrides): Promise<BigNumber>;
+    START_INDEX_ENCRYPTED_DATA(overrides?: CallOverrides): Promise<BigNumber>;
+
+    START_INDEX_INVESTIGATION_INSTITUTIONS(
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    fraudInvestigationInstitutions(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    getAmountFraudInvestigationInstitutions(
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     newOwner(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -737,7 +731,7 @@ export interface AgeProofZkKYC extends BaseContract {
     ): Promise<BigNumber>;
 
     setGalacticaInstituion(
-      newGalacticaInstitution: PromiseOrValue<string>,
+      _fraudInvestigationInstitutions: PromiseOrValue<string>[],
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
@@ -797,23 +791,7 @@ export interface AgeProofZkKYC extends BaseContract {
 
     INDEX_DAPP_ID(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    INDEX_ENCRYPTED_DATA_0(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    INDEX_ENCRYPTED_DATA_1(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     INDEX_HUMAN_ID(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AX(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AY(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
 
     INDEX_IS_VALID(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
@@ -845,7 +823,20 @@ export interface AgeProofZkKYC extends BaseContract {
 
     KYCRegistry(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    galacticaInstitution(
+    START_INDEX_ENCRYPTED_DATA(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    START_INDEX_INVESTIGATION_INSTITUTIONS(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    fraudInvestigationInstitutions(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    getAmountFraudInvestigationInstitutions(
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
@@ -858,7 +849,7 @@ export interface AgeProofZkKYC extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     setGalacticaInstituion(
-      newGalacticaInstitution: PromiseOrValue<string>,
+      _fraudInvestigationInstitutions: PromiseOrValue<string>[],
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 

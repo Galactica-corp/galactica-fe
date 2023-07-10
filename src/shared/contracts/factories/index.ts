@@ -6,3 +6,4 @@ export { ERC20__factory } from "./ERC20__factory";
 export { IGalacticaInstitution__factory } from "./IGalacticaInstitution__factory";
 export { IVerificationSBT__factory } from "./IVerificationSBT__factory";
 export { MockDApp__factory } from "./MockDApp__factory";
+export { RepeatableZKPTest__factory } from "./RepeatableZKPTest__factory";

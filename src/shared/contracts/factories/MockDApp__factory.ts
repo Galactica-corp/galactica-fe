@@ -15,7 +15,7 @@ const _abi = [
         type: "address",
       },
       {
-        internalType: "contract IVerifierWrapper",
+        internalType: "contract IAgeProofZkKYCVerifier",
         name: "_verifierWrapper",
         type: "address",
       },
@@ -59,9 +59,9 @@ const _abi = [
         type: "uint256[2]",
       },
       {
-        internalType: "uint256[19]",
+        internalType: "uint256[]",
         name: "input",
-        type: "uint256[19]",
+        type: "uint256[]",
       },
     ],
     name: "airdropToken",
@@ -190,7 +190,7 @@ const _abi = [
     name: "verifierWrapper",
     outputs: [
       {
-        internalType: "contract IVerifierWrapper",
+        internalType: "contract IAgeProofZkKYCVerifier",
         name: "",
         type: "address",
       },

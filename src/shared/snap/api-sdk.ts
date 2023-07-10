@@ -1,3 +1,4 @@
+import { Address } from "wagmi";
 import { SNAP_ID } from "shared/config/const";
 import { ZkCertStandard, ZkCertsListItem } from "./types";
 
@@ -8,21 +9,11 @@ type InvokeGetHolderCommitment = {
 type InvokeGenZkKycProof = {
   method: "genZkKycProof";
   params: {
-    input: {
-      currentTime: number;
-      dAppAddress?: string;
-      investigationInstitutionPubKey?: string[];
-      // the zkKYC itself is not needed here. It is filled by the snap for user privacy.
-
-      // specific inputs to prove that the holder is at least 18 years old
-      currentYear: string;
-      currentMonth: string;
-      currentDay: string;
-      ageThreshold: string;
-    };
+    input: Record<string, unknown>;
     requirements: {
       zkCertStandard: "gip69";
     };
+    userAddress: Address;
     wasm: string;
     zkeyHeader: Record<string, unknown>;
     zkeySections: string[];

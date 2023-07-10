@@ -25,9 +25,9 @@ const _abi = [
         type: "address",
       },
       {
-        internalType: "address",
-        name: "_galacticaInstitution",
-        type: "address",
+        internalType: "address[]",
+        name: "_fraudInvestigationInstitutions",
+        type: "address[]",
       },
     ],
     stateMutability: "nonpayable",
@@ -132,59 +132,7 @@ const _abi = [
   },
   {
     inputs: [],
-    name: "INDEX_ENCRYPTED_DATA_0",
-    outputs: [
-      {
-        internalType: "uint8",
-        name: "",
-        type: "uint8",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "INDEX_ENCRYPTED_DATA_1",
-    outputs: [
-      {
-        internalType: "uint8",
-        name: "",
-        type: "uint8",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
     name: "INDEX_HUMAN_ID",
-    outputs: [
-      {
-        internalType: "uint8",
-        name: "",
-        type: "uint8",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AX",
-    outputs: [
-      {
-        internalType: "uint8",
-        name: "",
-        type: "uint8",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "INDEX_INVESTIGATION_INSTITUTION_PUBKEY_AY",
     outputs: [
       {
         internalType: "uint8",
@@ -314,12 +262,57 @@ const _abi = [
   },
   {
     inputs: [],
-    name: "galacticaInstitution",
+    name: "START_INDEX_ENCRYPTED_DATA",
+    outputs: [
+      {
+        internalType: "uint8",
+        name: "",
+        type: "uint8",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "START_INDEX_INVESTIGATION_INSTITUTIONS",
+    outputs: [
+      {
+        internalType: "uint8",
+        name: "",
+        type: "uint8",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    name: "fraudInvestigationInstitutions",
     outputs: [
       {
         internalType: "contract IGalacticaInstitution",
         name: "",
         type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getAmountFraudInvestigationInstitutions",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
       },
     ],
     stateMutability: "view",
@@ -361,9 +354,9 @@ const _abi = [
   {
     inputs: [
       {
-        internalType: "contract IGalacticaInstitution",
-        name: "newGalacticaInstitution",
-        type: "address",
+        internalType: "contract IGalacticaInstitution[]",
+        name: "_fraudInvestigationInstitutions",
+        type: "address[]",
       },
     ],
     name: "setGalacticaInstituion",
@@ -461,9 +454,9 @@ const _abi = [
         type: "uint256[2]",
       },
       {
-        internalType: "uint256[19]",
+        internalType: "uint256[]",
         name: "input",
-        type: "uint256[19]",
+        type: "uint256[]",
       },
     ],
     name: "verifyProof",
