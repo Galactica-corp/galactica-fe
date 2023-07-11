@@ -8,4 +8,5 @@ export { useGenerateCommitmentHashMutation } from "./use-generate-commitment-has
 export { useClearStorageMutation } from "./use-clear-storage-mutation";
 export { useListZkCertsMutation } from "./use-list-zk-certs-mutation";
 export { useGetZkCertStorageHashesQuery } from "./use-get-zk-cert-storage-hashes-query";
-export { useGenZkProofMutation } from "./use-gen-zk-proof-mutation";
+export { useGenZkAgeProofMutation } from "./use-gen-zk-age-proof-mutation";
+export { useAllSbtsByUserQuery } from "./use-all-sbts-by-user-query";

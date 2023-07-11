@@ -19,3 +19,19 @@ export type ZkCertsListItem = {
   expirationDate: number;
   verificationLevel: string;
 };
+
+export type SBT = {
+  dApp: string;
+  verifierWrapper: string;
+  expirationTime: number;
+  verifierCodehash: string;
+  encryptedData: string[];
+  userPubKey: string[];
+  humanID: string;
+  providerPubKey: string;
+};
+
+export type SbtDetails = {
+  sbts: SBT[];
+  latestBlockChecked: number;
+};

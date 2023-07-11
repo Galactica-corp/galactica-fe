@@ -1,15 +1,23 @@
 import { PropsWithChildren } from "react";
+import classNames from "classnames";
 import { ReactComponent as InfoIcon } from "shared/icons/info.svg";
+import { ClassName } from "shared/types";
 import { Tooltip } from "../tooltip";
 
 type Props = {
+  className?: string;
   label: string;
   tip?: string;
-};
+} & ClassName;
 
-export const Info = ({ children, tip, label }: PropsWithChildren<Props>) => {
+export const Info = ({
+  className,
+  children,
+  tip,
+  label,
+}: PropsWithChildren<Props>) => {
   return (
-    <div className="flex flex-col">
+    <div className={classNames(className, "flex flex-col")}>
       <div className="flex items-center text-sm font-light text-mineShaft/50">
         {label}{" "}
         {tip && (

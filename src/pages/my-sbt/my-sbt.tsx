@@ -1,11 +1,12 @@
-// import { KYCProofCard } from "entities/kyc-proof-card";
-// import { KYCName } from "entities/kyc-proof-card/kyc-proof-card";
 import { useLocalStorage } from "usehooks-ts";
 import { GenerateSbtCard } from "features/generate-sbt";
-import { LS_KEYS } from "shared/config/const";
+import { CONTRACTS_ADDRESSES, LS_KEYS } from "shared/config/const";
+import { useAllSbtsByUserQuery } from "shared/snap";
 import { ZkCertsListItem } from "shared/snap/types";
 import { ChooseKycProviderCard } from "./ui/choose-kyc-provider-card";
 import { LearnSbtCard } from "./ui/learn-sbt-card";
+import { RepeatableSbtCard } from "./ui/repeatable-sbt-card";
+import { SbtCard } from "./ui/sbt-card";
 
 export const MySBT = () => {
   const [zkCerts] = useLocalStorage<ZkCertsListItem[] | undefined>(
@@ -13,22 +14,40 @@ export const MySBT = () => {
     []
   );
 
+  const query = useAllSbtsByUserQuery(
+    {
+      sbtSCAddress: CONTRACTS_ADDRESSES.VERIFICATION_SBT,
+    },
+    {
+      select: ({ sbts }) => sbts,
+    }
+  );
+
+  const hasAgeProof = query.data?.some(
+    (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.EXAMPLE_DAPP
+  );
+
   return (
-    <div className="grid grid-cols-3 gap-[1rem]">
+    <div className="grid grid-cols-3 gap-[1rem] pb-8">
       {zkCerts?.length === 0 && <ChooseKycProviderCard />}
-      <GenerateSbtCard />
+      {!hasAgeProof && <GenerateSbtCard />}
       <LearnSbtCard />
-      {/* {Object.keys(CARDS_MAP).map((kycName, i) => {
-        if (kycName === "accreditation") return;
+      <RepeatableSbtCard />
+      {query.data?.map((sbt, idx) => {
         return (
-          <KYCProofCard
-            key={kycName}
-            kyc={kycName as KYCName}
-            level={`Level ${i + 1}`}
-            expiration="24.01.2025"
+          <SbtCard
+            title={
+              sbt.dApp === CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST
+                ? "KYC Proof (Repeatable)"
+                : "KYC Proof (Age > 18)"
+            }
+            key={idx}
+            provider="Example"
+            expiration={Date.now() + sbt.expirationTime}
+            level={1}
           />
         );
-      })} */}
+      })}
     </div>
   );
 };

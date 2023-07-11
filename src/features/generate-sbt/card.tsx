@@ -1,5 +1,6 @@
+import { toast } from "react-hot-toast";
 import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
-import { useGenZkProofMutation } from "shared/snap";
+import { useGenZkAgeProofMutation } from "shared/snap";
 import { ClassName } from "shared/types";
 import { Button } from "shared/ui/button";
 import { Card } from "shared/ui/card";
@@ -14,10 +15,10 @@ export const GenerateCard = ({
   title = "Generate your first SBT",
   desc = "In order to use your KYC, you need to generate at least a minimal zkProof disclosing its existence and the following fields:",
 }: Props) => {
-  const genMutation = useGenZkProofMutation();
+  const genMutation = useGenZkAgeProofMutation();
   return (
     <Card className={className} title={title} desc={desc}>
-      <div className="mt-2.5 flex items-center justify-between">
+      <div className="mb-6 mt-2.5 flex items-center justify-between">
         <div className="flex items-center text-sm text-mineShaft/50">
           KYC issuer <CheckIcon className="ml-1 w-4" />
         </div>
@@ -30,11 +31,19 @@ export const GenerateCard = ({
       </div>
 
       <Button
-        className="mt-6 w-full"
+        className="mt-auto w-full"
         onClick={() => {
+          const toastId = toast.loading("Generating age sbt");
           genMutation.mutate(undefined, {
-            onSuccess: (data) => {
-              console.log(data);
+            onSuccess: () => {
+              toast.success("Age sbt has been generated", {
+                id: toastId,
+              });
+            },
+            onError: () => {
+              toast.error("Something went wrong", {
+                id: toastId,
+              });
             },
           });
         }}

@@ -8,4 +8,10 @@ export const snapsKeys = {
     snapId,
     "zkCertStorageHashes",
   ],
+
+  allSbt: () => [...snapsKeys.all, "sbts"],
+  allSbtByUser: (params: {
+    userAddress: string | undefined;
+    scAddress: string | undefined;
+  }) => [...snapsKeys.allSbt(), "byUser", params],
 };

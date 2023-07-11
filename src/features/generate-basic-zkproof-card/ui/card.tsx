@@ -1,11 +1,11 @@
 import classNames from "classnames";
 import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
-import { useGenZkProofMutation } from "shared/snap";
+import { useGenZkAgeProofMutation } from "shared/snap";
 import { ClassName } from "shared/types";
 import { Button } from "shared/ui/button";
 
 export const Card = ({ className }: ClassName) => {
-  const mutation = useGenZkProofMutation();
+  const mutation = useGenZkAgeProofMutation();
 
   const onClick = () => {
     mutation.mutate();
