@@ -42,7 +42,7 @@ export const GenerateCard = ({
       <Button
         className="mt-auto w-full"
         onClick={() => {
-          const toastId = toast.loading("Generating age sbt");
+          const toastId = toast.loading("Basic proof generating");
           genMutation.mutate(undefined, {
             onSuccess: () => {
               toast.success("Basic proof has been generated", {

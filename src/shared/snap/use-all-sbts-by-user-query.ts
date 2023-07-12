@@ -37,6 +37,7 @@ export const useAllSbtsByUserQuery = <TData = SbtDetails>(
   return useQuery({
     // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey: snapsKeys.allSbtByUser({
+      dappAddress,
       scAddress: sbtSCAddress,
       userAddress: address,
     }),

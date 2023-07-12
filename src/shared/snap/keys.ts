@@ -11,6 +11,7 @@ export const snapsKeys = {
 
   allSbt: () => [...snapsKeys.all, "sbts"],
   allSbtByUser: (params: {
+    dappAddress: string | undefined;
     userAddress: string | undefined;
     scAddress: string | undefined;
   }) => [...snapsKeys.allSbt(), "byUser", params],
