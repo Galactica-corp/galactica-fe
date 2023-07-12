@@ -20,8 +20,8 @@ export const MyKYC = () => {
     }
   );
 
-  const hasAgeProof = query.data?.some(
-    (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.EXAMPLE_DAPP
+  const hasBasicProof = query.data?.some(
+    (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST
   );
 
   return (
@@ -47,7 +47,9 @@ export const MyKYC = () => {
           <KycNotFoundCard />
         )}
 
-        {zkCerts.length !== 0 && !hasAgeProof && <GenerateBasicZkProofCard />}
+        {query.isSuccess && zkCerts.length !== 0 && !hasBasicProof && (
+          <GenerateBasicZkProofCard />
+        )}
       </div>
     </>
   );

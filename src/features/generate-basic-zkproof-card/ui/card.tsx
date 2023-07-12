@@ -12,7 +12,7 @@ export const Card = ({ className }: ClassName) => {
     <div
       className={classNames(
         className,
-        "card flex-col justify-between bg-cover bg-center bg-no-repeat shadow-cardRed"
+        "card min-h-[238px] flex-col justify-between bg-cover bg-center bg-no-repeat shadow-cardRed"
       )}
     >
       <div>
