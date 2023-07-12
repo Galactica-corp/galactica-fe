@@ -16,7 +16,7 @@ export const useUpdateKycList = () => {
   const listZkCertsMutation = useListZkCertsMutation({
     onSuccess: (data) => {
       if (!hashQuery.data) return;
-      setCertsList(data.gip69);
+      setCertsList(data.gip69 ?? []);
       setZkHash(hashQuery.data.gip69);
     },
     onError: (err) => {

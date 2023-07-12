@@ -1,6 +1,12 @@
 import { useLocalStorage } from "usehooks-ts";
-import { LS_KEYS } from "shared/config/const";
+import { CONTRACTS_ADDRESSES, LS_KEYS } from "shared/config/const";
 import { ReactComponent as CheckGrayIcon } from "shared/icons/check-gray.svg";
+import {
+  useAllSbtsByUserQuery,
+  useGetSnapQuery,
+  useIsFlaskQuery,
+} from "shared/snap";
+import { ZkCertsListItem } from "shared/snap/types";
 import { ReactComponent as ProgressArrowIcon } from "./images/progress-arrow.svg";
 import progressGrayUrl from "./images/progress-gray.png";
 import progressOrangeUrl from "./images/progress-orange.png";
@@ -9,37 +15,63 @@ const STEPS_MAP = [
   {
     name: "Install Metamask",
     status: "finished",
-    position: "translate-x-[-31.7rem]",
+    position: "translate-x-[-29.6rem]",
   },
   {
     name: "Install Extension",
     status: "finished",
-    position: "translate-x-[-13.6rem]",
-  },
-  {
-    name: "Pass KYC",
-    status: "unfinished",
-    position: "translate-x-[0.6rem]",
+    position: "translate-x-[-11.6rem]",
   },
   {
     name: "Add KYC to Metamask",
     status: "unfinished",
-    position: "translate-x-[21.9rem]",
+    position: "translate-x-[7.4rem]",
   },
   {
     name: "Generate KYC Proof",
     status: "unfinished",
-    position: "translate-x-[41.8rem]",
+    position: "translate-x-[28.4rem]",
   },
 ];
 
 export function OnboardingProgress() {
-  const [currentStepStringified] = useLocalStorage(
-    LS_KEYS.onboardingCurrentStep,
-    "1"
+  const [zkCerts] = useLocalStorage<ZkCertsListItem[] | undefined>(
+    LS_KEYS.zkCerts,
+    []
   );
 
-  const currentStep = Number.parseInt(currentStepStringified);
+  const snapQuery = useGetSnapQuery();
+  const isFlaskQuery = useIsFlaskQuery();
+
+  const query = useAllSbtsByUserQuery(
+    {
+      sbtSCAddress: CONTRACTS_ADDRESSES.VERIFICATION_SBT,
+    },
+    {
+      extraEnabled: Boolean(
+        snapQuery?.data && isFlaskQuery?.data && zkCerts?.length !== 0
+      ),
+      select: ({ sbts }) => sbts,
+    }
+  );
+
+  if (
+    (snapQuery.isLoading && snapQuery.isInitialLoading) ||
+    (isFlaskQuery.isLoading && isFlaskQuery.isInitialLoading) ||
+    (query.isLoading && query.isInitialLoading)
+  )
+    return null;
+
+  let currentStep = 0;
+
+  if (!query.data) currentStep = 4;
+  if (zkCerts?.length === 0) currentStep = 3;
+  if (!snapQuery.data) currentStep = 2;
+  if (!isFlaskQuery.data) currentStep = 1;
+
+  if (!currentStep) return null;
+
+  // const currentStep = Number.parseInt(currentStepStringified);
 
   return (
     <div className="fixed bottom-0 z-20 w-full space-y-[1rem] bg-white pt-[0.8rem]">
@@ -73,13 +105,13 @@ export function OnboardingProgress() {
                     }
                   `}
                     >
-                      {i + 1}/5
+                      {i + 1}/4
                     </div>
                   )}
                 </div>
               </div>
             </div>
-            {i !== 4 && <ProgressArrowIcon />}
+            {i !== 3 && <ProgressArrowIcon />}
           </div>
         ))}
       </div>

@@ -35,7 +35,6 @@ export const GenerateModal = ({ onClose, onSuccess, onError }: Props) => {
           onClick={() => {
             mutation.mutate(undefined, {
               onSuccess: (data) => {
-                console.log(data);
                 toastSuccess("Commitment Hash has been generated");
                 onSuccess?.(data);
               },

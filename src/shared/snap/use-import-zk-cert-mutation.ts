@@ -1,8 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { useLocalStorage } from "usehooks-ts";
 import { useMutation } from "wagmi";
 import { z } from "zod";
-import { LS_KEYS, SNAP_ID } from "shared/config/const";
+import { SNAP_ID } from "shared/config/const";
 import { invokeSnap } from "./api-sdk";
 import { snapsKeys } from "./keys";
 
@@ -40,13 +39,10 @@ export const zkCertSchema = z.object({
 export type ZkCert = z.infer<typeof zkCertSchema>;
 
 export const useImportZkCertMutation = () => {
-  const [step, setStep] = useLocalStorage(LS_KEYS.onboardingCurrentStep, "3");
   const queryClient = useQueryClient();
   return useMutation(
     async (objContent: unknown) => {
       const parsedJson = zkCertSchema.parse(objContent);
-
-      console.log(parsedJson);
 
       return invokeSnap({
         method: "importZkCert",
@@ -55,7 +51,6 @@ export const useImportZkCertMutation = () => {
     },
     {
       onSuccess: () => {
-        setStep("5");
         queryClient.invalidateQueries(snapsKeys.zkCertStorageHashes(SNAP_ID));
       },
     }

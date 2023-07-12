@@ -38,7 +38,6 @@ export const UploadKycButton = ({
       theme="primaryTransparent"
       accept=".json"
       onChange={async (e) => {
-        console.log("hello");
         const file = e.target.files?.[0];
         if (file)
           parseJSONFile(file).then((data) => {

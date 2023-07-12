@@ -25,7 +25,7 @@ export const useAllSbtsByUserQuery = <TData = SbtDetails>(
     Error,
     TData,
     ReturnType<typeof snapsKeys.allSbtByUser>
-  >
+  > & { extraEnabled?: boolean }
 ) => {
   const { address } = useAccount();
   const provider = useProvider();
@@ -114,8 +114,6 @@ export const useAllSbtsByUserQuery = <TData = SbtDetails>(
         sbts: notExpiredSbts,
       };
 
-      console.log({ newSbtDetails });
-
       setSbtDetailsByAccount({
         ...sbtDetailsByAccount,
         [address]: newSbtDetails,
@@ -123,7 +121,10 @@ export const useAllSbtsByUserQuery = <TData = SbtDetails>(
 
       return newSbtDetails;
     },
-    enabled: Boolean(address && sbtSCAddress),
+    enabled:
+      Boolean(address && sbtSCAddress) && options?.extraEnabled === undefined
+        ? true
+        : options?.extraEnabled,
     staleTime: 1000 * 60 * 10,
     ...options,
   });

@@ -3,7 +3,7 @@ import { Button } from "shared/ui/button";
 
 type Props = {
   onChooseKycProvider: () => void;
-  onUpload: () => void;
+  onUpload?: () => void;
 };
 
 export const UploadKycStep = ({ onUpload, onChooseKycProvider }: Props) => {
@@ -22,8 +22,7 @@ export const UploadKycStep = ({ onUpload, onChooseKycProvider }: Props) => {
         <Button onClick={onChooseKycProvider}>Choose KYC Provider</Button>
         <UploadKycButton
           onSuccessUpload={(data) => {
-            console.log(data);
-            onUpload();
+            onUpload?.();
           }}
         >
           Upload secret file

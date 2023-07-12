@@ -1,7 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { useLocalStorage } from "usehooks-ts";
 import { useAccount, useMutation, useProvider, useSigner } from "wagmi";
-import { CONTRACTS_ADDRESSES, LS_KEYS } from "shared/config/const";
+import { CONTRACTS_ADDRESSES } from "shared/config/const";
 import { RepeatableZKPTest__factory } from "shared/contracts";
 import { invokeSnap } from "./api-sdk";
 import { snapsKeys } from "./keys";
@@ -15,10 +14,6 @@ import {
 export const repeatableZkKYCTest = "0x57ebf246fC38c59f48CE316381eEFF883C006Fa1";
 
 export const useGenZkRepeatableProofMutation = () => {
-  const [_, setCurrentStep] = useLocalStorage(
-    LS_KEYS.onboardingCurrentStep,
-    "5"
-  );
   const signerQuery = useSigner();
   const provider = useProvider();
   const { address } = useAccount();
@@ -79,8 +74,6 @@ export const useGenZkRepeatableProofMutation = () => {
             scAddress: CONTRACTS_ADDRESSES.VERIFICATION_SBT,
           })
         );
-
-        setCurrentStep("6");
       },
     }
   );
