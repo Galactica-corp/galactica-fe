@@ -3,6 +3,7 @@ export const SNAP_ID =
 
 export const LS_KEYS = {
   zkCerts: "zk-certs-list",
+  isOnboardingCompleted: "isOnboardingCompleted",
   zkHashGip69: "zk-hash-gip69",
   sbtDetailsByAccount: "sbtDetailsByAccount",
 };

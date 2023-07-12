@@ -14,14 +14,18 @@ export const Onboarding = () => {
     LS_KEYS.zkCerts,
     []
   );
+  const [isOnboardingCompleted, setIsOnboardingCompleted] =
+    useLocalStorage<boolean>(LS_KEYS.isOnboardingCompleted, false);
 
   const [step, setStep] = useState<Step>("alreadyHaveKyc");
 
   const onChooseKycProvider = () => {
+    setIsOnboardingCompleted(true);
     navigate("/kyc-providers");
   };
 
-  if (zkCerts?.length !== 0) return <Navigate to="/" />;
+  if (zkCerts?.length !== 0 || isOnboardingCompleted)
+    return <Navigate to="/" />;
 
   return (
     <>
@@ -35,7 +39,12 @@ export const Onboarding = () => {
       )}
 
       {step === "uploadKyc" && (
-        <UploadKycStep onChooseKycProvider={onChooseKycProvider} />
+        <UploadKycStep
+          onChooseKycProvider={onChooseKycProvider}
+          onUpload={() => {
+            setIsOnboardingCompleted(true);
+          }}
+        />
       )}
     </>
   );
