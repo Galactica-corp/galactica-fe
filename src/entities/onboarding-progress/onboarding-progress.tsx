@@ -88,7 +88,7 @@ export function OnboardingProgress() {
           backgroundImage: `url(${progressGrayUrl})`,
           backgroundColor: "#F9F8F6",
         }}
-        className="h-[0.35rem] w-full bg-repeat-x"
+        className="h-[4px] w-full bg-repeat-x"
       >
         <div
           style={{
