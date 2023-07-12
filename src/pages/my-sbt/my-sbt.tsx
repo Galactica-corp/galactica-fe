@@ -33,7 +33,7 @@ export const MySBT = () => {
       {zkCerts?.length === 0 && <ChooseKycProviderCard />}
       {!hasAgeProof && zkCerts?.length !== 0 && <GenerateSbtCard />}
       <LearnSbtCard />
-      {/* <RepeatableSbtCard /> */}
+      <RepeatableSbtCard />
       {query.data?.map((sbt, idx) => {
         return (
           <SbtCard
