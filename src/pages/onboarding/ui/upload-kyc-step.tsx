@@ -8,7 +8,7 @@ type Props = {
 
 export const UploadKycStep = ({ onUpload, onChooseKycProvider }: Props) => {
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center font-light">
+    <div className="flex h-screen w-full flex-col items-center justify-center bg-opacity-70 bg-onboarding bg-cover bg-center font-light">
       <div className="mb-2.5 text-[5.25rem] leading-[120%]">
         Upload your <span className="font-semibold ">KYC secret file.</span>
       </div>
