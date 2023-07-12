@@ -70,6 +70,7 @@ export const useGenZkRepeatableProofMutation = () => {
       onSuccess: () => {
         queryClient.invalidateQueries<SbtDetails>(
           snapsKeys.allSbtByUser({
+            dappAddress: undefined,
             userAddress: address,
             scAddress: CONTRACTS_ADDRESSES.VERIFICATION_SBT,
           })
