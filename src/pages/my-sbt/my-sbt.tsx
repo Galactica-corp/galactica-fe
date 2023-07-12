@@ -1,9 +1,9 @@
+import { ChooseKycProviderCard } from "entities/kyc";
 import { useLocalStorage } from "usehooks-ts";
 import { GenerateSbtCard } from "features/generate-sbt";
 import { CONTRACTS_ADDRESSES, LS_KEYS } from "shared/config/const";
 import { useAllSbtsByUserQuery } from "shared/snap";
 import { ZkCertsListItem } from "shared/snap/types";
-import { ChooseKycProviderCard } from "./ui/choose-kyc-provider-card";
 import { LearnSbtCard } from "./ui/learn-sbt-card";
 import { RepeatableSbtCard } from "./ui/repeatable-sbt-card";
 import { SbtCard } from "./ui/sbt-card";
@@ -24,14 +24,14 @@ export const MySBT = () => {
     }
   );
 
-  const hasAgeProof = !query.data?.some(
+  const hasAgeProof = query.data?.some(
     (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.EXAMPLE_DAPP
   );
 
   return (
     <div className="grid grid-cols-3 gap-[1rem] pb-8">
       {zkCerts?.length === 0 && <ChooseKycProviderCard />}
-      {hasAgeProof && zkCerts?.length !== 0 && <GenerateSbtCard />}
+      {!hasAgeProof && zkCerts?.length !== 0 && <GenerateSbtCard />}
       <LearnSbtCard />
       {/* <RepeatableSbtCard /> */}
       {query.data?.map((sbt, idx) => {

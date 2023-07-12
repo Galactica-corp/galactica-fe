@@ -19,8 +19,11 @@ export const Card = ({ className }: ClassName) => {
       )}
     >
       <div>
-        <div className="text-[1.75rem] font-light">
-          Your KYC <span className="text-scarlet">is not published!</span>
+        <div className="whitespace-nowrap text-[1.75rem] font-light">
+          Your KYC{" "}
+          <span className="whitespace-nowrap text-scarlet">
+            is not published!
+          </span>
         </div>
         <div className="mt-[0.8rem] text-[0.875rem] text-mineShaft/50">
           In order to use your KYC, you need to generate at least a minimal
@@ -38,7 +41,11 @@ export const Card = ({ className }: ClassName) => {
           </div>
         </div>
       </div>
-      <Button onClick={onClick} className="w-full normal-case">
+      <Button
+        isLoading={mutation.isLoading}
+        onClick={onClick}
+        className="w-full normal-case"
+      >
         GENERATE BASIC zkPROOF
       </Button>
     </div>

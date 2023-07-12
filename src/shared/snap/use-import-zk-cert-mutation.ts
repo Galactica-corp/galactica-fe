@@ -4,6 +4,7 @@ import { z } from "zod";
 import { SNAP_ID } from "shared/config/const";
 import { invokeSnap } from "./api-sdk";
 import { snapsKeys } from "./keys";
+import { useListZkCertsMutation } from "./use-list-zk-certs-mutation";
 
 export const zkCertSchema = z.object({
   holderCommitment: z.string().nonempty(),
@@ -40,6 +41,7 @@ export type ZkCert = z.infer<typeof zkCertSchema>;
 
 export const useImportZkCertMutation = () => {
   const queryClient = useQueryClient();
+  const listZkCertsMutation = useListZkCertsMutation();
   return useMutation(
     async (objContent: unknown) => {
       const parsedJson = zkCertSchema.parse(objContent);
@@ -50,8 +52,11 @@ export const useImportZkCertMutation = () => {
       });
     },
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries(snapsKeys.zkCertStorageHashes(SNAP_ID));
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(
+          snapsKeys.zkCertStorageHashes(SNAP_ID)
+        );
+        await listZkCertsMutation.mutateAsync({});
       },
     }
   );

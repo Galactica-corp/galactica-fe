@@ -1,11 +1,11 @@
 import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
 import { LinkButton } from "shared/ui/button";
-import { Card } from "shared/ui/card";
+import { Card as UICard } from "shared/ui/card";
 
-export const ChooseKycProviderCard = () => {
+export const Card = () => {
   return (
-    <Card
-      className="shadow-cardRed"
+    <UICard
+      className="bg-systemCard bg-cover bg-center bg-no-repeat shadow-cardRed"
       title="Your Don't have a KYC"
       desc="To access most dApps on Galactica and access all the community
     features of the network, every Soul needs KYC."
@@ -25,6 +25,6 @@ export const ChooseKycProviderCard = () => {
       <LinkButton to="/kyc-providers" className="mt-6 w-full">
         Choose KYC provider
       </LinkButton>
-    </Card>
+    </UICard>
   );
 };

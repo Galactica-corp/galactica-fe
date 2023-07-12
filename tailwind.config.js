@@ -38,6 +38,7 @@ export default {
       backgroundImage: {
         onboarding:
           "linear-gradient(25.7deg, #FFFFFF 14.79%, rgba(255, 255, 255, 0.8) 114.34%), url('/onboarding-bg.jpg')",
+        systemCard: "url('/system-card-bg.png')",
       },
 
       boxShadow: {
