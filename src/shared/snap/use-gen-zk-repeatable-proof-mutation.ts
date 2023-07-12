@@ -4,7 +4,6 @@ import { CONTRACTS_ADDRESSES } from "shared/config/const";
 import { RepeatableZKPTest__factory } from "shared/contracts";
 import { invokeSnap } from "./api-sdk";
 import { snapsKeys } from "./keys";
-import zkKYCProver from "./provers/zkKYC.json";
 import { SbtDetails } from "./types";
 import {
   getExpectedValidationTimestamp,
@@ -34,16 +33,10 @@ export const useGenZkRepeatableProofMutation = () => {
         investigationInstitutionPubKey: [],
       };
 
-      // const zkKYCProver = await fetch(
-      //   "https://galactica-trusted-setup.s3.eu-central-1.amazonaws.com/zkKYC.json"
-      // );
-
       const response = await fetch(
         "https://galactica-trusted-setup.s3.eu-central-1.amazonaws.com/zkKYC.json"
       );
-
-      const blob = await response.blob();
-      console.log(blob);
+      const zkKYCProver = await response.json();
 
       const zkp: any = await invokeSnap({
         method: "genZkKycProof",

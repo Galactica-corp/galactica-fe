@@ -6,7 +6,6 @@ import {
   MockDApp__factory,
 } from "shared/contracts";
 import { invokeSnap } from "./api-sdk";
-import exampleMockDApp from "./provers/exampleMockDApp.json";
 import {
   getExpectedValidationTimestamp,
   processProof,
@@ -44,6 +43,12 @@ export const useGenZkAgeProofMutation = () => {
 
     const institutionPubKeys = await Promise.all(pubKeysPromises);
 
+    // TODO: Should be optimized?
+    const response = await fetch(
+      "https://galactica-trusted-setup.s3.eu-central-1.amazonaws.com/exampleMockDApp.json"
+    );
+    const exampleMockDAppProver = await response.json();
+
     const generalProofInput = {
       currentTime: expectedValidationTimestamp,
       dAppAddress: CONTRACTS_ADDRESSES.EXAMPLE_DAPP,
@@ -60,9 +65,9 @@ export const useGenZkAgeProofMutation = () => {
         zkCertStandard: "gip69" as const,
       },
       userAddress: address,
-      wasm: (exampleMockDApp as any).wasm,
-      zkeyHeader: (exampleMockDApp as any).zkeyHeader,
-      zkeySections: (exampleMockDApp as any).zkeySections,
+      wasm: (exampleMockDAppProver as any).wasm,
+      zkeyHeader: (exampleMockDAppProver as any).zkeyHeader,
+      zkeySections: (exampleMockDAppProver as any).zkeySections,
     };
 
     const zkp: any = await invokeSnap({
