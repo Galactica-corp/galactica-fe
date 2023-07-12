@@ -45,7 +45,7 @@ export function UploadKycCard({ onSuccessUpload, onErrorUpload }: Props) {
         accept=".json"
         {...getInputProps()}
       >
-        Upload zk cert
+        Upload KYC
       </FileInputButton>
       <div className="mt-[1.05rem] w-[15rem] text-center text-[0.875rem] text-mineShaft/50">
         If you already passed KYC but didn&apos;t upload its secret file to your

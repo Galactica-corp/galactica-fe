@@ -20,19 +20,20 @@ export const MySBT = () => {
     },
     {
       select: ({ sbts }) => sbts,
+      enabled: false,
     }
   );
 
-  const hasAgeProof = query.data?.some(
+  const hasAgeProof = !query.data?.some(
     (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.EXAMPLE_DAPP
   );
 
   return (
     <div className="grid grid-cols-3 gap-[1rem] pb-8">
       {zkCerts?.length === 0 && <ChooseKycProviderCard />}
-      {!hasAgeProof && <GenerateSbtCard />}
+      {hasAgeProof && zkCerts?.length !== 0 && <GenerateSbtCard />}
       <LearnSbtCard />
-      <RepeatableSbtCard />
+      {/* <RepeatableSbtCard /> */}
       {query.data?.map((sbt, idx) => {
         return (
           <SbtCard

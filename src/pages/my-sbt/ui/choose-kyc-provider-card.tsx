@@ -22,8 +22,8 @@ export const ChooseKycProviderCard = () => {
         </div>
       </div>
 
-      <LinkButton to="kyc-provider" className="mt-6 w-full">
-        Generate KYC proof SBT
+      <LinkButton to="/kyc-providers" className="mt-6 w-full">
+        Choose KYC provider
       </LinkButton>
     </Card>
   );

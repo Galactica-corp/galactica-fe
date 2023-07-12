@@ -1,9 +1,11 @@
 import { toast } from "react-hot-toast";
+import classNames from "classnames";
 import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
 import { useGenZkAgeProofMutation } from "shared/snap";
 import { ClassName } from "shared/types";
 import { Button } from "shared/ui/button";
 import { Card } from "shared/ui/card";
+import CardPng from "./bg.png";
 
 type Props = {
   title?: string;
@@ -17,7 +19,12 @@ export const GenerateCard = ({
 }: Props) => {
   const genMutation = useGenZkAgeProofMutation();
   return (
-    <Card className={className} title={title} desc={desc}>
+    <Card
+      className={classNames(className, "bg-cover bg-center bg-no-repeat")}
+      style={{ backgroundImage: `url(${CardPng})` }}
+      title={title}
+      desc={desc}
+    >
       <div className="mb-6 mt-2.5 flex items-center justify-between">
         <div className="flex items-center text-sm text-mineShaft/50">
           KYC issuer <CheckIcon className="ml-1 w-4" />
@@ -48,7 +55,7 @@ export const GenerateCard = ({
           });
         }}
       >
-        Gen
+        Generate KYC proof SBT
       </Button>
     </Card>
   );

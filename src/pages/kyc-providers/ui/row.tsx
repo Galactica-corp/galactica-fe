@@ -23,7 +23,7 @@ export const Row = ({ className, onStart, ...mock }: RowProps & ClassName) => {
     >
       <div className="text-mineShaft">{mock.number}</div>
       <div className="inline-flex items-center gap-x-[10px] font-medium text-mineShaft">
-        <img className="h-[26px] w-[26px]" src={binanceLogoPng} />
+        {/* <img className="h-[26px] w-[26px]" src={binanceLogoPng} /> */}
         {mock.title}
       </div>
       <Score className="justify-self-start" value={9.9} />

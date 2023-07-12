@@ -18,7 +18,7 @@ const STEPS_MAP = [
     position: "translate-x-[-29.6rem]",
   },
   {
-    name: "Install Extension",
+    name: "Install Snap",
     status: "finished",
     position: "translate-x-[-11.6rem]",
   },

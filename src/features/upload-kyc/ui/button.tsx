@@ -45,7 +45,7 @@ export const UploadKycButton = ({
           });
       }}
     >
-      {children ?? "Upload zk cert"}
+      {children ?? "Upload KYC"}
     </FileInputButton>
   );
 };

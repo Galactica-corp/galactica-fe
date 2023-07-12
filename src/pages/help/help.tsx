@@ -52,13 +52,13 @@ export const Help = () => {
           <p className="mb-[0.7rem]">
             If you passed a KYC, you should have the secret file from a KYC
             provider.
-            <br /> Upload your KYC-key to verify your Metamask and activate your
-            Galactica Passport.
+            <br /> Upload it to your Metamask to make it accessible to this
+            portal.
           </p>
         </div>
       </HelpCard>
       <HelpCard
-        title="What does Publish KYC mean?"
+        title="What are the SBTs and why do I need one?"
         button={
           <Button
             theme="primaryTransparent"
@@ -73,10 +73,11 @@ export const Help = () => {
       >
         <div className="font-light">
           <p className="mb-[0.7rem]">
-            To complete the KYC procedure, you need to Generate transaction for
-            activating your Galactica zkProof and publish it to Metamask. After
-            that, you will have access to all the features supported by your KYC
-            level.
+            After you&apos;ve passed KYC and uploaded it to the Metamask, it
+            becomes visible to you and this application. But, nobody else can
+            see it. The application will help you to generate your first SBT - a
+            non-transferable NFT, containing proof that you are verified with a
+            given KYC level.
           </p>
         </div>
       </HelpCard>
