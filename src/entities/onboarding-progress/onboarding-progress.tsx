@@ -23,7 +23,7 @@ const STEPS_MAP = [
     position: "translate-x-[-11.6rem]",
   },
   {
-    name: "Add KYC to Metamask",
+    name: "Pass KYC and add to metamask",
     status: "unfinished",
     position: "translate-x-[7.4rem]",
   },
