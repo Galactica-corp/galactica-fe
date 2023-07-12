@@ -11,7 +11,8 @@ export type KycType =
   | "swissborg"
   | "bitfinex"
   | "bitsamp"
-  | "kraken";
+  | "kraken"
+  | "example";
 
 export const KYC_MAP: Record<
   KycType,
@@ -57,5 +58,10 @@ export const KYC_MAP: Record<
     title: "Kraken KYC",
     background: krakenBgPng,
     // logo: krakenLogoUrl,
+  },
+  example: {
+    name: "Example",
+    title: "Example KYC",
+    background: "",
   },
 };

@@ -20,7 +20,7 @@ export const MyKYC = () => {
             return (
               <KycCard
                 key={`${cert.expirationDate}-${i}`}
-                type="binance"
+                type="example"
                 expiration={cert.expirationDate}
                 level={cert.verificationLevel}
               />
