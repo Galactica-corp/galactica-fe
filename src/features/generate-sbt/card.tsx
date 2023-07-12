@@ -2,6 +2,7 @@ import { toast } from "react-hot-toast";
 import classNames from "classnames";
 import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
 import { useGenZkAgeProofMutation } from "shared/snap";
+import { useGenZkRepeatableProofMutation } from "shared/snap/use-gen-zk-repeatable-proof-mutation";
 import { ClassName } from "shared/types";
 import { Button } from "shared/ui/button";
 import { Card } from "shared/ui/card";
@@ -17,7 +18,8 @@ export const GenerateCard = ({
   title = "Generate your first SBT",
   desc = "In order to use your KYC, you need to generate at least a minimal zkProof disclosing its existence and the following fields:",
 }: Props) => {
-  const genMutation = useGenZkAgeProofMutation();
+  // const genMutation = useGenZkAgeProofMutation();
+  const genMutation = useGenZkRepeatableProofMutation();
   return (
     <Card
       className={classNames(className, "bg-cover bg-center bg-no-repeat")}
@@ -43,7 +45,7 @@ export const GenerateCard = ({
           const toastId = toast.loading("Generating age sbt");
           genMutation.mutate(undefined, {
             onSuccess: () => {
-              toast.success("Age sbt has been generated", {
+              toast.success("Basic proof has been generated", {
                 id: toastId,
               });
             },

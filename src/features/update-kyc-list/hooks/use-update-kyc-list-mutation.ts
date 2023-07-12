@@ -25,6 +25,7 @@ export const useUpdateKycList = () => {
     hashQuery.isSuccess &&
       hashQuery.data &&
       isOnboardingCompleted &&
+      zkHash &&
       zkHash !== hashQuery.data.gip69
   );
 

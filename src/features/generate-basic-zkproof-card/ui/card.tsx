@@ -1,15 +1,12 @@
+import { toast } from "react-hot-toast";
 import classNames from "classnames";
 import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
-import { useGenZkAgeProofMutation } from "shared/snap";
+import { useGenZkRepeatableProofMutation } from "shared/snap/use-gen-zk-repeatable-proof-mutation";
 import { ClassName } from "shared/types";
 import { Button } from "shared/ui/button";
 
 export const Card = ({ className }: ClassName) => {
-  const mutation = useGenZkAgeProofMutation();
-
-  const onClick = () => {
-    mutation.mutate();
-  };
+  const mutation = useGenZkRepeatableProofMutation();
 
   return (
     <div
@@ -43,7 +40,18 @@ export const Card = ({ className }: ClassName) => {
       </div>
       <Button
         isLoading={mutation.isLoading}
-        onClick={onClick}
+        onClick={() => {
+          const id = toast.loading("Basic proof generating...");
+
+          mutation.mutate(undefined, {
+            onSuccess: () => {
+              toast.success("Basic proof has been generated", { id });
+            },
+            onError: () => {
+              toast.error("Something went wrong", { id });
+            },
+          });
+        }}
         className="w-full normal-case"
       >
         GENERATE BASIC zkPROOF
