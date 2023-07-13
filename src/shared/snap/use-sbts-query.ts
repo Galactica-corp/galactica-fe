@@ -3,8 +3,7 @@ import { BigNumber, EventFilter, ethers } from "ethers";
 import invariant from "tiny-invariant";
 import { useAccount, useProvider } from "wagmi";
 import { IVerificationSBT__factory } from "shared/contracts";
-import { CONTRACTS_ADDRESSES } from "./const";
-import { useSbtDetails } from "./hooks/use-sbt-details";
+import { CONTRACTS_ADDRESSES, SNAP_LS_KEYS } from "./const";
 import { snapsKeys } from "./keys";
 import { SbtDetails } from "./types";
 
@@ -22,8 +21,6 @@ export const useSbtsQuery = <TData = SbtDetails>(
   const { address } = useAccount();
   const provider = useProvider();
 
-  const [sbtDetails, setSbtDetails] = useSbtDetails();
-
   return useQuery({
     // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey: snapsKeys.allSbtByUser({
@@ -31,6 +28,17 @@ export const useSbtsQuery = <TData = SbtDetails>(
     }),
     queryFn: async () => {
       invariant(address);
+      const sbtDetailsStringified = localStorage.getItem(
+        SNAP_LS_KEYS.sbtDetails(address)
+      );
+
+      const sbtDetails: SbtDetails = sbtDetailsStringified
+        ? JSON.parse(sbtDetailsStringified)
+        : {
+            sbts: [],
+            latestBlockChecked: 0,
+          };
+
       const sbtSC = IVerificationSBT__factory.connect(
         CONTRACTS_ADDRESSES.VERIFICATION_SBT,
         provider
@@ -39,7 +47,7 @@ export const useSbtsQuery = <TData = SbtDetails>(
       const currentBlock = await provider.getBlockNumber();
       const lastBlockTime = (await provider.getBlock(currentBlock)).timestamp;
 
-      const notExpiredSbts = sbtDetails.sbts.filter(
+      const notExpiredSbts = sbtDetails?.sbts.filter(
         (sbt) => sbt.expirationTime > lastBlockTime
       );
 
@@ -85,12 +93,14 @@ export const useSbtsQuery = <TData = SbtDetails>(
             continue; // skip expired SBT
           }
 
-          notExpiredSbts.push({
+          const foundSbt = {
             ...sbtInfo,
             expirationTime: BigNumber.from(sbtInfo.expirationTime).toNumber(),
             userPubKey: sbtInfo.userPubKey.map((pubKey) => pubKey.toString()),
             providerPubKey: sbtInfo.userPubKey.toString(),
-          });
+          };
+
+          notExpiredSbts.push(foundSbt);
         }
       }
 
@@ -99,9 +109,10 @@ export const useSbtsQuery = <TData = SbtDetails>(
         sbts: notExpiredSbts,
       };
 
-      console.log(newSbtDetails);
-
-      setSbtDetails(newSbtDetails);
+      localStorage.setItem(
+        SNAP_LS_KEYS.sbtDetails(address),
+        JSON.stringify(newSbtDetails)
+      );
 
       return newSbtDetails;
     },

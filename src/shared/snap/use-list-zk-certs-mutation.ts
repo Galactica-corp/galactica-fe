@@ -17,7 +17,6 @@ export const useListZkCertsMutation = (
     },
     onSuccess: (data) => {
       if (!hashQuery.data) return;
-      console.log(data);
       setCertsList(data.gip69 ?? []);
       setZkHash(hashQuery.data.gip69 ?? "");
     },
