@@ -120,6 +120,7 @@ export const useSbtsQuery = <TData = SbtDetails>(
       Boolean(address) && options?.extraEnabled === undefined
         ? true
         : options?.extraEnabled,
+    staleTime: 1000 * 60 * 10, // 10 min
     ...options,
   });
 };

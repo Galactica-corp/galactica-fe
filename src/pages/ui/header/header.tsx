@@ -12,8 +12,8 @@ export const HEADERS_LINKS = [
     to: "/my-sbt",
   },
   {
-    name: "KYC Providers",
-    to: "/kyc-providers",
+    name: "KYC Guardians",
+    to: "/kyc-guardians",
   },
   {
     name: "Help",

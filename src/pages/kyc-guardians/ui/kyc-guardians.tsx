@@ -13,7 +13,7 @@ const mocks = [
   },
 ];
 
-export const KYCProvidersPage = () => {
+export const KYCGuardiansPage = () => {
   const [
     isGenerateCommitmentHashModalOpen,
     toggleGenerateCommitmentHashModalOpen,

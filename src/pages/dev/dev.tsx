@@ -4,6 +4,7 @@ import { Button } from "shared/ui/button";
 export const Dev = () => {
   const clearStorageMutation = useClearStorageMutation();
   const zkCertsMutation = useListZkCertsMutation();
+
   return (
     <div>
       <Button

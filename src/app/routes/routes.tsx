@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { Dev } from "pages/dev";
 import { EcosystemPage } from "pages/ecosystem";
 import { HelpPage } from "pages/help";
-import { KYCProvidersPage } from "pages/kyc-providers";
+import { KYCGuardiansPage } from "pages/kyc-guardians";
 import { MyKYCPage } from "pages/my-kyc";
 import { MySbtDevPage, MySbtPage } from "pages/my-sbt";
 import { OnboardingPage } from "pages/onboarding";
@@ -20,7 +20,7 @@ export const AppRoutes = () => {
           <Route index path="/" element={<MyKYCPage />} />
           <Route path="/my-sbt" element={<MySbtPage />} />
           <Route path="/my-sbt-dev" element={<MySbtDevPage />} />
-          <Route path="/kyc-providers" element={<KYCProvidersPage />} />
+          <Route path="/kyc-guardians" element={<KYCGuardiansPage />} />
           <Route path="/help" element={<HelpPage />} />
           <Route path="/ecosystem" element={<EcosystemPage />} />
         </Route>

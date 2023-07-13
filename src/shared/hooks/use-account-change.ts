@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { ConnectorData, useAccount } from "wagmi";
-import { useRefFn } from "./use-ref-fn";
+import { useRefX } from "./use-ref-x";
 
 export const useAccountChange = (
   onChange: ({ account, chain }: ConnectorData) => void
 ) => {
   const { connector: activeConnector } = useAccount();
 
-  const onChangeRef = useRefFn(onChange);
+  const onChangeRef = useRefX(onChange);
 
   useEffect(() => {
     if (!activeConnector) return;

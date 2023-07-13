@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import { ClassName } from "shared/types";
-import binanceLogoPng from "./binance-logo.png";
 import { Score } from "./score";
 
 type RowProps = {
