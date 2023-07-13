@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { toast } from "react-hot-toast";
+import { useQueryClient } from "@tanstack/react-query";
 import { useLocalStorage } from "usehooks-ts";
 import { LS_KEYS } from "shared/config/const";
 import { useAccountChange } from "shared/hooks";
@@ -9,8 +10,10 @@ import {
   useZkCertHash,
   useZkCerts,
 } from "shared/snap";
+import { snapsKeys } from "shared/snap/keys";
 
 export const useUpdateKycList = () => {
+  const queryClient = useQueryClient();
   const toastIdRef = useRef("");
   const [isOnboardingCompleted] = useLocalStorage(
     LS_KEYS.isOnboardingCompleted,
@@ -29,7 +32,11 @@ export const useUpdateKycList = () => {
 
   useAccountChange(({ account }) => {
     if (!account) return;
-    toastIdRef.current = toast.loading("Updating");
+    toastIdRef.current = toast.loading("Updating", {
+      duration: 10000,
+    });
+
+    queryClient.invalidateQueries(snapsKeys.allSbt());
   });
 
   useEffect(() => {

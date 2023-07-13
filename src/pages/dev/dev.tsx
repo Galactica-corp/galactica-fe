@@ -1,8 +1,9 @@
-import { useClearStorageMutation } from "shared/snap";
+import { useClearStorageMutation, useListZkCertsMutation } from "shared/snap";
 import { Button } from "shared/ui/button";
 
 export const Dev = () => {
   const clearStorageMutation = useClearStorageMutation();
+  const zkCertsMutation = useListZkCertsMutation();
   return (
     <div>
       <Button
@@ -11,6 +12,15 @@ export const Dev = () => {
         }}
       >
         Clear Storage
+      </Button>
+
+      <Button
+        className="mt-5"
+        onClick={() => {
+          zkCertsMutation.mutate({});
+        }}
+      >
+        Get List KYC
       </Button>
     </div>
   );

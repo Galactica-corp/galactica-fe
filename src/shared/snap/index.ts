@@ -15,3 +15,5 @@ export { useZkCertHash } from "./hooks/use-zk-cert-hash";
 export { useZkCerts } from "./hooks/use-zk-certs";
 
 export { CONTRACTS_ADDRESSES } from "./const";
+
+export { snapsKeys } from "./keys";

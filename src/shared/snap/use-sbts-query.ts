@@ -99,6 +99,8 @@ export const useSbtsQuery = <TData = SbtDetails>(
         sbts: notExpiredSbts,
       };
 
+      console.log(newSbtDetails);
+
       setSbtDetails(newSbtDetails);
 
       return newSbtDetails;
@@ -107,7 +109,6 @@ export const useSbtsQuery = <TData = SbtDetails>(
       Boolean(address) && options?.extraEnabled === undefined
         ? true
         : options?.extraEnabled,
-    staleTime: 1000 * 60 * 10,
     ...options,
   });
 };

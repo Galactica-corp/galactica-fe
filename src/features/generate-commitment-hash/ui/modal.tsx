@@ -53,6 +53,8 @@ export const GenerateModal = ({ onClose, onSuccess, onError }: Props) => {
                   url.searchParams.append("commitmentHash", data);
                   setUrl(url.toString());
 
+                  window.open(url.toString(), "_self");
+
                   toastSuccess("Commitment Hash has been generated");
                 },
                 onError: () => {
