@@ -11,7 +11,7 @@ type Props = {
 } & ClassName;
 
 export const SbtCard = ({
-  title = "KYC Proof",
+  title = "zkKYC Proof",
   provider = "Example",
   className,
   level,
@@ -21,14 +21,14 @@ export const SbtCard = ({
     <Card
       className={classNames(className, "min-h-[238px]")}
       title={title}
-      desc="This SBT proves that you hold a valid KYC with these fields:"
+      desc="This SBT proves that you hold a valid zkKYC with these fields:"
     >
       <div className="mt-auto flex justify-between">
         <Card.Info label="Provider" tip="TODO some text">
           {provider}
         </Card.Info>
 
-        <Card.Info label="KYC-level" tip="TODO some text">
+        <Card.Info label="zkKYC-level" tip="TODO some text">
           {`Level ${level}`}
         </Card.Info>
 

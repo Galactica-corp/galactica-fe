@@ -8,7 +8,7 @@ import { Link as LearnKycLink } from "./link";
 export const NotFoundCard = ({ className }: ClassName) => {
   return (
     <Card
-      title="Can't find your KYC? "
+      title="Can't find your zkKYC? "
       className={cn(
         className,
         "card min-h-[238px] bg-cover bg-center bg-no-repeat"

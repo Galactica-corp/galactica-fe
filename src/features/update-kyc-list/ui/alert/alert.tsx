@@ -15,7 +15,7 @@ export const Alert = ({ className }: ClassName) => {
       )}
     >
       Information is outdated! Please, approve an access request in Metamask to
-      share the actual state of your KYC&apos;s to the application.
+      share the actual state of your zkKYC&apos;s to the application.
       <button
         className="ml-1 inline-flex border-none bg-none text-sandyBrown hover:underline"
         onClick={mutation.mutate}

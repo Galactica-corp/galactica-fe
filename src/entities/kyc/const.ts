@@ -61,7 +61,7 @@ export const KYC_MAP: Record<
   },
   example: {
     name: "Example",
-    title: "Example KYC",
+    title: "Example zkKYC",
     background: "",
   },
 };

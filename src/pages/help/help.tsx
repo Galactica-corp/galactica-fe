@@ -20,37 +20,37 @@ export const Help = () => {
         </div>
       </HelpCard>
       <HelpCard
-        title="How to get a KYC?"
+        title="How to get a zkKYC?"
         button={
           <Button
             theme="primaryTransparent"
             className="h-[2rem] w-[14.06rem] !font-antiqueLegacy text-[0.875rem] font-light normal-case"
           >
-            Go to KYC provider list
+            Go to zkKYC provider list
           </Button>
         }
       >
         <div className="font-light">
           <p>
-            If you didn&apos;t pass a KYC before, go to KYC providers list and
-            initiate the procedure.
+            If you didn&apos;t pass a zkKYC before, go to zkKYC providers list
+            and initiate the procedure.
           </p>
         </div>
       </HelpCard>
       <HelpCard
-        title="I passed my KYC. What's next?"
+        title="I passed my zkKYC. What's next?"
         button={
           <Button
             theme="primary"
             className="h-[2rem] w-[14.06rem] !font-antiqueLegacy text-[0.875rem] font-light normal-case"
           >
-            Upload KYC-KEY
+            Upload zkKYC-KEY
           </Button>
         }
       >
         <div className="font-light">
           <p className="mb-[0.7rem]">
-            If you passed a KYC, you should have the secret file from a KYC
+            If you passed a zkKYC, you should have the secret file from a zkKYC
             provider.
             <br /> Upload it to your Metamask to make it accessible to this
             portal.
@@ -73,11 +73,11 @@ export const Help = () => {
       >
         <div className="font-light">
           <p className="mb-[0.7rem]">
-            After you&apos;ve passed KYC and uploaded it to the Metamask, it
+            After you&apos;ve passed zkKYC and uploaded it to the Metamask, it
             becomes visible to you and this application. But, nobody else can
             see it. The application will help you to generate your first SBT - a
             non-transferable NFT, containing proof that you are verified with a
-            given KYC level.
+            given zkKYC level.
           </p>
         </div>
       </HelpCard>

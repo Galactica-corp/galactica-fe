@@ -22,7 +22,7 @@ export const Card = ({ type, level, expiration }: Props) => {
       style={{ backgroundImage: `url(${kyc.background})` }}
     >
       <div className="mt-auto flex justify-between">
-        <UICard.Info label="KYC-status" tip="TODO some text">
+        <UICard.Info label="zkKYC-status" tip="TODO some text">
           {isActive ? (
             <div className="flex items-center text-sandyBrown">
               Active <CheckIcon className="ml-[0.5rem]" />
@@ -32,7 +32,7 @@ export const Card = ({ type, level, expiration }: Props) => {
           )}
         </UICard.Info>
 
-        <UICard.Info label="KYC-level" tip="TODO some text">
+        <UICard.Info label="zkKYC-level" tip="TODO some text">
           {`Level ${level}`}
         </UICard.Info>
 

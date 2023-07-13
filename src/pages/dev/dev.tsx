@@ -21,7 +21,7 @@ export const Dev = () => {
           zkCertsMutation.mutate({});
         }}
       >
-        Get List KYC
+        Get List zkKYC
       </Button>
     </div>
   );

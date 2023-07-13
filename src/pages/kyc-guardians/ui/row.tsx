@@ -33,7 +33,7 @@ export const Row = ({ className, onStart, ...mock }: RowProps & ClassName) => {
         className="flex w-[147px] items-center justify-center rounded-md border border-grayNickel py-2 transition-colors hover:border-naturalGray"
         onClick={onStart}
       >
-        Start KYC
+        Start zkKYC
       </button>
     </div>
   );

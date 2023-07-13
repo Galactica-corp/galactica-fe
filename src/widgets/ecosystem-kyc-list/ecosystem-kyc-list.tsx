@@ -6,9 +6,9 @@ import {
 import { Tab } from "shared/ui/tab";
 
 const TABS_MAP = [
-  { name: "no-kyc", title: "No KYC required" },
-  { name: "available-basic", title: "Available for Basic KYC" },
-  { name: "available-advanced", title: "Available for Advanced KYC" },
+  { name: "no-kyc", title: "No zkKYC required" },
+  { name: "available-basic", title: "Available for Basic zkKYC" },
+  { name: "available-advanced", title: "Available for Advanced zkKYC" },
 ];
 
 export function EcosystemKycList() {

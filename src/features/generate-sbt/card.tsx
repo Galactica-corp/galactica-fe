@@ -16,7 +16,7 @@ type Props = {
 export const GenerateCard = ({
   className,
   title = "Generate your first SBT",
-  desc = "In order to use your KYC, you need to generate at least a minimal zkProof disclosing its existence and the following fields:",
+  desc = "In order to use your zkKYC, you need to generate at least a minimal zkProof disclosing its existence and the following fields:",
 }: Props) => {
   const toastIdRef = useRef("");
   const genMutation = useGenZkRepeatableProofMutation({
@@ -47,10 +47,10 @@ export const GenerateCard = ({
     >
       <div className="mb-6 mt-2.5 flex items-center justify-between">
         <div className="flex items-center text-sm text-mineShaft/50">
-          KYC issuer <CheckIcon className="ml-1 w-4" />
+          zkKYC issuer <CheckIcon className="ml-1 w-4" />
         </div>
         <div className="flex items-center text-sm text-mineShaft/50">
-          KYC-level <CheckIcon className="ml-1 w-4" />
+          zkKYC-level <CheckIcon className="ml-1 w-4" />
         </div>
         <div className="flex items-center text-sm text-mineShaft/50">
           Expiration date <CheckIcon className="ml-1 w-4" />
@@ -84,7 +84,7 @@ export const GenerateCard = ({
           });
         }}
       >
-        Generate KYC proof SBT
+        Generate zkKYC proof SBT
       </Button>
     </Card>
   );

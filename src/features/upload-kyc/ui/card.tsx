@@ -16,13 +16,13 @@ export function UploadKycCard({ onSuccessUpload, onErrorUpload }: Props) {
     const file = acceptedFiles[0];
     if (!file) return;
     const data = await parseJSONFile(file);
-    const id = toast.loading("Uploading KYC...", {
+    const id = toast.loading("Uploading zkKYC...", {
       duration: 10000,
     });
     importCertMutation.mutate(data, {
       onSuccess: (data) => {
         onSuccessUpload?.(data);
-        toast.success("KYC has been uploaded!", {
+        toast.success("zkKYC has been uploaded!", {
           id,
         });
       },
@@ -61,11 +61,11 @@ export function UploadKycCard({ onSuccessUpload, onErrorUpload }: Props) {
         accept=".json"
         {...getInputProps()}
       >
-        Upload KYC
+        Upload zkKYC
       </FileInputButton>
       <div className="mt-[1.05rem] w-[15rem] text-center text-[0.875rem] text-mineShaft/50">
-        If you already passed KYC but didn&apos;t upload its secret file to your
-        wallet
+        If you already passed zkKYC but didn&apos;t upload its secret file to
+        your wallet
       </div>
     </div>
   );

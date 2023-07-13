@@ -19,11 +19,13 @@ export const UpdateModal = () => {
         ) : (
           <LogoMetamask className="h-[110px] text-grayNickel" />
         )}
-        <Modal.Title className="mt-6">Your KYC&apos;s have changed</Modal.Title>
+        <Modal.Title className="mt-6">
+          Your zkKYC&apos;s have changed
+        </Modal.Title>
         <Modal.Description className="mt-3">
           We&apos;ve noticed that something has changed in your KYCs. Please,
           approve an access request in Metamask to share the actual state of
-          your KYC&apos;s to the application.
+          your zkKYC&apos;s to the application.
         </Modal.Description>
         <p className="mt-3 text-center text-xl font-light text-opacity-40"></p>
 

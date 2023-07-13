@@ -13,7 +13,7 @@ export const Link = ({ children, className }: PropsWithChildren<ClassName>) => {
         target="_blank"
         rel="noreferrer"
       >
-        {children ?? `Learn More about KYC `}
+        {children ?? `Learn More about zkKYC `}
         <InfoOrangeIcon
           data-tooltip-id={`learn-kyc-link`}
           data-tooltip-content={"TODO some text"}

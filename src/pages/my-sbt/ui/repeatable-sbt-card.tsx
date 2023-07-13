@@ -15,10 +15,10 @@ export const RepeatableSbtCard = ({ className }: ClassName) => {
     >
       <div className="mt-2.5 flex items-center justify-between">
         <div className="flex items-center text-sm text-mineShaft/50">
-          KYC issuer <CheckIcon className="ml-1 w-4" />
+          zkKYC issuer <CheckIcon className="ml-1 w-4" />
         </div>
         <div className="flex items-center text-sm text-mineShaft/50">
-          KYC-level <CheckIcon className="ml-1 w-4" />
+          zkKYC-level <CheckIcon className="ml-1 w-4" />
         </div>
         <div className="flex items-center text-sm text-mineShaft/50">
           Expiration date <CheckIcon className="ml-1 w-4" />

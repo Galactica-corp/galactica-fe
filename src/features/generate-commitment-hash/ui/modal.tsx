@@ -29,14 +29,14 @@ export const GenerateModal = ({ onClose, onSuccess, onError }: Props) => {
         <Modal.Title className="mt-9">
           {mutation.isLoading
             ? "Generating private Commitment Hash, please wait..."
-            : "To start the KYC procedure, you need to generate Commitment Hash"}
+            : "To start the zkKYC procedure, you need to generate Commitment Hash"}
         </Modal.Title>
         <Modal.Description className="mt-3">
           The provider will not know your wallet address
         </Modal.Description>
         {url && (
           <a className="mt-5" target="_blank" href={url} rel="noreferrer">
-            <Button onClick={onClose}>Pass KYC</Button>
+            <Button onClick={onClose}>Pass zkKYC</Button>
           </a>
         )}
         {!url && (
