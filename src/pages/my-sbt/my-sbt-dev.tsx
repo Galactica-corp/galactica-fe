@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { ChooseKycProviderCard } from "entities/kyc";
-import { GenerateSbtCard } from "features/generate-sbt";
+import { GenerationSbtCard } from "entities/sbt";
+import { GenerateSbtButton } from "features/generate-sbt";
 import { CONTRACTS_ADDRESSES, useSbtsQuery, useZkCerts } from "shared/snap";
 import { LearnSbtCard } from "./ui/learn-sbt-card";
 import { SbtCard } from "./ui/sbt-card";
@@ -15,7 +16,11 @@ export const MySbtDev = () => {
   return (
     <div className={classNames("grid grid-cols-3 gap-[1rem] pb-8")}>
       {zkCerts?.length === 0 && <ChooseKycProviderCard />}
-      {zkCerts?.length > 0 && <GenerateSbtCard />}
+      {zkCerts?.length > 0 && (
+        <GenerationSbtCard>
+          <GenerateSbtButton className="mt-auto" />
+        </GenerationSbtCard>
+      )}
       {query.data?.map((sbt, idx) => {
         return (
           <SbtCard

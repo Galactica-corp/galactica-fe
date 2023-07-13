@@ -1,13 +1,18 @@
 import { Chain, useSwitchNetwork } from "wagmi";
 import { useIsSupportedChain } from "shared/config/hooks";
 import { DEFAULT_CHAIN } from "shared/config/networks";
-import { Button } from "shared/ui/button";
+import { Button, Theme } from "shared/ui/button";
+import { ReactComponent as StarSvg } from "./star.svg";
 
 type Props = {
+  theme?: Theme;
   onSwitch?: (chain: Chain) => void;
 };
 
-export const SwitchNetworkButton = ({ onSwitch }: Props) => {
+export const SwitchNetworkButton = ({
+  onSwitch,
+  theme = "primaryTransparent",
+}: Props) => {
   const isSupportedChain = useIsSupportedChain();
   const { switchNetworkAsync, isLoading } = useSwitchNetwork();
 
@@ -26,9 +31,10 @@ export const SwitchNetworkButton = ({ onSwitch }: Props) => {
     <Button
       onClick={handleSwitch}
       isLoading={isLoading}
-      theme="primaryTransparent"
+      theme={theme}
       className="w-[18.75rem] space-x-[0.9rem]"
     >
+      <StarSvg className="h-6 w-6" />
       <span>Switch network</span>
     </Button>
   );

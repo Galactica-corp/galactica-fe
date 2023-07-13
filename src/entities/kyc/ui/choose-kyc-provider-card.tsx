@@ -1,4 +1,3 @@
-import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
 import { LinkButton } from "shared/ui/button";
 import { Card as UICard } from "shared/ui/card";
 
@@ -10,19 +9,7 @@ export const Card = () => {
       desc="To access most dApps on Galactica and access all the community
     features of the network, every Soul needs zkKYC."
     >
-      <div className="mt-2.5 flex items-center justify-between">
-        <div className="flex items-center text-sm text-mineShaft/50">
-          zkKYC issuer <CheckIcon className="ml-1 w-4" />
-        </div>
-        <div className="flex items-center text-sm text-mineShaft/50">
-          zkKYC-level <CheckIcon className="ml-1 w-4" />
-        </div>
-        <div className="flex items-center text-sm text-mineShaft/50">
-          Expiration date <CheckIcon className="ml-1 w-4" />
-        </div>
-      </div>
-
-      <LinkButton to="/kyc-providers" className="mt-6 w-full">
+      <LinkButton to="/kyc-providers" className="mt-auto w-full">
         Choose zkKYC provider
       </LinkButton>
     </UICard>

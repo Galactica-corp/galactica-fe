@@ -1,1 +1,1 @@
-export { GenerateCard as GenerateSbtCard } from "./card";
+export { Button as GenerateSbtButton } from "./ui/button";

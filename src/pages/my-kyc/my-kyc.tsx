@@ -1,5 +1,6 @@
 import { ChooseKycProviderCard, KycCard, KycNotFoundCard } from "entities/kyc";
-import { GenerateBasicZkProofCard } from "features/generate-basic-zkproof-card";
+import { GenerationSbtCard } from "entities/sbt";
+import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
 import { UploadKycCard } from "features/upload-kyc";
 import { CONTRACTS_ADDRESSES, useSbtsQuery, useZkCerts } from "shared/snap";
@@ -40,7 +41,18 @@ export const MyKYC = () => {
         )}
 
         {query.isSuccess && zkCerts.length !== 0 && !hasBasicProof && (
-          <GenerateBasicZkProofCard />
+          <GenerationSbtCard
+            title={
+              <div className="whitespace-nowrap text-[26px] font-light">
+                Your zkKYC{" "}
+                <span className="whitespace-nowrap text-scarlet">
+                  is not published!
+                </span>
+              </div>
+            }
+          >
+            <GenerateSbtButton className="mt-auto" />
+          </GenerationSbtCard>
         )}
       </div>
     </>

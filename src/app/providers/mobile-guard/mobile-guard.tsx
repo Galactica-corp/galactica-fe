@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "react";
 import { useMediaQuery } from "usehooks-ts";
+import { Logo } from "shared/ui/logo";
 
 export const MobileGuard = ({ children }: PropsWithChildren) => {
   const isMobile = useMediaQuery("(max-width: 1024px)");
@@ -7,9 +8,10 @@ export const MobileGuard = ({ children }: PropsWithChildren) => {
   if (isMobile)
     return (
       <div className="flex h-full grow flex-col items-center justify-center px-2">
-        <p>
-          Currently Metamask Snap is unavailable for mobile devices. Please
-          proceed using your desktop. <br />
+        <Logo className="w-[16.8rem]" />
+        <p className="mt-16 text-center">
+          Currently MetaMask Snaps is unavailable for mobile devices. Please
+          proceed using your desktop <br />
           <br /> If you have any questions join our{" "}
           <a className="link text-base" href="#">
             Discord

@@ -34,7 +34,7 @@ export function ConnectWalletButton({ onConnect }: Props) {
       className="w-[18.75rem] space-x-[0.9rem]"
     >
       <MetamaskIcon className="relative top-[-0.15rem]" />
-      <span>Connect Metamask</span>
+      <span>Connect MetaMask</span>
     </Button>
   );
 }

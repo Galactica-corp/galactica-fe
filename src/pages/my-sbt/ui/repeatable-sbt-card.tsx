@@ -18,10 +18,10 @@ export const RepeatableSbtCard = ({ className }: ClassName) => {
           zkKYC issuer <CheckIcon className="ml-1 w-4" />
         </div>
         <div className="flex items-center text-sm text-mineShaft/50">
-          zkKYC-level <CheckIcon className="ml-1 w-4" />
+          zkKYC Level <CheckIcon className="ml-1 w-4" />
         </div>
         <div className="flex items-center text-sm text-mineShaft/50">
-          Expiration date <CheckIcon className="ml-1 w-4" />
+          Expiration Date <CheckIcon className="ml-1 w-4" />
         </div>
       </div>
 

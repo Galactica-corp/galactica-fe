@@ -4,11 +4,11 @@ import { HeaderLink } from "./header-link";
 
 export const HEADERS_LINKS = [
   {
-    name: "My KYC",
+    name: "My zkKYC",
     to: "/",
   },
   {
-    name: "My SBT",
+    name: "My SBTs",
     to: "/my-sbt",
   },
   {

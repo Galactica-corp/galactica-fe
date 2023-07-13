@@ -29,18 +29,24 @@ export const GenerateModal = ({ onClose, onSuccess, onError }: Props) => {
         <Modal.Title className="mt-9">
           {mutation.isLoading
             ? "Generating private Commitment Hash, please wait..."
-            : "To start the zkKYC procedure, you need to generate Commitment Hash"}
+            : "To begin the zkKYC procedure you need to generate a Commitment Hash"}
         </Modal.Title>
         <Modal.Description className="mt-3">
-          The provider will not know your wallet address
+          Only you will know that the wallet address belongs to you.
         </Modal.Description>
         {url && (
-          <a className="mt-5" target="_blank" href={url} rel="noreferrer">
+          <a
+            className="mt-5 cursor-pointer"
+            target="_blank"
+            href={url}
+            rel="noreferrer"
+          >
             <Button onClick={onClose}>Pass zkKYC</Button>
           </a>
         )}
         {!url && (
           <Button
+            theme="primaryTransparent"
             className="mt-5"
             onClick={() => {
               mutation.mutate(undefined, {
@@ -64,7 +70,7 @@ export const GenerateModal = ({ onClose, onSuccess, onError }: Props) => {
               });
             }}
           >
-            Generate commitment hash
+            Generate & Start zkKYC
           </Button>
         )}
 

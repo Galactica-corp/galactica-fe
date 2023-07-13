@@ -10,7 +10,7 @@ export const Help = () => {
       >
         <div className="mt-[2rem] font-light">
           <p className="mb-[0.7rem]">
-            To start using Galactica Network, you need to have Metamask wallet
+            To start using Galactica Network, you need to have MetaMask wallet
             connected and the Snap extension installed to it.
           </p>
           <p>
@@ -52,7 +52,7 @@ export const Help = () => {
           <p className="mb-[0.7rem]">
             If you passed a zkKYC, you should have the secret file from a zkKYC
             provider.
-            <br /> Upload it to your Metamask to make it accessible to this
+            <br /> Upload it to your MetaMask to make it accessible to this
             portal.
           </p>
         </div>
@@ -73,7 +73,7 @@ export const Help = () => {
       >
         <div className="font-light">
           <p className="mb-[0.7rem]">
-            After you&apos;ve passed zkKYC and uploaded it to the Metamask, it
+            After you&apos;ve passed zkKYC and uploaded it to the MetaMask, it
             becomes visible to you and this application. But, nobody else can
             see it. The application will help you to generate your first SBT - a
             non-transferable NFT, containing proof that you are verified with a

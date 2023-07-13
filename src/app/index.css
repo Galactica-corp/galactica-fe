@@ -80,7 +80,7 @@ p {
 
 @layer components {
   .card {
-    @apply flex flex-col rounded-[10px] border border-naturalGray/20 bg-pampas px-[30px] py-[26px] shadow-card;
+    @apply flex min-h-[238px] flex-col rounded-[10px] border border-naturalGray/20 bg-pampas px-[30px] py-[26px] shadow-card;
   }
 
   .link {
@@ -101,6 +101,16 @@ p {
       ),
       linear-gradient(106.71deg, #f26f56 7.28%, #f49756 110.04%);
     box-shadow: 0px 0px 25px rgba(247, 120, 27, 0.25);
+  }
+
+  .buttonPrimary:disabled {
+    cursor: default;
+    opacity: 50%;
+  }
+
+  .buttonPrimary:disabled.buttonPrimary:hover {
+    background: linear-gradient(106.71deg, #f26f56 7.28%, #f49756 110.04%);
+    box-shadow: 0px 0px 25px rgba(247, 120, 27, 0.1);
   }
 
   .buttonPrimaryTransparent {

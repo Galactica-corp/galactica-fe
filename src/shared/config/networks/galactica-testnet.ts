@@ -2,12 +2,12 @@ import { Chain } from "wagmi";
 
 export const galacticaTestnet: Chain = {
   id: 41233,
-  name: "Galactica-devnet-41233",
+  name: "Galactica-DevNet-v1.1",
   network: "Galactica",
   nativeCurrency: {
     decimals: 18,
     name: "Galactica",
-    symbol: "GALA",
+    symbol: "GNET",
   },
   rpcUrls: {
     default: {

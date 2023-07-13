@@ -16,19 +16,19 @@ export const CheckKycStep = ({ onHaveKyc, onChooseKycProvider }: Props) => {
         of the network, every Soul needs zkKYC.
       </p>
       <p className="mb-12 max-w-6xl text-center text-xl font-light text-mineShaft text-opacity-40">
-        After you pass the zkKYC, it will be stored in the network using zero
-        knowledge technology. No one will be able to read its contents, but you
-        will be able to disclose needed information to particular dApps or other
-        parties. You control your personal data.
+        After you pass zkKYC, a validation hash will be stored on-chain. No one
+        will be able to access its contents. You will be able to prove certain
+        information to dApps and other parties that require it. Only you control
+        your personal data.
       </p>
       <div className="flex gap-x-8">
-        <Button onClick={onChooseKycProvider}>Choose zkKYC Provider</Button>
+        <Button onClick={onChooseKycProvider}>Get zkKYC</Button>
         <Button
           className="px-14"
           theme="primaryTransparent"
           onClick={onHaveKyc}
         >
-          I already have a zkKYC
+          I have zkKYC
         </Button>
       </div>
     </div>

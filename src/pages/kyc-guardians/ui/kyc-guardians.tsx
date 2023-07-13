@@ -5,11 +5,10 @@ import { Row } from "./row";
 const mocks = [
   {
     number: 1,
-    title: "Example Kyc Provider",
+    title: "Test KYC Guardian 1",
     score: "9.9",
-    totalDocs: "32,468",
-    docsPerMonth: "4,324",
-    avgTime: "~11 min",
+    totalDocs: "122,933",
+    avgTime: "~6 mins",
   },
 ];
 

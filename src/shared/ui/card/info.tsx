@@ -24,7 +24,7 @@ export const Info = ({
           <InfoIcon
             className="ml-1.5 inline-flex"
             data-tooltip-id={`card-info-${label}`}
-            data-tooltip-content="TODO some text"
+            data-tooltip-content={tip}
           />
         )}
       </div>

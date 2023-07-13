@@ -14,7 +14,7 @@ export const Alert = ({ className }: ClassName) => {
         "flex w-full justify-center rounded-[10px] bg-oldLace py-3 text-naturalGray"
       )}
     >
-      Information is outdated! Please, approve an access request in Metamask to
+      Information is outdated! Please, approve an access request in MetaMask to
       share the actual state of your zkKYC&apos;s to the application.
       <button
         className="ml-1 inline-flex border-none bg-none text-sandyBrown hover:underline"

@@ -28,11 +28,19 @@ export const SbtCard = ({
           {provider}
         </Card.Info>
 
-        <Card.Info label="zkKYC-level" tip="TODO some text">
+        <Card.Info
+          label="zkKYC Level"
+          tip="This level depends on the documentation provided to the KYC Guardian as well as on their requirements."
+        >
           {`Level ${level}`}
         </Card.Info>
 
-        <Card.Info label="Expiration date">{dateX.toDMY(expiration)}</Card.Info>
+        <Card.Info
+          label="Expiration Date"
+          tip="This is the expiration date of your ID (e.g. passport)."
+        >
+          {dateX.toDMY(expiration)}
+        </Card.Info>
       </div>
     </Card>
   );

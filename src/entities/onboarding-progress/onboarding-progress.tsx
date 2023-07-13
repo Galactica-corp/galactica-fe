@@ -11,7 +11,7 @@ import progressOrangeUrl from "./images/progress-orange.png";
 
 const STEPS_MAP = [
   {
-    name: "Install Metamask",
+    name: "Install MetaMask",
     status: "finished",
     position: "translate-x-[-29.6rem]",
   },
@@ -21,7 +21,7 @@ const STEPS_MAP = [
     position: "translate-x-[-11.6rem]",
   },
   {
-    name: "Pass zkKYC and add to metamask",
+    name: "Getting your zkKYC",
     status: "unfinished",
     position: "translate-x-[7.4rem]",
   },
