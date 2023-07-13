@@ -9,7 +9,7 @@ export const Link = ({ children, className }: PropsWithChildren<ClassName>) => {
     <>
       <a
         className={cn(className, "link")}
-        href="https://google.com"
+        href="https://docs.galactica.com/galactica-developer-documentation/galactica-concepts/zero-knowledge-kyc"
         target="_blank"
         rel="noreferrer"
       >

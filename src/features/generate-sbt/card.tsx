@@ -1,7 +1,7 @@
+import { useRef } from "react";
 import { toast } from "react-hot-toast";
 import classNames from "classnames";
 import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
-import { useGenZkAgeProofMutation } from "shared/snap";
 import { useGenZkRepeatableProofMutation } from "shared/snap/use-gen-zk-repeatable-proof-mutation";
 import { ClassName } from "shared/types";
 import { Button } from "shared/ui/button";
@@ -18,8 +18,26 @@ export const GenerateCard = ({
   title = "Generate your first SBT",
   desc = "In order to use your KYC, you need to generate at least a minimal zkProof disclosing its existence and the following fields:",
 }: Props) => {
-  // const genMutation = useGenZkAgeProofMutation();
-  const genMutation = useGenZkRepeatableProofMutation();
+  const toastIdRef = useRef("");
+  const genMutation = useGenZkRepeatableProofMutation({
+    onDownloadProver: () =>
+      toast.loading("Prover file is being downloaded...", {
+        id: toastIdRef.current,
+        duration: 20000,
+      }),
+
+    onGenerateSbt: () =>
+      toast.loading("SBT is being generated...", {
+        id: toastIdRef.current,
+        duration: 20000,
+      }),
+
+    onSubmitSbt: () =>
+      toast.loading("SBT is being submitted...", {
+        id: toastIdRef.current,
+        duration: 20000,
+      }),
+  });
   return (
     <Card
       className={classNames(className, "bg-cover bg-center bg-no-repeat")}
@@ -42,18 +60,25 @@ export const GenerateCard = ({
       <Button
         className="mt-auto w-full"
         onClick={() => {
-          const toastId = toast.loading("Basic proof generating", {
-            duration: 20000,
+          toastIdRef.current = toast.loading("Basic proof generating", {
+            duration: 30000,
           });
           genMutation.mutate(undefined, {
             onSuccess: () => {
-              toast.success("Basic proof has been generated", {
-                id: toastId,
+              toast.success("SBT has been generated!", {
+                id: toastIdRef.current,
               });
             },
-            onError: () => {
-              toast.error("Something went wrong", {
-                id: toastId,
+            onError: (err) => {
+              const message =
+                err &&
+                typeof err === "object" &&
+                "message" in err &&
+                typeof err.message === "string"
+                  ? err.message
+                  : "Something went wrong";
+              toast.error(message, {
+                id: toastIdRef.current,
               });
             },
           });

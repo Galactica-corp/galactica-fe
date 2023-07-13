@@ -5,22 +5,18 @@ import { CONTRACTS_ADDRESSES, useSbtsQuery, useZkCerts } from "shared/snap";
 import { LearnSbtCard } from "./ui/learn-sbt-card";
 import { SbtCard } from "./ui/sbt-card";
 
-export const MySbt = () => {
+export const MySbtDev = () => {
   const [zkCerts] = useZkCerts();
 
   const query = useSbtsQuery({
     select: ({ sbts }) => sbts,
   });
 
-  const hasBasicProof = query.data?.some(
-    (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST
-  );
-
   return (
     <div className={classNames("grid grid-cols-3 gap-[1rem] pb-8")}>
       {zkCerts?.length === 0 && <ChooseKycProviderCard />}
-      {!hasBasicProof && zkCerts?.length !== 0 && <GenerateSbtCard />}
-      {query.data?.slice(0, 1).map((sbt, idx) => {
+      {zkCerts?.length > 0 && <GenerateSbtCard />}
+      {query.data?.map((sbt, idx) => {
         return (
           <SbtCard
             title={

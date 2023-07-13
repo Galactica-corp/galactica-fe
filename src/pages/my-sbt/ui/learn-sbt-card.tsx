@@ -10,14 +10,19 @@ export const LearnSbtCard = () => {
       className="bg-cover bg-center"
       style={{ backgroundImage: `url(${learSbtCardUrl})` }}
     >
-      <Link className="mt-2.5" to="#">
+      <a
+        className="link mt-2.5"
+        target="_blank"
+        href="https://docs.galactica.com/galactica-developer-documentation/galactica-concepts/zero-knowledge-kyc/verification-sbt"
+        rel="noreferrer"
+      >
         Learn More about SBT{" "}
         <InfoOrangeIcon
           data-tooltip-id={`learn-kyc-link`}
           data-tooltip-content={"TODO some text"}
           className="relative ml-[0.31rem]"
         />
-      </Link>
+      </a>
     </Card>
   );
 };
