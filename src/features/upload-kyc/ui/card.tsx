@@ -1,4 +1,5 @@
 import { useDropzone } from "react-dropzone";
+import { toast } from "react-hot-toast";
 import { useImportZkCertMutation } from "shared/snap/use-import-zk-cert-mutation";
 import { FileInputButton } from "shared/ui/button";
 import { parseJSONFile } from "shared/utils";
@@ -15,13 +16,28 @@ export function UploadKycCard({ onSuccessUpload, onErrorUpload }: Props) {
     const file = acceptedFiles[0];
     if (!file) return;
     const data = await parseJSONFile(file);
+    const id = toast.loading("Uploading KYC...", {
+      duration: 10000,
+    });
     importCertMutation.mutate(data, {
       onSuccess: (data) => {
         onSuccessUpload?.(data);
+        toast.success("KYC has been uploaded!", {
+          id,
+        });
       },
       onError: (err) => {
-        console.error(err);
         onErrorUpload?.();
+        const message =
+          err &&
+          typeof err === "object" &&
+          "message" in err &&
+          typeof err.message === "string"
+            ? err.message
+            : "Something went wrong. Try again!";
+        toast.error(message, {
+          id,
+        });
       },
     });
   };

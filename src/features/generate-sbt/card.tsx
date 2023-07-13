@@ -42,7 +42,9 @@ export const GenerateCard = ({
       <Button
         className="mt-auto w-full"
         onClick={() => {
-          const toastId = toast.loading("Basic proof generating");
+          const toastId = toast.loading("Basic proof generating", {
+            duration: 20000,
+          });
           genMutation.mutate(undefined, {
             onSuccess: () => {
               toast.success("Basic proof has been generated", {
