@@ -11,10 +11,10 @@ export const useGetZkCertStorageHashesQuery = () => {
     // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey: snapsKeys.zkCertStorageHashes(address),
     refetchInterval: 10000,
+    staleTime: 0,
     queryFn: async () => {
       const response = await invokeSnap({ method: "getZkCertStorageHashes" });
-      console.log(response);
-      if (!hash) setHash(response.gip69);
+      if (!hash) setHash(response.gip69 ?? "");
       return response;
     },
   });

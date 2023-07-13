@@ -1,7 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { useMutation } from "wagmi";
+import { useAccount, useMutation } from "wagmi";
 import { z } from "zod";
-import { SNAP_ID } from "shared/config/const";
 import { invokeSnap } from "./api-sdk";
 import { snapsKeys } from "./keys";
 import { useListZkCertsMutation } from "./use-list-zk-certs-mutation";
@@ -41,6 +40,7 @@ export type ZkCert = z.infer<typeof zkCertSchema>;
 
 export const useImportZkCertMutation = () => {
   const queryClient = useQueryClient();
+  const { address } = useAccount();
   const listZkCertsMutation = useListZkCertsMutation();
   return useMutation(
     async (objContent: unknown) => {
@@ -54,7 +54,7 @@ export const useImportZkCertMutation = () => {
     {
       onSuccess: async () => {
         await queryClient.invalidateQueries(
-          snapsKeys.zkCertStorageHashes(SNAP_ID)
+          snapsKeys.zkCertStorageHashes(address)
         );
         await listZkCertsMutation.mutateAsync({});
       },

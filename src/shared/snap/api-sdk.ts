@@ -57,7 +57,7 @@ type InvokeRequest =
 
 export type InvokeListZkCertsResponse = Record<
   ZkCertStandard,
-  ZkCertsListItem[]
+  ZkCertsListItem[] | undefined
 >;
 
 type InvokeResponse<T> = T extends InvokeGetHolderCommitment
@@ -73,7 +73,7 @@ type InvokeResponse<T> = T extends InvokeGetHolderCommitment
   : T extends InvokeListZkCertsRequest
   ? InvokeListZkCertsResponse
   : T extends InvokeGetZkCertStorageHashes
-  ? Record<ZkCertStandard, string>
+  ? Record<ZkCertStandard, string | undefined>
   : never;
 
 export const invokeSnap = <T extends InvokeRequest>(request: T) => {
