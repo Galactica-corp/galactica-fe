@@ -1,6 +1,5 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useAccount, useMutation, useProvider, useSigner } from "wagmi";
-import { CONTRACTS_ADDRESSES } from "shared/config/const";
 import { RepeatableZKPTest__factory } from "shared/contracts";
 import { invokeSnap } from "./api-sdk";
 import { snapsKeys } from "./keys";
@@ -70,9 +69,7 @@ export const useGenZkRepeatableProofMutation = () => {
       onSuccess: () => {
         queryClient.invalidateQueries<SbtDetails>(
           snapsKeys.allSbtByUser({
-            dappAddress: undefined,
             userAddress: address,
-            scAddress: CONTRACTS_ADDRESSES.VERIFICATION_SBT,
           })
         );
       },

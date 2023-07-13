@@ -1,27 +1,16 @@
 import classNames from "classnames";
 import { ChooseKycProviderCard } from "entities/kyc";
-import { useLocalStorage } from "usehooks-ts";
 import { GenerateSbtCard } from "features/generate-sbt";
-import { CONTRACTS_ADDRESSES, LS_KEYS } from "shared/config/const";
-import { useAllSbtsByUserQuery } from "shared/snap";
-import { ZkCertsListItem } from "shared/snap/types";
+import { CONTRACTS_ADDRESSES, useSbtsQuery, useZkCerts } from "shared/snap";
 import { LearnSbtCard } from "./ui/learn-sbt-card";
 import { SbtCard } from "./ui/sbt-card";
 
 export const MySBT = () => {
-  const [zkCerts] = useLocalStorage<ZkCertsListItem[] | undefined>(
-    LS_KEYS.zkCerts,
-    []
-  );
+  const [zkCerts] = useZkCerts();
 
-  const query = useAllSbtsByUserQuery(
-    {
-      sbtSCAddress: CONTRACTS_ADDRESSES.VERIFICATION_SBT,
-    },
-    {
-      select: ({ sbts }) => sbts,
-    }
-  );
+  const query = useSbtsQuery({
+    select: ({ sbts }) => sbts,
+  });
 
   const hasBasicProof = query.data?.some(
     (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST

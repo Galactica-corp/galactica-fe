@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import { EcosystemPage } from "pages/ecosystem";
 import { HelpPage } from "pages/help";
-import { HomePage } from "pages/home";
 import { KYCProvidersPage } from "pages/kyc-providers";
 import { MyKYCPage } from "pages/my-kyc";
 import { MySBTPage } from "pages/my-sbt";
@@ -17,7 +16,6 @@ export const AppRoutes = () => {
         <Route path="/onboarding" element={<OnboardingPage />} />
         <Route element={<Layout />}>
           <Route index path="/" element={<MyKYCPage />} />
-          <Route path="/kit" element={<HomePage />} />
           <Route path="/my-sbt" element={<MySBTPage />} />
           <Route path="/kyc-providers" element={<KYCProvidersPage />} />
           <Route path="/help" element={<HelpPage />} />

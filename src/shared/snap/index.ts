@@ -9,4 +9,9 @@ export { useClearStorageMutation } from "./use-clear-storage-mutation";
 export { useListZkCertsMutation } from "./use-list-zk-certs-mutation";
 export { useGetZkCertStorageHashesQuery } from "./use-get-zk-cert-storage-hashes-query";
 export { useGenZkAgeProofMutation } from "./use-gen-zk-age-proof-mutation";
-export { useAllSbtsByUserQuery } from "./use-all-sbts-by-user-query";
+export { useSbtsQuery } from "./use-sbts-query";
+
+export { useZkCertHash } from "./hooks/use-zk-cert-hash";
+export { useZkCerts } from "./hooks/use-zk-certs";
+
+export { CONTRACTS_ADDRESSES } from "./const";

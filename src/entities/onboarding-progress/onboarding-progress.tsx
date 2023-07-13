@@ -1,12 +1,10 @@
-import { useLocalStorage } from "usehooks-ts";
-import { CONTRACTS_ADDRESSES, LS_KEYS } from "shared/config/const";
 import { ReactComponent as CheckGrayIcon } from "shared/icons/check-gray.svg";
 import {
-  useAllSbtsByUserQuery,
   useGetSnapQuery,
   useIsFlaskQuery,
+  useSbtsQuery,
+  useZkCerts,
 } from "shared/snap";
-import { ZkCertsListItem } from "shared/snap/types";
 import { ReactComponent as ProgressArrowIcon } from "./images/progress-arrow.svg";
 import progressGrayUrl from "./images/progress-gray.png";
 import progressOrangeUrl from "./images/progress-orange.png";
@@ -35,25 +33,17 @@ const STEPS_MAP = [
 ];
 
 export function OnboardingProgress() {
-  const [zkCerts] = useLocalStorage<ZkCertsListItem[] | undefined>(
-    LS_KEYS.zkCerts,
-    []
-  );
+  const [zkCerts] = useZkCerts();
 
   const snapQuery = useGetSnapQuery();
   const isFlaskQuery = useIsFlaskQuery();
 
-  const query = useAllSbtsByUserQuery(
-    {
-      sbtSCAddress: CONTRACTS_ADDRESSES.VERIFICATION_SBT,
-    },
-    {
-      extraEnabled: Boolean(
-        snapQuery?.data && isFlaskQuery?.data && zkCerts?.length !== 0
-      ),
-      select: ({ sbts }) => sbts,
-    }
-  );
+  const query = useSbtsQuery({
+    extraEnabled: Boolean(
+      snapQuery?.data && isFlaskQuery?.data && zkCerts?.length !== 0
+    ),
+    select: ({ sbts }) => sbts,
+  });
 
   if (
     (snapQuery.isLoading && snapQuery.isInitialLoading) ||
@@ -70,8 +60,6 @@ export function OnboardingProgress() {
   if (!isFlaskQuery.data) currentStep = 1;
 
   if (!currentStep) return null;
-
-  // const currentStep = Number.parseInt(currentStepStringified);
 
   return (
     <div className="fixed bottom-0 z-20 w-full space-y-[1rem] bg-white pt-[0.8rem]">

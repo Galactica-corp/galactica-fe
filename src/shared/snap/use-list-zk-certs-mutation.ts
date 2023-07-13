@@ -1,18 +1,14 @@
 import { UseMutationOptions, useMutation } from "@tanstack/react-query";
-import { useLocalStorage } from "usehooks-ts";
-import { LS_KEYS } from "shared/config/const";
 import { InvokeListZkCertsResponse, invokeSnap } from "./api-sdk";
-import { ZkCertsListItem } from "./types";
+import { useZkCertHash } from "./hooks/use-zk-cert-hash";
+import { useZkCerts } from "./hooks/use-zk-certs";
 import { useGetZkCertStorageHashesQuery } from "./use-get-zk-cert-storage-hashes-query";
 
 export const useListZkCertsMutation = (
   options?: UseMutationOptions<InvokeListZkCertsResponse, Error, unknown>
 ) => {
-  const [_certsList, setCertsList] = useLocalStorage<ZkCertsListItem[]>(
-    LS_KEYS.zkCerts,
-    []
-  );
-  const [_zkHash, setZkHash] = useLocalStorage(LS_KEYS.zkHashGip69, "");
+  const [_, setCertsList] = useZkCerts();
+  const [_h, setZkHash] = useZkCertHash();
   const hashQuery = useGetZkCertStorageHashesQuery();
 
   return useMutation({

@@ -1,25 +1,17 @@
 import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 import { BigNumber, EventFilter, ethers } from "ethers";
 import invariant from "tiny-invariant";
-import { useLocalStorage } from "usehooks-ts";
 import { useAccount, useProvider } from "wagmi";
-import { CONTRACTS_ADDRESSES, LS_KEYS } from "shared/config/const";
 import { IVerificationSBT__factory } from "shared/contracts";
+import { CONTRACTS_ADDRESSES } from "./const";
+import { useSbtDetails } from "./hooks/use-sbt-details";
 import { snapsKeys } from "./keys";
 import { SbtDetails } from "./types";
 
-type Params = {
-  sbtSCAddress: string;
-  dappAddress?: string;
-  humanID?: string;
-};
+const dappAddress = null;
+const humanID = null;
 
-export const useAllSbtsByUserQuery = <TData = SbtDetails>(
-  {
-    sbtSCAddress = CONTRACTS_ADDRESSES.VERIFICATION_SBT,
-    dappAddress,
-    humanID,
-  }: Params,
+export const useSbtsQuery = <TData = SbtDetails>(
   options?: UseQueryOptions<
     SbtDetails,
     Error,
@@ -30,30 +22,22 @@ export const useAllSbtsByUserQuery = <TData = SbtDetails>(
   const { address } = useAccount();
   const provider = useProvider();
 
-  const [sbtDetailsByAccount, setSbtDetailsByAccount] = useLocalStorage<
-    Record<string, SbtDetails | undefined>
-  >(LS_KEYS.sbtDetailsByAccount, {});
+  const [sbtDetails, setSbtDetails] = useSbtDetails();
 
   return useQuery({
     // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey: snapsKeys.allSbtByUser({
-      dappAddress,
-      scAddress: sbtSCAddress,
       userAddress: address,
     }),
     queryFn: async () => {
       invariant(address);
-      const sbtSC = IVerificationSBT__factory.connect(sbtSCAddress, provider);
+      const sbtSC = IVerificationSBT__factory.connect(
+        CONTRACTS_ADDRESSES.VERIFICATION_SBT,
+        provider
+      );
 
       const currentBlock = await provider.getBlockNumber();
       const lastBlockTime = (await provider.getBlock(currentBlock)).timestamp;
-
-      const sbtDetails =
-        sbtDetailsByAccount[address] ??
-        ({
-          sbts: [],
-          latestBlockChecked: 0,
-        } satisfies SbtDetails);
 
       const notExpiredSbts = sbtDetails.sbts.filter(
         (sbt) => sbt.expirationTime > lastBlockTime
@@ -61,7 +45,7 @@ export const useAllSbtsByUserQuery = <TData = SbtDetails>(
 
       // filter through all logs adding a verification SBT for the user
       const filter = {
-        address: sbtSCAddress,
+        address: CONTRACTS_ADDRESSES.VERIFICATION_SBT,
         topics: [
           ethers.utils.id("VerificationSBTMinted(address,address,bytes32)"),
           dappAddress ? ethers.utils.hexZeroPad(dappAddress, 32) : null,
@@ -115,15 +99,12 @@ export const useAllSbtsByUserQuery = <TData = SbtDetails>(
         sbts: notExpiredSbts,
       };
 
-      setSbtDetailsByAccount({
-        ...sbtDetailsByAccount,
-        [address]: newSbtDetails,
-      });
+      setSbtDetails(newSbtDetails);
 
       return newSbtDetails;
     },
     enabled:
-      Boolean(address && sbtSCAddress) && options?.extraEnabled === undefined
+      Boolean(address) && options?.extraEnabled === undefined
         ? true
         : options?.extraEnabled,
     staleTime: 1000 * 60 * 10,

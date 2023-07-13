@@ -1,24 +1,16 @@
 import { ChooseKycProviderCard, KycCard, KycNotFoundCard } from "entities/kyc";
-import { useLocalStorage } from "usehooks-ts";
 import { GenerateBasicZkProofCard } from "features/generate-basic-zkproof-card";
 import { UpdateKycListAlert } from "features/update-kyc-list";
 import { UploadKycCard } from "features/upload-kyc";
-import { CONTRACTS_ADDRESSES, LS_KEYS } from "shared/config/const";
-import { useAllSbtsByUserQuery } from "shared/snap";
-import { ZkCertsListItem } from "shared/snap/types";
+import { CONTRACTS_ADDRESSES, useSbtsQuery, useZkCerts } from "shared/snap";
 
 export const MyKYC = () => {
-  const [zkCerts] = useLocalStorage<ZkCertsListItem[]>(LS_KEYS.zkCerts, []);
+  const [zkCerts] = useZkCerts();
 
-  const query = useAllSbtsByUserQuery(
-    {
-      sbtSCAddress: CONTRACTS_ADDRESSES.VERIFICATION_SBT,
-    },
-    {
-      select: ({ sbts }) => sbts,
-      enabled: false,
-    }
-  );
+  const query = useSbtsQuery({
+    select: ({ sbts }) => sbts,
+    enabled: false,
+  });
 
   const hasBasicProof = query.data?.some(
     (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST

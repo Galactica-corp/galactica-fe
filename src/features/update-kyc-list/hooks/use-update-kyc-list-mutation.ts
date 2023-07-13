@@ -3,16 +3,15 @@ import { LS_KEYS } from "shared/config/const";
 import {
   useGetZkCertStorageHashesQuery,
   useListZkCertsMutation,
+  useZkCertHash,
 } from "shared/snap";
-import { ZkCertsListItem } from "shared/snap/types";
 
 export const useUpdateKycList = () => {
-  const [_certsList] = useLocalStorage<ZkCertsListItem[]>(LS_KEYS.zkCerts, []);
   const [isOnboardingCompleted] = useLocalStorage(
     LS_KEYS.isOnboardingCompleted,
     false
   );
-  const [zkHash] = useLocalStorage(LS_KEYS.zkHashGip69, "");
+  const [zkHash] = useZkCertHash();
   const hashQuery = useGetZkCertStorageHashesQuery();
 
   const listZkCertsMutation = useListZkCertsMutation({

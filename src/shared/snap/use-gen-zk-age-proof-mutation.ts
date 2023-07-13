@@ -1,11 +1,11 @@
 import { BigNumber } from "ethers";
 import { useAccount, useMutation, useProvider, useSigner } from "wagmi";
-import { CONTRACTS_ADDRESSES } from "shared/config/const";
 import {
   IGalacticaInstitution__factory,
   MockDApp__factory,
 } from "shared/contracts";
 import { invokeSnap } from "./api-sdk";
+import { CONTRACTS_ADDRESSES } from "./const";
 import {
   getExpectedValidationTimestamp,
   processProof,
