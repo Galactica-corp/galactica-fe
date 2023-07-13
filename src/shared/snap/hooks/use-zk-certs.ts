@@ -5,6 +5,5 @@ import { ZkCertsListItem } from "../types";
 
 export const useZkCerts = () => {
   const { address } = useAccount();
-  console.log(address);
   return useLocalStorage<ZkCertsListItem[]>(SNAP_LS_KEYS.zkCerts(address), []);
 };

@@ -23,7 +23,7 @@ export const useGenZkRepeatableProofMutation = ({
   onDownloadProver,
   onGenerateSbt,
   onSubmitSbt,
-}: Options) => {
+}: Options = {}) => {
   const signerQuery = useSigner();
   const provider = useProvider();
   const { address } = useAccount();
