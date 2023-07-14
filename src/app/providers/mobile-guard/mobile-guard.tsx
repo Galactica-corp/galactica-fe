@@ -13,7 +13,12 @@ export const MobileGuard = ({ children }: PropsWithChildren) => {
           Currently MetaMask Snaps is unavailable for mobile devices. Please
           proceed using your desktop <br />
           <br /> If you have any questions join our{" "}
-          <a className="link text-base" href="#">
+          <a
+            target="_blank"
+            className="link text-base"
+            href="https://discord.com/invite/galactica"
+            rel="noreferrer"
+          >
             Discord
           </a>{" "}
           and speak with the moderators and the team.
