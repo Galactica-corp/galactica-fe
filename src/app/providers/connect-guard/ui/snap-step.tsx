@@ -13,13 +13,13 @@ export const SnapStep = ({ onInstall }: Props) => {
       </div>
       <p className="mb-10 text-xl font-light text-mineShaft text-opacity-40">
         <a
-          className="link"
+          className="link text-xl"
           target="_blank"
           href="https://metamask.io/snaps/"
           rel="noreferrer"
         >
           Galactica Snap
-        </a>
+        </a>{" "}
         is required in order to access core features of Galactica Network such
         as zkCertificates, Protocol Governance, & Reputation.
       </p>
