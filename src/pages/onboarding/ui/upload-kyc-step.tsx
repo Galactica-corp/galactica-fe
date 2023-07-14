@@ -19,7 +19,7 @@ export const UploadKycStep = ({ onUpload, onChooseKycProvider }: Props) => {
       </p>
 
       <div className="flex gap-8">
-        <Button onClick={onChooseKycProvider}>Choose zkKYC Provider</Button>
+        <Button onClick={onChooseKycProvider}>Get zkKYC</Button>
         <UploadKycButton
           onSuccessUpload={(data) => {
             onUpload?.();

@@ -19,7 +19,7 @@ export const Onboarding = () => {
 
   const onChooseKycProvider = () => {
     setIsOnboardingCompleted(true);
-    navigate("/kyc-providers");
+    navigate("/kyc-guardians");
   };
 
   if (zkCerts?.length !== 0 || isOnboardingCompleted)
