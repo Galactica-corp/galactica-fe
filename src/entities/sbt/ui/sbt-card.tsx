@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { ClassName } from "shared/types";
-import { Card } from "shared/ui/card";
+import { Card as UICard } from "shared/ui/card";
 import { dateX } from "shared/utils";
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
   level: number | string;
 } & ClassName;
 
-export const SbtCard = ({
+export const Card = ({
   title = "zkKYC Proof",
   provider = "Example",
   className,
@@ -18,30 +18,30 @@ export const SbtCard = ({
   expiration,
 }: Props) => {
   return (
-    <Card
+    <UICard
       className={classNames(className, "min-h-[238px]")}
       title={title}
       desc="This SBT proves that you hold a valid zkKYC with these fields:"
     >
       <div className="mt-auto flex justify-between">
-        <Card.Info label="Provider" tip="TODO some text">
+        <UICard.Info label="Provider" tip="TODO some text">
           {provider}
-        </Card.Info>
+        </UICard.Info>
 
-        <Card.Info
+        <UICard.Info
           label="KYC Level"
           tip="This level depends on the documentation provided to the KYC Guardian as well as on their requirements."
         >
           {`Level ${level}`}
-        </Card.Info>
+        </UICard.Info>
 
-        <Card.Info
+        <UICard.Info
           label="Expiration Date"
           tip="This is the expiration date of your ID (e.g. passport)."
         >
           {dateX.toDMY(expiration)}
-        </Card.Info>
+        </UICard.Info>
       </div>
-    </Card>
+    </UICard>
   );
 };

@@ -40,7 +40,7 @@ export const InstallSnapButton = ({ onInstall }: Props) => {
       ) : (
         <>
           <MetamaskIcon className="relative top-[-0.15rem]" />
-          <span>Install snap</span>
+          <span>Get snap</span>
         </>
       )}
     </Button>

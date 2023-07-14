@@ -8,7 +8,7 @@ export { useGenerateCommitmentHashMutation } from "./use-generate-commitment-has
 export { useClearStorageMutation } from "./use-clear-storage-mutation";
 export { useListZkCertsMutation } from "./use-list-zk-certs-mutation";
 export { useGetZkCertStorageHashesQuery } from "./use-get-zk-cert-storage-hashes-query";
-export { useGenZkAgeProofMutation } from "./use-gen-zk-age-proof-mutation";
+export { useGenBasicProofMutation } from "./use-generate-basic-proof-mutation";
 export { useSbtsQuery } from "./use-sbts-query";
 
 export { useZkCertHash } from "./hooks/use-zk-cert-hash";

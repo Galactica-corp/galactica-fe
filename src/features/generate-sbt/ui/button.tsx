@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import classNames from "classnames";
-import { useGenZkRepeatableProofMutation } from "shared/snap/use-gen-zk-repeatable-proof-mutation";
+import { useGenBasicProofMutation } from "shared/snap";
 import { ClassName } from "shared/types";
 import { Button as UIButton } from "shared/ui/button";
 
@@ -9,7 +9,7 @@ type Props = ClassName;
 
 export const Button = ({ className }: Props) => {
   const [btnText, setBtnText] = useState("Generate KYC proof SBT");
-  const genMutation = useGenZkRepeatableProofMutation({
+  const genMutation = useGenBasicProofMutation({
     onPublish: () => {
       setBtnText("Publishing...");
     },

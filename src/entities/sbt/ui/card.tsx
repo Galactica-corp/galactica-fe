@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
 import { ClassName } from "shared/types";
 import { Card as UICard } from "shared/ui/card";
-import CardPng from "./bg.png";
+import CardPng from "../assets/bg.png";
 
 type Props = {
   title?: ReactNode;

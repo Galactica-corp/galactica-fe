@@ -1,14 +1,13 @@
 import { ReactComponent as InfoOrangeIcon } from "shared/icons/info-orange.svg";
-import { Card } from "shared/ui/card";
-import { Link } from "shared/ui/link";
-import learSbtCardUrl from "./learn-sbt-card.png";
+import { Card as UICard } from "shared/ui/card";
+import learnCardUrl from "../assets/learn-card.png";
 
-export const LearnSbtCard = () => {
+export const Card = () => {
   return (
-    <Card
+    <UICard
       title="What are the SBTs?"
       className="bg-cover bg-center"
-      style={{ backgroundImage: `url(${learSbtCardUrl})` }}
+      style={{ backgroundImage: `url(${learnCardUrl})` }}
     >
       <a
         className="link mt-2.5"
@@ -23,6 +22,6 @@ export const LearnSbtCard = () => {
           className="relative ml-[0.31rem]"
         />
       </a>
-    </Card>
+    </UICard>
   );
 };

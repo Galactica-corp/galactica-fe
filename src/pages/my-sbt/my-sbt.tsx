@@ -1,21 +1,28 @@
 import classNames from "classnames";
 import { ChooseKycProviderCard } from "entities/kyc";
-import { GenerationSbtCard } from "entities/sbt";
+import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
 import { CONTRACTS_ADDRESSES, useSbtsQuery, useZkCerts } from "shared/snap";
-import { LearnSbtCard } from "./ui/learn-sbt-card";
-import { SbtCard } from "./ui/sbt-card";
+import { SkeletonCard } from "shared/ui/card";
+
+const DAPP_NAME = {
+  [CONTRACTS_ADDRESSES.BASIC_KYC_EXAMPLE_DAPP]: "zkKYC Proof",
+  [CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST]: "zkKYC Proof (Repeatable)",
+};
 
 export const MySbt = () => {
   const [zkCerts] = useZkCerts();
 
   const query = useSbtsQuery({
-    select: ({ sbts }) => sbts,
+    select: ({ sbts }) =>
+      sbts.filter(
+        (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.BASIC_KYC_EXAMPLE_DAPP
+      ),
   });
 
   const hasBasicProof = query.data?.some(
-    (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST
+    (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.BASIC_KYC_EXAMPLE_DAPP
   );
 
   return (
@@ -24,26 +31,24 @@ export const MySbt = () => {
 
       <div className={classNames("grid grid-cols-3 gap-[1rem] pb-8")}>
         {zkCerts?.length === 0 && <ChooseKycProviderCard />}
-        {!hasBasicProof && zkCerts?.length !== 0 && (
+        {query.isSuccess && !hasBasicProof && zkCerts?.length !== 0 && (
           <GenerationSbtCard>
             <GenerateSbtButton className="mt-auto" />
           </GenerationSbtCard>
         )}
-        {query.data?.slice(0, 1).map((sbt, idx) => {
-          return (
-            <SbtCard
-              title={
-                sbt.dApp === CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST
-                  ? "zkKYC Proof"
-                  : "zkKYC Proof (Age > 18)"
-              }
-              key={idx}
-              provider="Example"
-              expiration={Date.now() + sbt.expirationTime}
-              level={1}
-            />
-          );
-        })}
+        {query.isLoading && query.isInitialLoading && <SkeletonCard />}
+        {query.isSuccess &&
+          query.data.map((sbt, idx) => {
+            return (
+              <SbtCard
+                title={DAPP_NAME[sbt.dApp] ?? "Unknown Proof"}
+                key={idx}
+                provider="Example"
+                expiration={Date.now() + sbt.expirationTime}
+                level={1}
+              />
+            );
+          })}
 
         <LearnSbtCard />
       </div>

@@ -1,10 +1,8 @@
 import classNames from "classnames";
 import { ChooseKycProviderCard } from "entities/kyc";
-import { GenerationSbtCard } from "entities/sbt";
+import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { CONTRACTS_ADDRESSES, useSbtsQuery, useZkCerts } from "shared/snap";
-import { LearnSbtCard } from "./ui/learn-sbt-card";
-import { SbtCard } from "./ui/sbt-card";
 
 export const MySbtDev = () => {
   const [zkCerts] = useZkCerts();
