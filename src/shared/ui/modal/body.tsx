@@ -20,7 +20,7 @@ export const Body = ({
     <div
       style={{ backgroundImage: bg ? `url(${bg})` : "none" }}
       className={cn(
-        "relative m-auto flex min-h-[460px] min-w-[650px] flex-col items-center rounded-lg border border-alto bg-white bg-cover",
+        "relative m-auto flex min-h-[460px] min-w-[650px] flex-col items-center rounded-lg border border-alto bg-white bg-cover bg-center",
         className
       )}
     >
