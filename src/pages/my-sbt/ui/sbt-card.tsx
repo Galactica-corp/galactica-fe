@@ -29,7 +29,7 @@ export const SbtCard = ({
         </Card.Info>
 
         <Card.Info
-          label="zkKYC Level"
+          label="KYC Level"
           tip="This level depends on the documentation provided to the KYC Guardian as well as on their requirements."
         >
           {`Level ${level}`}

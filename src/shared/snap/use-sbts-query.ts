@@ -71,7 +71,6 @@ export const useSbtsQuery = <TData = SbtDetails>(
 
       for (let i = firstBlock; i < currentBlock; i += maxBlockInterval) {
         const maxBlock = Math.min(i + maxBlockInterval, currentBlock);
-        console.log(`Querying logs from block ${i} to ${maxBlock}...`);
         const createStakeLogs = await sbtSC.queryFilter(
           filter as EventFilter,
           i,
@@ -79,7 +78,6 @@ export const useSbtsQuery = <TData = SbtDetails>(
         );
 
         for (const log of createStakeLogs) {
-          console.log(`found sbtInfo: ${JSON.stringify(log, null, 2)}}`);
           if (log.topics === undefined) {
             continue;
           }

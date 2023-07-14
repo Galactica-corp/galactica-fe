@@ -1,10 +1,11 @@
 import { ComponentProps, PropsWithChildren } from "react";
 import { useImportZkCertMutation } from "shared/snap/use-import-zk-cert-mutation";
 import { ClassName } from "shared/types";
-import { FileInputButton } from "shared/ui/button";
+import { FileInputButton, Theme } from "shared/ui/button";
 import { parseJSONFile } from "shared/utils";
 
 type Props = {
+  theme?: Theme;
   onSuccessUpload?: (data: unknown) => void;
   onErrorUpload?: () => void;
 } & ClassName &
@@ -12,6 +13,7 @@ type Props = {
 
 export const UploadKycButton = ({
   children,
+  theme = "primaryTransparent",
   className,
   onSuccessUpload,
   onErrorUpload,
@@ -35,7 +37,7 @@ export const UploadKycButton = ({
     <FileInputButton
       {...props}
       className={className}
-      theme="primaryTransparent"
+      theme={theme}
       accept=".json"
       onChange={async (e) => {
         const file = e.target.files?.[0];

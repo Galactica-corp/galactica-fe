@@ -44,19 +44,12 @@ export const processProof = (proof: any) => {
     .slice(0, 2)
     .map((value: any) => fromDecToHex(value, true));
 
-  console.log(
-    `Formated proof: ${JSON.stringify({ a: piA, b: piB, c: piC }, null, 2)}`
-  );
-
   return [piA, piB, piC];
 };
 
 export const processPublicSignals = (publicSignals: any) => {
   const formatedInputs = publicSignals.map((value: any) =>
     fromDecToHex(value, true)
-  );
-  console.log(
-    `Formated publicInputs: ${JSON.stringify(formatedInputs, null, 2)}`
   );
   return formatedInputs;
 };

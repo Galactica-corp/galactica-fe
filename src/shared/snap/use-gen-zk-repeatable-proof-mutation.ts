@@ -1,12 +1,23 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useAccount, useMutation, useProvider, useSigner } from "wagmi";
+import { RepeatableZKPTest__factory } from "shared/contracts";
 import { invokeSnap } from "./api-sdk";
 import { CONTRACTS_ADDRESSES } from "./const";
 import { snapsKeys } from "./keys";
 import { SbtDetails } from "./types";
-import { getExpectedValidationTimestamp } from "./utils";
+import {
+  getExpectedValidationTimestamp,
+  processProof,
+  processPublicSignals,
+} from "./utils";
 
-export const useGenZkRepeatableProofMutation = () => {
+type Options = {
+  onPublish?: () => void;
+};
+
+export const useGenZkRepeatableProofMutation = ({
+  onPublish,
+}: Options = {}) => {
   const signerQuery = useSigner();
   const provider = useProvider();
   const { address } = useAccount();
@@ -45,7 +56,20 @@ export const useGenZkRepeatableProofMutation = () => {
         },
       });
 
-      return zkp;
+      onPublish?.();
+      const [a, b, c] = processProof(zkp.proof);
+      const publicInputs = processPublicSignals(zkp.publicSignals);
+
+      const repeatableZKPTestSC = RepeatableZKPTest__factory.connect(
+        CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST,
+        signerQuery.data
+      );
+
+      const tx = await repeatableZKPTestSC.submitZKP(a, b, c, publicInputs);
+
+      const receipt = await tx.wait();
+
+      return receipt;
     },
     {
       onSuccess: () => {

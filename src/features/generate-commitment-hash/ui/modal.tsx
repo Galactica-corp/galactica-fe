@@ -2,7 +2,7 @@ import { useState } from "react";
 import { LearnKycLink } from "entities/kyc";
 import { ReactComponent as LogoMetamask } from "shared/icons/metamask-outline.svg";
 import { useGenerateCommitmentHashMutation } from "shared/snap";
-import { Button, LinkButton } from "shared/ui/button";
+import { Button } from "shared/ui/button";
 import { Modal } from "shared/ui/modal";
 import { GradientSpinner } from "shared/ui/spinner";
 import { toastError, toastSuccess } from "shared/utils/toasts";

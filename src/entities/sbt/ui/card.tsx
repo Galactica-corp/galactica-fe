@@ -25,10 +25,10 @@ export const Card = ({
     >
       <div className="mb-6 mt-2.5 flex items-center justify-between">
         <div className="flex items-center text-sm text-mineShaft/50">
-          zkKYC issuer <CheckIcon className="ml-1 w-4" />
+          KYC issuer <CheckIcon className="ml-1 w-4" />
         </div>
         <div className="flex items-center text-sm text-mineShaft/50">
-          zkKYC Level <CheckIcon className="ml-1 w-4" />
+          KYC Level <CheckIcon className="ml-1 w-4" />
         </div>
         <div className="flex items-center text-sm text-mineShaft/50">
           Expiration Date <CheckIcon className="ml-1 w-4" />
