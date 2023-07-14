@@ -9,7 +9,7 @@ export const Card = () => {
       desc="To access most dApps on Galactica and access all the community
     features of the network, every Soul needs zkKYC."
     >
-      <LinkButton to="/kyc-providers" className="mt-auto w-full">
+      <LinkButton to="/kyc-guardians" className="mt-auto w-full">
         Choose zkKYC provider
       </LinkButton>
     </UICard>
