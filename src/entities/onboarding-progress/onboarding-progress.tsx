@@ -62,7 +62,7 @@ export function OnboardingProgress() {
   if (!currentStep) return null;
 
   return (
-    <div className="fixed bottom-0 z-20 w-full space-y-[1rem] bg-white pt-[0.8rem]">
+    <div className="fixed bottom-0 z-20 w-full space-y-[1rem] bg-transparent pt-[0.8rem]">
       <div className="flex w-full items-center justify-center gap-x-[2.25rem]">
         {STEPS_MAP.map((step, i) => (
           <div
