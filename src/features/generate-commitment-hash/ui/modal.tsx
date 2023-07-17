@@ -70,7 +70,7 @@ export const GenerateModal = ({ onClose, onSuccess, onError }: Props) => {
               });
             }}
           >
-            Generate & Start zkKYC
+            Generate & Start KYC
           </Button>
         )}
 
