@@ -21,7 +21,7 @@ const STEPS_MAP = [
     position: "translate-x-[-11.6rem]",
   },
   {
-    name: "Getting your zkKYC",
+    name: "Get your zkKYC",
     status: "unfinished",
     position: "translate-x-[7.4rem]",
   },
