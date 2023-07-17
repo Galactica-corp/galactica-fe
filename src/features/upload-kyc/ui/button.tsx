@@ -1,11 +1,11 @@
 import { ComponentProps, PropsWithChildren } from "react";
 import { useImportZkCertMutation } from "shared/snap/use-import-zk-cert-mutation";
 import { ClassName } from "shared/types";
-import { FileInputButton, Theme } from "shared/ui/button";
+import { ButtonTheme, FileInputButton } from "shared/ui/button";
 import { parseJSONFile } from "shared/utils";
 
 type Props = {
-  theme?: Theme;
+  theme?: ButtonTheme;
   onSuccessUpload?: (data: unknown) => void;
   onErrorUpload?: () => void;
 } & ClassName &

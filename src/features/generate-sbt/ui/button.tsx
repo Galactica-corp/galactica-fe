@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { toast } from "react-hot-toast";
 import classNames from "classnames";
 import { useGenBasicProofMutation } from "shared/snap";
 import { ClassName } from "shared/types";
@@ -23,7 +22,6 @@ export const Button = ({ className }: Props) => {
         setBtnText("Generating...");
         genMutation.mutate(undefined, {
           onSuccess: () => {
-            toast.success("SBT has been generated and published!");
             setBtnText("Publish KYC proof SBT");
           },
           onError: (err) => {

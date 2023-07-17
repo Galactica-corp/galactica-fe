@@ -11,7 +11,7 @@ export const SnapStep = ({ onInstall }: Props) => {
         Now let&apos;s get the{" "}
         <span className="font-semibold ">Galactica Snap</span>
       </div>
-      <p className="mb-10 text-xl font-light text-mineShaft text-opacity-40">
+      <p className="mb-10 text-center text-xl font-light text-mineShaft text-opacity-40">
         <a
           className="link text-xl"
           target="_blank"
@@ -21,7 +21,7 @@ export const SnapStep = ({ onInstall }: Props) => {
           Galactica Snap
         </a>{" "}
         is required in order to access core features of Galactica Network such
-        as zkCertificates, Protocol Governance, & Reputation.
+        as <br /> zkCertificates, Protocol Governance, & Reputation.
       </p>
       <InstallSnapButton onInstall={onInstall} />
     </div>

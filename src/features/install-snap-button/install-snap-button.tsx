@@ -33,13 +33,13 @@ export const InstallSnapButton = ({ onInstall }: Props) => {
       isLoading={mutation.isLoading || query.isLoading}
       disabled={!query.isSuccess}
       theme="primary"
-      className="space-x-[0.9rem] px-14"
+      className="px-14"
     >
       {disabled ? (
         "Enable galactica snap"
       ) : (
         <>
-          <MetamaskIcon className="relative top-[-0.15rem]" />
+          <MetamaskIcon className="relative mr-3" />
           <span>Get snap</span>
         </>
       )}

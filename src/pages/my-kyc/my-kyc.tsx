@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router-dom";
 import { ChooseKycProviderCard, KycCard, KycNotFoundCard } from "entities/kyc";
 import { GenerationSbtCard } from "entities/sbt";
 import { GenerateSbtButton } from "features/generate-sbt";
@@ -6,6 +7,8 @@ import { UploadKycCard } from "features/upload-kyc";
 import { CONTRACTS_ADDRESSES, useSbtsQuery, useZkCerts } from "shared/snap";
 
 export const MyKYC = () => {
+  const [searchParams] = useSearchParams();
+  const showWideUploading = searchParams.get("showWideUploading");
   const [zkCerts] = useZkCerts();
 
   const query = useSbtsQuery({
@@ -14,8 +17,23 @@ export const MyKYC = () => {
   });
 
   const hasBasicProof = query.data?.some(
-    (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST
+    (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.BASIC_KYC_EXAMPLE_DAPP
   );
+
+  if (showWideUploading) {
+    return (
+      <UploadKycCard
+        className="mb-16 grow border-2"
+        btnClassName="w-[256px]"
+        theme="primary"
+        title={
+          <p className="w-80 text-center text-3xl font-light">
+            Drag&Drop your zkKYC secret file here
+          </p>
+        }
+      />
+    );
+  }
 
   return (
     <>

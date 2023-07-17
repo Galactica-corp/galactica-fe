@@ -1,43 +1,39 @@
+import { ReactNode } from "react";
 import { useDropzone } from "react-dropzone";
-import { toast } from "react-hot-toast";
+import classNames from "classnames";
 import { useImportZkCertMutation } from "shared/snap/use-import-zk-cert-mutation";
-import { FileInputButton } from "shared/ui/button";
+import { ClassName } from "shared/types";
+import { ButtonTheme, FileInputButton } from "shared/ui/button";
 import { parseJSONFile } from "shared/utils";
 
 type Props = {
+  title?: ReactNode;
+  theme?: ButtonTheme;
+  btnClassName?: string;
   onSuccessUpload?: (data: unknown) => void;
   onErrorUpload?: () => void;
-};
+} & ClassName;
 
-export function UploadKycCard({ onSuccessUpload, onErrorUpload }: Props) {
+export function UploadKycCard({
+  title = "Drag&Drop your zkKYC secret file here",
+  theme = "primaryTransparent",
+  onSuccessUpload,
+  onErrorUpload,
+  className,
+  btnClassName,
+}: Props) {
   const importCertMutation = useImportZkCertMutation();
 
   const onDrop = async (acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
     if (!file) return;
     const data = await parseJSONFile(file);
-    const id = toast.loading("Uploading zkKYC...", {
-      duration: 10000,
-    });
     importCertMutation.mutate(data, {
       onSuccess: (data) => {
         onSuccessUpload?.(data);
-        toast.success("zkKYC has been uploaded!", {
-          id,
-        });
       },
-      onError: (err) => {
+      onError: () => {
         onErrorUpload?.();
-        const message =
-          err &&
-          typeof err === "object" &&
-          "message" in err &&
-          typeof err.message === "string"
-            ? err.message
-            : "Something went wrong. Try again!";
-        toast.error(message, {
-          id,
-        });
       },
     });
   };
@@ -52,21 +48,31 @@ export function UploadKycCard({ onSuccessUpload, onErrorUpload }: Props) {
 
   return (
     <div
-      className="card cursor-pointer items-center justify-center border-dashed shadow-none"
+      className={classNames(
+        className,
+        "card cursor-pointer items-center justify-center border-dashed bg-transparent shadow-none"
+      )}
       {...getRootProps()}
     >
+      {typeof title === "string" ? (
+        <p className="w-56 text-center text-xl font-light text-mineShaft/50">
+          {title}
+        </p>
+      ) : (
+        title
+      )}
+      <span className="mb-4 mt-1 block text-sm font-light text-mineShaft/50">
+        or
+      </span>
       <FileInputButton
+        className={btnClassName}
         isLoading={importCertMutation.isLoading}
-        theme="primaryTransparent"
+        theme={theme}
         accept=".json"
         {...getInputProps()}
       >
-        Upload zkKYC
+        Browse files
       </FileInputButton>
-      <div className="mt-[1.05rem] w-[15rem] text-center text-[0.875rem] text-mineShaft/50">
-        If you already passed zkKYC but didn&apos;t upload its secret file to
-        your wallet
-      </div>
     </div>
   );
 }

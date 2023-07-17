@@ -1,11 +1,11 @@
 import { Chain, useSwitchNetwork } from "wagmi";
 import { useIsSupportedChain } from "shared/config/hooks";
 import { DEFAULT_CHAIN } from "shared/config/networks";
-import { Button, Theme } from "shared/ui/button";
+import { Button, ButtonTheme } from "shared/ui/button";
 import { ReactComponent as StarSvg } from "./star.svg";
 
 type Props = {
-  theme?: Theme;
+  theme?: ButtonTheme;
   onSwitch?: (chain: Chain) => void;
 };
 

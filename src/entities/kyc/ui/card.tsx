@@ -24,7 +24,7 @@ export const Card = ({ type, level, expiration }: Props) => {
       <div className="mt-auto flex justify-between">
         <UICard.Info
           label="Status"
-          tip="Your zkKYC status may be Active, Expired, or Canceled. Active - when this zkKYC available for use. Expired - the expiration date of your document(s) is past the current date or other documents. Unavailable - when this zkKYC cannot be used due to various reasons."
+          tip="Your zkKYC status may be Active, Expired, or Canceled. Active - when this zkKYC is available for use. Expired - the expiration date of your zkKYC is past the current date. Unavailable - when this zkKYC cannot be used due to various reasons."
         >
           {isActive ? (
             <div className="flex items-center text-sandyBrown">
@@ -44,7 +44,7 @@ export const Card = ({ type, level, expiration }: Props) => {
 
         <UICard.Info
           label="Expiration Date"
-          tip="This is the expiration date of your ID (e.g. passport)."
+          tip="This is the expiration date of your zkKYC (set by the KYC Guardian)."
         >
           {dateX.toDMY(expiration)}
         </UICard.Info>
