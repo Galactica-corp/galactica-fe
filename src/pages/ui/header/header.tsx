@@ -12,11 +12,11 @@ export const HEADERS_LINKS = [
     to: "/my-sbt",
   },
   {
-    name: "KYC Guardians",
+    name: "KYC GUARDIANS",
     to: "/kyc-guardians",
   },
   {
-    name: "Help",
+    name: "HELP",
     to: "/help",
   },
   // {
