@@ -38,7 +38,7 @@ export function UploadKycCard({
     });
   };
 
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
       "application/json": [".json"],
     },
@@ -50,7 +50,8 @@ export function UploadKycCard({
     <div
       className={classNames(
         className,
-        "card cursor-pointer items-center justify-center border-dashed bg-transparent shadow-none"
+        isDragActive && "border-sandyBrown",
+        "card cursor-pointer items-center justify-center border-dashed bg-transparent shadow-none transition-colors"
       )}
       {...getRootProps()}
     >
