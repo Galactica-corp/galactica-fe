@@ -19,7 +19,7 @@ export const GenerateModal = ({ onClose, onSuccess, onError }: Props) => {
 
   return (
     <Modal onClose={onClose}>
-      <Modal.Body className="w-[650px] px-16 pb-12 pt-16" onClose={onClose}>
+      <Modal.Body className="w-[650px] px-14 pb-12 pt-16" onClose={onClose}>
         {mutation.isLoading ? (
           <GradientSpinner className="h-[110px] w-[110px]" />
         ) : (
