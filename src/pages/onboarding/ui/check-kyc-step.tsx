@@ -22,9 +22,11 @@ export const CheckKycStep = ({ onHaveKyc, onChooseKycProvider }: Props) => {
         your personal data.
       </p>
       <div className="flex gap-x-8">
-        <Button onClick={onChooseKycProvider}>Get zkKYC</Button>
+        <Button className="w-[200px]" onClick={onChooseKycProvider}>
+          Get zkKYC
+        </Button>
         <Button
-          className="px-14"
+          className="w-[200px] px-14"
           theme="primaryTransparent"
           onClick={onHaveKyc}
         >

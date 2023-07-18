@@ -14,12 +14,13 @@ export const UploadKycStep = ({ onUpload, onChooseKycProvider }: Props) => {
       </div>
       <p className="mb-10 max-w-6xl text-center text-xl font-light text-mineShaft text-opacity-40">
         If you&apos;ve passed zkKYC on Galactica before and you have a secret
-        file, you can upload it to the MetaMask Snap here. After, you will be
-        able to use Galactica.
+        file, you can upload it to the MetaMask Snap here. <br /> After, you
+        will be able to use Galactica.
       </p>
 
       <div className="flex gap-8">
         <UploadKycButton
+          className="w-[216px]"
           theme="primary"
           onSuccessUpload={(data) => {
             onUpload?.();
@@ -27,7 +28,11 @@ export const UploadKycStep = ({ onUpload, onChooseKycProvider }: Props) => {
         >
           Upload secret file
         </UploadKycButton>
-        <Button theme="primaryTransparent" onClick={onChooseKycProvider}>
+        <Button
+          className="w-[216px]"
+          theme="primaryTransparent"
+          onClick={onChooseKycProvider}
+        >
           Get zkKYC
         </Button>
       </div>
