@@ -62,9 +62,9 @@ export const MyKYC = () => {
           <GenerationSbtCard
             title={
               <div className="whitespace-nowrap text-[26px] font-light">
-                KYC Not Published
+                KYC{" "}
                 <span className="whitespace-nowrap text-scarlet">
-                  is not published!
+                  Not Published
                 </span>
               </div>
             }
