@@ -62,12 +62,13 @@ export const MyKYC = () => {
           <GenerationSbtCard
             title={
               <div className="whitespace-nowrap text-[26px] font-light">
-                Your zkKYC{" "}
+                KYC Not Published
                 <span className="whitespace-nowrap text-scarlet">
                   is not published!
                 </span>
               </div>
             }
+            desc="In order to use your KYC you need to generate a zkProof demonstrating the its existence."
           >
             <GenerateSbtButton className="mt-auto" />
           </GenerationSbtCard>

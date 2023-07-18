@@ -24,8 +24,8 @@ export const MySbtDev = () => {
           <SbtCard
             title={
               sbt.dApp === CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST
-                ? "zkKYC Proof"
-                : "zkKYC Proof (Age > 18)"
+                ? "KYC SBT"
+                : "KYC SBT (Age > 18)"
             }
             key={idx}
             provider="Example"

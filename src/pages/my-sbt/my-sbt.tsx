@@ -3,12 +3,13 @@ import { ChooseKycProviderCard } from "entities/kyc";
 import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
+import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
 import { CONTRACTS_ADDRESSES, useSbtsQuery, useZkCerts } from "shared/snap";
 import { SkeletonCard } from "shared/ui/card";
 
 const DAPP_NAME = {
-  [CONTRACTS_ADDRESSES.BASIC_KYC_EXAMPLE_DAPP]: "zkKYC Proof",
-  [CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST]: "zkKYC Proof (Repeatable)",
+  [CONTRACTS_ADDRESSES.BASIC_KYC_EXAMPLE_DAPP]: "KYC SBT",
+  [CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST]: "KYC SBT (Repeatable)",
 };
 
 export const MySbt = () => {
@@ -33,6 +34,17 @@ export const MySbt = () => {
         {zkCerts?.length === 0 && <ChooseKycProviderCard />}
         {query.isSuccess && !hasBasicProof && zkCerts?.length !== 0 && (
           <GenerationSbtCard>
+            <div className="mb-6 mt-2.5 flex items-center justify-between">
+              <div className="flex items-center text-sm text-mineShaft/50">
+                KYC Guardian <CheckIcon className="ml-1 w-4" />
+              </div>
+              <div className="flex items-center text-sm text-mineShaft/50">
+                KYC Level <CheckIcon className="ml-1 w-4" />
+              </div>
+              <div className="flex items-center text-sm text-mineShaft/50">
+                Expiration Date <CheckIcon className="ml-1 w-4" />
+              </div>
+            </div>
             <GenerateSbtButton className="mt-auto" />
           </GenerationSbtCard>
         )}

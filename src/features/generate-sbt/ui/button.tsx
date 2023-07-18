@@ -21,20 +21,6 @@ export const Button = ({ className }: Props) => {
       onClick={() => {
         setBtnText("Generating...");
         genMutation.mutate(undefined, {
-          onSuccess: () => {
-            setBtnText("Publish KYC proof SBT");
-          },
-          onError: (err) => {
-            const message =
-              err &&
-              typeof err === "object" &&
-              "message" in err &&
-              typeof err.message === "string"
-                ? err.message
-                : "Something went wrong";
-            toast.error(message);
-            setBtnText("Generate KYC proof SBT");
-          },
           onSettled: () => {
             setBtnText("Generate KYC proof SBT");
           },

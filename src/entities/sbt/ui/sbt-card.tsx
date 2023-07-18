@@ -21,12 +21,10 @@ export const Card = ({
     <UICard
       className={classNames(className, "min-h-[238px]")}
       title={title}
-      desc="This SBT proves that you hold a valid zkKYC with these fields:"
+      desc="This SBT contains a zkProof demonstrating that you hold a valid KYC."
     >
       <div className="mt-auto flex justify-between">
-        <UICard.Info label="Provider" tip="TODO some text">
-          {provider}
-        </UICard.Info>
+        <UICard.Info label="KYC Guardian">{provider}</UICard.Info>
 
         <UICard.Info
           label="KYC Level"
