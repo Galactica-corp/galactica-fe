@@ -8,7 +8,7 @@ export const InstallFlaskStep = () => {
       <div className="mb-2.5 text-[5.25rem] font-thin leading-[120%] tracking-[-4.2px]">
         Welcome to <span className="font-medium">Galactica.com</span>
       </div>
-      <p className="mb-12 w-[1100px] text-center text-xl font-light tracking-[-0.4px;] text-mineShaft text-opacity-40">
+      <p className="mb-12 w-[1100px] text-center text-xl font-light tracking-[-0.4px] text-mineShaft text-opacity-40">
         Galactica Network utilizes Snaps which is available only on MetaMask
         Flask. <br /> To proceed you need MetaMask Flask.
       </p>
