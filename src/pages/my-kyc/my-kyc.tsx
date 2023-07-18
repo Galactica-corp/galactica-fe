@@ -4,6 +4,7 @@ import { GenerationSbtCard } from "entities/sbt";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
 import { UploadKycCard } from "features/upload-kyc";
+import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
 import { CONTRACTS_ADDRESSES, useSbtsQuery, useZkCerts } from "shared/snap";
 
 export const MyKYC = () => {
@@ -31,6 +32,9 @@ export const MyKYC = () => {
             Drag&Drop your zkKYC secret file here
           </p>
         }
+        onSuccessUpload={() => {
+          searchParams.set("showWideUploading", "");
+        }}
       />
     );
   }
@@ -68,8 +72,19 @@ export const MyKYC = () => {
                 </span>
               </div>
             }
-            desc="In order to use your KYC you need to generate a zkProof demonstrating the its existence."
+            desc="To use your KYC it is necessary to generate a zkProof (stored as an SBT) demonstrating its existence and disclosing the following data:"
           >
+            <div className="mb-6 mt-2.5 flex items-center justify-between">
+              <div className="flex items-center text-sm text-mineShaft/50">
+                KYC Guardian <CheckIcon className="ml-1 w-4" />
+              </div>
+              <div className="flex items-center text-sm text-mineShaft/50">
+                KYC Level <CheckIcon className="ml-1 w-4" />
+              </div>
+              <div className="flex items-center text-sm text-mineShaft/50">
+                Expiration Date <CheckIcon className="ml-1 w-4" />
+              </div>
+            </div>
             <GenerateSbtButton className="mt-auto" />
           </GenerationSbtCard>
         )}

@@ -17,7 +17,7 @@ export const HEADERS_LINKS = [
   },
   {
     name: "HELP",
-    to: "/help",
+    to: "https://galactica-network.notion.site/f800adec57eb46d284481f387a30b2fd?v=8d7782e07671436aaf156394bd8351a3",
   },
 ];
 
@@ -31,7 +31,11 @@ export const Header = () => {
           </div>
           <div className="flex gap-2.5">
             {HEADERS_LINKS.map((link) => (
-              <HeaderLink key={link.name} to={link.to}>
+              <HeaderLink
+                key={link.name}
+                to={link.to}
+                target={link.name === "HELP" ? "_blank" : undefined}
+              >
                 {link.name}
               </HeaderLink>
             ))}
