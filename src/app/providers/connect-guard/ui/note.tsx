@@ -17,7 +17,7 @@ export const Note = ({ className }: ClassName) => {
         <RightArrow />
         <MetamaskFlaskSvg />
       </div>
-      <p className="font-medium leading-6 text-mineShaft">
+      <p className="font-medium leading-6 tracking-[0.32px] text-mineShaft">
         <span className="text-sandyBrown">Note that</span> to use MetaMask Flask
         you need to disable the main <br /> MetaMask application through your
         browser Extensions settings.
