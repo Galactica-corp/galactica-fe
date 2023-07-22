@@ -1,4 +1,6 @@
+import { sentryVitePlugin } from "@sentry/vite-plugin";
 import react from "@vitejs/plugin-react-swc";
+import { loadEnv } from "vite";
 import { defineConfig } from "vite";
 import { checker } from "vite-plugin-checker";
 import { ViteEjsPlugin } from "vite-plugin-ejs";
@@ -9,6 +11,10 @@ import tsconfigPaths from "vite-tsconfig-paths";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const isProdMode = mode === "production";
+  process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
+
+  console.log(process.env.VITE_SENTRY_AUTH_TOKEN);
+
   return {
     plugins: [
       react(),
@@ -16,6 +22,13 @@ export default defineConfig(({ mode }) => {
       tsconfigPaths(),
       svgr(),
       ViteEjsPlugin(),
+      process.env.VITE_SENTRY === "on" &&
+        isProdMode &&
+        sentryVitePlugin({
+          org: "occamfi",
+          project: "galactica",
+          authToken: process.env.VITE_SENTRY_AUTH_TOKEN,
+        }),
       !isProdMode &&
         checker({
           typescript: true,
@@ -28,5 +41,8 @@ export default defineConfig(({ mode }) => {
           },
         }),
     ].filter(Boolean),
+    build: {
+      sourcemap: true,
+    },
   };
 });
