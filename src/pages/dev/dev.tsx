@@ -9,6 +9,15 @@ export const Dev = () => {
     <div>
       <Button
         onClick={() => {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          someMethod();
+        }}
+      >
+        boom
+      </Button>
+      <Button
+        onClick={() => {
           clearStorageMutation.mutate();
         }}
       >
