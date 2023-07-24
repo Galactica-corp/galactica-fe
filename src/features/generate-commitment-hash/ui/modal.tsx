@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { captureException } from "@sentry/react";
 import { LearnKycLink } from "entities/kyc";
 import { ReactComponent as LogoMetamask } from "shared/icons/metamask-outline.svg";
 import { useGenerateCommitmentHashMutation } from "shared/snap";
@@ -63,7 +64,8 @@ export const GenerateModal = ({ onClose, onSuccess, onError }: Props) => {
 
                   toastSuccess("Commitment Hash has been generated");
                 },
-                onError: () => {
+                onError: (error) => {
+                  captureException(error);
                   toastError("Failed to Generate Commitment Hash. Try again");
                   onError?.();
                 },
