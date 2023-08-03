@@ -1,3 +1,4 @@
+import { SNAP_ID } from "shared/config/const";
 import { useClearStorageMutation, useListZkCertsMutation } from "shared/snap";
 import { Button } from "shared/ui/button";
 
@@ -7,6 +8,7 @@ export const Dev = () => {
 
   return (
     <div>
+      {SNAP_ID}
       <Button
         onClick={() => {
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
