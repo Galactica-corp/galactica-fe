@@ -67,7 +67,7 @@ type InvokeResponse<T> = T extends InvokeGetHolderCommitment
   : T extends InvokeClearStorageRequest
   ? string
   : T extends InvokeImportZkCert
-  ? unknown // TODO: fix this type
+  ? Record<ZkCertStandard, ZkCertsListItem[] | undefined> // TODO: fix this type
   : T extends InvokeExportZkCertRequest
   ? unknown // TODO: fix this type
   : T extends InvokeListZkCertsRequest

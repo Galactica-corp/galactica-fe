@@ -2,8 +2,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useAccount, useMutation } from "wagmi";
 import { z } from "zod";
 import { invokeSnap } from "./api-sdk";
+import { useZkCerts } from "./hooks/use-zk-certs";
 import { snapsKeys } from "./keys";
-import { useListZkCertsMutation } from "./use-list-zk-certs-mutation";
 
 export const zkCertSchema = z.object({
   holderCommitment: z.string().nonempty(),
@@ -39,24 +39,26 @@ export const zkCertSchema = z.object({
 export type ZkCert = z.infer<typeof zkCertSchema>;
 
 export const useImportZkCertMutation = () => {
+  const [certs, setCertsList] = useZkCerts();
   const queryClient = useQueryClient();
   const { address } = useAccount();
-  const listZkCertsMutation = useListZkCertsMutation();
   return useMutation(
     async (objContent: unknown) => {
       const parsedJson = zkCertSchema.parse(objContent);
 
       return invokeSnap({
         method: "importZkCert",
-        params: { zkCert: parsedJson },
+        params: { zkCert: parsedJson, listZkCerts: true },
       });
     },
     {
-      onSuccess: async () => {
+      onSuccess: async (data) => {
+        if (Array.isArray(data.gip69)) {
+          setCertsList(certs ? [...certs, ...data.gip69] : data.gip69);
+        }
         await queryClient.invalidateQueries(
           snapsKeys.zkCertStorageHashes(address)
         );
-        await listZkCertsMutation.mutateAsync({});
       },
     }
   );
