@@ -1,6 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useAccount, useMutation } from "wagmi";
 import { z } from "zod";
+import { toastError } from "shared/utils/toasts";
 import { invokeSnap } from "./api-sdk";
 import { useZkCerts } from "./hooks/use-zk-certs";
 import { snapsKeys } from "./keys";
@@ -53,9 +54,15 @@ export const useImportZkCertMutation = () => {
     },
     {
       onSuccess: async (data) => {
+        console.log(data);
         if (Array.isArray(data.gip69)) {
           setCertsList(certs ? [...certs, ...data.gip69] : data.gip69);
         }
+
+        if (typeof data === "string") {
+          toastError("This zkCertificate has already been imported.");
+        }
+
         await queryClient.invalidateQueries(
           snapsKeys.zkCertStorageHashes(address)
         );
