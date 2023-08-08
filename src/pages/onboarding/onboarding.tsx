@@ -41,6 +41,7 @@ export const Onboarding = () => {
           onChooseKycProvider={onChooseKycProvider}
           onUpload={() => {
             setIsOnboardingCompleted(true);
+            navigate(`/?showWideUploading=true`);
           }}
         />
       )}

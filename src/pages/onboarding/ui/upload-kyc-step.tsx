@@ -1,5 +1,5 @@
 import { UploadKycButton } from "features/upload-kyc";
-import { Button } from "shared/ui/button";
+import { Button, LinkButton } from "shared/ui/button";
 
 type Props = {
   onChooseKycProvider: () => void;
@@ -19,15 +19,9 @@ export const UploadKycStep = ({ onUpload, onChooseKycProvider }: Props) => {
       </p>
 
       <div className="flex gap-8">
-        <UploadKycButton
-          className="w-[216px]"
-          theme="primary"
-          onSuccessUpload={(data) => {
-            onUpload?.();
-          }}
-        >
+        <Button onClick={onUpload} className="w-[216px]" theme="primary">
           Upload secret file
-        </UploadKycButton>
+        </Button>
         <Button
           className="w-[216px]"
           theme="primaryTransparent"
