@@ -1,20 +1,26 @@
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { ChooseKycProviderCard, KycCard, KycNotFoundCard } from "entities/kyc";
 import { GenerationSbtCard } from "entities/sbt";
+import { useLocalStorage } from "usehooks-ts";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
 import { UploadKycCard } from "features/upload-kyc";
+import { LS_KEYS } from "shared/config/const";
 import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
 import { CONTRACTS_ADDRESSES, useSbtsQuery, useZkCerts } from "shared/snap";
 
 export const MyKYC = () => {
+  const [_, setShouldCallConfetti] = useLocalStorage(
+    LS_KEYS.shouldCallConfetti,
+    false
+  );
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const showWideUploading = searchParams.get("showWideUploading");
   const [zkCerts] = useZkCerts();
 
   const query = useSbtsQuery({
     select: ({ sbts }) => sbts,
-    enabled: false,
   });
 
   const hasBasicProof = query.data?.some(
@@ -85,7 +91,13 @@ export const MyKYC = () => {
                 Expiration Date <CheckIcon className="ml-1 w-4" />
               </div>
             </div>
-            <GenerateSbtButton className="mt-auto" />
+            <GenerateSbtButton
+              className="mt-auto"
+              onSuccess={async () => {
+                setShouldCallConfetti(true);
+                navigate("/my-sbt");
+              }}
+            />
           </GenerationSbtCard>
         )}
       </div>

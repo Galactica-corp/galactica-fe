@@ -1,6 +1,9 @@
+import JSConfetti from "js-confetti";
 import { SNAP_ID } from "shared/config/const";
 import { useClearStorageMutation, useListZkCertsMutation } from "shared/snap";
 import { Button } from "shared/ui/button";
+
+const jsConfetti = new JSConfetti();
 
 export const Dev = () => {
   const clearStorageMutation = useClearStorageMutation();
@@ -33,6 +36,14 @@ export const Dev = () => {
         }}
       >
         Get List zkKYC
+      </Button>
+
+      <Button
+        onClick={() => {
+          jsConfetti.addConfetti();
+        }}
+      >
+        Confetti
       </Button>
     </div>
   );

@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@react-spring/web':
     specifier: ^9.7.2
@@ -22,6 +26,9 @@ dependencies:
   ethers:
     specifier: ^5
     version: 5.7.2
+  js-confetti:
+    specifier: ^0.11.0
+    version: 0.11.0
   luxon:
     specifier: ^3.3.0
     version: 3.3.0
@@ -124,8 +131,8 @@ devDependencies:
     specifier: ^3.1.1
     version: 3.1.1(@typescript-eslint/parser@5.58.0)(eslint-import-resolver-typescript@3.5.5)(eslint@8.38.0)
   eslint-plugin-check-file:
-    specifier: ^2.2.0
-    version: 2.2.0(eslint@8.38.0)
+    specifier: ^2.6.1
+    version: 2.6.1(eslint@8.38.0)
   eslint-plugin-import:
     specifier: ^2.27.5
     version: 2.27.5(@typescript-eslint/parser@5.58.0)(eslint-import-resolver-typescript@3.5.5)(eslint@8.38.0)
@@ -3678,8 +3685,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-check-file@2.2.0(eslint@8.38.0):
-    resolution: {integrity: sha512-1eUUqM4ZavOAZd9VNOjb8ZbZ/ym9t8Wu7ur59hQ0kfB+8TX8Kw4FD1kgWOVmKF/HVginGnqdiH/Px2ZXFgrtaA==}
+  /eslint-plugin-check-file@2.6.1(eslint@8.38.0):
+    resolution: {integrity: sha512-2I7cAboj6sC2CG0oHan1bMKZlk/nLz78TLc+YIiIFTCwlp/rGm0WtrGTcZ+65WWeDU3JY5OsKgEWG7TcL1H4iQ==}
     engines: {node: 14.x || >= 16}
     peerDependencies:
       eslint: '>=7.28.0'
@@ -3687,7 +3694,6 @@ packages:
       eslint: 8.38.0
       is-glob: 4.0.3
       micromatch: 4.0.5
-      requireindex: 1.2.0
     dev: true
 
   /eslint-plugin-import@2.27.5(@typescript-eslint/parser@5.58.0)(eslint-import-resolver-typescript@3.5.5)(eslint@8.38.0):
@@ -4658,6 +4664,10 @@ packages:
     resolution: {integrity: sha512-QAdOptna2NYiSSpv0O/BwoHBSmz4YhpzJHyi+fnMRTXFjp7B8i/YG5Z8IfusxB1ufjcD2Sre1F3R+nX3fvy7gg==}
     hasBin: true
     dev: true
+
+  /js-confetti@0.11.0:
+    resolution: {integrity: sha512-Hc7I3VI4r4H0nq5q/oQK+JJwGoYRYVHK72fGk8E9Ay1dbh+aiZ9yl0yFp1K4oYeq7YFDQAndYChwqLPA3QWQuA==}
+    dev: false
 
   /js-sdsl@4.4.0:
     resolution: {integrity: sha512-FfVSdx6pJ41Oa+CF7RDaFmTnCaFhua+SNYQX74riGOpl96x+2jQCqEfQ2bnXu/5DPCqlRuiqyvTJM0Qjz26IVg==}
@@ -5649,11 +5659,6 @@ packages:
 
   /require-main-filename@2.0.0:
     resolution: {integrity: sha512-NKN5kMDylKuldxYLSUfrbo5Tuzh4hd+2E8NPPX02mZtn1VuREQToYe/ZdlJy+J3uCpfaiGF05e7B8W0iXbQHmg==}
-
-  /requireindex@1.2.0:
-    resolution: {integrity: sha512-L9jEkOi3ASd9PYit2cwRfyppc9NoABujTP8/5gFcbERmo5jUoAKovIC3fsF17pkTnGsrByysqX+Kxd2OTNI1ww==}
-    engines: {node: '>=0.10.5'}
-    dev: true
 
   /resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}

@@ -1,11 +1,17 @@
+import { useEffect } from "react";
 import classNames from "classnames";
 import { ChooseKycProviderCard } from "entities/kyc";
 import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
+import JSConfetti from "js-confetti";
+import { useLocalStorage } from "usehooks-ts";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
+import { LS_KEYS } from "shared/config/const";
 import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
 import { CONTRACTS_ADDRESSES, useSbtsQuery, useZkCerts } from "shared/snap";
 import { SkeletonCard } from "shared/ui/card";
+
+const jsConfetti = new JSConfetti();
 
 const DAPP_NAME = {
   [CONTRACTS_ADDRESSES.BASIC_KYC_EXAMPLE_DAPP]: "KYC SBT",
@@ -13,6 +19,10 @@ const DAPP_NAME = {
 };
 
 export const MySbt = () => {
+  const [shouldCallConfetti, setShouldCallConfetti] = useLocalStorage(
+    LS_KEYS.shouldCallConfetti,
+    false
+  );
   const [zkCerts] = useZkCerts();
 
   const query = useSbtsQuery({
@@ -25,6 +35,12 @@ export const MySbt = () => {
   const hasBasicProof = query.data?.some(
     (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.BASIC_KYC_EXAMPLE_DAPP
   );
+
+  useEffect(() => {
+    if (!shouldCallConfetti) return;
+    jsConfetti.addConfetti();
+    setShouldCallConfetti(false);
+  }, [setShouldCallConfetti, shouldCallConfetti]);
 
   return (
     <>
@@ -45,7 +61,12 @@ export const MySbt = () => {
                 Expiration Date <CheckIcon className="ml-1 w-4" />
               </div>
             </div>
-            <GenerateSbtButton className="mt-auto" />
+            <GenerateSbtButton
+              className="mt-auto"
+              onSuccess={async () => {
+                jsConfetti.addConfetti();
+              }}
+            />
           </GenerationSbtCard>
         )}
         {query.isLoading && query.isInitialLoading && <SkeletonCard />}

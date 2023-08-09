@@ -3,4 +3,5 @@ export const SNAP_ID =
 
 export const LS_KEYS = {
   isOnboardingCompleted: "isOnboardingCompleted",
+  shouldCallConfetti: "shouldCallConfetti",
 };
