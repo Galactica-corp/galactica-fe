@@ -37,7 +37,7 @@ export const MySbt = () => {
   );
 
   useEffect(() => {
-    if (!shouldCallConfetti && query.data?.length === 1) return;
+    if (!shouldCallConfetti || query.data?.length !== 1) return;
     jsConfetti.addConfetti();
     setShouldCallConfetti(false);
   }, [setShouldCallConfetti, shouldCallConfetti, query.data?.length]);
