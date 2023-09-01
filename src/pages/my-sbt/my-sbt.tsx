@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import classNames from "classnames";
 import { ChooseKycProviderCard } from "entities/kyc";
 import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
 import JSConfetti from "js-confetti";
+import { twMerge } from "tailwind-merge";
 import { useLocalStorage } from "usehooks-ts";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
@@ -46,7 +46,7 @@ export const MySbt = () => {
     <>
       <UpdateKycListAlert className="mb-10" />
 
-      <div className={classNames("grid grid-cols-3 gap-[1rem] pb-8")}>
+      <div className={twMerge("grid grid-cols-3 gap-[1rem] pb-8")}>
         {zkCerts?.length === 0 && <ChooseKycProviderCard />}
         {query.isSuccess && !hasBasicProof && zkCerts?.length !== 0 && (
           <GenerationSbtCard>

@@ -1,5 +1,4 @@
-import { UploadKycButton } from "features/upload-kyc";
-import { Button, LinkButton } from "shared/ui/button";
+import { Button } from "shared/ui/button";
 
 type Props = {
   onChooseKycProvider: () => void;

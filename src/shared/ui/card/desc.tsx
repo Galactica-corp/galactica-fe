@@ -1,9 +1,11 @@
 import { PropsWithChildren } from "react";
-import cn from "classnames";
+import { twMerge } from "tailwind-merge";
 import { ClassName } from "shared/types";
 
 export const Desc = ({ children, className }: PropsWithChildren<ClassName>) => {
   return (
-    <p className={cn(className, "text-sm text-mineShaft/50")}>{children}</p>
+    <p className={twMerge("text-sm text-mineShaft/50", className)}>
+      {children}
+    </p>
   );
 };

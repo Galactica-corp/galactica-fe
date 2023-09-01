@@ -1,5 +1,5 @@
 import { PropsWithChildren, ReactNode } from "react";
-import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 import { ClassName } from "shared/types";
 import { Card as UICard } from "shared/ui/card";
 import CardPng from "../assets/bg.png";
@@ -17,7 +17,7 @@ export const Card = ({
 }: PropsWithChildren<Props>) => {
   return (
     <UICard
-      className={classNames(className, "bg-cover bg-center bg-no-repeat")}
+      className={twMerge("bg-cover bg-center bg-no-repeat", className)}
       style={{ backgroundImage: `url(${CardPng})` }}
       title={title}
       desc={desc}

@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 import { ClassName } from "shared/types";
 import { Card as UICard } from "shared/ui/card";
 import { dateX } from "shared/utils";
@@ -19,7 +19,7 @@ export const Card = ({
 }: Props) => {
   return (
     <UICard
-      className={classNames(className, "min-h-[238px]")}
+      className={twMerge("min-h-[238px]", className)}
       title={title}
       desc="This SBT contains a zkProof demonstrating that you hold a valid KYC."
     >

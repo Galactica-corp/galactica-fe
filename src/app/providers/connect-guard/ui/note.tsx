@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 import { ReactComponent as MetamaskFlaskSvg } from "shared/icons/metamask-flask.svg";
 import { ReactComponent as MetamaskWithToggle } from "shared/icons/metamask-with-toggle.svg";
 import { ReactComponent as RightArrow } from "shared/icons/right-arrow.svg";
@@ -7,7 +7,7 @@ import { ClassName } from "shared/types";
 export const Note = ({ className }: ClassName) => {
   return (
     <div
-      className={classNames(
+      className={twMerge(
         "flex items-center justify-center gap-6 rounded-[10px] border border-sandyBrown p-6",
         className
       )}

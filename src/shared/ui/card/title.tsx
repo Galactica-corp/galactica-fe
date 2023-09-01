@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import cn from "classnames";
+import { twMerge } from "tailwind-merge";
 import { ClassName } from "shared/types";
 
 export const Title = ({
@@ -8,9 +8,9 @@ export const Title = ({
 }: PropsWithChildren<ClassName>) => {
   return (
     <h3
-      className={cn(
-        className,
-        "font-antiqueLegacy text-[28px] font-light text-mineShaft"
+      className={twMerge(
+        "font-antiqueLegacy text-[28px] font-light text-mineShaft",
+        className
       )}
     >
       {children}

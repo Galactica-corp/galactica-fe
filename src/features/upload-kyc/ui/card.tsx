@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { useDropzone } from "react-dropzone";
-import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 import { useImportZkCertMutation } from "shared/snap/use-import-zk-cert-mutation";
 import { ClassName } from "shared/types";
 import { ButtonTheme, FileInputButton } from "shared/ui/button";
@@ -48,10 +48,10 @@ export function UploadKycCard({
 
   return (
     <div
-      className={classNames(
-        className,
+      className={twMerge(
+        "card cursor-pointer items-center justify-center border-dashed bg-transparent shadow-none transition-colors",
         isDragActive && "border-sandyBrown",
-        "card cursor-pointer items-center justify-center border-dashed bg-transparent shadow-none transition-colors"
+        className
       )}
       {...getRootProps()}
     >

@@ -10,11 +10,10 @@ import { toastError, toastSuccess } from "shared/utils/toasts";
 
 type Props = {
   onClose: () => void;
-  onSuccess?: (data: string) => void;
   onError?: () => void;
 };
 
-export const GenerateModal = ({ onClose, onSuccess, onError }: Props) => {
+export const GenerateModal = ({ onClose, onError }: Props) => {
   const [url, setUrl] = useState<string>("");
   const mutation = useGenerateCommitmentHashMutation();
 

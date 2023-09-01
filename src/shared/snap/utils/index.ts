@@ -1,5 +1,5 @@
 import { Provider } from "@wagmi/core";
-import BigNumber from "bignumber.js";
+import { default as BigNumber } from "bignumber.js";
 
 export function fromHexToDec(hexIn: string): string {
   if (hexIn.startsWith("0x")) {

@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 import { ClassName } from "shared/types";
 
 export const Title = ({
@@ -7,7 +7,7 @@ export const Title = ({
   className,
 }: PropsWithChildren<ClassName>) => {
   return (
-    <h3 className={classNames(className, "text-center text-[32px] font-light")}>
+    <h3 className={twMerge("text-center text-[32px] font-light", className)}>
       {children}
     </h3>
   );

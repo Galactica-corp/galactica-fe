@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 import { ReactComponent as InfoIcon } from "shared/icons/info.svg";
 import { ClassName } from "shared/types";
 import { Tooltip } from "../tooltip";
@@ -17,7 +17,7 @@ export const Info = ({
   label,
 }: PropsWithChildren<Props>) => {
   return (
-    <div className={classNames(className, "flex flex-col")}>
+    <div className={twMerge("flex flex-col", className)}>
       <div className="flex items-center text-sm font-light text-mineShaft/50">
         {label}{" "}
         {tip && (

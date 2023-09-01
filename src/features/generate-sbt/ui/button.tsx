@@ -1,5 +1,5 @@
 import { useState } from "react";
-import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 import { useGenBasicProofMutation } from "shared/snap";
 import { ClassName } from "shared/types";
 import { Button as UIButton } from "shared/ui/button";
@@ -16,7 +16,7 @@ export const Button = ({ className, onSuccess }: Props) => {
 
   return (
     <UIButton
-      className={classNames("w-full", className)}
+      className={twMerge(className, "w-full")}
       disabled={genMutation.isLoading}
       onClick={() => {
         setBtnText("Generating...");

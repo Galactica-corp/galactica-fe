@@ -1,5 +1,5 @@
 import { ComponentProps, forwardRef } from "react";
-import cn from "classnames";
+import { twMerge } from "tailwind-merge";
 import { Spinner } from "../spinner";
 import { THEME, baseCls } from "./styles";
 import { CommonButtonProps } from "./types";
@@ -19,7 +19,7 @@ export const FileInputButton = forwardRef<HTMLInputElement, Props>(
     ref
   ) => {
     return (
-      <label className={cn(baseCls, THEME[theme], className)}>
+      <label className={twMerge(baseCls, THEME[theme], className)}>
         <input
           {...props}
           ref={ref}

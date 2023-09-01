@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 import { useUpdateKycList } from "features/update-kyc-list/hooks";
 import { ClassName } from "shared/types";
 
@@ -9,9 +9,9 @@ export const Alert = ({ className }: ClassName) => {
 
   return (
     <div
-      className={classNames(
-        className,
-        "flex w-full justify-center rounded-[10px] bg-oldLace py-3 text-naturalGray"
+      className={twMerge(
+        "flex w-full justify-center rounded-[10px] bg-oldLace py-3 text-naturalGray",
+        className
       )}
     >
       Information is outdated! Please, approve an access request in MetaMask to

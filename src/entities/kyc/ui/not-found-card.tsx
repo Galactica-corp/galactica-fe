@@ -1,4 +1,4 @@
-import cn from "classnames";
+import { twMerge } from "tailwind-merge";
 import { ReactComponent as CardSpinnerIcon } from "shared/icons/card-spinner.svg";
 import notFoundBgPng from "shared/images/cards/kyc/not-found.png";
 import { ClassName } from "shared/types";
@@ -9,9 +9,9 @@ export const NotFoundCard = ({ className }: ClassName) => {
   return (
     <Card
       title="Can't find your zkKYC? "
-      className={cn(
-        className,
-        "card min-h-[238px] bg-cover bg-center bg-no-repeat"
+      className={twMerge(
+        "card min-h-[238px] bg-cover bg-center bg-no-repeat",
+        className
       )}
       style={{ backgroundImage: `url(${notFoundBgPng})` }}
     >

@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { animated, useSpring } from "@react-spring/web";
-import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 import { useLockedBody } from "usehooks-ts";
 import { ClassName } from "shared/types";
 import { Portal } from "../portal";
@@ -27,10 +27,7 @@ export function Modal({ delay = 0, children, onClose, className }: Props) {
     <Portal>
       <animated.div
         style={springs}
-        className={classNames(
-          className,
-          "fixed inset-0 flex overflow-y-auto p-5"
-        )}
+        className={twMerge("fixed inset-0 flex overflow-y-auto p-5", className)}
       >
         <div className="fixed inset-0 bg-mineShaft/70" onClick={onClose} />
         {children}

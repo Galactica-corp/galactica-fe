@@ -1,6 +1,6 @@
-import classNames from "classnames";
 import { ChooseKycProviderCard } from "entities/kyc";
 import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
+import { twMerge } from "tailwind-merge";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { CONTRACTS_ADDRESSES, useSbtsQuery, useZkCerts } from "shared/snap";
 
@@ -12,7 +12,7 @@ export const MySbtDev = () => {
   });
 
   return (
-    <div className={classNames("grid grid-cols-3 gap-[1rem] pb-8")}>
+    <div className={twMerge("grid grid-cols-3 gap-[1rem] pb-8")}>
       {zkCerts?.length === 0 && <ChooseKycProviderCard />}
       {zkCerts?.length > 0 && (
         <GenerationSbtCard>

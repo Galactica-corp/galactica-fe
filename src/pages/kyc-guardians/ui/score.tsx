@@ -1,4 +1,4 @@
-import cn from "classnames";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   value: number;
@@ -8,10 +8,10 @@ type Props = {
 export const Score = ({ value, className }: Props) => {
   return (
     <div
-      className={cn(
+      className={twMerge(
+        "inline-flex rounded-md px-[15px] py-[5px] text-white",
         value >= 8 && "bg-burntSienna",
         value >= 5 && value < 8 && "bg-grayNickel",
-        "inline-flex rounded-md px-[15px] py-[5px] text-white",
         className
       )}
     >

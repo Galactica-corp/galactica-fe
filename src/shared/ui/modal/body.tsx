@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import cn from "classnames";
+import { twMerge } from "tailwind-merge";
 import { ReactComponent as CloseIcon } from "shared/icons/close.svg";
 import { ClassName } from "shared/types";
 import modalBgPng from "./modal-bg.png";
@@ -19,7 +19,7 @@ export const Body = ({
   return (
     <div
       style={{ backgroundImage: bg ? `url(${bg})` : "none" }}
-      className={cn(
+      className={twMerge(
         "relative m-auto flex min-h-[460px] min-w-[650px] flex-col items-center rounded-lg border border-alto bg-white bg-cover bg-center",
         className
       )}

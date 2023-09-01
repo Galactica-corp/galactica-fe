@@ -1,5 +1,5 @@
 import { CSSProperties, PropsWithChildren, ReactNode } from "react";
-import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 import { ClassName } from "shared/types";
 import { Desc } from "./desc";
 import { Info } from "./info";
@@ -19,7 +19,7 @@ export const Card = ({
   style,
 }: PropsWithChildren<Props>) => {
   return (
-    <div style={style} className={classNames(className, "card")}>
+    <div style={style} className={twMerge(className, "card")}>
       {title && <Title>{title}</Title>}
       {desc && <Desc className="mt-2.5">{desc}</Desc>}
       {children}

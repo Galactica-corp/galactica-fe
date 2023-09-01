@@ -1,4 +1,4 @@
-import cn from "classnames";
+import { twMerge } from "tailwind-merge";
 import { SIZES, Size, THEMES, Theme } from "./styles";
 import styles from "./styles.module.css";
 
@@ -14,9 +14,9 @@ export const Spinner = ({
   className,
 }: Props) => {
   return (
-    <div className={cn("inline-flex items-center", className)}>
+    <div className={twMerge("inline-flex items-center", className)}>
       <span
-        className={cn(
+        className={twMerge(
           "inline-block rounded-full",
           styles.spinner,
           THEMES[theme],

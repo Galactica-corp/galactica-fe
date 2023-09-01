@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 import { ClassName } from "shared/types";
 import { Score } from "./score";
 
@@ -14,9 +14,9 @@ type RowProps = {
 export const Row = ({ className, onStart, ...mock }: RowProps & ClassName) => {
   return (
     <div
-      className={classNames(
-        className,
-        "grid grid-cols-[1fr,3fr,2fr,2fr,2fr,2fr] items-center py-8 pl-5"
+      className={twMerge(
+        "grid grid-cols-[1fr,3fr,2fr,2fr,2fr,2fr] items-center py-8 pl-5",
+        className
       )}
     >
       <div className="text-mineShaft">{mock.number}</div>

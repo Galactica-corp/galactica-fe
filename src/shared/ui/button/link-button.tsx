@@ -1,5 +1,5 @@
 import { Link, LinkProps } from "react-router-dom";
-import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 import { Spinner } from "../spinner";
 import { baseCls, primaryCls, primaryTransparentCls } from "./styles";
 import { CommonButtonProps } from "./types";
@@ -20,12 +20,10 @@ export const LinkButton = ({
       onClick={(e) => {
         disabled && e.preventDefault();
       }}
-      className={classNames(
+      className={twMerge(
         baseCls,
-        {
-          [primaryCls]: theme === "primary",
-          [primaryTransparentCls]: theme === "primaryTransparent",
-        },
+        theme === "primary" && primaryCls,
+        theme === "primaryTransparent" && primaryTransparentCls,
         className
       )}
     >

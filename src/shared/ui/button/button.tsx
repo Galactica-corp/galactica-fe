@@ -1,5 +1,5 @@
 import { ComponentProps } from "react";
-import cn from "classnames";
+import { twMerge } from "tailwind-merge";
 import { Spinner } from "../spinner";
 import { THEME, baseCls } from "./styles";
 import { CommonButtonProps } from "./types";
@@ -20,7 +20,7 @@ export function Button({
   return (
     <button
       {...btnProps}
-      className={cn(baseCls, THEME[theme], className)}
+      className={twMerge(baseCls, THEME[theme], className)}
       onClick={onClick}
       disabled={disabled}
     >

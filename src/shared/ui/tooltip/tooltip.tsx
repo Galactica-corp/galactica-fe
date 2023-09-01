@@ -1,6 +1,6 @@
 import { ComponentProps } from "react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
-import cn from "classnames";
+import { twMerge } from "tailwind-merge";
 
 export const Tooltip = ({
   className,
@@ -8,7 +8,7 @@ export const Tooltip = ({
 }: ComponentProps<typeof ReactTooltip>) => {
   return (
     <ReactTooltip
-      className={cn(className, "react-tooltip-custom")}
+      className={twMerge(className, "react-tooltip-custom")}
       delayShow={150}
       {...props}
     />
