@@ -1,28 +1,28 @@
 import { Chain } from "wagmi";
 
 export const galacticaTestnet: Chain = {
-  id: 41233,
-  name: "Galactica-DevNet-v1.1",
-  network: "Galactica",
+  id: 41238,
+  name: "Galactica-Andromeda",
+  network: "Galactica-Andromeda",
   nativeCurrency: {
     decimals: 18,
     name: "Galactica",
-    symbol: "GNET",
+    symbol: "UGNET",
   },
   rpcUrls: {
     default: {
-      http: ["https://evm-rpc-http-devnet-41233.galactica.com/"],
-      webSocket: ["wss://evm-rpc-ws-devnet-41233.galactica.com/"],
+      http: ["https://evm-rpc-http-andromeda.galactica.com/"],
+      webSocket: ["wss://evm-rpc-ws-andromeda.galactica.com/"],
     },
     public: {
-      http: ["https://evm-rpc-http-devnet-41233.galactica.com/"],
-      webSocket: ["wss://evm-rpc-ws-devnet-41233.galactica.com/"],
+      http: ["https://evm-rpc-http-andromeda.galactica.com/"],
+      webSocket: ["wss://evm-rpc-ws-andromeda.galactica.com/"],
     },
   },
   blockExplorers: {
     default: {
       name: "BlockScout",
-      url: "https://explorer-devnet-41233.galactica.com/",
+      url: "https://explorer-andromeda.galactica.com/",
     },
   },
   testnet: true,
