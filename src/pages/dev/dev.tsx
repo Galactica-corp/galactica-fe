@@ -58,6 +58,14 @@ export const Dev = () => {
       >
         genCommitmentHashMutation
       </Button>
+
+      <Button
+        onClick={() => {
+          genCommitmentHashMutation.mutate();
+        }}
+      >
+        genCommitmentHashMutation
+      </Button>
     </div>
   );
 };

@@ -3,7 +3,6 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useAccount, useMutation } from "wagmi";
 import { z } from "zod";
 import { toastError } from "shared/utils/toasts";
-import { invokeSnap } from "./api-sdk";
 import { useZkCerts } from "./hooks/use-zk-certs";
 import { snapsKeys } from "./keys";
 

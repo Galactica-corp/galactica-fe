@@ -19,3 +19,9 @@ declare global {
     ethereum?: Ethereum;
   }
 }
+
+declare module "@galactica-net/snap-api" {
+  interface Snap {
+    enabled: boolean;
+  }
+}
