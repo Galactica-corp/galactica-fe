@@ -1,3 +1,4 @@
+import { importZkCert } from "@galactica-net/snap-api";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAccount, useMutation } from "wagmi";
 import { z } from "zod";
@@ -46,11 +47,7 @@ export const useImportZkCertMutation = () => {
   return useMutation(
     async (objContent: unknown) => {
       const parsedJson = zkCertSchema.parse(objContent);
-
-      return invokeSnap({
-        method: "importZkCert",
-        params: { zkCert: parsedJson, listZkCerts: true },
-      });
+      return importZkCert({ encryptedZkCert: parsedJson, listZkCerts: true });
     },
     {
       onSuccess: async (data) => {

@@ -1,11 +1,11 @@
+import { ZkCertMetadataList, listZkCerts } from "@galactica-net/snap-api";
 import { UseMutationOptions, useMutation } from "@tanstack/react-query";
-import { InvokeListZkCertsResponse, invokeSnap } from "./api-sdk";
 import { useZkCertHash } from "./hooks/use-zk-cert-hash";
 import { useZkCerts } from "./hooks/use-zk-certs";
 import { useGetZkCertStorageHashesQuery } from "./use-get-zk-cert-storage-hashes-query";
 
 export const useListZkCertsMutation = (
-  options?: UseMutationOptions<InvokeListZkCertsResponse, Error, unknown>
+  options?: UseMutationOptions<ZkCertMetadataList, Error, unknown>
 ) => {
   const [_, setCertsList] = useZkCerts();
   const [_h, setZkHash] = useZkCertHash();
@@ -13,7 +13,7 @@ export const useListZkCertsMutation = (
 
   return useMutation({
     mutationFn: async () => {
-      return invokeSnap({ method: "listZkCerts" });
+      return listZkCerts();
     },
     onSuccess: (data) => {
       if (!hashQuery.data) return;

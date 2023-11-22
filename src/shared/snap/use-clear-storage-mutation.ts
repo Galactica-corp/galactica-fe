@@ -1,6 +1,6 @@
+import { clearStorage } from "@galactica-net/snap-api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAccount } from "wagmi";
-import { invokeSnap } from "./api-sdk";
 import { useZkCertHash } from "./hooks/use-zk-cert-hash";
 import { useZkCerts } from "./hooks/use-zk-certs";
 import { snapsKeys } from "./keys";
@@ -14,7 +14,7 @@ export const useClearStorageMutation = () => {
 
   return useMutation({
     mutationFn: async () => {
-      return invokeSnap({ method: "clearStorage" });
+      return clearStorage();
     },
     onSuccess: () => {
       setZkCerts([]);

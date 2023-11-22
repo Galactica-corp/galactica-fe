@@ -1,6 +1,10 @@
 import JSConfetti from "js-confetti";
 import { SNAP_ID } from "shared/config/const";
-import { useClearStorageMutation, useListZkCertsMutation } from "shared/snap";
+import {
+  useClearStorageMutation,
+  useGenerateCommitmentHashMutation,
+  useListZkCertsMutation,
+} from "shared/snap";
 import { Button } from "shared/ui/button";
 
 const jsConfetti = new JSConfetti();
@@ -8,6 +12,7 @@ const jsConfetti = new JSConfetti();
 export const Dev = () => {
   const clearStorageMutation = useClearStorageMutation();
   const zkCertsMutation = useListZkCertsMutation();
+  const genCommitmentHashMutation = useGenerateCommitmentHashMutation();
 
   return (
     <div>
@@ -44,6 +49,14 @@ export const Dev = () => {
         }}
       >
         Confetti
+      </Button>
+
+      <Button
+        onClick={() => {
+          genCommitmentHashMutation.mutate();
+        }}
+      >
+        genCommitmentHashMutation
       </Button>
     </div>
   );

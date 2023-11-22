@@ -1,3 +1,4 @@
+import { getSnaps } from "@galactica-net/snap-api";
 import { useQuery } from "@tanstack/react-query";
 import { snapsKeys } from "./keys";
 import { useIsFlaskQuery } from "./use-is-flask-query";
@@ -8,9 +9,7 @@ export const useGetSnapQuery = (snapId = import.meta.env.VITE_SNAP_ID) => {
   return useQuery({
     queryKey: snapsKeys.snap(snapId),
     queryFn: async () => {
-      const snaps = await window.ethereum?.request({
-        method: "wallet_getSnaps",
-      });
+      const snaps = getSnaps();
 
       if (!snaps) return null;
 

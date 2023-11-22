@@ -1,6 +1,6 @@
+import { getZkStorageHashes } from "@galactica-net/snap-api";
 import { useQuery } from "@tanstack/react-query";
 import { useAccount } from "wagmi";
-import { invokeSnap } from "./api-sdk";
 import { useZkCertHash } from "./hooks/use-zk-cert-hash";
 import { snapsKeys } from "./keys";
 
@@ -13,7 +13,7 @@ export const useGetZkCertStorageHashesQuery = () => {
     refetchInterval: 10000,
     staleTime: 0,
     queryFn: async () => {
-      const response = await invokeSnap({ method: "getZkCertStorageHashes" });
+      const response = await getZkStorageHashes();
       if (!hash) setHash(response.gip69 ?? "");
       return response;
     },

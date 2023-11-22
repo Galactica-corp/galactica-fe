@@ -1,6 +1,6 @@
 import { Address } from "wagmi";
 import { SNAP_ID } from "shared/config/const";
-import { ZkCertStandard, ZkCertsListItem } from "./types";
+import { ZkCertStandard } from "./types";
 
 type InvokeGetHolderCommitment = {
   method: "getHolderCommitment";
@@ -55,24 +55,15 @@ type InvokeRequest =
   | InvokeListZkCertsRequest
   | InvokeGetZkCertStorageHashes;
 
-export type InvokeListZkCertsResponse = Record<
-  ZkCertStandard,
-  ZkCertsListItem[] | undefined
->;
-
 type InvokeResponse<T> = T extends InvokeGetHolderCommitment
   ? string
   : T extends InvokeGenZkKycProof
   ? unknown // TODO
   : T extends InvokeClearStorageRequest
   ? string
-  : T extends InvokeImportZkCert
-  ? Record<ZkCertStandard, ZkCertsListItem[] | undefined> // TODO: fix this type
   : T extends InvokeExportZkCertRequest
   ? unknown // TODO: fix this type
   : T extends InvokeListZkCertsRequest
-  ? InvokeListZkCertsResponse
-  : T extends InvokeGetZkCertStorageHashes
   ? Record<ZkCertStandard, string | undefined>
   : never;
 
