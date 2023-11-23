@@ -1,7 +1,11 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { sdkConfig } from "@galactica-net/snap-api";
 import { BrowserTracing, Replay, init } from "@sentry/react";
 import { App } from "app/app";
+
+sdkConfig.defaultSnapOrigin =
+  import.meta.env.VITE_SNAP_ID ?? "npm:@galactica-net/snap-beta";
 
 if (import.meta.env.VITE_SENTRY === "on" && import.meta.env.PROD) {
   init({
