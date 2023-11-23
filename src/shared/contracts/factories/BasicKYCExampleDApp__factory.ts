@@ -11,93 +11,93 @@ import type {
 
 const _abi = [
   {
-    type: "constructor",
-    stateMutability: "nonpayable",
     inputs: [
       {
-        type: "address",
+        internalType: "contract VerificationSBT",
         name: "_SBT",
-        internalType: "contract VerificationSBT",
+        type: "address",
       },
       {
-        type: "address",
-        name: "_verifierWrapper",
         internalType: "contract IZkKYCVerifier",
-      },
-    ],
-  },
-  {
-    type: "function",
-    stateMutability: "view",
-    outputs: [
-      {
+        name: "_verifierWrapper",
         type: "address",
-        name: "",
-        internalType: "contract VerificationSBT",
       },
     ],
-    name: "SBT",
-    inputs: [],
+    stateMutability: "nonpayable",
+    type: "constructor",
   },
   {
-    type: "function",
-    stateMutability: "view",
+    inputs: [],
+    name: "SBT",
     outputs: [
       {
-        type: "bool",
+        internalType: "contract VerificationSBT",
         name: "",
-        internalType: "bool",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "account",
+        type: "address",
       },
     ],
     name: "isVerified",
-    inputs: [
-      {
-        type: "address",
-        name: "account",
-        internalType: "address",
-      },
-    ],
-  },
-  {
-    type: "function",
-    stateMutability: "nonpayable",
-    outputs: [],
-    name: "registerKYC",
-    inputs: [
-      {
-        type: "uint256[2]",
-        name: "a",
-        internalType: "uint256[2]",
-      },
-      {
-        type: "uint256[2][2]",
-        name: "b",
-        internalType: "uint256[2][2]",
-      },
-      {
-        type: "uint256[2]",
-        name: "c",
-        internalType: "uint256[2]",
-      },
-      {
-        type: "uint256[]",
-        name: "input",
-        internalType: "uint256[]",
-      },
-    ],
-  },
-  {
-    type: "function",
-    stateMutability: "view",
     outputs: [
       {
-        type: "address",
+        internalType: "bool",
         name: "",
-        internalType: "contract IZkKYCVerifier",
+        type: "bool",
       },
     ],
-    name: "verifierWrapper",
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256[2]",
+        name: "a",
+        type: "uint256[2]",
+      },
+      {
+        internalType: "uint256[2][2]",
+        name: "b",
+        type: "uint256[2][2]",
+      },
+      {
+        internalType: "uint256[2]",
+        name: "c",
+        type: "uint256[2]",
+      },
+      {
+        internalType: "uint256[]",
+        name: "input",
+        type: "uint256[]",
+      },
+    ],
+    name: "registerKYC",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [],
+    name: "verifierWrapper",
+    outputs: [
+      {
+        internalType: "contract IZkKYCVerifier",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
   },
 ] as const;
 

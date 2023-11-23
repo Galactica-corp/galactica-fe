@@ -1,3 +1,4 @@
+import { GenZkProofParams } from "@galactica-net/snap-api";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAccount, useMutation, useProvider, useSigner } from "wagmi";
 import { CONTRACTS_ADDRESSES } from "shared/config/const";
@@ -40,17 +41,22 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
       );
       const zkKYCProver = await response.json();
 
+      console.log(zkKYCProver);
+
       const zkp: any = await invokeSnap({
         method: "genZkKycProof",
         params: {
           input: proofInput,
           requirements: {
             zkCertStandard: "gip69" as const,
+            registryAddress: CONTRACTS_ADDRESSES.ZK_KYC_REGISTRY,
           },
           userAddress: address,
-          wasm: (zkKYCProver as any).wasm,
-          zkeyHeader: (zkKYCProver as any).zkeyHeader,
-          zkeySections: (zkKYCProver as any).zkeySections,
+          prover: {
+            wasm: (zkKYCProver as any).wasm,
+            zkeyHeader: (zkKYCProver as any).zkeyHeader,
+            zkeySections: (zkKYCProver as any).zkeySections,
+          },
         },
       });
 

@@ -1,65 +1,91 @@
 [
   {
-    "type": "constructor",
-    "stateMutability": "nonpayable",
     "inputs": [
       {
-        "type": "address",
+        "internalType": "contract VerificationSBT",
         "name": "_SBT",
-        "internalType": "contract VerificationSBT"
+        "type": "address"
       },
       {
-        "type": "address",
+        "internalType": "contract IZkKYCVerifier",
         "name": "_verifierWrapper",
-        "internalType": "contract IZkKYCVerifier"
-      }
-    ]
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "outputs": [
-      {
-        "type": "address",
-        "name": "",
-        "internalType": "contract VerificationSBT"
+        "type": "address"
       }
     ],
-    "name": "SBT",
-    "inputs": []
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "outputs": [{ "type": "bool", "name": "", "internalType": "bool" }],
-    "name": "isVerified",
-    "inputs": [
-      { "type": "address", "name": "account", "internalType": "address" }
-    ]
-  },
-  {
-    "type": "function",
     "stateMutability": "nonpayable",
-    "outputs": [],
-    "name": "registerKYC",
-    "inputs": [
-      { "type": "uint256[2]", "name": "a", "internalType": "uint256[2]" },
-      { "type": "uint256[2][2]", "name": "b", "internalType": "uint256[2][2]" },
-      { "type": "uint256[2]", "name": "c", "internalType": "uint256[2]" },
-      { "type": "uint256[]", "name": "input", "internalType": "uint256[]" }
-    ]
+    "type": "constructor"
   },
   {
-    "type": "function",
-    "stateMutability": "view",
+    "inputs": [],
+    "name": "SBT",
     "outputs": [
       {
-        "type": "address",
+        "internalType": "contract VerificationSBT",
         "name": "",
-        "internalType": "contract IZkKYCVerifier"
+        "type": "address"
       }
     ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "isVerified",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256[2]",
+        "name": "a",
+        "type": "uint256[2]"
+      },
+      {
+        "internalType": "uint256[2][2]",
+        "name": "b",
+        "type": "uint256[2][2]"
+      },
+      {
+        "internalType": "uint256[2]",
+        "name": "c",
+        "type": "uint256[2]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "input",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "registerKYC",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "verifierWrapper",
-    "inputs": []
+    "outputs": [
+      {
+        "internalType": "contract IZkKYCVerifier",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   }
 ]

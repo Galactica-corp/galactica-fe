@@ -1,3 +1,4 @@
+import { GenZkProofParams } from "@galactica-net/snap-api";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAccount, useMutation, useProvider, useSigner } from "wagmi";
 import { CONTRACTS_ADDRESSES } from "shared/config/const";
@@ -48,12 +49,15 @@ export const useGenZkRepeatableProofMutation = ({
           input: proofInput,
           requirements: {
             zkCertStandard: "gip69" as const,
+            registryAddress: CONTRACTS_ADDRESSES.ZK_KYC_REGISTRY,
           },
-          userAddress: address,
-          wasm: (zkKYCProver as any).wasm,
-          zkeyHeader: (zkKYCProver as any).zkeyHeader,
-          zkeySections: (zkKYCProver as any).zkeySections,
-        },
+          userAddress: address.toString(),
+          prover: {
+            wasm: (zkKYCProver as any).wasm,
+            zkeyHeader: (zkKYCProver as any).zkeyHeader,
+            zkeySections: (zkKYCProver as any).zkeySections,
+          },
+        } as GenZkProofParams<any>,
       });
 
       onPublish?.();

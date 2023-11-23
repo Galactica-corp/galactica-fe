@@ -12,11 +12,14 @@ type InvokeGenZkKycProof = {
     input: Record<string, unknown>;
     requirements: {
       zkCertStandard: "gip69";
+      registryAddress: string;
     };
-    userAddress: Address;
-    wasm: string;
-    zkeyHeader: Record<string, unknown>;
-    zkeySections: string[];
+    userAddress: string;
+    prover: {
+      wasm: string;
+      zkeyHeader: Record<string, unknown>;
+      zkeySections: string[];
+    };
   };
 };
 
