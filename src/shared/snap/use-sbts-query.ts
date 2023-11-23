@@ -2,8 +2,9 @@ import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 import { BigNumber, EventFilter, ethers } from "ethers";
 import invariant from "tiny-invariant";
 import { useAccount, useProvider } from "wagmi";
+import { CONTRACTS_ADDRESSES } from "shared/config/const";
 import { IVerificationSBT__factory } from "shared/contracts";
-import { CONTRACTS_ADDRESSES, SNAP_LS_KEYS } from "./const";
+import { SNAP_LS_KEYS } from "./const";
 import { snapsKeys } from "./keys";
 import { SbtDetails } from "./types";
 

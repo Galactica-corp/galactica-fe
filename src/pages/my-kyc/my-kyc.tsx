@@ -5,9 +5,9 @@ import { useLocalStorage } from "usehooks-ts";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
 import { UploadKycCard } from "features/upload-kyc";
-import { LS_KEYS } from "shared/config/const";
+import { CONTRACTS_ADDRESSES, LS_KEYS } from "shared/config/const";
 import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
-import { CONTRACTS_ADDRESSES, useSbtsQuery, useZkCerts } from "shared/snap";
+import { useSbtsQuery, useZkCerts } from "shared/snap";
 
 export const MyKYC = () => {
   const [_, setShouldCallConfetti] = useLocalStorage(
@@ -24,7 +24,7 @@ export const MyKYC = () => {
   });
 
   const hasBasicProof = query.data?.some(
-    (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.BASIC_KYC_EXAMPLE_DAPP
+    (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.EXAMPLE_ZK_KYC
   );
 
   if (showWideUploading) {

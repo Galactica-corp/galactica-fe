@@ -1,8 +1,8 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useAccount, useMutation, useProvider, useSigner } from "wagmi";
+import { CONTRACTS_ADDRESSES } from "shared/config/const";
 import { BasicKYCExampleDApp__factory } from "shared/contracts";
 import { invokeSnap } from "./api-sdk";
-import { CONTRACTS_ADDRESSES } from "./const";
 import { snapsKeys } from "./keys";
 import { SbtDetails } from "./types";
 import {
@@ -31,7 +31,7 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
 
       const proofInput = {
         currentTime: expectedValidationTimestamp,
-        dAppAddress: CONTRACTS_ADDRESSES.BASIC_KYC_EXAMPLE_DAPP,
+        dAppAddress: CONTRACTS_ADDRESSES.EXAMPLE_ZK_KYC,
         investigationInstitutionPubKey: [],
       };
 
@@ -59,7 +59,7 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
       const publicInputs = processPublicSignals(zkp.publicSignals);
 
       const basicKycExampleDAppSC = BasicKYCExampleDApp__factory.connect(
-        CONTRACTS_ADDRESSES.BASIC_KYC_EXAMPLE_DAPP,
+        CONTRACTS_ADDRESSES.EXAMPLE_ZK_KYC,
         signerQuery.data
       );
 

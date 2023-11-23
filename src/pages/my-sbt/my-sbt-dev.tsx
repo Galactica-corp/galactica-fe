@@ -2,7 +2,8 @@ import { ChooseKycProviderCard } from "entities/kyc";
 import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
 import { twMerge } from "tailwind-merge";
 import { GenerateSbtButton } from "features/generate-sbt";
-import { CONTRACTS_ADDRESSES, useSbtsQuery, useZkCerts } from "shared/snap";
+import { CONTRACTS_ADDRESSES } from "shared/config/const";
+import { useSbtsQuery, useZkCerts } from "shared/snap";
 
 export const MySbtDev = () => {
   const [zkCerts] = useZkCerts();

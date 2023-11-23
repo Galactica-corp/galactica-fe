@@ -6,15 +6,15 @@ import { twMerge } from "tailwind-merge";
 import { useLocalStorage } from "usehooks-ts";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
-import { LS_KEYS } from "shared/config/const";
+import { CONTRACTS_ADDRESSES, LS_KEYS } from "shared/config/const";
 import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
-import { CONTRACTS_ADDRESSES, useSbtsQuery, useZkCerts } from "shared/snap";
+import { useSbtsQuery, useZkCerts } from "shared/snap";
 import { SkeletonCard } from "shared/ui/card";
 
 const jsConfetti = new JSConfetti();
 
 const DAPP_NAME = {
-  [CONTRACTS_ADDRESSES.BASIC_KYC_EXAMPLE_DAPP]: "KYC SBT",
+  [CONTRACTS_ADDRESSES.EXAMPLE_ZK_KYC]: "KYC SBT",
   [CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST]: "KYC SBT (Repeatable)",
 };
 
@@ -27,13 +27,11 @@ export const MySbt = () => {
 
   const query = useSbtsQuery({
     select: ({ sbts }) =>
-      sbts.filter(
-        (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.BASIC_KYC_EXAMPLE_DAPP
-      ),
+      sbts.filter((sbt) => sbt.dApp === CONTRACTS_ADDRESSES.EXAMPLE_ZK_KYC),
   });
 
   const hasBasicProof = query.data?.some(
-    (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.BASIC_KYC_EXAMPLE_DAPP
+    (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.EXAMPLE_ZK_KYC
   );
 
   useEffect(() => {
