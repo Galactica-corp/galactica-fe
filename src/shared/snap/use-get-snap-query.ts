@@ -13,10 +13,8 @@ export const useGetSnapQuery = (snapId = SNAP_ID) => {
       const snaps = await getSnaps();
 
       if (!snaps) return null;
-
       const foundSnap = Object.values(snaps).find((snap) => snap.id === snapId);
-      console.log(foundSnap);
-      return foundSnap;
+      return foundSnap ?? null;
     },
     enabled: Boolean(
       window.ethereum && isFlaskQuery.isSuccess && isFlaskQuery.data

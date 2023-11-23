@@ -60,6 +60,10 @@ export const GenerateModal = ({ onClose, onError }: Props) => {
                     "commitmentHash",
                     data.holderCommitment
                   );
+                  url.searchParams.append(
+                    "encryptionPubKey",
+                    data.encryptionPubKey
+                  );
                   setUrl(url.toString());
 
                   window.open(url.toString(), "_self");

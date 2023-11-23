@@ -1,7 +1,5 @@
-1. We need to deploy new version of snap-api
-2. We need to change type to interface in snap-api package, because users of packages should be able to change our types. If metamask is updated and our types gets outdated our users will want to update interfaces.
-
-Example:
+- We need to deploy new version of snap-api
+- We need to change type to interface in snap-api package, because users of packages should be able to change our types. If metamask is updated and our types gets outdated our users will want to update interfaces. Example below:
 
 ```ts
 // for example, this types got outdated
@@ -28,15 +26,6 @@ interface ResultSnapType {
 }
 ```
 
-3. We don't have getHolderCommitment anymore. What should I use instead of that?
-
-I've noticed that we don't have getHolderCommitment anymore. What should I use instead of that on frontend?
-
-As I can see I need two fields - holderCommitment and encryptionPubKey.
-
-I have a couple variants:
-
-1. I can add two fields on frontend and user will be able to add these fields by himself
-2. I can hardcode ones on frontend?
-
-Could you please suggest me?
+- I don't like that i send holderCommitment via search params.
+- Galactica frontend. Avoid using snapId.
+- Can i use `const ENCRYPTION_VERSION = "x25519-xsalsa20-poly1305"` on frontend;

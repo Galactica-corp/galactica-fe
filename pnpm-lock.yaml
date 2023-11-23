@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@galactica-net/snap-api':
-    specifier: file:./lib/package.tgz
-    version: file:lib/package.tgz
+    specifier: file:./lib/snap-api.tgz
+    version: file:lib/snap-api.tgz
   '@react-spring/web':
     specifier: ^9.7.2
     version: 9.7.3(react-dom@18.2.0)(react@18.2.0)
@@ -7005,8 +7005,8 @@ packages:
       react: 18.2.0
       use-sync-external-store: 1.2.0(react@18.2.0)
 
-  file:lib/package.tgz:
-    resolution: {integrity: sha512-3inj9yWiAkZYtOiHoG/us8Rm37c8W2EqVFADxYOvvXVgT2dX391UOn2iCFFIKpywUaYp9zI0t4Mzl25ewsJ2Vg==, tarball: file:lib/package.tgz}
+  file:lib/snap-api.tgz:
+    resolution: {integrity: sha512-7D0IU3ogo/E/rYBkwaWmb/hQzY3QmOfuOXlm+wflMp0pXsDWkevvdOle+hRPda26lV/j4BejsiP2qLd1VRdzxg==, tarball: file:lib/snap-api.tgz}
     name: '@galactica-net/snap-api'
     version: 0.1.9
     dependencies:

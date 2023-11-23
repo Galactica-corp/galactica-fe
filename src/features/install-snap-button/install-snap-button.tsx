@@ -25,6 +25,8 @@ export const InstallSnapButton = ({ onInstall }: Props) => {
 
   if (query.isSuccess && query.data) return null;
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const disabled = Boolean(query.data && !query.data.enabled);
 
   return (
