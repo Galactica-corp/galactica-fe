@@ -1,7 +1,7 @@
 import defaultToast, { Toast as ToastType } from "react-hot-toast";
-import { ReactComponent as CloseIcon } from "shared/icons/close.svg";
-import { ReactComponent as FailedIcon } from "shared/icons/failed.svg";
-import { ReactComponent as SuccessIcon } from "shared/icons/success.svg";
+import { default as CloseIcon } from "shared/icons/close.svg?react";
+import { default as FailedIcon } from "shared/icons/failed.svg?react";
+import { default as SuccessIcon } from "shared/icons/success.svg?react";
 
 export type Status = "failed" | "success";
 

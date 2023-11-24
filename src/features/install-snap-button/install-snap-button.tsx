@@ -1,4 +1,4 @@
-import { ReactComponent as MetamaskIcon } from "shared/icons/metamask.svg";
+import { default as MetamaskIcon } from "shared/icons/metamask.svg?react";
 import { useGetSnapQuery } from "shared/snap";
 import { useInstallSnapMutation } from "shared/snap/use-install-snap-mutation";
 import { Button } from "shared/ui/button";

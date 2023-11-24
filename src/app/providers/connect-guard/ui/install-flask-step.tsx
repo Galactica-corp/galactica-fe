@@ -1,4 +1,4 @@
-import { ReactComponent as MetamaskIcon } from "shared/icons/metamask.svg";
+import { default as MetamaskIcon } from "shared/icons/metamask.svg?react";
 import { Button, LinkButton } from "shared/ui/button";
 import { Note } from "./note";
 

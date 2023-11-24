@@ -1,4 +1,4 @@
-import { ReactComponent as LinkIcon } from "shared/icons/link.svg";
+import { default as LinkIcon } from "shared/icons/link.svg?react";
 import { SocialLink } from "shared/ui/social-link";
 
 export type EcosystemKYCItemT = {

@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
-import { ReactComponent as CloseIcon } from "shared/icons/close.svg";
+import { default as CloseIcon } from "shared/icons/close.svg?react";
 import { ClassName } from "shared/types";
 import modalBgPng from "./modal-bg.png";
 

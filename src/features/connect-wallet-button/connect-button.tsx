@@ -1,6 +1,6 @@
 import { ConnectResult, Provider } from "@wagmi/core";
 import { useAccount, useConnect } from "wagmi";
-import { ReactComponent as MetamaskIcon } from "shared/icons/metamask.svg";
+import { default as MetamaskIcon } from "shared/icons/metamask.svg?react";
 import { Button } from "shared/ui/button";
 
 export type ConnectHandler = (result: ConnectResult<Provider>) => void;

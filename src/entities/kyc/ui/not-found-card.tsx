@@ -1,5 +1,5 @@
 import { twMerge } from "tailwind-merge";
-import { ReactComponent as CardSpinnerIcon } from "shared/icons/card-spinner.svg";
+import { default as CardSpinnerIcon } from "shared/icons/card-spinner.svg?react";
 import notFoundBgPng from "shared/images/cards/kyc/not-found.png";
 import { ClassName } from "shared/types";
 import { Card } from "shared/ui/card";

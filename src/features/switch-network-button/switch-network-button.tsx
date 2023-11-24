@@ -2,7 +2,7 @@ import { Chain, useSwitchNetwork } from "wagmi";
 import { useIsSupportedChain } from "shared/config/hooks";
 import { DEFAULT_CHAIN } from "shared/config/networks";
 import { Button, ButtonTheme } from "shared/ui/button";
-import { ReactComponent as StarSvg } from "./star.svg";
+import { default as StarSvg } from "./star.svg?react";
 
 type Props = {
   theme?: ButtonTheme;

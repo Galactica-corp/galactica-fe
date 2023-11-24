@@ -1,4 +1,4 @@
-import { ReactComponent as LogoSvg } from "./galactica-logo.svg";
+import { default as LogoSvg } from "./galactica-logo.svg?react";
 
 type Props = {
   className?: string;

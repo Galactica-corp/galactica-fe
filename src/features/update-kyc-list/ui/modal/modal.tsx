@@ -1,5 +1,5 @@
 import { useToggle } from "usehooks-ts";
-import { ReactComponent as LogoMetamask } from "shared/icons/metamask-outline.svg";
+import { default as LogoMetamask } from "shared/icons/metamask-outline.svg?react";
 import { Button } from "shared/ui/button";
 import { Modal } from "shared/ui/modal";
 import { GradientSpinner } from "shared/ui/spinner";

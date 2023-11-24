@@ -1,4 +1,4 @@
-import { ReactComponent as InfoOrangeIcon } from "shared/icons/info-orange.svg";
+import { default as InfoOrangeIcon } from "shared/icons/info-orange.svg?react";
 import { Card as UICard } from "shared/ui/card";
 import learnCardUrl from "../assets/learn-card.png";
 

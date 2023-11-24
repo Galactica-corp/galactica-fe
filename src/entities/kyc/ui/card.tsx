@@ -1,4 +1,4 @@
-import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
+import { default as CheckIcon } from "shared/icons/check.svg?react";
 import { Card as UICard } from "shared/ui/card";
 import { dateX } from "shared/utils";
 import { KYC_MAP, type KycType } from "../const";

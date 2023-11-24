@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { captureException } from "@sentry/react";
 import { LearnKycLink } from "entities/kyc";
-import { ReactComponent as LogoMetamask } from "shared/icons/metamask-outline.svg";
+import { default as LogoMetamask } from "shared/icons/metamask-outline.svg?react";
 import { useGenerateCommitmentHashMutation } from "shared/snap";
 import { Button } from "shared/ui/button";
 import { Modal } from "shared/ui/modal";

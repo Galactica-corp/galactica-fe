@@ -1,5 +1,5 @@
 import { useAccount, useDisconnect } from "wagmi";
-import { ReactComponent as LogoutIcon } from "shared/icons/logout.svg";
+import { default as LogoutIcon } from "shared/icons/logout.svg?react";
 import { Button } from "shared/ui/button";
 import { shortenAddress } from "shared/utils";
 

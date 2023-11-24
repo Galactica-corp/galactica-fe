@@ -9,8 +9,6 @@ import { useStep } from "./use-step";
 export const ConnectGuard = ({ children }: PropsWithChildren) => {
   const step = useStep();
 
-  console.log(step);
-
   return (
     <>
       {step === "initialLoading" && <Spinner />}

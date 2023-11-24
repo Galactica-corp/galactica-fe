@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
-import { ReactComponent as InfoIcon } from "shared/icons/info.svg";
+import { default as InfoIcon } from "shared/icons/info.svg?react";
 import { ClassName } from "shared/types";
 import { Tooltip } from "../tooltip";
 

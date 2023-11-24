@@ -1,11 +1,11 @@
-import { ReactComponent as CheckGrayIcon } from "shared/icons/check-gray.svg";
+import { default as CheckGrayIcon } from "shared/icons/check-gray.svg?react";
 import {
   useGetSnapQuery,
   useIsFlaskQuery,
   useSbtsQuery,
   useZkCerts,
 } from "shared/snap";
-import { ReactComponent as ProgressArrowIcon } from "./images/progress-arrow.svg";
+import { default as ProgressArrowIcon } from "./images/progress-arrow.svg?react";
 import progressGrayUrl from "./images/progress-gray.png";
 import progressOrangeUrl from "./images/progress-orange.png";
 

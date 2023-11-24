@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
-import { ReactComponent as MetamaskFlaskSvg } from "shared/icons/metamask-flask.svg";
-import { ReactComponent as MetamaskWithToggle } from "shared/icons/metamask-with-toggle.svg";
-import { ReactComponent as RightArrow } from "shared/icons/right-arrow.svg";
+import { default as MetamaskFlaskSvg } from "shared/icons/metamask-flask.svg?react";
+import { default as MetamaskWithToggle } from "shared/icons/metamask-with-toggle.svg?react";
+import { default as RightArrow } from "shared/icons/right-arrow.svg?react";
 import { ClassName } from "shared/types";
 
 export const Note = ({ className }: ClassName) => {

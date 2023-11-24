@@ -6,7 +6,7 @@ import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
 import { UploadKycCard } from "features/upload-kyc";
 import { CONTRACTS_ADDRESSES, LS_KEYS } from "shared/config/const";
-import { ReactComponent as CheckIcon } from "shared/icons/check.svg";
+import { default as CheckIcon } from "shared/icons/check.svg?react";
 import { useSbtsQuery, useZkCerts } from "shared/snap";
 
 export const MyKYC = () => {

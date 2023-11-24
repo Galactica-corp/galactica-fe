@@ -1,8 +1,8 @@
 import { cloneElement, useMemo } from "react";
-import { ReactComponent as DiscordIcon } from "shared/icons/social/discord.svg";
-import { ReactComponent as MediumIcon } from "shared/icons/social/medium.svg";
-import { ReactComponent as TelegramIcon } from "shared/icons/social/telegram.svg";
-import { ReactComponent as TwitterIcon } from "shared/icons/social/twitter.svg";
+import { default as DiscordIcon } from "shared/icons/social/discord.svg?react";
+import { default as MediumIcon } from "shared/icons/social/medium.svg?react";
+import { default as TelegramIcon } from "shared/icons/social/telegram.svg?react";
+import { default as TwitterIcon } from "shared/icons/social/twitter.svg?react";
 
 export type SocialLinkIconType =
   | "telegram"
