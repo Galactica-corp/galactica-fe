@@ -1,4 +1,3 @@
-import { GenZkProofParams } from "@galactica-net/snap-api";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAccount, useMutation, useProvider, useSigner } from "wagmi";
 import { CONTRACTS_ADDRESSES } from "shared/config/const";
@@ -11,6 +10,7 @@ import {
   processProof,
   processPublicSignals,
 } from "./utils";
+import zkKYCProver from "./zkKYC.json";
 
 type Options = {
   onPublish?: () => void;
@@ -36,10 +36,10 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
         investigationInstitutionPubKey: [],
       };
 
-      const response = await fetch(
-        "https://galactica-trusted-setup.s3.eu-central-1.amazonaws.com/zkKYC.json"
-      );
-      const zkKYCProver = await response.json();
+      // const response = await fetch(
+      //   "https://galactica-trusted-setup.s3.eu-central-1.amazonaws.com/zkKYC.json"
+      // );
+      // const zkKYCProver = await response.json();
 
       console.log(zkKYCProver);
 
@@ -51,7 +51,22 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
             zkCertStandard: "gip69" as const,
             registryAddress: CONTRACTS_ADDRESSES.ZK_KYC_REGISTRY,
           },
-          userAddress: address,
+          userAddress: address.toString(),
+          description:
+            "This ZKP discloses that you hold a valid zkKYC. It has no other disclosures.",
+          publicInputDescriptions: [
+            "user pubkey Ax",
+            "user pubkey Ay",
+            "proof valid",
+            "verification SBT expiration",
+            "merkle root",
+            "current time",
+            "user address",
+            "human id",
+            "dapp address",
+            "zkKYC guardian pubkey Ax",
+            "zkKYC guardian pubkey Ay",
+          ],
           prover: {
             wasm: (zkKYCProver as any).wasm,
             zkeyHeader: (zkKYCProver as any).zkeyHeader,
