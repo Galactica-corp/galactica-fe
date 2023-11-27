@@ -11,7 +11,6 @@ import {
   processProof,
   processPublicSignals,
 } from "./utils";
-import zkKYCProver from "./zkKYC.json";
 
 type Options = {
   onPublish?: () => void;
@@ -38,6 +37,11 @@ export const useGenZkRepeatableProofMutation = ({
         dAppAddress: CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST,
         investigationInstitutionPubKey: [],
       };
+
+      const response = await fetch(
+        "https://galactica-trusted-setup.s3.eu-central-1.amazonaws.com/zkKYC.json"
+      );
+      const zkKYCProver = await response.json();
 
       const zkp: any = await invokeSnap({
         method: "genZkKycProof",

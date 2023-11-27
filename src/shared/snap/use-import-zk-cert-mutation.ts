@@ -44,14 +44,10 @@ export const useImportZkCertMutation = () => {
   const { address } = useAccount();
   return useMutation(
     async (objContent: unknown) => {
-      // const parsedJson = zkCertSchema.parse(objContent);
-      const str = JSON.stringify(objContent);
-      console.log(str);
       return importZkCert({ encryptedZkCert: objContent, listZkCerts: true });
     },
     {
       onSuccess: async (data) => {
-        console.log(data);
         if (Array.isArray(data.gip69)) {
           setCertsList(certs ? [...certs, ...data.gip69] : data.gip69);
         }
