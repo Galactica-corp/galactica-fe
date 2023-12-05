@@ -1,12 +1,13 @@
+import { sdkConfig } from "@galactica-net/snap-api";
 import { UseQueryOptions, useQuery } from "@tanstack/react-query";
+import { Provider } from "@wagmi/core";
 import { BigNumber, EventFilter, ethers } from "ethers";
 import invariant from "tiny-invariant";
 import { useAccount, useProvider } from "wagmi";
-import { CONTRACTS_ADDRESSES } from "shared/config/const";
 import { IVerificationSBT__factory } from "shared/contracts";
 import { SNAP_LS_KEYS } from "./const";
 import { snapsKeys } from "./keys";
-import { SbtDetails } from "./types";
+import { SBT, SbtDetails } from "./types";
 
 const dappAddress = null;
 const humanID = null;
@@ -41,9 +42,11 @@ export const useSbtsQuery = <TData = SbtDetails>(
           };
 
       const sbtSC = IVerificationSBT__factory.connect(
-        CONTRACTS_ADDRESSES.VERIFICATION_SBT,
+        sdkConfig.contracts.verificationSbt,
         provider
       );
+
+      console.log(sdkConfig.contracts.verificationSbt);
 
       const currentBlock = await provider.getBlockNumber();
       const lastBlockTime = (await provider.getBlock(currentBlock)).timestamp;
@@ -54,7 +57,7 @@ export const useSbtsQuery = <TData = SbtDetails>(
 
       // filter through all logs adding a verification SBT for the user
       const filter = {
-        address: CONTRACTS_ADDRESSES.VERIFICATION_SBT,
+        address: sdkConfig.contracts.verificationSbt,
         topics: [
           ethers.utils.id("VerificationSBTMinted(address,address,bytes32)"),
           dappAddress ? ethers.utils.hexZeroPad(dappAddress, 32) : null,

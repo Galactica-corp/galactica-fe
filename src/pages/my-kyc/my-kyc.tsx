@@ -1,11 +1,12 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { sdkConfig } from "@galactica-net/snap-api";
 import { ChooseKycProviderCard, KycCard, KycNotFoundCard } from "entities/kyc";
 import { GenerationSbtCard } from "entities/sbt";
 import { useLocalStorage } from "usehooks-ts";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
 import { UploadKycCard } from "features/upload-kyc";
-import { CONTRACTS_ADDRESSES, LS_KEYS } from "shared/config/const";
+import { LS_KEYS } from "shared/config/const";
 import { default as CheckIcon } from "shared/icons/check.svg?react";
 import { useSbtsQuery, useZkCerts } from "shared/snap";
 
@@ -20,12 +21,15 @@ export const MyKYC = () => {
   const [zkCerts] = useZkCerts();
 
   const query = useSbtsQuery({
-    select: ({ sbts }) => sbts,
+    select: ({ sbts }) =>
+      sbts.filter((sbt) =>
+        import.meta.env.VITE_ACTIVE_KYC === "repeatable"
+          ? sbt.dApp === sdkConfig.contracts.repeatableZkpTest
+          : sbt.dApp === sdkConfig.contracts.exampleZkKyc
+      ),
   });
 
-  const hasBasicProof = query.data?.some(
-    (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.EXAMPLE_ZK_KYC
-  );
+  const hasBasicProof = query.data?.some((sbt) => Boolean(sbt));
 
   if (showWideUploading) {
     return (

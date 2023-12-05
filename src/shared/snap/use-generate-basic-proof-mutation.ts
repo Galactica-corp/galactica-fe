@@ -1,6 +1,6 @@
+import { sdkConfig } from "@galactica-net/snap-api";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAccount, useMutation, useProvider, useSigner } from "wagmi";
-import { CONTRACTS_ADDRESSES } from "shared/config/const";
 import { BasicKYCExampleDApp__factory } from "shared/contracts";
 import { invokeSnap } from "./api-sdk";
 import { snapsKeys } from "./keys";
@@ -31,7 +31,7 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
 
       const proofInput = {
         currentTime: expectedValidationTimestamp,
-        dAppAddress: CONTRACTS_ADDRESSES.EXAMPLE_ZK_KYC,
+        dAppAddress: sdkConfig.contracts.exampleZkKyc,
         investigationInstitutionPubKey: [],
       };
 
@@ -46,7 +46,7 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
           input: proofInput,
           requirements: {
             zkCertStandard: "gip69" as const,
-            registryAddress: CONTRACTS_ADDRESSES.ZK_KYC_REGISTRY,
+            registryAddress: sdkConfig.contracts.zkKycRegistry,
           },
           userAddress: address.toString(),
           description:
@@ -64,11 +64,7 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
             "zkKYC guardian pubkey Ax",
             "zkKYC guardian pubkey Ay",
           ],
-          prover: {
-            wasm: (zkKYCProver as any).wasm,
-            zkeyHeader: (zkKYCProver as any).zkeyHeader,
-            zkeySections: (zkKYCProver as any).zkeySections,
-          },
+          prover: zkKYCProver,
         },
       });
 
@@ -77,9 +73,11 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
       const publicInputs = processPublicSignals(zkp.publicSignals);
 
       const basicKycExampleDAppSC = BasicKYCExampleDApp__factory.connect(
-        CONTRACTS_ADDRESSES.EXAMPLE_ZK_KYC,
+        sdkConfig.contracts.exampleZkKyc,
         signerQuery.data
       );
+
+      console.log("HELLO");
 
       const tx = await basicKycExampleDAppSC.registerKYC(a, b, c, publicInputs);
 

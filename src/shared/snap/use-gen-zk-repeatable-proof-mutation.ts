@@ -1,7 +1,6 @@
-import { GenZkProofParams } from "@galactica-net/snap-api";
+import { GenZkProofParams, sdkConfig } from "@galactica-net/snap-api";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAccount, useMutation, useProvider, useSigner } from "wagmi";
-import { CONTRACTS_ADDRESSES } from "shared/config/const";
 import { RepeatableZKPTest__factory } from "shared/contracts";
 import { invokeSnap } from "./api-sdk";
 import { snapsKeys } from "./keys";
@@ -34,7 +33,7 @@ export const useGenZkRepeatableProofMutation = ({
 
       const proofInput = {
         currentTime: expectedValidationTimestamp,
-        dAppAddress: CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST,
+        dAppAddress: sdkConfig.contracts.repeatableZkpTest,
         investigationInstitutionPubKey: [],
       };
 
@@ -43,13 +42,15 @@ export const useGenZkRepeatableProofMutation = ({
       );
       const zkKYCProver = await response.json();
 
+      console.log(sdkConfig.contracts.zkKycRegistry);
+
       const zkp: any = await invokeSnap({
         method: "genZkKycProof",
         params: {
           input: proofInput,
           requirements: {
             zkCertStandard: "gip69" as const,
-            registryAddress: CONTRACTS_ADDRESSES.ZK_KYC_REGISTRY,
+            registryAddress: sdkConfig.contracts.zkKycRegistry,
           },
           userAddress: address.toString(),
           description:
@@ -67,11 +68,7 @@ export const useGenZkRepeatableProofMutation = ({
             "zkKYC guardian pubkey Ax",
             "zkKYC guardian pubkey Ay",
           ],
-          prover: {
-            wasm: (zkKYCProver as any).wasm,
-            zkeyHeader: (zkKYCProver as any).zkeyHeader,
-            zkeySections: (zkKYCProver as any).zkeySections,
-          },
+          prover: zkKYCProver,
         } as GenZkProofParams<any>,
       });
 
@@ -80,9 +77,11 @@ export const useGenZkRepeatableProofMutation = ({
       const publicInputs = processPublicSignals(zkp.publicSignals);
 
       const repeatableZKPTestSC = RepeatableZKPTest__factory.connect(
-        CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST,
+        sdkConfig.contracts.repeatableZkpTest,
         signerQuery.data
       );
+
+      console.log("HELLO");
 
       const tx = await repeatableZKPTestSC.submitZKP(a, b, c, publicInputs);
 

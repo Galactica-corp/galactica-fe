@@ -4,8 +4,7 @@ import { sdkConfig } from "@galactica-net/snap-api";
 import { BrowserTracing, Replay, init } from "@sentry/react";
 import { App } from "app/app";
 
-sdkConfig.defaultSnapOrigin =
-  import.meta.env.VITE_SNAP_ID ?? "npm:@galactica-net/snap-beta";
+sdkConfig.defaultSnapOrigin = import.meta.env.VITE_SNAP_ID;
 
 if (import.meta.env.VITE_SENTRY === "on" && import.meta.env.PROD) {
   init({

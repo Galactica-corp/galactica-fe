@@ -1,4 +1,4 @@
-import { importZkCert } from "@galactica-net/snap-api";
+import { EncryptedZkCert, importZkCert } from "@galactica-net/snap-api";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAccount, useMutation } from "wagmi";
 import { toastError } from "shared/utils/toasts";
@@ -44,7 +44,10 @@ export const useImportZkCertMutation = () => {
   const { address } = useAccount();
   return useMutation(
     async (objContent: unknown) => {
-      return importZkCert({ encryptedZkCert: objContent, listZkCerts: true });
+      return importZkCert({
+        encryptedZkCert: objContent as EncryptedZkCert,
+        listZkCerts: true,
+      });
     },
     {
       onSuccess: async (data) => {

@@ -5,8 +5,11 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@galactica-net/galactica-types':
+    specifier: ^0.2.4
+    version: 0.2.4
   '@galactica-net/snap-api':
-    specifier: file:lib/snap-api.tgz
+    specifier: file:./lib/snap-api.tgz
     version: file:lib/snap-api.tgz
   '@react-spring/web':
     specifier: ^9.7.3
@@ -1004,8 +1007,11 @@ packages:
     resolution: {integrity: sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==}
     dev: false
 
-  /@galactica-net/galactica-types@0.2.3:
-    resolution: {integrity: sha512-vNe58oyPYS+JytIeHFZYRpMqiEw1yHOw/ozqLpCMjfF7LwRieBVBbJLT5VncsJmErspA68FTD85PVPgp2Um7fw==}
+  /@galactica-net/galactica-types@0.2.4:
+    resolution: {integrity: sha512-m8JHkuUMEnbOgkttWqc2qzRaGQRXcVRRuy1+82wHq4B4lLBkn+Q+Rj0L/y5wOTLlxJ0Gcty0MogCARSn6KXn9w==}
+    dependencies:
+      '@types/circomlibjs': 0.1.6
+      buffer: 6.0.3
     dev: false
 
   /@humanwhocodes/config-array@0.11.13:
@@ -2157,6 +2163,10 @@ packages:
       typechain: 8.3.2(typescript@5.3.2)
       typescript: 5.3.2
     dev: true
+
+  /@types/circomlibjs@0.1.6:
+    resolution: {integrity: sha512-yF174bPDaiKgejlZzCSqKwZaqXhlxMcVEHrAtstFohwP05OjtvHXOdxO6HQeTg8WwIdgMg7MJb1WyWZdUCGlPQ==}
+    dev: false
 
   /@types/connect@3.4.38:
     resolution: {integrity: sha512-K6uROf1LD88uDQqJCktA4yzL1YYAK6NgfsI0v/mTgyPKWsX1CnJ0XPSDhViejru1GcRkLWb8RlzFYJRqGUbaug==}
@@ -7211,11 +7221,11 @@ packages:
       use-sync-external-store: 1.2.0(react@18.2.0)
 
   file:lib/snap-api.tgz:
-    resolution: {integrity: sha512-7D0IU3ogo/E/rYBkwaWmb/hQzY3QmOfuOXlm+wflMp0pXsDWkevvdOle+hRPda26lV/j4BejsiP2qLd1VRdzxg==, tarball: file:lib/snap-api.tgz}
+    resolution: {integrity: sha512-fl3oGHe2hugMqw6TjZC62tQTXEMqvUydMXjChaUhcCnaPi3EzrrojP/EIuN/fuDPXJVVoylXyihxyWIg+DlOwg==, tarball: file:lib/snap-api.tgz}
     name: '@galactica-net/snap-api'
-    version: 0.1.9
+    version: 0.1.10
     dependencies:
-      '@galactica-net/galactica-types': 0.2.3
+      '@galactica-net/galactica-types': 0.2.4
       '@types/node': 20.10.0
       typescript: 5.3.2
     dev: false

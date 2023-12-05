@@ -9,6 +9,7 @@ interface ImportMetaEnv {
   readonly VITE_SENTRY: "on" | "off";
   readonly VITE_SENTRY_DSN: string;
   readonly VITE_SENTRY_AUTH_TOKEN: string;
+  readonly VITE_ACTIVE_KYC: "repeatable" | "zkKyc";
 }
 
 interface ImportMeta {

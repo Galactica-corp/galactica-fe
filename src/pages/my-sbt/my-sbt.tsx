@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { sdkConfig } from "@galactica-net/snap-api";
 import { ChooseKycProviderCard } from "entities/kyc";
 import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
 import JSConfetti from "js-confetti";
@@ -6,7 +7,7 @@ import { twMerge } from "tailwind-merge";
 import { useLocalStorage } from "usehooks-ts";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
-import { CONTRACTS_ADDRESSES, LS_KEYS } from "shared/config/const";
+import { LS_KEYS } from "shared/config/const";
 import { default as CheckIcon } from "shared/icons/check.svg?react";
 import { useSbtsQuery, useZkCerts } from "shared/snap";
 import { SkeletonCard } from "shared/ui/card";
@@ -14,8 +15,8 @@ import { SkeletonCard } from "shared/ui/card";
 const jsConfetti = new JSConfetti();
 
 const DAPP_NAME = {
-  [CONTRACTS_ADDRESSES.EXAMPLE_ZK_KYC]: "KYC SBT",
-  [CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST]: "KYC SBT (Repeatable)",
+  [sdkConfig.contracts.exampleZkKyc]: "KYC SBT",
+  [sdkConfig.contracts.repeatableZkpTest]: "KYC SBT (Repeatable)",
 };
 
 export const MySbt = () => {
@@ -27,12 +28,14 @@ export const MySbt = () => {
 
   const query = useSbtsQuery({
     select: ({ sbts }) =>
-      sbts.filter((sbt) => sbt.dApp === CONTRACTS_ADDRESSES.EXAMPLE_ZK_KYC),
+      sbts.filter((sbt) =>
+        import.meta.env.VITE_ACTIVE_KYC === "repeatable"
+          ? sbt.dApp === sdkConfig.contracts.repeatableZkpTest
+          : sbt.dApp === sdkConfig.contracts.exampleZkKyc
+      ),
   });
 
-  const hasBasicProof = query.data?.some(
-    (sbt) => sbt.dApp === CONTRACTS_ADDRESSES.EXAMPLE_ZK_KYC
-  );
+  const hasBasicProof = query.data?.some((sbt) => Boolean(sbt));
 
   useEffect(() => {
     if (!shouldCallConfetti || query.data?.length !== 1) return;

@@ -1,8 +1,8 @@
+import { sdkConfig } from "@galactica-net/snap-api";
 import { ChooseKycProviderCard } from "entities/kyc";
 import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
 import { twMerge } from "tailwind-merge";
 import { GenerateSbtButton } from "features/generate-sbt";
-import { CONTRACTS_ADDRESSES } from "shared/config/const";
 import { useSbtsQuery, useZkCerts } from "shared/snap";
 
 export const MySbtDev = () => {
@@ -24,7 +24,7 @@ export const MySbtDev = () => {
         return (
           <SbtCard
             title={
-              sbt.dApp === CONTRACTS_ADDRESSES.REPEATABLE_ZK_KYC_TEST
+              sbt.dApp === sdkConfig.contracts.repeatableZkpTest
                 ? "KYC SBT"
                 : "KYC SBT (Age > 18)"
             }
