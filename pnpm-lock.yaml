@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@galactica-net/galactica-types':
-    specifier: ^0.2.4
-    version: 0.2.4
   '@galactica-net/snap-api':
     specifier: file:./lib/snap-api.tgz
     version: file:lib/snap-api.tgz
