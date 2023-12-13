@@ -28,11 +28,11 @@ export const MySbt = () => {
 
   const query = useSbtsQuery({
     select: ({ sbts }) =>
-      sbts.filter((sbt) =>
-        import.meta.env.VITE_ACTIVE_KYC === "repeatable"
+      sbts.filter((sbt) => {
+        return import.meta.env.VITE_ACTIVE_KYC === "repeatable"
           ? sbt.dApp === sdkConfig.contracts.repeatableZkpTest
-          : sbt.dApp === sdkConfig.contracts.exampleZkKyc
-      ),
+          : sbt.dApp === sdkConfig.contracts.exampleZkKyc;
+      }),
   });
 
   const hasBasicProof = query.data?.some((sbt) => Boolean(sbt));

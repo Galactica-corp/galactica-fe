@@ -12,7 +12,7 @@ type Props = { onSuccess?: () => void } & ClassName;
 export const Button = ({ className, onSuccess }: Props) => {
   const [btnText, setBtnText] = useState("Generate KYC proof SBT");
 
-  const genMutation = useGenZkRepeatableProofMutation({
+  const genMutation = useGenBasicProofMutation({
     onPublish: () => {
       setBtnText("Publishing...");
     },

@@ -77,8 +77,6 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
         signerQuery.data
       );
 
-      console.log("HELLO");
-
       const tx = await basicKycExampleDAppSC.registerKYC(a, b, c, publicInputs);
 
       const receipt = await tx.wait();
