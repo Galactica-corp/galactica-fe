@@ -25,7 +25,7 @@ export const MyKYC = () => {
       sbts.filter((sbt) =>
         import.meta.env.VITE_ACTIVE_KYC === "repeatable"
           ? sbt.dApp === sdkConfig.contracts.repeatableZkpTest
-          : sbt.dApp === sdkConfig.contracts.exampleZkKyc
+          : sbt.dApp === sdkConfig.contracts.exampleDapp
       ),
   });
 

@@ -1,6 +1,5 @@
 import { sdkConfig } from "@galactica-net/snap-api";
 import { UseQueryOptions, useQuery } from "@tanstack/react-query";
-import { Provider } from "@wagmi/core";
 import { BigNumber, EventFilter, ethers } from "ethers";
 import invariant from "tiny-invariant";
 import { useAccount, useProvider } from "wagmi";
@@ -41,6 +40,7 @@ export const useSbtsQuery = <TData = SbtDetails>(
             latestBlockChecked: 0,
           };
 
+      console.log(sdkConfig.contracts.verificationSbt);
       const sbtSC = IVerificationSBT__factory.connect(
         sdkConfig.contracts.verificationSbt,
         provider

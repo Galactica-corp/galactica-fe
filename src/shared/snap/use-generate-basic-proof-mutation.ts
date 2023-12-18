@@ -31,7 +31,7 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
 
       const proofInput = {
         currentTime: expectedValidationTimestamp,
-        dAppAddress: sdkConfig.contracts.exampleZkKyc,
+        dAppAddress: sdkConfig.contracts.exampleDapp,
         investigationInstitutionPubKey: [],
       };
 
@@ -73,7 +73,7 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
       const publicInputs = processPublicSignals(zkp.publicSignals);
 
       const basicKycExampleDAppSC = BasicKYCExampleDApp__factory.connect(
-        sdkConfig.contracts.exampleZkKyc,
+        sdkConfig.contracts.exampleDapp,
         signerQuery.data
       );
 

@@ -15,7 +15,7 @@ import { SkeletonCard } from "shared/ui/card";
 const jsConfetti = new JSConfetti();
 
 const DAPP_NAME = {
-  [sdkConfig.contracts.exampleZkKyc]: "KYC SBT",
+  [sdkConfig.contracts.exampleDapp]: "KYC SBT",
   [sdkConfig.contracts.repeatableZkpTest]: "KYC SBT (Repeatable)",
 };
 
@@ -31,7 +31,7 @@ export const MySbt = () => {
       sbts.filter((sbt) => {
         return import.meta.env.VITE_ACTIVE_KYC === "repeatable"
           ? sbt.dApp === sdkConfig.contracts.repeatableZkpTest
-          : sbt.dApp === sdkConfig.contracts.exampleZkKyc;
+          : sbt.dApp === sdkConfig.contracts.exampleDapp;
       }),
   });
 
