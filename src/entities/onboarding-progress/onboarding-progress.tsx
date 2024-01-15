@@ -1,10 +1,5 @@
 import { default as CheckGrayIcon } from "shared/icons/check-gray.svg?react";
-import {
-  useGetSnapQuery,
-  useIsFlaskQuery,
-  useSbtsQuery,
-  useZkCerts,
-} from "shared/snap";
+import { useGetSnapQuery, useSbtsQuery, useZkCerts } from "shared/snap";
 import { default as ProgressArrowIcon } from "./images/progress-arrow.svg?react";
 import progressGrayUrl from "./images/progress-gray.png";
 import progressOrangeUrl from "./images/progress-orange.png";
@@ -36,28 +31,23 @@ export function OnboardingProgress() {
   const [zkCerts] = useZkCerts();
 
   const snapQuery = useGetSnapQuery();
-  const isFlaskQuery = useIsFlaskQuery();
 
   const query = useSbtsQuery({
-    extraEnabled: Boolean(
-      snapQuery?.data && isFlaskQuery?.data && zkCerts?.length !== 0
-    ),
+    extraEnabled: Boolean(snapQuery?.data && zkCerts?.length !== 0),
     select: ({ sbts }) => sbts,
   });
 
   if (
     (snapQuery.isLoading && snapQuery.isInitialLoading) ||
-    (isFlaskQuery.isLoading && isFlaskQuery.isInitialLoading) ||
     (query.isLoading && query.isInitialLoading)
   )
     return null;
 
   let currentStep = 0;
 
-  if (!query.data) currentStep = 4;
-  if (zkCerts?.length === 0) currentStep = 3;
-  if (!snapQuery.data) currentStep = 2;
-  if (!isFlaskQuery.data) currentStep = 1;
+  if (!query.data) currentStep = 3;
+  if (zkCerts?.length === 0) currentStep = 2;
+  if (!snapQuery.data) currentStep = 1;
 
   if (!currentStep) return null;
 

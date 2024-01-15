@@ -1,27 +1,14 @@
 import { useWalletButtonStatus } from "widgets/wallet-button";
-import { useGetSnapQuery, useIsFlaskQuery } from "shared/snap";
+import { useGetSnapQuery } from "shared/snap";
 
-type Step =
-  | "initialLoading"
-  | "walletStep"
-  | "flaskStep"
-  | "snapStep"
-  | "finish";
+type Step = "initialLoading" | "walletStep" | "snapStep" | "finish";
 
 export const useStep = (): Step => {
   const walletStatus = useWalletButtonStatus();
   const snapQuery = useGetSnapQuery();
-  const isFlaskQuery = useIsFlaskQuery();
 
-  if (
-    (isFlaskQuery.isLoading && isFlaskQuery.isInitialLoading) ||
-    (snapQuery.isLoading && snapQuery.isInitialLoading)
-  ) {
+  if (snapQuery.isLoading && snapQuery.isInitialLoading) {
     return "initialLoading";
-  }
-
-  if (!isFlaskQuery.data) {
-    return "flaskStep";
   }
 
   if (walletStatus === "connectNeeded" || walletStatus === "switchNeeded") {
