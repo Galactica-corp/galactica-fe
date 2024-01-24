@@ -13,7 +13,10 @@ export const useInstallSnapMutation = () => {
   const queryClient = useQueryClient();
   const listZkCertsMutation = useListZkCertsMutation();
   return useMutation({
-    mutationFn: async ({ snapId = SNAP_ID, version }: InstallSnapParams) => {
+    mutationFn: async ({
+      snapId = SNAP_ID,
+      version = "0.6.1",
+    }: InstallSnapParams) => {
       await connectSnap(snapId, { version: version });
     },
     onSuccess: () => {
