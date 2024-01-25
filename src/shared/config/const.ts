@@ -3,6 +3,6 @@ export const SNAP_ID =
 console.log(SNAP_ID);
 
 export const LS_KEYS = {
-  isOnboardingCompleted: "isOnboardingCompleted",
-  shouldCallConfetti: "shouldCallConfetti",
+  isOnboardingCompleted: "isOnboardingCompleted-v2",
+  shouldCallConfetti: "shouldCallConfetti-v2",
 };
