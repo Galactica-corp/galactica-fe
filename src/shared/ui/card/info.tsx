@@ -22,7 +22,7 @@ export const Info = ({
         {label}{" "}
         {tip && (
           <InfoIcon
-            className="ml-1.5 inline-flex"
+            className="ml-1.5 inline-flex outline-none"
             data-tooltip-id={`card-info-${label}`}
             data-tooltip-content={tip}
           />
