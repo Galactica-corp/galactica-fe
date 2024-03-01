@@ -17,7 +17,7 @@ export const HEADERS_LINKS = [
   },
   {
     name: "HELP",
-    to: "https://galactica-network.notion.site/f800adec57eb46d284481f387a30b2fd?v=8d7782e07671436aaf156394bd8351a3",
+    to: "https://discord.gg/galactica",
   },
 ];
 
