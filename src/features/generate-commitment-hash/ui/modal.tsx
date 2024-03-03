@@ -20,14 +20,14 @@ export const GenerateModal = ({ onClose, onError }: Props) => {
   return (
     <Modal onClose={onClose}>
       <Modal.Body className="w-[650px] px-14 pb-12 pt-16" onClose={onClose}>
-        {mutation.isLoading ? (
+        {mutation.isPending ? (
           <GradientSpinner className="h-[110px] w-[110px]" />
         ) : (
           <LogoMetamask className="h-[110px] text-grayNickel" />
         )}
 
         <Modal.Title className="mt-9">
-          {mutation.isLoading
+          {mutation.isPending
             ? "Generating private Commitment Hash, please wait..."
             : "To begin the zkKYC procedure you need to generate a Commitment Hash"}
         </Modal.Title>

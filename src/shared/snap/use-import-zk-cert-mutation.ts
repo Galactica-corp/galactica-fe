@@ -59,9 +59,9 @@ export const useImportZkCertMutation = () => {
           toastError("This zkCertificate has already been imported.");
         }
 
-        await queryClient.invalidateQueries(
-          snapsKeys.zkCertStorageHashes(address)
-        );
+        await queryClient.invalidateQueries({
+          queryKey: snapsKeys.zkCertStorageHashes(address),
+        });
       },
     }
   );

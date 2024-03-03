@@ -1,28 +1,26 @@
 import { sdkConfig } from "@galactica-net/snap-api";
-import { UseQueryOptions, useQuery } from "@tanstack/react-query";
+import { QueryKey, useQuery } from "@tanstack/react-query";
 import { BigNumber, EventFilter, ethers } from "ethers";
 import invariant from "tiny-invariant";
 import { useAccount, useProvider } from "wagmi";
 import { IVerificationSBT__factory } from "shared/contracts";
+import { UseQueryOptions } from "shared/types";
 import { SNAP_LS_KEYS } from "./const";
 import { snapsKeys } from "./keys";
-import { SBT, SbtDetails } from "./types";
+import { SbtDetails } from "./types";
 
 const dappAddress = null;
 const humanID = null;
 
 export const useSbtsQuery = <TData = SbtDetails>(
-  options?: UseQueryOptions<
-    SbtDetails,
-    Error,
-    TData,
-    ReturnType<typeof snapsKeys.allSbtByUser>
-  > & { extraEnabled?: boolean }
+  options?: UseQueryOptions<SbtDetails, Error, TData, QueryKey> & {
+    extraEnabled?: boolean;
+  }
 ) => {
   const { address } = useAccount();
   const provider = useProvider();
 
-  return useQuery({
+  return useQuery<SbtDetails, Error, TData, QueryKey>({
     // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey: snapsKeys.allSbtByUser({
       userAddress: address,

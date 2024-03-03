@@ -29,7 +29,7 @@ export const useUpdateKycList = () => {
 
   useAccountChange(({ account }) => {
     if (!account) return;
-    queryClient.invalidateQueries(snapsKeys.allSbt());
+    queryClient.invalidateQueries({ queryKey: snapsKeys.allSbt() });
   });
 
   const isUpdateNeeded =

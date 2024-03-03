@@ -14,7 +14,7 @@ export const UpdateModal = () => {
   return (
     <Modal delay={200} onClose={toggleOpen}>
       <Modal.Body className="w-[670px] px-20 pb-14 pt-20" onClose={toggleOpen}>
-        {mutation.isLoading ? (
+        {mutation.isPending ? (
           <GradientSpinner className="h-[110px] w-[110px]" />
         ) : (
           <LogoMetamask className="h-[110px] text-grayNickel" />
@@ -32,7 +32,7 @@ export const UpdateModal = () => {
         <div className="mx-auto mt-8 flex gap-x-8">
           <Button
             className="w-48"
-            isLoading={mutation.isLoading}
+            isLoading={mutation.isPending}
             onClick={mutation.mutate}
           >
             Approve

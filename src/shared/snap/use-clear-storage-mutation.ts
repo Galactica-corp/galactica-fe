@@ -20,7 +20,9 @@ export const useClearStorageMutation = () => {
       setZkCerts([]);
       setZkHash("");
 
-      queryClient.invalidateQueries(snapsKeys.zkCertStorageHashes(address));
+      queryClient.invalidateQueries({
+        queryKey: snapsKeys.zkCertStorageHashes(address),
+      });
     },
   });
 };

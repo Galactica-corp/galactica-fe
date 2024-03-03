@@ -20,8 +20,7 @@ export const useInstallSnapMutation = () => {
       await connectSnap(snapId, { version: version });
     },
     onSuccess: () => {
-      console.log("SUCCCESS");
-      queryClient.refetchQueries(snapsKeys.allSnap());
+      queryClient.refetchQueries({ queryKey: snapsKeys.allSnap() });
       listZkCertsMutation.mutate({});
     },
     onError: (error) => {

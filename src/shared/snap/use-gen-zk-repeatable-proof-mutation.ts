@@ -91,11 +91,11 @@ export const useGenZkRepeatableProofMutation = ({
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries<SbtDetails>(
-          snapsKeys.allSbtByUser({
+        queryClient.invalidateQueries({
+          queryKey: snapsKeys.allSbtByUser({
             userAddress: address,
-          })
-        );
+          }),
+        });
       },
     }
   );

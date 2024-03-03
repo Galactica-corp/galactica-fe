@@ -32,7 +32,7 @@ export const InstallSnapButton = ({ onInstall }: Props) => {
   return (
     <Button
       onClick={handleInstall}
-      isLoading={mutation.isLoading || query.isLoading}
+      isLoading={mutation.isPending || query.isLoading}
       disabled={!query.isSuccess}
       theme="primary"
       className="px-14"
