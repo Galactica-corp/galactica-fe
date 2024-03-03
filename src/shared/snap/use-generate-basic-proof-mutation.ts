@@ -4,7 +4,6 @@ import { useAccount, useMutation, useProvider, useSigner } from "wagmi";
 import { BasicKYCExampleDApp__factory } from "shared/contracts";
 import { invokeSnap } from "./api-sdk";
 import { snapsKeys } from "./keys";
-import { SbtDetails } from "./types";
 import {
   getExpectedValidationTimestamp,
   processProof,
@@ -25,9 +24,8 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
   return useMutation(
     async () => {
       if (!provider || !address || !signerQuery.data) return;
-      const expectedValidationTimestamp = await getExpectedValidationTimestamp(
-        provider
-      );
+      const expectedValidationTimestamp =
+        await getExpectedValidationTimestamp(provider);
 
       const proofInput = {
         currentTime: expectedValidationTimestamp,

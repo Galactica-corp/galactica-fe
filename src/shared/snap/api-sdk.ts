@@ -61,14 +61,14 @@ type InvokeRequest =
 type InvokeResponse<T> = T extends InvokeGetHolderCommitment
   ? string
   : T extends InvokeGenZkKycProof
-  ? unknown // TODO
-  : T extends InvokeClearStorageRequest
-  ? string
-  : T extends InvokeExportZkCertRequest
-  ? unknown // TODO: fix this type
-  : T extends InvokeListZkCertsRequest
-  ? Record<ZkCertStandard, string | undefined>
-  : never;
+    ? unknown // TODO
+    : T extends InvokeClearStorageRequest
+      ? string
+      : T extends InvokeExportZkCertRequest
+        ? unknown // TODO: fix this type
+        : T extends InvokeListZkCertsRequest
+          ? Record<ZkCertStandard, string | undefined>
+          : never;
 
 export const invokeSnap = <T extends InvokeRequest>(request: T) => {
   return window.ethereum?.request({

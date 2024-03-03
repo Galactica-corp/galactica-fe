@@ -27,9 +27,8 @@ export const useGenZkRepeatableProofMutation = ({
   return useMutation(
     async () => {
       if (!provider || !address || !signerQuery.data) return;
-      const expectedValidationTimestamp = await getExpectedValidationTimestamp(
-        provider
-      );
+      const expectedValidationTimestamp =
+        await getExpectedValidationTimestamp(provider);
 
       const proofInput = {
         currentTime: expectedValidationTimestamp,

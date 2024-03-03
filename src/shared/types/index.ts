@@ -12,7 +12,7 @@ export type UseQueryOptions<
   TQueryFnData = unknown,
   TError = DefaultError,
   TData = TQueryFnData,
-  TQueryKey extends QueryKey = QueryKey
+  TQueryKey extends QueryKey = QueryKey,
 > = Omit<
   RQUseQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
   "queryKey" | "queryFn"

@@ -76,6 +76,7 @@ module.exports = {
     "import/namespace": "off",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["warn", { varsIgnorePattern: "^_" }],
+    "@typescript-eslint/no-explicit-any": "off",
     "boundaries/element-types": [
       2,
       {
