@@ -7,7 +7,7 @@ export const galacticaTestnet: Chain = {
   nativeCurrency: {
     decimals: 18,
     name: "Galactica",
-    symbol: "UGNET",
+    symbol: "GNET",
   },
   rpcUrls: {
     default: {
