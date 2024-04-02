@@ -7,10 +7,13 @@ import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
 import { UploadKycCard } from "features/upload-kyc";
 import { LS_KEYS } from "shared/config/const";
+import { useChain } from "shared/config/hooks";
 import { default as CheckIcon } from "shared/icons/check.svg?react";
 import { useSbtsQuery, useZkCerts } from "shared/snap";
 
 export const MyKYC = () => {
+  const chain = useChain();
+  const contracts = sdkConfig.contracts[chain.id];
   const [_, setShouldCallConfetti] = useLocalStorage(
     LS_KEYS.shouldCallConfetti,
     false
@@ -24,8 +27,8 @@ export const MyKYC = () => {
     select: ({ sbts }) =>
       sbts.filter((sbt) =>
         import.meta.env.VITE_ACTIVE_KYC === "repeatable"
-          ? sbt.dApp === sdkConfig.contracts.repeatableZkpTest
-          : sbt.dApp === sdkConfig.contracts.exampleDapp
+          ? sbt.dApp === contracts.repeatableZkpTest
+          : sbt.dApp === contracts.exampleDapp
       ),
   });
 

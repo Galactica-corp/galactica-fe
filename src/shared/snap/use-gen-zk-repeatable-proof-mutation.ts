@@ -1,6 +1,7 @@
 import { GenZkProofParams, sdkConfig } from "@galactica-net/snap-api";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAccount, useMutation, useProvider, useSigner } from "wagmi";
+import { useChain } from "shared/config/hooks";
 import { RepeatableZKPTest__factory } from "shared/contracts";
 import { invokeSnap } from "./api-sdk";
 import { snapsKeys } from "./keys";
@@ -18,6 +19,8 @@ type Options = {
 export const useGenZkRepeatableProofMutation = ({
   onPublish,
 }: Options = {}) => {
+  const chain = useChain();
+  const contracts = sdkConfig.contracts[chain.id];
   const signerQuery = useSigner();
   const provider = useProvider();
   const { address } = useAccount();
@@ -33,7 +36,7 @@ export const useGenZkRepeatableProofMutation = ({
 
       const proofInput = {
         currentTime: expectedValidationTimestamp,
-        dAppAddress: sdkConfig.contracts.repeatableZkpTest,
+        dAppAddress: contracts.repeatableZkpTest,
         investigationInstitutionPubKey: [],
       };
 
@@ -42,15 +45,13 @@ export const useGenZkRepeatableProofMutation = ({
       );
       const zkKYCProver = await response.json();
 
-      console.log(sdkConfig.contracts.zkKycRegistry);
-
       const zkp: any = await invokeSnap({
         method: "genZkKycProof",
         params: {
           input: proofInput,
           requirements: {
             zkCertStandard: "gip69" as const,
-            registryAddress: sdkConfig.contracts.zkKycRegistry,
+            registryAddress: contracts.zkKycRegistry,
           },
           userAddress: address.toString(),
           description:
@@ -77,7 +78,7 @@ export const useGenZkRepeatableProofMutation = ({
       const publicInputs = processPublicSignals(zkp.publicSignals);
 
       const repeatableZKPTestSC = RepeatableZKPTest__factory.connect(
-        sdkConfig.contracts.repeatableZkpTest,
+        contracts.repeatableZkpTest,
         signerQuery.data
       );
 

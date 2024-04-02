@@ -3,9 +3,12 @@ import { ChooseKycProviderCard } from "entities/kyc";
 import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
 import { twMerge } from "tailwind-merge";
 import { GenerateSbtButton } from "features/generate-sbt";
+import { useChain } from "shared/config/hooks";
 import { useSbtsQuery, useZkCerts } from "shared/snap";
 
 export const MySbtDev = () => {
+  const chain = useChain();
+  const contracts = sdkConfig.contracts[chain.id];
   const [zkCerts] = useZkCerts();
 
   const query = useSbtsQuery({
@@ -24,7 +27,7 @@ export const MySbtDev = () => {
         return (
           <SbtCard
             title={
-              sbt.dApp === sdkConfig.contracts.repeatableZkpTest
+              sbt.dApp === contracts.repeatableZkpTest
                 ? "KYC SBT"
                 : "KYC SBT (Age > 18)"
             }

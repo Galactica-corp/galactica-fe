@@ -6,8 +6,6 @@ import { App } from "app/app";
 
 sdkConfig.defaultSnapOrigin = import.meta.env.VITE_SNAP_ID;
 
-console.log(sdkConfig.contracts);
-
 if (import.meta.env.VITE_SENTRY === "on" && import.meta.env.PROD) {
   init({
     dsn: import.meta.env.VITE_SENTRY_DSN,

@@ -1,6 +1,7 @@
 import { sdkConfig } from "@galactica-net/snap-api";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAccount, useMutation, useProvider, useSigner } from "wagmi";
+import { useChain } from "shared/config/hooks";
 import { BasicKYCExampleDApp__factory } from "shared/contracts";
 import { invokeSnap } from "./api-sdk";
 import { snapsKeys } from "./keys";
@@ -16,6 +17,8 @@ type Options = {
 };
 
 export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
+  const chain = useChain();
+  const contracts = sdkConfig.contracts[chain.id];
   const signerQuery = useSigner();
   const provider = useProvider();
   const { address } = useAccount();
@@ -31,7 +34,7 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
 
       const proofInput = {
         currentTime: expectedValidationTimestamp,
-        dAppAddress: sdkConfig.contracts.exampleDapp,
+        dAppAddress: contracts.exampleDapp,
         investigationInstitutionPubKey: [],
       };
 
@@ -46,7 +49,7 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
           input: proofInput,
           requirements: {
             zkCertStandard: "gip69" as const,
-            registryAddress: sdkConfig.contracts.zkKycRegistry,
+            registryAddress: contracts.zkKycRegistry,
           },
           userAddress: address.toString(),
           description:
@@ -73,7 +76,7 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
       const publicInputs = processPublicSignals(zkp.publicSignals);
 
       const basicKycExampleDAppSC = BasicKYCExampleDApp__factory.connect(
-        sdkConfig.contracts.exampleDapp,
+        contracts.exampleDapp,
         signerQuery.data
       );
 

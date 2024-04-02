@@ -8,18 +8,20 @@ import { useLocalStorage } from "usehooks-ts";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
 import { LS_KEYS } from "shared/config/const";
+import { useChain } from "shared/config/hooks";
 import { default as CheckIcon } from "shared/icons/check.svg?react";
 import { useSbtsQuery, useZkCerts } from "shared/snap";
 import { SkeletonCard } from "shared/ui/card";
 
 const jsConfetti = new JSConfetti();
 
-const DAPP_NAME = {
-  [sdkConfig.contracts.exampleDapp]: "KYC SBT",
-  [sdkConfig.contracts.repeatableZkpTest]: "KYC SBT (Repeatable)",
-};
-
 export const MySbt = () => {
+  const chain = useChain();
+  const contracts = sdkConfig.contracts[chain.id];
+  const dappName = {
+    [contracts.exampleDapp]: "KYC SBT",
+    [contracts.repeatableZkpTest]: "KYC SBT (Repeatable)",
+  };
   const [shouldCallConfetti, setShouldCallConfetti] = useLocalStorage(
     LS_KEYS.shouldCallConfetti,
     false
@@ -30,8 +32,8 @@ export const MySbt = () => {
     select: ({ sbts }) =>
       sbts.filter((sbt) => {
         return import.meta.env.VITE_ACTIVE_KYC === "repeatable"
-          ? sbt.dApp === sdkConfig.contracts.repeatableZkpTest
-          : sbt.dApp === sdkConfig.contracts.exampleDapp;
+          ? sbt.dApp === contracts.repeatableZkpTest
+          : sbt.dApp === contracts.exampleDapp;
       }),
   });
 
@@ -75,7 +77,7 @@ export const MySbt = () => {
           query.data.map((sbt, idx) => {
             return (
               <SbtCard
-                title={DAPP_NAME[sbt.dApp] ?? "Unknown Proof"}
+                title={dappName[sbt.dApp] ?? "Unknown Proof"}
                 key={idx}
                 provider="Example"
                 expiration={Date.now() + sbt.expirationTime}
