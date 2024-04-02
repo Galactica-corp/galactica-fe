@@ -4,7 +4,7 @@ import { useAccount, useMutation, useProvider, useSigner } from "wagmi";
 import { BasicKYCExampleDApp__factory } from "shared/contracts";
 import { invokeSnap } from "./api-sdk";
 import { snapsKeys } from "./keys";
-import { SbtDetails } from "./types";
+import { type SbtDetails } from "./types";
 import {
   getExpectedValidationTimestamp,
   processProof,

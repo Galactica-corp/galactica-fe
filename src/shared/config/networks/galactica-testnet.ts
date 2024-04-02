@@ -1,6 +1,6 @@
 import { Chain } from "wagmi";
 
-export const galacticaTestnet: Chain = {
+export const galacticaAndromedaTestnet: Chain = {
   id: 41238,
   name: "Galactica-Andromeda",
   network: "Galactica-Andromeda",
