@@ -3,10 +3,11 @@ import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 import { BigNumber, EventFilter, ethers } from "ethers";
 import invariant from "tiny-invariant";
 import { useAccount, useProvider } from "wagmi";
+import { useChain } from "shared/config/hooks";
 import { IVerificationSBT__factory } from "shared/contracts";
 import { SNAP_LS_KEYS } from "./const";
 import { snapsKeys } from "./keys";
-import { SBT, SbtDetails } from "./types";
+import { SbtDetails } from "./types";
 
 const dappAddress = null;
 const humanID = null;
@@ -19,6 +20,8 @@ export const useSbtsQuery = <TData = SbtDetails>(
     ReturnType<typeof snapsKeys.allSbtByUser>
   > & { extraEnabled?: boolean }
 ) => {
+  const chain = useChain();
+  const contracts = sdkConfig.contracts[chain.id];
   const { address } = useAccount();
   const provider = useProvider();
 
@@ -40,13 +43,10 @@ export const useSbtsQuery = <TData = SbtDetails>(
             latestBlockChecked: 0,
           };
 
-      console.log(sdkConfig.contracts.verificationSbt);
       const sbtSC = IVerificationSBT__factory.connect(
-        sdkConfig.contracts.verificationSbt,
+        contracts.verificationSbt,
         provider
       );
-
-      console.log(sdkConfig.contracts.verificationSbt);
 
       const currentBlock = await provider.getBlockNumber();
       const lastBlockTime = (await provider.getBlock(currentBlock)).timestamp;
@@ -57,7 +57,7 @@ export const useSbtsQuery = <TData = SbtDetails>(
 
       // filter through all logs adding a verification SBT for the user
       const filter = {
-        address: sdkConfig.contracts.verificationSbt,
+        address: contracts.verificationSbt,
         topics: [
           ethers.utils.id("VerificationSBTMinted(address,address,bytes32)"),
           dappAddress ? ethers.utils.hexZeroPad(dappAddress, 32) : null,
