@@ -9,6 +9,7 @@ sdkConfig.defaultSnapOrigin = import.meta.env.VITE_SNAP_ID;
 if (import.meta.env.VITE_SENTRY === "on" && import.meta.env.PROD) {
   init({
     dsn: import.meta.env.VITE_SENTRY_DSN,
+    ignoreErrors: ["Non-Error promise rejection captured"],
     integrations: [
       new BrowserTracing({
         // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
