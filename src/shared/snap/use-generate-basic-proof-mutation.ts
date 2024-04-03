@@ -38,9 +38,7 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
         investigationInstitutionPubKey: [],
       };
 
-      const response = await fetch(
-        "https://galactica-trusted-setup.s3.eu-central-1.amazonaws.com/zkKYC.json"
-      );
+      const response = await fetch(import.meta.env.VITE_PROOF_FILE);
       const zkKYCProver = await response.json();
 
       const zkp: any = await invokeSnap({
