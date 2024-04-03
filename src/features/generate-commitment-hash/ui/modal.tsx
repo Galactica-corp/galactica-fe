@@ -53,8 +53,7 @@ export const GenerateModal = ({ onClose, onError }: Props) => {
                 onSuccess: (data) => {
                   const url = new URL(
                     "/",
-                    import.meta.env.VITE_EXAMPLE_KYC_PROVIDER_ORIGIN ??
-                      "https://develop.sample-provider-devnet-41233.galactica.com"
+                    import.meta.env.VITE_EXAMPLE_KYC_PROVIDER_ORIGIN
                   );
                   url.searchParams.append(
                     "commitmentHash",
