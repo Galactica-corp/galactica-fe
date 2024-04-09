@@ -2,7 +2,7 @@ import { galacticaReticulumTestnet } from "./galactica-reticulum";
 import { galacticaAndromedaTestnet } from "./galactica-testnet";
 
 const galacticaTestnet =
-  import.meta.env.VITE_CHAIN_ID === "9301"
+  import.meta.env.VITE_CHAIN_ID === "9302"
     ? galacticaReticulumTestnet
     : galacticaAndromedaTestnet;
 
