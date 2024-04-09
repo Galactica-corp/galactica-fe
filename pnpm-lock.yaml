@@ -6,13 +6,13 @@ settings:
 
 patchedDependencies:
   '@galactica-net/snap-api@0.1.11':
-    hash: xfv6tbtbzz32w7p7xwpcyejc2u
+    hash: qn4ofbtianzclsvqx7wfeqjuoe
     path: patches/@galactica-net__snap-api@0.1.11.patch
 
 dependencies:
   '@galactica-net/snap-api':
     specifier: 0.1.11
-    version: 0.1.11(patch_hash=xfv6tbtbzz32w7p7xwpcyejc2u)
+    version: 0.1.11(patch_hash=qn4ofbtianzclsvqx7wfeqjuoe)
   '@react-spring/web':
     specifier: ^9.7.3
     version: 9.7.3(react-dom@18.2.0)(react@18.2.0)
@@ -1020,7 +1020,7 @@ packages:
       buffer: 6.0.3
     dev: false
 
-  /@galactica-net/snap-api@0.1.11(patch_hash=xfv6tbtbzz32w7p7xwpcyejc2u):
+  /@galactica-net/snap-api@0.1.11(patch_hash=qn4ofbtianzclsvqx7wfeqjuoe):
     resolution: {integrity: sha512-0MGeviAEvIAw9mZrybFlXEvJQf2hS+9kaMPcefEj6j7Y8ZXHJzqvcvkTvEhUr8qwXBa0gFTk43M9qAoRFc9FUQ==}
     dependencies:
       '@galactica-net/galactica-types': 0.2.4

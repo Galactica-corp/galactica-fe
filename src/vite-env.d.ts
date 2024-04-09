@@ -10,7 +10,7 @@ interface ImportMetaEnv {
   readonly VITE_SENTRY_DSN: string;
   readonly VITE_SENTRY_AUTH_TOKEN: string;
   readonly VITE_ACTIVE_KYC: "repeatable" | "zkKyc";
-  readonly VITE_CHAIN_ID: "9301" | "41238";
+  readonly VITE_CHAIN_ID: "9302" | "41238";
   readonly VITE_PROOF_FILE: string;
 }
 
