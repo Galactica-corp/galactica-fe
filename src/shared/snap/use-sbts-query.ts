@@ -1,4 +1,4 @@
-import { sdkConfig } from "@galactica-net/snap-api";
+import { ChainId, sdkConfig } from "@galactica-net/snap-api";
 import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 import { BigNumber, EventFilter, ethers } from "ethers";
 import invariant from "tiny-invariant";
@@ -21,7 +21,7 @@ export const useSbtsQuery = <TData = SbtDetails>(
   > & { extraEnabled?: boolean }
 ) => {
   const chain = useChain();
-  const contracts = sdkConfig.contracts[chain.id];
+  const contracts = sdkConfig.contracts[chain.id as unknown as ChainId];
   const { address } = useAccount();
   const provider = useProvider();
 

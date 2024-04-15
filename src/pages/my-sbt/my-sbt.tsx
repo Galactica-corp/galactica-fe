@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { sdkConfig } from "@galactica-net/snap-api";
+import { ChainId, sdkConfig } from "@galactica-net/snap-api";
 import { ChooseKycProviderCard } from "entities/kyc";
 import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
 import JSConfetti from "js-confetti";
@@ -17,7 +17,7 @@ const jsConfetti = new JSConfetti();
 
 export const MySbt = () => {
   const chain = useChain();
-  const contracts = sdkConfig.contracts[chain.id];
+  const contracts = sdkConfig.contracts[chain.id as unknown as ChainId];
   const dappName = {
     [contracts.exampleDapp]: "KYC SBT",
     [contracts.repeatableZkpTest]: "KYC SBT (Repeatable)",

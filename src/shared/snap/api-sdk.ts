@@ -1,4 +1,3 @@
-import { Address } from "wagmi";
 import { SNAP_ID } from "shared/config/const";
 import { ZkCertStandard } from "./types";
 
