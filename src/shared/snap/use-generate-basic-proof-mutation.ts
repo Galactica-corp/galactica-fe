@@ -32,6 +32,8 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
         provider
       );
 
+      console.log({ address });
+
       const proofInput = {
         currentTime: expectedValidationTimestamp,
         dAppAddress: contracts.exampleDapp,

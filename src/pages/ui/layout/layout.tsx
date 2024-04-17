@@ -2,7 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import { OnboardingProgress } from "entities/onboarding-progress";
 import { useLocalStorage } from "usehooks-ts";
 import { LS_KEYS } from "shared/config/const";
-import { useZkCerts } from "shared/snap";
+import { useGetZkCertStorageHashesQuery, useZkCerts } from "shared/snap";
 import { Header } from "../header";
 
 export const Layout = () => {
@@ -13,7 +13,14 @@ export const Layout = () => {
     false
   );
 
-  if (zkCerts?.length === 0 && !isOnboardingCompleted)
+  const query = useGetZkCertStorageHashesQuery();
+
+  if (
+    query.isSuccess &&
+    !query.data &&
+    zkCerts?.length === 0 &&
+    !isOnboardingCompleted
+  )
     return <Navigate to="/onboarding" />;
 
   return (
