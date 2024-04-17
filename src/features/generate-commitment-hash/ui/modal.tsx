@@ -1,5 +1,7 @@
 import { useState } from "react";
+
 import { captureException } from "@sentry/react";
+
 import { LearnKycLink } from "entities/kyc";
 import { default as LogoMetamask } from "shared/icons/metamask-outline.svg?react";
 import { useGenerateCommitmentHashMutation } from "shared/snap";
@@ -20,14 +22,14 @@ export const GenerateModal = ({ onClose, onError }: Props) => {
   return (
     <Modal onClose={onClose}>
       <Modal.Body className="w-[650px] px-14 pb-12 pt-16" onClose={onClose}>
-        {mutation.isLoading ? (
-          <GradientSpinner className="h-[110px] w-[110px]" />
+        {mutation.isPending ? (
+          <GradientSpinner className="size-[110px]" />
         ) : (
           <LogoMetamask className="h-[110px] text-grayNickel" />
         )}
 
         <Modal.Title className="mt-9">
-          {mutation.isLoading
+          {mutation.isPending
             ? "Generating private Commitment Hash, please wait..."
             : "To begin the zkKYC procedure you need to generate a Commitment Hash"}
         </Modal.Title>
@@ -37,16 +39,15 @@ export const GenerateModal = ({ onClose, onError }: Props) => {
         {url && (
           <a
             className="mt-5 cursor-pointer"
-            target="_blank"
             href={url}
             rel="noreferrer"
+            target="_blank"
           >
             <Button onClick={onClose}>Pass zkKYC</Button>
           </a>
         )}
         {!url && (
           <Button
-            theme="primaryTransparent"
             className="mt-5"
             onClick={() => {
               mutation.mutate(undefined, {
@@ -76,6 +77,7 @@ export const GenerateModal = ({ onClose, onError }: Props) => {
                 },
               });
             }}
+            theme="primaryTransparent"
           >
             Generate & Start KYC
           </Button>

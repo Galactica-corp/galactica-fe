@@ -1,12 +1,10 @@
-import { ConnectResult, Provider } from "@wagmi/core";
 import { useAccount, useConnect } from "wagmi";
+
 import { default as MetamaskIcon } from "shared/icons/metamask.svg?react";
 import { Button } from "shared/ui/button";
 
-export type ConnectHandler = (result: ConnectResult<Provider>) => void;
-
 type Props = {
-  onConnect?: ConnectHandler;
+  onConnect?: () => void;
 };
 
 export function ConnectWalletButton({ onConnect }: Props) {
@@ -17,8 +15,8 @@ export function ConnectWalletButton({ onConnect }: Props) {
 
   const handleConnect = async () => {
     try {
-      const response = await connectAsync({ connector: metamaskConnector });
-      onConnect?.(response);
+      await connectAsync({ connector: metamaskConnector });
+      onConnect?.();
     } catch (error) {
       console.error(error);
     }
@@ -28,10 +26,10 @@ export function ConnectWalletButton({ onConnect }: Props) {
 
   return (
     <Button
-      onClick={handleConnect}
-      isLoading={isConnecting}
-      theme="primaryTransparent"
       className="w-[18.75rem] space-x-[0.9rem]"
+      isLoading={isConnecting}
+      onClick={handleConnect}
+      theme="primaryTransparent"
     >
       <MetamaskIcon className="relative top-[-0.15rem]" />
       <span>Connect MetaMask</span>

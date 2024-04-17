@@ -1,4 +1,5 @@
 import { twMerge } from "tailwind-merge";
+
 import { default as MetamaskFlaskSvg } from "shared/icons/metamask-flask.svg?react";
 import { default as MetamaskWithToggle } from "shared/icons/metamask-with-toggle.svg?react";
 import { default as RightArrow } from "shared/icons/right-arrow.svg?react";

@@ -1,17 +1,14 @@
-import { useQueryClient } from "@tanstack/react-query";
 import { useLocalStorage } from "usehooks-ts";
+
 import { LS_KEYS } from "shared/config/const";
-import { useAccountChange } from "shared/hooks";
 import {
   useGetZkCertStorageHashesQuery,
   useListZkCertsMutation,
   useZkCertHash,
   useZkCerts,
 } from "shared/snap";
-import { snapsKeys } from "shared/snap/keys";
 
 export const useUpdateKycList = () => {
-  const queryClient = useQueryClient();
   const [isOnboardingCompleted] = useLocalStorage(
     LS_KEYS.isOnboardingCompleted,
     false
@@ -27,10 +24,10 @@ export const useUpdateKycList = () => {
     },
   });
 
-  useAccountChange(({ account }) => {
-    if (!account) return;
-    queryClient.invalidateQueries(snapsKeys.allSbt());
-  });
+  // useAccountChange(({ account }) => {
+  //   if (!account) return;
+  //   queryClient.invalidateQueries(snapsKeys.allSbt());
+  // });
 
   const isUpdateNeeded =
     Boolean(

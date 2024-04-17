@@ -1,5 +1,7 @@
 import { createContext, useContext } from "react";
+
 import invariant from "tiny-invariant";
+
 import { Snap } from "shared/snap";
 
 export const SnapContext = createContext<Snap | undefined>(undefined);

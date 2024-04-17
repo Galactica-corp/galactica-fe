@@ -1,15 +1,16 @@
 import { ComponentProps, PropsWithChildren } from "react";
+
 import { useImportZkCertMutation } from "shared/snap/use-import-zk-cert-mutation";
 import { ClassName } from "shared/types";
 import { ButtonTheme, FileInputButton } from "shared/ui/button";
 import { parseJSONFile } from "shared/utils";
 
 type Props = {
-  theme?: ButtonTheme;
-  onSuccessUpload?: (data: unknown) => void;
   onErrorUpload?: () => void;
+  onSuccessUpload?: (data: unknown) => void;
+  theme?: ButtonTheme;
 } & ClassName &
-  Omit<ComponentProps<"input">, "type" | "ref">;
+  Omit<ComponentProps<"input">, "ref" | "type">;
 
 export const UploadKycButton = ({
   children,
@@ -36,9 +37,8 @@ export const UploadKycButton = ({
   return (
     <FileInputButton
       {...props}
-      className={className}
-      theme={theme}
       accept=".json"
+      className={className}
       onChange={async (e) => {
         const file = e.target.files?.[0];
         if (file)
@@ -46,6 +46,7 @@ export const UploadKycButton = ({
             onUpload(data);
           });
       }}
+      theme={theme}
     >
       {children ?? "Upload zkKYC"}
     </FileInputButton>

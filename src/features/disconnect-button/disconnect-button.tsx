@@ -1,7 +1,8 @@
 import { useAccount, useDisconnect } from "wagmi";
+
 import { default as LogoutIcon } from "shared/icons/logout.svg?react";
 import { Button } from "shared/ui/button";
-import { shortenAddress } from "shared/utils";
+import { shortAddress } from "shared/web3/utils";
 
 type Props = {
   onDisconnect?: () => void;
@@ -9,7 +10,7 @@ type Props = {
 
 export const DisconnectButton = ({ onDisconnect }: Props) => {
   const { isDisconnected, address } = useAccount();
-  const { disconnectAsync, isLoading } = useDisconnect();
+  const { disconnectAsync, isPending } = useDisconnect();
 
   const handleDisconnect = async () => {
     try {
@@ -24,12 +25,12 @@ export const DisconnectButton = ({ onDisconnect }: Props) => {
 
   return (
     <Button
-      onClick={handleDisconnect}
-      isLoading={isLoading}
-      theme="primaryTransparent"
       className="w-[18.75rem] space-x-[0.9rem]"
+      isLoading={isPending}
+      onClick={handleDisconnect}
+      theme="primaryTransparent"
     >
-      <span>{shortenAddress(address)}</span>
+      <span>{shortAddress(address)}</span>
       <LogoutIcon className="relative top-[-0.1rem]" />
     </Button>
   );

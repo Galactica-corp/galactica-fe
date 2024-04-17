@@ -1,11 +1,10 @@
 import { useAccount } from "wagmi";
-import { useIsSupportedChain } from "shared/config/hooks";
 
-type Status = "connectNeeded" | "switchNeeded" | "canDisconnect";
+type Status = "canDisconnect" | "connectNeeded" | "switchNeeded";
 
 export const useWalletButtonStatus = (): Status => {
   const { isConnected } = useAccount();
-  const isSupportedChain = useIsSupportedChain();
+  const isSupportedChain = true;
 
   if (!isConnected) return "connectNeeded";
   if (!isSupportedChain && isConnected) return "switchNeeded";

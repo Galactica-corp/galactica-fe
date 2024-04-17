@@ -1,5 +1,7 @@
 import { useToggle } from "usehooks-ts";
+
 import { GenerateCommitmentHashModal } from "features/generate-commitment-hash";
+
 import { Row } from "./row";
 import { TableHeader } from "./table-header";
 
@@ -25,7 +27,7 @@ export const KYCGuardiansPage = () => {
       {mocks.map((mock) => {
         return (
           <Row
-            className="border-t border-mineShaft border-opacity-5 last:border-b "
+            className="border-t border-mineShaft/50 last:border-b "
             key={mock.number}
             onStart={toggleGenerateCommitmentHashModalOpen}
             {...mock}

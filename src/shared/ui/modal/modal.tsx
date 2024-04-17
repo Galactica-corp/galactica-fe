@@ -1,21 +1,24 @@
 import { ReactNode } from "react";
+
 import { animated, useSpring } from "@react-spring/web";
 import { twMerge } from "tailwind-merge";
-import { useLockedBody } from "usehooks-ts";
+import { useScrollLock } from "usehooks-ts";
+
 import { ClassName } from "shared/types";
+
 import { Portal } from "../portal";
 import { Body } from "./body";
 import { Description } from "./description";
 import { Title } from "./title";
 
 type Props = {
-  delay?: number;
   children: ReactNode;
+  delay?: number;
   onClose?: () => void;
 } & ClassName;
 
 export function Modal({ delay = 0, children, onClose, className }: Props) {
-  useLockedBody(true);
+  useScrollLock();
 
   const springs = useSpring({
     delay,
@@ -26,8 +29,8 @@ export function Modal({ delay = 0, children, onClose, className }: Props) {
   return (
     <Portal>
       <animated.div
-        style={springs}
         className={twMerge("fixed inset-0 flex overflow-y-auto p-5", className)}
+        style={springs}
       >
         <div className="fixed inset-0 bg-mineShaft/70" onClick={onClose} />
         {children}

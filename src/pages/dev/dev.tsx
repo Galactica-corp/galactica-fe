@@ -1,4 +1,5 @@
 import JSConfetti from "js-confetti";
+
 import { SNAP_ID } from "shared/config/const";
 import {
   useClearStorageMutation,

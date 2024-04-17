@@ -1,19 +1,21 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
+
 import { ChainId, sdkConfig } from "@galactica-net/snap-api";
+import { useLocalStorage } from "usehooks-ts";
+import { useChainId } from "wagmi";
+
 import { ChooseKycProviderCard, KycCard, KycNotFoundCard } from "entities/kyc";
 import { GenerationSbtCard } from "entities/sbt";
-import { useLocalStorage } from "usehooks-ts";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
 import { UploadKycCard } from "features/upload-kyc";
 import { LS_KEYS } from "shared/config/const";
-import { useChain } from "shared/config/hooks";
 import { default as CheckIcon } from "shared/icons/check.svg?react";
 import { useSbtsQuery, useZkCerts } from "shared/snap";
 
 export const MyKYC = () => {
-  const chain = useChain();
-  const contracts = sdkConfig.contracts[chain.id as unknown as ChainId];
+  const chainId = useChainId();
+  const contracts = sdkConfig.contracts[chainId as unknown as ChainId];
   const [_, setShouldCallConfetti] = useLocalStorage(
     LS_KEYS.shouldCallConfetti,
     false
@@ -37,17 +39,17 @@ export const MyKYC = () => {
   if (showWideUploading) {
     return (
       <UploadKycCard
-        className="mb-16 grow border-2"
         btnClassName="w-[256px]"
+        className="mb-16 grow border-2"
+        onSuccessUpload={() => {
+          searchParams.set("showWideUploading", "");
+        }}
         theme="primary"
         title={
           <p className="w-80 text-center text-3xl font-light">
             Drag&Drop your zkKYC secret file here
           </p>
         }
-        onSuccessUpload={() => {
-          searchParams.set("showWideUploading", "");
-        }}
       />
     );
   }
@@ -64,10 +66,10 @@ export const MyKYC = () => {
           zkCerts?.map((cert, i) => {
             return (
               <KycCard
-                key={`${cert.expirationDate}-${i}`}
-                type="example"
                 expiration={cert.expirationDate}
+                key={`${cert.expirationDate}-${i}`}
                 level={cert.verificationLevel}
+                type="example"
               />
             );
           })
@@ -77,6 +79,7 @@ export const MyKYC = () => {
 
         {query.isSuccess && zkCerts.length !== 0 && !hasBasicProof && (
           <GenerationSbtCard
+            desc="To use your KYC it is necessary to generate a zkProof (stored as an SBT) demonstrating its existence and disclosing the following data:"
             title={
               <div className="whitespace-nowrap text-[26px] font-light">
                 KYC{" "}
@@ -85,7 +88,6 @@ export const MyKYC = () => {
                 </span>
               </div>
             }
-            desc="To use your KYC it is necessary to generate a zkProof (stored as an SBT) demonstrating its existence and disclosing the following data:"
           >
             <div className="mb-6 mt-2.5 flex items-center justify-between">
               <div className="flex items-center text-sm text-mineShaft/50">

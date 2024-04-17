@@ -1,24 +1,26 @@
-import { Chain, useSwitchNetwork } from "wagmi";
-import { useIsSupportedChain } from "shared/config/hooks";
+import { Chain } from "viem";
+import { useSwitchChain } from "wagmi";
+
 import { DEFAULT_CHAIN } from "shared/config/networks";
 import { Button, ButtonTheme } from "shared/ui/button";
+
 import { default as StarSvg } from "./star.svg?react";
 
 type Props = {
-  theme?: ButtonTheme;
   onSwitch?: (chain: Chain) => void;
+  theme?: ButtonTheme;
 };
 
 export const SwitchNetworkButton = ({
   onSwitch,
   theme = "primaryTransparent",
 }: Props) => {
-  const isSupportedChain = useIsSupportedChain();
-  const { switchNetworkAsync, isLoading } = useSwitchNetwork();
+  const isSupportedChain = true;
+  const { isPending, switchChainAsync } = useSwitchChain();
 
   const handleSwitch = async () => {
     try {
-      const chain = await switchNetworkAsync?.(DEFAULT_CHAIN.id);
+      const chain = await switchChainAsync?.({ chainId: DEFAULT_CHAIN.id });
       chain && onSwitch?.(chain);
     } catch (error) {
       console.error(error);
@@ -29,12 +31,12 @@ export const SwitchNetworkButton = ({
 
   return (
     <Button
-      onClick={handleSwitch}
-      isLoading={isLoading}
-      theme={theme}
       className="w-[18.75rem] space-x-[0.9rem]"
+      isLoading={isPending}
+      onClick={handleSwitch}
+      theme={theme}
     >
-      <StarSvg className="h-6 w-6" />
+      <StarSvg className="size-6" />
       <span>Switch network</span>
     </Button>
   );

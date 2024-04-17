@@ -1,6 +1,8 @@
 import { getSnaps } from "@galactica-net/snap-api";
 import { useQuery } from "@tanstack/react-query";
+
 import { SNAP_ID } from "shared/config/const";
+
 import { snapsKeys } from "./keys";
 
 export const useGetSnapQuery = (snapId = SNAP_ID) => {

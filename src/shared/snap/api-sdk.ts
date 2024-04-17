@@ -1,4 +1,5 @@
 import { SNAP_ID } from "shared/config/const";
+
 import { ZkCertStandard } from "./types";
 
 type InvokeGetHolderCommitment = {
@@ -9,16 +10,16 @@ type InvokeGenZkKycProof = {
   method: "genZkKycProof";
   params: {
     input: Record<string, unknown>;
-    requirements: {
-      zkCertStandard: "gip69";
-      registryAddress: string;
-    };
-    userAddress: string;
     prover: {
       wasm: string;
       zkeyHeader: Record<string, unknown>;
       zkeySections: string[];
     };
+    requirements: {
+      registryAddress: string;
+      zkCertStandard: "gip69";
+    };
+    userAddress: string;
   };
 };
 
@@ -49,25 +50,25 @@ type InvokeGetZkCertStorageHashes = {
 };
 
 type InvokeRequest =
-  | InvokeGetHolderCommitment
-  | InvokeGenZkKycProof
   | InvokeClearStorageRequest
-  | InvokeImportZkCert
   | InvokeExportZkCertRequest
-  | InvokeListZkCertsRequest
-  | InvokeGetZkCertStorageHashes;
+  | InvokeGenZkKycProof
+  | InvokeGetHolderCommitment
+  | InvokeGetZkCertStorageHashes
+  | InvokeImportZkCert
+  | InvokeListZkCertsRequest;
 
 type InvokeResponse<T> = T extends InvokeGetHolderCommitment
   ? string
   : T extends InvokeGenZkKycProof
-  ? unknown // TODO
-  : T extends InvokeClearStorageRequest
-  ? string
-  : T extends InvokeExportZkCertRequest
-  ? unknown // TODO: fix this type
-  : T extends InvokeListZkCertsRequest
-  ? Record<ZkCertStandard, string | undefined>
-  : never;
+    ? unknown // TODO
+    : T extends InvokeClearStorageRequest
+      ? string
+      : T extends InvokeExportZkCertRequest
+        ? unknown // TODO: fix this type
+        : T extends InvokeListZkCertsRequest
+          ? Record<ZkCertStandard, string | undefined>
+          : never;
 
 export const invokeSnap = <T extends InvokeRequest>(request: T) => {
   return window.ethereum?.request({

@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import {
   EcosystemKYCItem,
   EcosystemKYCItemT,
@@ -23,9 +24,9 @@ export function EcosystemKycList() {
       <div className="mb-[1.625rem] space-x-[2.185rem]">
         {TABS_MAP.map((tab) => (
           <Tab
-            onClick={changeTab(tab.name)}
-            key={tab.name}
             isActive={tab.name === currentTab}
+            key={tab.name}
+            onClick={changeTab(tab.name)}
           >
             {tab.title}
           </Tab>

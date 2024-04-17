@@ -31,11 +31,11 @@ export const InstallSnapButton = ({ onInstall }: Props) => {
 
   return (
     <Button
-      onClick={handleInstall}
-      isLoading={mutation.isLoading || query.isLoading}
-      disabled={!query.isSuccess}
-      theme="primary"
       className="px-14"
+      disabled={!query.isSuccess}
+      isLoading={mutation.isPending || query.isPending}
+      onClick={handleInstall}
+      theme="primary"
     >
       {disabled ? (
         "Enable galactica snap"

@@ -1,5 +1,7 @@
 import { PropsWithChildren } from "react";
+
 import { useMediaQuery } from "usehooks-ts";
+
 import { Logo } from "shared/ui/logo";
 
 export const MobileGuard = ({ children }: PropsWithChildren) => {
@@ -14,10 +16,10 @@ export const MobileGuard = ({ children }: PropsWithChildren) => {
           proceed using your desktop <br />
           <br /> If you have any questions join our{" "}
           <a
-            target="_blank"
             className="link text-base"
             href="https://discord.com/invite/galactica"
             rel="noreferrer"
+            target="_blank"
           >
             Discord
           </a>{" "}

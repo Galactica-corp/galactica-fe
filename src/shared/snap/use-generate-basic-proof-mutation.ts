@@ -1,11 +1,21 @@
-import { ChainId, sdkConfig } from "@galactica-net/snap-api";
-import { useQueryClient } from "@tanstack/react-query";
-import { useAccount, useMutation, useProvider, useSigner } from "wagmi";
-import { useChain } from "shared/config/hooks";
-import { BasicKYCExampleDApp__factory } from "shared/contracts";
-import { invokeSnap } from "./api-sdk";
+import {
+  ChainId,
+  ZkCertStandard,
+  generateZKProof,
+  sdkConfig,
+} from "@galactica-net/snap-api";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Address } from "viem";
+import {
+  useAccount,
+  useChainId,
+  usePublicClient,
+  useWalletClient,
+} from "wagmi";
+
+import { basicKYCExampleDappAbi } from "shared/config/abi";
+
 import { snapsKeys } from "./keys";
-import { type SbtDetails } from "./types";
 import {
   getExpectedValidationTimestamp,
   processProof,
@@ -17,20 +27,20 @@ type Options = {
 };
 
 export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
-  const chain = useChain();
-  const contracts = sdkConfig.contracts[chain.id as unknown as ChainId];
-  const signerQuery = useSigner();
-  const provider = useProvider();
+  const chainId = useChainId();
+  const contracts = sdkConfig.contracts[chainId as unknown as ChainId];
+  const pc = usePublicClient({ chainId });
+  const { data: wc } = useWalletClient({ chainId });
   const { address } = useAccount();
 
   const queryClient = useQueryClient();
 
-  return useMutation(
-    async () => {
-      if (!provider || !address || !signerQuery.data) return;
-      const expectedValidationTimestamp = await getExpectedValidationTimestamp(
-        provider
-      );
+  return useMutation({
+    mutationFn: async () => {
+      if (!pc || !address || !wc) return;
+
+      const expectedValidationTimestamp =
+        await getExpectedValidationTimestamp(pc);
 
       const proofInput = {
         currentTime: expectedValidationTimestamp,
@@ -41,57 +51,56 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
       const response = await fetch(import.meta.env.VITE_PROOF_FILE);
       const zkKYCProver = await response.json();
 
-      const zkp: any = await invokeSnap({
-        method: "genZkKycProof",
-        params: {
-          input: proofInput,
-          requirements: {
-            zkCertStandard: "gip69" as const,
-            registryAddress: contracts.zkKycRegistry,
-          },
-          userAddress: address.toString(),
-          description:
-            "This ZKP discloses that you hold a valid zkKYC. It has no other disclosures.",
-          publicInputDescriptions: [
-            "user pubkey Ax",
-            "user pubkey Ay",
-            "proof valid",
-            "verification SBT expiration",
-            "merkle root",
-            "current time",
-            "user address",
-            "human id",
-            "dapp address",
-            "zkKYC guardian pubkey Ax",
-            "zkKYC guardian pubkey Ay",
-          ],
-          prover: zkKYCProver,
+      const zkp = await generateZKProof({
+        input: proofInput,
+        requirements: {
+          zkCertStandard: ZkCertStandard.ZkKYC,
+          registryAddress: contracts.zkKycRegistry,
         },
+        userAddress: address.toString(),
+        description:
+          "This ZKP discloses that you hold a valid zkKYC. It has no other disclosures.",
+        publicInputDescriptions: [
+          "user pubkey Ax",
+          "user pubkey Ay",
+          "proof valid",
+          "verification SBT expiration",
+          "merkle root",
+          "current time",
+          "user address",
+          "human id",
+          "dapp address",
+          "zkKYC guardian pubkey Ax",
+          "zkKYC guardian pubkey Ay",
+        ],
+        prover: zkKYCProver,
       });
 
       onPublish?.();
       const [a, b, c] = processProof(zkp.proof);
       const publicInputs = processPublicSignals(zkp.publicSignals);
 
-      const basicKycExampleDAppSC = BasicKYCExampleDApp__factory.connect(
-        contracts.exampleDapp,
-        signerQuery.data
-      );
+      const { request } = await pc.simulateContract({
+        account: address,
+        address: contracts.exampleDapp as Address,
+        abi: basicKYCExampleDappAbi,
+        functionName: "registerKYC",
+        args: [a, b, c, publicInputs.map((i) => BigInt(i))],
+      });
 
-      const tx = await basicKycExampleDAppSC.registerKYC(a, b, c, publicInputs);
-
-      const receipt = await tx.wait();
+      const txHash = await wc.writeContract(request);
+      const receipt = await pc.waitForTransactionReceipt({
+        hash: txHash,
+      });
 
       return receipt;
     },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries<SbtDetails>(
-          snapsKeys.allSbtByUser({
-            userAddress: address,
-          })
-        );
-      },
-    }
-  );
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: snapsKeys.allSbtByUser({
+          userAddress: address,
+        }),
+      });
+    },
+  });
 };

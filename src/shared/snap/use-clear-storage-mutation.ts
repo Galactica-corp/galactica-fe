@@ -1,6 +1,7 @@
 import { clearStorage } from "@galactica-net/snap-api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAccount } from "wagmi";
+
 import { useZkCertHash } from "./hooks/use-zk-cert-hash";
 import { useZkCerts } from "./hooks/use-zk-certs";
 import { snapsKeys } from "./keys";
@@ -20,7 +21,9 @@ export const useClearStorageMutation = () => {
       setZkCerts([]);
       setZkHash("");
 
-      queryClient.invalidateQueries(snapsKeys.zkCertStorageHashes(address));
+      queryClient.invalidateQueries({
+        queryKey: snapsKeys.zkCertStorageHashes(address),
+      });
     },
   });
 };

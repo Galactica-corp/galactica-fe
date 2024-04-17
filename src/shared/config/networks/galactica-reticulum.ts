@@ -1,9 +1,8 @@
-import { Chain } from "wagmi";
+import { Chain } from "viem";
 
 export const galacticaReticulumTestnet: Chain = {
   id: 9302,
   name: "Galactica-reticulum",
-  network: "Galactica-reticulum",
   nativeCurrency: {
     decimals: 18,
     name: "Galactica",

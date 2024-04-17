@@ -1,7 +1,7 @@
-import { useWalletButtonStatus } from "widgets/wallet-button";
 import { useGetSnapQuery } from "shared/snap";
+import { useWalletButtonStatus } from "widgets/wallet-button";
 
-type Step = "initialLoading" | "walletStep" | "snapStep" | "finish";
+type Step = "finish" | "initialLoading" | "snapStep" | "walletStep";
 
 export const useStep = (): Step => {
   const walletStatus = useWalletButtonStatus();

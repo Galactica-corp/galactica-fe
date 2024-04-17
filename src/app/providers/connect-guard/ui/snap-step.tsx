@@ -14,9 +14,9 @@ export const SnapStep = ({ onInstall }: Props) => {
       <p className="mb-10 text-center text-xl font-light tracking-[-0.4px] text-mineShaft text-opacity-40">
         <a
           className="link text-xl"
-          target="_blank"
           href="https://metamask.io/snaps/"
           rel="noreferrer"
+          target="_blank"
         >
           Galactica Snap
         </a>{" "}

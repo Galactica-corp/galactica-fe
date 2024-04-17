@@ -1,16 +1,17 @@
+import { Address } from "viem";
+
 export const snapsKeys = {
   all: ["snaps"],
-  isFlask: () => [...snapsKeys.all, "isFlask"],
   allSnap: () => [...snapsKeys.all, "snap"],
   snap: (snapId = "") => [...snapsKeys.allSnap(), snapId],
-  zkCertStorageHashes: (address: string | undefined) => [
+  zkCertStorageHashes: (address: Address | undefined) => [
     ...snapsKeys.all,
     "zkCertStorageHashes",
     address,
   ],
 
   allSbt: () => [...snapsKeys.all, "sbts"],
-  allSbtByUser: (params: { userAddress: string | undefined }) => [
+  allSbtByUser: (params: { userAddress: Address | undefined }) => [
     ...snapsKeys.allSbt(),
     "byUser",
     params,

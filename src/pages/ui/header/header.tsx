@@ -1,8 +1,9 @@
-import { WalletButton } from "widgets/wallet-button";
 import { Logo } from "shared/ui/logo";
+import { WalletButton } from "widgets/wallet-button";
+
 import { HeaderLink } from "./header-link";
 
-export const HEADERS_LINKS = [
+const HEADERS_LINKS = [
   {
     name: "MY zkKYC",
     to: "/",
@@ -23,7 +24,7 @@ export const HEADERS_LINKS = [
 
 export const Header = () => {
   return (
-    <div className="py-[2.5rem]">
+    <div className="py-10">
       <div className="mx-auto w-[300px] ml:w-[590px] t:w-[680px] dxs:w-[980px] ds:w-[1190px]">
         <div className="flex flex-row items-center justify-between">
           <div>
@@ -33,8 +34,8 @@ export const Header = () => {
             {HEADERS_LINKS.map((link) => (
               <HeaderLink
                 key={link.name}
-                to={link.to}
                 target={link.name === "HELP" ? "_blank" : undefined}
+                to={link.to}
               >
                 {link.name}
               </HeaderLink>

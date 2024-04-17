@@ -1,17 +1,19 @@
 import { ReactNode } from "react";
 import { useDropzone } from "react-dropzone";
+
 import { twMerge } from "tailwind-merge";
+
 import { useImportZkCertMutation } from "shared/snap/use-import-zk-cert-mutation";
 import { ClassName } from "shared/types";
 import { ButtonTheme, FileInputButton } from "shared/ui/button";
 import { parseJSONFile } from "shared/utils";
 
 type Props = {
-  title?: ReactNode;
-  theme?: ButtonTheme;
   btnClassName?: string;
-  onSuccessUpload?: (data: unknown) => void;
   onErrorUpload?: () => void;
+  onSuccessUpload?: (data: unknown) => void;
+  theme?: ButtonTheme;
+  title?: ReactNode;
 } & ClassName;
 
 export function UploadKycCard({
@@ -66,10 +68,10 @@ export function UploadKycCard({
         or
       </span>
       <FileInputButton
-        className={btnClassName}
-        isLoading={importCertMutation.isLoading}
-        theme={theme}
         accept=".json"
+        className={btnClassName}
+        isLoading={importCertMutation.isPending}
+        theme={theme}
         {...getInputProps()}
       >
         Browse files

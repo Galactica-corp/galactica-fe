@@ -1,16 +1,20 @@
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter } from "react-router-dom";
-import "react-tooltip/dist/react-tooltip.css";
-import "./index.css";
+
+import { RqProvider } from "shared/providers/rq";
+import { WagmiProvider } from "shared/providers/wagmi";
+
 import { ConnectGuard } from "./providers/connect-guard";
 import { MobileGuard } from "./providers/mobile-guard";
-import { RQProvider } from "./providers/rq";
-import { WagmiProvider } from "./providers/wagmi";
 import { AppRoutes } from "./routes";
+
+import "react-tooltip/dist/react-tooltip.css";
+
+import "./index.css";
 
 export function App() {
   return (
-    <RQProvider>
+    <RqProvider>
       <WagmiProvider>
         <MobileGuard>
           <BrowserRouter>
@@ -21,6 +25,6 @@ export function App() {
           </BrowserRouter>
         </MobileGuard>
       </WagmiProvider>
-    </RQProvider>
+    </RqProvider>
   );
 }

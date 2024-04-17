@@ -1,5 +1,6 @@
 import { default as MetamaskIcon } from "shared/icons/metamask.svg?react";
 import { Button, LinkButton } from "shared/ui/button";
+
 import { Note } from "./note";
 
 export const InstallFlaskStep = () => {
@@ -16,9 +17,9 @@ export const InstallFlaskStep = () => {
       <div className="flex gap-x-8">
         <LinkButton
           className="flex w-[300px] items-center"
+          rel="noreferrer"
           target="_blank"
           to="https://metamask.io/flask/"
-          rel="noreferrer"
         >
           <MetamaskIcon className="relative top-[-0.15rem] mr-3" />
           Install metamask flask
@@ -26,10 +27,10 @@ export const InstallFlaskStep = () => {
 
         <Button
           className="w-[300px]"
-          theme="primaryTransparent"
           onClick={() => {
             window.location.reload();
           }}
+          theme="primaryTransparent"
         >
           I have MetaMask Flask
         </Button>

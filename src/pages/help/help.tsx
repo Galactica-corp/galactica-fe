@@ -5,10 +5,10 @@ export const Help = () => {
   return (
     <div className="grid grid-cols-2 gap-[2.18rem]">
       <HelpCard
-        title="What do I need to get started?"
         className="!border-burntSienna"
+        title="What do I need to get started?"
       >
-        <div className="mt-[2rem] font-light">
+        <div className="mt-8 font-light">
           <p className="mb-[0.7rem]">
             To start using Galactica Network, you need to have MetaMask wallet
             connected and the Snap extension installed to it.
@@ -20,15 +20,15 @@ export const Help = () => {
         </div>
       </HelpCard>
       <HelpCard
-        title="How to get a zkKYC?"
         button={
           <Button
+            className="h-8 w-[14.06rem] !font-antiqueLegacy text-[0.875rem] font-light normal-case"
             theme="primaryTransparent"
-            className="h-[2rem] w-[14.06rem] !font-antiqueLegacy text-[0.875rem] font-light normal-case"
           >
             Go to zkKYC provider list
           </Button>
         }
+        title="How to get a zkKYC?"
       >
         <div className="font-light">
           <p>
@@ -38,15 +38,15 @@ export const Help = () => {
         </div>
       </HelpCard>
       <HelpCard
-        title="I passed my zkKYC. What's next?"
         button={
           <Button
+            className="h-8 w-[14.06rem] !font-antiqueLegacy text-[0.875rem] font-light normal-case"
             theme="primary"
-            className="h-[2rem] w-[14.06rem] !font-antiqueLegacy text-[0.875rem] font-light normal-case"
           >
             Upload zkKYC-KEY
           </Button>
         }
+        title="I passed my zkKYC. What's next?"
       >
         <div className="font-light">
           <p className="mb-[0.7rem]">
@@ -58,18 +58,18 @@ export const Help = () => {
         </div>
       </HelpCard>
       <HelpCard
-        title="What are the SBTs and why do I need one?"
         button={
           <Button
-            theme="primaryTransparent"
             className="
-              h-[2rem] w-[14.06rem] 
+              h-8 w-[14.06rem] 
               !border-naturalGray/50 !p-0 
               !font-antiqueLegacy text-[0.875rem] font-light normal-case"
+            theme="primaryTransparent"
           >
             Non-published documents
           </Button>
         }
+        title="What are the SBTs and why do I need one?"
       >
         <div className="font-light">
           <p className="mb-[0.7rem]">

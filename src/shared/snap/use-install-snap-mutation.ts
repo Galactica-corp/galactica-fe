@@ -1,6 +1,8 @@
 import { connectSnap } from "@galactica-net/snap-api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 import { SNAP_ID } from "shared/config/const";
+
 import { snapsKeys } from "./keys";
 import { useListZkCertsMutation } from "./use-list-zk-certs-mutation";
 
@@ -20,8 +22,7 @@ export const useInstallSnapMutation = () => {
       await connectSnap(snapId, { version: version });
     },
     onSuccess: () => {
-      console.log("SUCCCESS");
-      queryClient.refetchQueries(snapsKeys.allSnap());
+      queryClient.refetchQueries({ queryKey: snapsKeys.allSnap() });
       listZkCertsMutation.mutate({});
     },
     onError: (error) => {

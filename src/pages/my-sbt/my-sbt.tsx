@@ -1,14 +1,16 @@
 import { useEffect } from "react";
+
 import { ChainId, sdkConfig } from "@galactica-net/snap-api";
-import { ChooseKycProviderCard } from "entities/kyc";
-import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
 import JSConfetti from "js-confetti";
 import { twMerge } from "tailwind-merge";
 import { useLocalStorage } from "usehooks-ts";
+import { useChainId } from "wagmi";
+
+import { ChooseKycProviderCard } from "entities/kyc";
+import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
 import { LS_KEYS } from "shared/config/const";
-import { useChain } from "shared/config/hooks";
 import { default as CheckIcon } from "shared/icons/check.svg?react";
 import { useSbtsQuery, useZkCerts } from "shared/snap";
 import { SkeletonCard } from "shared/ui/card";
@@ -16,8 +18,8 @@ import { SkeletonCard } from "shared/ui/card";
 const jsConfetti = new JSConfetti();
 
 export const MySbt = () => {
-  const chain = useChain();
-  const contracts = sdkConfig.contracts[chain.id as unknown as ChainId];
+  const chainId = useChainId();
+  const contracts = sdkConfig.contracts[chainId as unknown as ChainId];
   const dappName = {
     [contracts.exampleDapp]: "KYC SBT",
     [contracts.repeatableZkpTest]: "KYC SBT (Repeatable)",
@@ -49,7 +51,7 @@ export const MySbt = () => {
     <>
       <UpdateKycListAlert className="mb-10" />
 
-      <div className={twMerge("grid grid-cols-3 gap-[1rem] pb-8")}>
+      <div className={twMerge("grid grid-cols-3 gap-4 pb-8")}>
         {zkCerts?.length === 0 && <ChooseKycProviderCard />}
         {query.isSuccess && !hasBasicProof && zkCerts?.length !== 0 && (
           <GenerationSbtCard>
@@ -77,11 +79,11 @@ export const MySbt = () => {
           query.data.map((sbt, idx) => {
             return (
               <SbtCard
-                title={dappName[sbt.dApp] ?? "Unknown Proof"}
-                key={idx}
-                provider="Example"
                 expiration={Date.now() + sbt.expirationTime}
+                key={idx}
                 level={1}
+                provider="Example"
+                title={dappName[sbt.dApp] ?? "Unknown Proof"}
               />
             );
           })}
