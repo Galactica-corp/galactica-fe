@@ -349,7 +349,7 @@ index b8a6b58e5bcdb97c0d8b0aaff372b90977bc2a92..0489330af773359bcdf1c282718bdd89
 +) => Promise<Snap | undefined>;
  declare const isLocalSnap: (snapId: string) => boolean;
  
-+type ChainId = '9302' | '41238';
++export type ChainId = '9302' | '41238';
 +
  type SdkConfig = {
 -    contracts: {
@@ -849,7 +849,7 @@ index b8a6b58e5bcdb97c0d8b0aaff372b90977bc2a92..fab878a9a9b54e4239bac68c64b96e40
 +) => Promise<Snap | undefined>;
  declare const isLocalSnap: (snapId: string) => boolean;
  
-+type ChainId = "9302" | "41238";
++ export type ChainId = "9302" | "41238";
 +
  type SdkConfig = {
 -    contracts: {

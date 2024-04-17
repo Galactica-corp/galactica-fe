@@ -23,5 +23,4 @@ export type SBT = {
 
 export type SbtDetails = {
   sbts: SBT[];
-  latestBlockChecked: number;
 };

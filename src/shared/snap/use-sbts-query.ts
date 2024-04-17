@@ -1,7 +1,8 @@
-import { sdkConfig } from "@galactica-net/snap-api";
+import { ChainId, sdkConfig } from "@galactica-net/snap-api";
 import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 import { BigNumber, EventFilter, ethers } from "ethers";
 import invariant from "tiny-invariant";
+import { useLocalStorage } from "usehooks-ts";
 import { useAccount, useProvider } from "wagmi";
 import { useChain } from "shared/config/hooks";
 import { IVerificationSBT__factory } from "shared/contracts";
@@ -21,9 +22,14 @@ export const useSbtsQuery = <TData = SbtDetails>(
   > & { extraEnabled?: boolean }
 ) => {
   const chain = useChain();
-  const contracts = sdkConfig.contracts[chain.id];
+  const contracts = sdkConfig.contracts[chain.id as unknown as ChainId];
   const { address } = useAccount();
-  const provider = useProvider();
+  const provider = useProvider({ chainId: chain.id });
+
+  const [_, setLatestBlockChecked] = useLocalStorage<string>(
+    SNAP_LS_KEYS.latestBlockChecked,
+    "0"
+  );
 
   return useQuery({
     // eslint-disable-next-line @tanstack/query/exhaustive-deps
@@ -35,12 +41,13 @@ export const useSbtsQuery = <TData = SbtDetails>(
       const sbtDetailsStringified = localStorage.getItem(
         SNAP_LS_KEYS.sbtDetails(address)
       );
+      const latestBlockChecked =
+        localStorage.getItem(SNAP_LS_KEYS.latestBlockChecked) || "0";
 
       const sbtDetails: SbtDetails = sbtDetailsStringified
         ? JSON.parse(sbtDetailsStringified)
         : {
             sbts: [],
-            latestBlockChecked: 0,
           };
 
       const sbtSC = IVerificationSBT__factory.connect(
@@ -68,10 +75,12 @@ export const useSbtsQuery = <TData = SbtDetails>(
 
       const earliestBlock = await sbtSC.deploymentBlock();
       const firstBlock = Math.max(
-        sbtDetails.latestBlockChecked,
+        parseInt(latestBlockChecked),
         earliestBlock.toNumber()
       );
       const maxBlockInterval = 10000;
+
+      console.log(currentBlock);
 
       for (let i = firstBlock; i < currentBlock; i += maxBlockInterval) {
         const maxBlock = Math.min(i + maxBlockInterval, currentBlock);
@@ -104,10 +113,11 @@ export const useSbtsQuery = <TData = SbtDetails>(
 
           notExpiredSbts.push(foundSbt);
         }
+
+        setLatestBlockChecked(maxBlock.toString());
       }
 
       const newSbtDetails: SbtDetails = {
-        latestBlockChecked: currentBlock,
         sbts: notExpiredSbts,
       };
 

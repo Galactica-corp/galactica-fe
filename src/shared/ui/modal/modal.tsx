@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { animated, useSpring } from "@react-spring/web";
 import { twMerge } from "tailwind-merge";
-import { useLockedBody } from "usehooks-ts";
+import { useScrollLock } from "usehooks-ts";
 import { ClassName } from "shared/types";
 import { Portal } from "../portal";
 import { Body } from "./body";
@@ -15,7 +15,7 @@ type Props = {
 } & ClassName;
 
 export function Modal({ delay = 0, children, onClose, className }: Props) {
-  useLockedBody(true);
+  useScrollLock();
 
   const springs = useSpring({
     delay,

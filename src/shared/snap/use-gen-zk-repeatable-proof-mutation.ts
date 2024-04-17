@@ -1,4 +1,4 @@
-import { GenZkProofParams, sdkConfig } from "@galactica-net/snap-api";
+import { ChainId, GenZkProofParams, sdkConfig } from "@galactica-net/snap-api";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAccount, useMutation, useProvider, useSigner } from "wagmi";
 import { useChain } from "shared/config/hooks";
@@ -20,7 +20,7 @@ export const useGenZkRepeatableProofMutation = ({
   onPublish,
 }: Options = {}) => {
   const chain = useChain();
-  const contracts = sdkConfig.contracts[chain.id];
+  const contracts = sdkConfig.contracts[chain.id as unknown as ChainId];
   const signerQuery = useSigner();
   const provider = useProvider();
   const { address } = useAccount();
@@ -79,8 +79,6 @@ export const useGenZkRepeatableProofMutation = ({
         contracts.repeatableZkpTest,
         signerQuery.data
       );
-
-      console.log("HELLO");
 
       const tx = await repeatableZKPTestSC.submitZKP(a, b, c, publicInputs);
 
