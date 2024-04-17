@@ -1,23 +1,25 @@
 import { useEffect } from "react";
-import { sdkConfig } from "@galactica-net/snap-api";
+import { ChainId, sdkConfig } from "@galactica-net/snap-api";
 import { ChooseKycProviderCard } from "entities/kyc";
 import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
 import JSConfetti from "js-confetti";
 import { twMerge } from "tailwind-merge";
-import { useLocalStorage } from "usehooks-ts";
+import { useLocalStorage, useReadLocalStorage } from "usehooks-ts";
+import { useBlockNumber } from "wagmi";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
 import { LS_KEYS } from "shared/config/const";
 import { useChain } from "shared/config/hooks";
 import { default as CheckIcon } from "shared/icons/check.svg?react";
 import { useSbtsQuery, useZkCerts } from "shared/snap";
+import { SNAP_LS_KEYS } from "shared/snap/const";
 import { SkeletonCard } from "shared/ui/card";
 
 const jsConfetti = new JSConfetti();
 
 export const MySbt = () => {
   const chain = useChain();
-  const contracts = sdkConfig.contracts[chain.id];
+  const contracts = sdkConfig.contracts[chain.id as unknown as ChainId];
   const dappName = {
     [contracts.exampleDapp]: "KYC SBT",
     [contracts.repeatableZkpTest]: "KYC SBT (Repeatable)",
@@ -26,6 +28,12 @@ export const MySbt = () => {
     LS_KEYS.shouldCallConfetti,
     false
   );
+
+  const latestBlockChecked = useReadLocalStorage<string>(
+    SNAP_LS_KEYS.latestBlockChecked
+  );
+
+  const blockNumberQuery = useBlockNumber({ chainId: chain.id });
   const [zkCerts] = useZkCerts();
 
   const query = useSbtsQuery({
@@ -72,12 +80,20 @@ export const MySbt = () => {
             />
           </GenerationSbtCard>
         )}
-        {query.isLoading && query.isInitialLoading && <SkeletonCard />}
+        {query.isLoading && query.isInitialLoading && (
+          <SkeletonCard
+            title={`${
+              latestBlockChecked || 0
+            } from ${blockNumberQuery.data?.toString()}`}
+          />
+        )}
         {query.isSuccess &&
           query.data.map((sbt, idx) => {
             return (
               <SbtCard
-                title={dappName[sbt.dApp] ?? "Unknown Proof"}
+                title={
+                  dappName[sbt.dApp as unknown as number] ?? "Unknown Proof"
+                }
                 key={idx}
                 provider="Example"
                 expiration={Date.now() + sbt.expirationTime}

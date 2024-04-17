@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { sdkConfig } from "@galactica-net/snap-api";
+import { ChainId, sdkConfig } from "@galactica-net/snap-api";
 import { ChooseKycProviderCard, KycCard, KycNotFoundCard } from "entities/kyc";
 import { GenerationSbtCard } from "entities/sbt";
 import { useLocalStorage } from "usehooks-ts";
@@ -13,7 +13,7 @@ import { useSbtsQuery, useZkCerts } from "shared/snap";
 
 export const MyKYC = () => {
   const chain = useChain();
-  const contracts = sdkConfig.contracts[chain.id];
+  const contracts = sdkConfig.contracts[chain.id as unknown as ChainId];
   const [_, setShouldCallConfetti] = useLocalStorage(
     LS_KEYS.shouldCallConfetti,
     false
