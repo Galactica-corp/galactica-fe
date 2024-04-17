@@ -75,15 +75,15 @@ export const useSbtsQuery = <TData = SbtDetails>(
 
       const earliestBlock = await sbtSC.deploymentBlock();
       const firstBlock = Math.max(
-        parseInt(latestBlockChecked),
+        parseInt(latestBlockChecked.replaceAll('"', "")),
         earliestBlock.toNumber()
       );
+      console.log(firstBlock);
       const maxBlockInterval = 10000;
-
-      console.log(currentBlock);
 
       for (let i = firstBlock; i < currentBlock; i += maxBlockInterval) {
         const maxBlock = Math.min(i + maxBlockInterval, currentBlock);
+        console.log(maxBlock);
         const createStakeLogs = await sbtSC.queryFilter(
           filter as EventFilter,
           i,
@@ -113,7 +113,7 @@ export const useSbtsQuery = <TData = SbtDetails>(
 
           notExpiredSbts.push(foundSbt);
         }
-
+        console.log(maxBlock);
         setLatestBlockChecked(maxBlock.toString());
       }
 
