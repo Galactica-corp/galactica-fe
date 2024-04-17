@@ -5,7 +5,7 @@ import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
 import JSConfetti from "js-confetti";
 import { twMerge } from "tailwind-merge";
 import { useLocalStorage, useReadLocalStorage } from "usehooks-ts";
-import { useBlockNumber } from "wagmi";
+import { useAccount, useBlockNumber } from "wagmi";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
 import { LS_KEYS } from "shared/config/const";
@@ -13,6 +13,7 @@ import { useChain } from "shared/config/hooks";
 import { default as CheckIcon } from "shared/icons/check.svg?react";
 import { useSbtsQuery, useZkCerts } from "shared/snap";
 import { SNAP_LS_KEYS } from "shared/snap/const";
+import { SbtDetails } from "shared/snap/types";
 import { SkeletonCard } from "shared/ui/card";
 
 const jsConfetti = new JSConfetti();
@@ -28,9 +29,10 @@ export const MySbt = () => {
     LS_KEYS.shouldCallConfetti,
     false
   );
+  const { address } = useAccount();
 
   const latestBlockChecked = useReadLocalStorage<string>(
-    SNAP_LS_KEYS.latestBlockChecked
+    SNAP_LS_KEYS.latestBlockChecked(address)
   );
 
   const blockNumberQuery = useBlockNumber({ chainId: chain.id });
@@ -52,6 +54,10 @@ export const MySbt = () => {
     jsConfetti.addConfetti();
     setShouldCallConfetti(false);
   }, [setShouldCallConfetti, shouldCallConfetti, query.data?.length]);
+
+  const sbtDetails = useReadLocalStorage<SbtDetails>(
+    SNAP_LS_KEYS.sbtDetails(address)
+  );
 
   return (
     <>
@@ -87,20 +93,17 @@ export const MySbt = () => {
             } from ${blockNumberQuery.data?.toString()}`}
           />
         )}
-        {query.isSuccess &&
-          query.data.map((sbt, idx) => {
-            return (
-              <SbtCard
-                title={
-                  dappName[sbt.dApp as unknown as number] ?? "Unknown Proof"
-                }
-                key={idx}
-                provider="Example"
-                expiration={Date.now() + sbt.expirationTime}
-                level={1}
-              />
-            );
-          })}
+        {sbtDetails?.sbts.map((sbt, idx) => {
+          return (
+            <SbtCard
+              title={dappName[sbt.dApp as unknown as number] ?? "Unknown Proof"}
+              key={idx}
+              provider="Example"
+              expiration={Date.now() + sbt.expirationTime}
+              level={1}
+            />
+          );
+        })}
 
         <LearnSbtCard />
       </div>

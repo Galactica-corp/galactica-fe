@@ -8,7 +8,7 @@ import { useChain } from "shared/config/hooks";
 import { IVerificationSBT__factory } from "shared/contracts";
 import { SNAP_LS_KEYS } from "./const";
 import { snapsKeys } from "./keys";
-import { SbtDetails } from "./types";
+import { SBT, SbtDetails } from "./types";
 
 const dappAddress = null;
 const humanID = null;
@@ -27,8 +27,13 @@ export const useSbtsQuery = <TData = SbtDetails>(
   const provider = useProvider({ chainId: chain.id });
 
   const [_, setLatestBlockChecked] = useLocalStorage<string>(
-    SNAP_LS_KEYS.latestBlockChecked,
+    SNAP_LS_KEYS.latestBlockChecked(address),
     "0"
+  );
+
+  const [__, setSbtDetails] = useLocalStorage<SbtDetails>(
+    SNAP_LS_KEYS.sbtDetails(address),
+    { sbts: [] }
   );
 
   return useQuery({
@@ -42,7 +47,7 @@ export const useSbtsQuery = <TData = SbtDetails>(
         SNAP_LS_KEYS.sbtDetails(address)
       );
       const latestBlockChecked =
-        localStorage.getItem(SNAP_LS_KEYS.latestBlockChecked) || "0";
+        localStorage.getItem(SNAP_LS_KEYS.latestBlockChecked(address)) || "0";
 
       const sbtDetails: SbtDetails = sbtDetailsStringified
         ? JSON.parse(sbtDetailsStringified)
@@ -78,17 +83,22 @@ export const useSbtsQuery = <TData = SbtDetails>(
         parseInt(latestBlockChecked.replaceAll('"', "")),
         earliestBlock.toNumber()
       );
-      console.log(firstBlock);
       const maxBlockInterval = 10000;
+
+      console.log("address", address);
+      console.log("deploymentBlock: ", earliestBlock.toNumber());
+      console.log("firstBlock: ", firstBlock);
 
       for (let i = firstBlock; i < currentBlock; i += maxBlockInterval) {
         const maxBlock = Math.min(i + maxBlockInterval, currentBlock);
-        console.log(maxBlock);
+        console.log(`${i}-${maxBlock}`);
         const createStakeLogs = await sbtSC.queryFilter(
           filter as EventFilter,
           i,
           maxBlock
         );
+
+        console.log(createStakeLogs);
 
         for (const log of createStakeLogs) {
           if (log.topics === undefined) {
@@ -104,7 +114,7 @@ export const useSbtsQuery = <TData = SbtDetails>(
             continue; // skip expired SBT
           }
 
-          const foundSbt = {
+          const foundSbt: SBT = {
             ...sbtInfo,
             expirationTime: BigNumber.from(sbtInfo.expirationTime).toNumber(),
             userPubKey: sbtInfo.userPubKey.map((pubKey) => pubKey.toString()),
@@ -113,7 +123,7 @@ export const useSbtsQuery = <TData = SbtDetails>(
 
           notExpiredSbts.push(foundSbt);
         }
-        console.log(maxBlock);
+        setSbtDetails({ sbts: notExpiredSbts });
         setLatestBlockChecked(maxBlock.toString());
       }
 
