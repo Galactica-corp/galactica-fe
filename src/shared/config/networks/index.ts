@@ -9,6 +9,5 @@ const galacticaTestnet =
     : galacticaAndromedaTestnet;
 
 const supportedChains: [Chain, ...Chain[]] = [galacticaTestnet];
-const DEFAULT_CHAIN = galacticaTestnet;
 
-export { DEFAULT_CHAIN, galacticaTestnet, supportedChains };
+export { galacticaTestnet, supportedChains };

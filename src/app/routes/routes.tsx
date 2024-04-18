@@ -20,7 +20,6 @@ const SentryRoutes = withSentryReactRouterV6Routing(Routes);
 export const AppRoutes = () => {
   return (
     <Suspense fallback={<Fallback />}>
-      <Route element={<Dev2 />} path="/dev" />
       <SentryRoutes>
         <Route element={<OnboardingPage />} path="/onboarding" />
         <Route element={<Layout />}>

@@ -1,4 +1,4 @@
-import { WalletButton } from "widgets/wallet-button";
+import { ConnectWalletButton } from "features/connect-wallet";
 
 export const WalletStep = () => {
   return (
@@ -6,7 +6,7 @@ export const WalletStep = () => {
       <div className="mb-[2.125rem] text-[5.25rem] font-thin leading-[120%] tracking-[-4.2px]">
         Welcome to <span className="font-medium">Galactica.com</span>
       </div>
-      <WalletButton />
+      <ConnectWalletButton />
     </div>
   );
 };

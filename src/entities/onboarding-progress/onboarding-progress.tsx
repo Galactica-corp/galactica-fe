@@ -38,11 +38,7 @@ export function OnboardingProgress() {
     select: ({ sbts }) => sbts,
   });
 
-  if (
-    (snapQuery.isLoading && snapQuery.isInitialLoading) ||
-    (query.isLoading && query.isInitialLoading)
-  )
-    return null;
+  if (snapQuery.isLoading || query.isLoading) return null;
 
   let currentStep = 0;
 

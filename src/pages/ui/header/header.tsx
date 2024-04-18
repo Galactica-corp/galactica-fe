@@ -1,5 +1,5 @@
+import { ConnectWalletButton } from "features/connect-wallet";
 import { Logo } from "shared/ui/logo";
-import { WalletButton } from "widgets/wallet-button";
 
 import { HeaderLink } from "./header-link";
 
@@ -42,7 +42,7 @@ export const Header = () => {
             ))}
           </div>
 
-          <WalletButton />
+          <ConnectWalletButton />
         </div>
       </div>
     </div>
