@@ -1,6 +1,8 @@
 import { ComponentProps, PropsWithChildren } from "react";
 
-import { useImportZkCertMutation } from "shared/snap/use-import-zk-cert-mutation";
+import { ImportZkCertParams } from "@galactica-net/snap-api";
+
+import { useInvokeImportZkCertMutation } from "shared/snap/api";
 import { ClassName } from "shared/types";
 import { ButtonTheme, FileInputButton } from "shared/ui/button";
 import { parseJSONFile } from "shared/utils";
@@ -20,10 +22,10 @@ export const UploadKycButton = ({
   onErrorUpload,
   ...props
 }: PropsWithChildren<Props>) => {
-  const importCertMutation = useImportZkCertMutation();
+  const importCertMutation = useInvokeImportZkCertMutation();
 
   const onUpload = async (parsedFile: unknown) => {
-    importCertMutation.mutate(parsedFile, {
+    importCertMutation.mutate(parsedFile as ImportZkCertParams, {
       onSuccess: (data) => {
         onSuccessUpload?.(data);
       },

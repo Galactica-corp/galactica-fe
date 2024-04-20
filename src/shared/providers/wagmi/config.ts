@@ -1,29 +1,27 @@
-import { createClient, http } from "viem";
+import { createClient, createPublicClient, http, rpcSchema } from "viem";
 import { createConfig } from "wagmi";
-import { injected } from "wagmi/connectors";
 
 import { supportedChains } from "shared/config/networks";
 
+import { SnapRpcSchema } from "../../snap/hooks/types";
+
 export const config = createConfig({
   chains: supportedChains,
+  multiInjectedProviderDiscovery: true,
   client: ({ chain }) => {
-    return createClient({
+    const client = createClient({
       batch: {
         multicall: {
           batchSize: 1024 * 3, // 3kb
         },
       },
       chain,
+      rpcSchema: rpcSchema<SnapRpcSchema>(),
       transport: http(chain.rpcUrls.default.http[0]),
     });
+
+    return client;
   },
-  connectors: [
-    injected({
-      shimDisconnect: true,
-      target: "metaMask",
-      unstable_shimAsyncInject: true,
-    }),
-  ],
 });
 
 declare module "wagmi" {

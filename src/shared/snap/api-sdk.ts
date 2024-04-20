@@ -70,14 +70,14 @@ type InvokeResponse<T> = T extends InvokeGetHolderCommitment
           ? Record<ZkCertStandard, string | undefined>
           : never;
 
-export const invokeSnap = <T extends InvokeRequest>(request: T) => {
-  return window.ethereum?.request({
-    method: "wallet_invokeSnap",
-    params: {
-      snapId: SNAP_ID,
-      request: request,
-    },
-    // TODO
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } as any) as Promise<InvokeResponse<T>>;
-};
+// export const invokeSnap = <T extends InvokeRequest>(request: T) => {
+//   return window.ethereum?.request({
+//     method: "wallet_invokeSnap",
+//     params: {
+//       snapId: SNAP_ID,
+//       request: request,
+//     },
+//     // TODO
+//     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//   } as any) as Promise<InvokeResponse<T>>;
+// };

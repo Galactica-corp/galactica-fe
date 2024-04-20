@@ -6,11 +6,7 @@ import { Button } from "shared/ui/button";
 import { Spinner } from "shared/ui/spinner";
 import { shortAddress } from "shared/web3/utils";
 
-type Props = {
-  onConnect?: () => void;
-};
-
-export function ConnectWalletButton({ onConnect }: Props) {
+export function ConnectWalletButton() {
   const { address, isConnected, isDisconnected, isConnecting } = useAccount();
   const { disconnect } = useDisconnect();
   const { connect, connectors } = useConnect();

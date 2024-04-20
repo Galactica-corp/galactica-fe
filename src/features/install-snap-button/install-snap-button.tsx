@@ -1,6 +1,6 @@
+import { SNAP_ID } from "shared/config/const";
 import { default as MetamaskIcon } from "shared/icons/metamask.svg?react";
-import { useGetSnapQuery } from "shared/snap";
-import { useInstallSnapMutation } from "shared/snap/use-install-snap-mutation";
+import { useGetSnapQuery, useInstallSnapMutation } from "shared/snap/api";
 import { Button } from "shared/ui/button";
 
 type Props = {

@@ -35,7 +35,7 @@ export const UpdateModal = () => {
           <Button
             className="w-48"
             isLoading={mutation.isPending}
-            onClick={mutation.mutate}
+            onClick={() => mutation.mutate({})}
           >
             Approve
           </Button>

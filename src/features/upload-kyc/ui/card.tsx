@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
 import { useDropzone } from "react-dropzone";
 
+import { ImportZkCertParams } from "@galactica-net/snap-api";
 import { twMerge } from "tailwind-merge";
 
-import { useImportZkCertMutation } from "shared/snap/use-import-zk-cert-mutation";
+import { useInvokeImportZkCertMutation } from "shared/snap/api";
 import { ClassName } from "shared/types";
 import { ButtonTheme, FileInputButton } from "shared/ui/button";
 import { parseJSONFile } from "shared/utils";
@@ -24,13 +25,13 @@ export function UploadKycCard({
   className,
   btnClassName,
 }: Props) {
-  const importCertMutation = useImportZkCertMutation();
+  const importCertMutation = useInvokeImportZkCertMutation();
 
   const onDrop = async (acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
     if (!file) return;
     const data = await parseJSONFile(file);
-    importCertMutation.mutate(data, {
+    importCertMutation.mutate(data as ImportZkCertParams, {
       onSuccess: (data) => {
         onSuccessUpload?.(data);
       },

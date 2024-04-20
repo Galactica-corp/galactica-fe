@@ -1,12 +1,9 @@
 import { useLocalStorage } from "usehooks-ts";
 
 import { LS_KEYS } from "shared/config/const";
-import {
-  useGetZkCertStorageHashesQuery,
-  useListZkCertsMutation,
-  useZkCertHash,
-  useZkCerts,
-} from "shared/snap";
+import { useZkCertHash, useZkCerts } from "shared/snap";
+import { useGetZkCertStorageHashesQuery } from "shared/snap/api";
+import { useInvokeSnapMutation } from "shared/snap/hooks/use-invoke-snap-mutation";
 
 export const useUpdateKycList = () => {
   const [isOnboardingCompleted] = useLocalStorage(
@@ -18,7 +15,7 @@ export const useUpdateKycList = () => {
   const [zkHash] = useZkCertHash();
   const hashQuery = useGetZkCertStorageHashesQuery();
 
-  const listZkCertsMutation = useListZkCertsMutation({
+  const listZkCertsMutation = useInvokeSnapMutation("listZkCerts", {
     onError: (err) => {
       console.error(err);
     },

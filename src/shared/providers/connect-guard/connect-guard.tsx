@@ -17,7 +17,8 @@ export const ConnectGuard = ({ children }: PropsWithChildren) => {
 
   if (snapQuery.isLoading) return <Spinner />;
 
-  if (snapQuery.isSuccess && snapQuery.data === null) return <SnapStep />;
+  if (snapQuery.isError || (snapQuery.isSuccess && snapQuery.data === null))
+    return <SnapStep />;
 
   return children;
 };

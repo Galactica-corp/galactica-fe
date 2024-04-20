@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom";
 import { withSentryReactRouterV6Routing } from "@sentry/react";
 
 import { Dev } from "pages/dev";
-import { Dev2 } from "pages/dev2";
 import { EcosystemPage } from "pages/ecosystem";
 import { HelpPage } from "pages/help";
 import { KYCGuardiansPage } from "pages/kyc-guardians";

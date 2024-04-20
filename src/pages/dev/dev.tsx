@@ -1,24 +1,22 @@
 import JSConfetti from "js-confetti";
 
 import { SNAP_ID } from "shared/config/const";
-import {
-  useClearStorageMutation,
-  useGenerateCommitmentHashMutation,
-  useListZkCertsMutation,
-} from "shared/snap";
 import { Button } from "shared/ui/button";
 
 const jsConfetti = new JSConfetti();
 
 export const Dev = () => {
-  const clearStorageMutation = useClearStorageMutation();
-  const zkCertsMutation = useListZkCertsMutation();
-  const genCommitmentHashMutation = useGenerateCommitmentHashMutation();
+  // const clearStorageMutation = useClearStorageMutation();
+  // const zkCertsMutation = useListZkCertsMutation();
+  // const genCommitmentHashMutation = useGenerateCommitmentHashMutation();
+
+  // const query = useSbtsQuery();
+  // console.log(query);
 
   return (
     <div>
       {SNAP_ID}
-      <Button
+      {/* <Button
         onClick={() => {
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
@@ -66,7 +64,7 @@ export const Dev = () => {
         }}
       >
         genCommitmentHashMutation
-      </Button>
+      </Button> */}
     </div>
   );
 };
