@@ -10,18 +10,18 @@ export const galacticaReticulumTestnet: Chain = {
   },
   rpcUrls: {
     default: {
-      http: ["https://evm-rpc-http-reticulum.galactica.com/"],
-      webSocket: ["wss://evm-rpc-ws-reticulum.galactica.com/"],
+      http: ["https://evm-rpc-http-reticulum.galactica.com"],
+      // webSocket: ["wss://evm-rpc-ws-reticulum.galactica.com"],
     },
     public: {
-      http: ["https://evm-rpc-http-reticulum.galactica.com/"],
-      webSocket: ["wss://evm-rpc-ws-reticulum.galactica.com/"],
+      http: ["https://evm-rpc-http-reticulum.galactica.com"],
+      // webSocket: ["wss://evm-rpc-ws-reticulum.galactica.com"],
     },
   },
   blockExplorers: {
     default: {
       name: "BlockScout",
-      url: "https://explorer-reticulum.galactica.com/",
+      url: "https://explorer-reticulum.galactica.com",
     },
   },
   testnet: true,

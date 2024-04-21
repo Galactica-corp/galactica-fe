@@ -1,22 +1,27 @@
 import { ZkCertStorageHashes } from "@galactica-net/snap-api";
 import { useQuery } from "@tanstack/react-query";
+import invariant from "tiny-invariant";
 import { useAccount, useConnectorClient } from "wagmi";
 
 import { SNAP_ID } from "shared/config/const";
 
 import { WalletInvokeSnap } from "../hooks/types";
+import { useZkCertHash } from "../hooks/use-zk-cert-hash";
 import { snapsKeys } from "./keys";
 
 export const useGetZkCertStorageHashesQuery = () => {
   const { address, chainId } = useAccount();
   const { data: client } = useConnectorClient({ chainId });
 
+  const [hash, setHash] = useZkCertHash();
+
   return useQuery({
     queryKey: snapsKeys.zkCertStorageHashes(address),
     refetchInterval: 10000,
     staleTime: 0,
     queryFn: async () => {
-      const response = await client?.request<
+      invariant(client);
+      const response = await client.request<
         WalletInvokeSnap<ZkCertStorageHashes>
       >({
         method: "wallet_invokeSnap",
@@ -28,7 +33,10 @@ export const useGetZkCertStorageHashesQuery = () => {
         },
       });
 
+      if (!hash) setHash(response?.gip69 ?? "");
+
       return response ?? null;
     },
+    enabled: Boolean(client),
   });
 };

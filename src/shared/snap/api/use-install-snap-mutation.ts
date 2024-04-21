@@ -36,10 +36,8 @@ export const useInstallSnapMutation = () => {
         },
       });
     },
-    onSuccess: (snaps, { snapId = SNAP_ID }) => {
+    onSuccess: (snaps) => {
       invariant(snaps, "The snap not found");
-      const galacticaSnap = snaps[snapId];
-      console.log({ galacticaSnap });
 
       queryClient.refetchQueries({ queryKey: snapsKeys.allSnap() });
       listZkCertsMutation.mutate({});

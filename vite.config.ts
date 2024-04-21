@@ -8,6 +8,7 @@ import removeConsole from "vite-plugin-remove-console";
 import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
+import basicSsl from "@vitejs/plugin-basic-ssl";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -18,6 +19,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [
+      !isProdMode && basicSsl({}),
       nodePolyfills({
         include: ["buffer", "events"],
       }),
