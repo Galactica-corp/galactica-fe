@@ -1,5 +1,6 @@
+import { ZkCertProof } from "@galactica-net/snap-api";
 import { default as BigNumber } from "bignumber.js";
-import { PublicClient } from "viem";
+import { Address, PublicClient } from "viem";
 
 export function fromHexToDec(hexIn: string): string {
   if (hexIn.startsWith("0x")) {
@@ -26,23 +27,23 @@ export const getExpectedValidationTimestamp = async (pc: PublicClient) => {
 };
 
 // this function convert the proof output from snarkjs to parameter format for onchain solidity verifier
-export const processProof = (proof: any) => {
+export const processProof = (proof: ZkCertProof["proof"]) => {
   const piA = proof.pi_a
     .slice(0, 2)
-    .map((value: string) => fromDecToHex(value, true));
+    .map((value: string) => fromDecToHex(value, true) as Address);
   // for some reason the order of coordinate is reverse
   const piB = [
-    [proof.pi_b[0][1], proof.pi_b[0][0]].map((value) =>
-      fromDecToHex(value, true)
+    [proof.pi_b[0][1], proof.pi_b[0][0]].map(
+      (value) => fromDecToHex(value, true) as Address
     ),
-    [proof.pi_b[1][1], proof.pi_b[1][0]].map((value) =>
-      fromDecToHex(value, true)
+    [proof.pi_b[1][1], proof.pi_b[1][0]].map(
+      (value) => fromDecToHex(value, true) as Address
     ),
   ];
 
   const piC = proof.pi_c
     .slice(0, 2)
-    .map((value: string) => fromDecToHex(value, true));
+    .map((value: string) => fromDecToHex(value, true) as Address);
 
   return [piA, piB, piC];
 };

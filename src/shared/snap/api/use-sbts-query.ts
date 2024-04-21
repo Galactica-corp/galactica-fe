@@ -15,6 +15,7 @@ import { snapsKeys } from "./keys";
 
 const dappAddress = null;
 const humanID = null;
+const maxBlockInterval = 10000;
 
 export const useSbtsQuery = <TData = SbtDetails>(
   options?: { extraEnabled?: boolean } & UseQueryOptions<
@@ -89,8 +90,6 @@ export const useSbtsQuery = <TData = SbtDetails>(
       );
 
       console.log("firstBlock: ", firstBlock);
-
-      const maxBlockInterval = 10000;
 
       for (let i = firstBlock; i < currentBlock; i += maxBlockInterval) {
         const maxBlock = Math.min(i + maxBlockInterval, Number(currentBlock));

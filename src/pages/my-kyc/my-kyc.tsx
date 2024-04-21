@@ -21,6 +21,7 @@ export const MyKYC = () => {
     false
   );
   const navigate = useNavigate();
+
   const [searchParams] = useSearchParams();
   const showWideUploading = searchParams.get("showWideUploading");
   const [zkCerts] = useZkCerts();

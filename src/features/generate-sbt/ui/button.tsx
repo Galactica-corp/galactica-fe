@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { twMerge } from "tailwind-merge";
 
-import { useGenBasicProofMutation } from "shared/snap";
+import { useGenBasicProofMutation } from "shared/snap/api";
 import { ClassName } from "shared/types";
 import { Button as UIButton } from "shared/ui/button";
 

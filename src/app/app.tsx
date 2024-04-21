@@ -21,7 +21,7 @@ export function App() {
           <BrowserRouter>
             <ConnectGuard>
               <AppRoutes />
-              {/* <OnboardingProgress /> */}
+              <OnboardingProgress />
             </ConnectGuard>
             <Toaster position="top-right" reverseOrder={false} />
           </BrowserRouter>

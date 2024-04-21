@@ -27,7 +27,7 @@ export const KYCGuardiansPage = () => {
       {mocks.map((mock) => {
         return (
           <Row
-            className="border-t border-mineShaft/50 last:border-b "
+            className="border-t border-mineShaft/5 last:border-b "
             key={mock.number}
             onStart={toggleGenerateCommitmentHashModalOpen}
             {...mock}
