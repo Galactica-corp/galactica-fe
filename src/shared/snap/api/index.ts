@@ -1,3 +1,4 @@
+export { useGenZkRepeatableProofMutation } from "./use-gen-zk-repeatable-proof-mutation";
 export { useGenBasicProofMutation } from "./use-generate-basic-proof-mutation";
 export { useGetSnapQuery } from "./use-get-snap-query";
 export { useGetZkCertStorageHashesQuery } from "./use-get-zk-cert-storage-hashes-query";

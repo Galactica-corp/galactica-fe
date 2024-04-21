@@ -7,8 +7,9 @@ import {
   sdkConfig,
 } from "@galactica-net/snap-api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import invariant from "tiny-invariant";
 import { Address, getContract } from "viem";
-import { useAccount, useChainId, usePublicClient } from "wagmi";
+import { useAccount, usePublicClient } from "wagmi";
 
 import { basicKYCExampleDappAbi } from "shared/config/abi";
 import { useSnapClient } from "shared/providers/wagmi";
@@ -26,12 +27,11 @@ type Options = {
 };
 
 export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
-  const chainId = useChainId();
+  const { address, chainId } = useAccount();
   const contracts = sdkConfig.contracts[chainId as unknown as ChainId];
   const pc = usePublicClient({ chainId });
 
   const client = useSnapClient();
-  const { address } = useAccount();
 
   const queryClient = useQueryClient();
 
@@ -42,7 +42,9 @@ export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
 
   return useMutation({
     mutationFn: async () => {
-      if (!pc || !address || !client) return;
+      invariant(pc);
+      invariant(address);
+      invariant(client);
 
       const expectedValidationTimestamp =
         await getExpectedValidationTimestamp(pc);
