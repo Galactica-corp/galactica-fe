@@ -1,5 +1,6 @@
 import { default as CheckGrayIcon } from "shared/icons/check-gray.svg?react";
-import { useGetSnapQuery, useSbtsQuery, useZkCerts } from "shared/snap";
+import { useGetSnapQuery, useZkCerts } from "shared/snap";
+import { useSbtsQuery } from "shared/snap/api/use-sbts-query";
 
 import { default as ProgressArrowIcon } from "./images/progress-arrow.svg?react";
 import progressGrayUrl from "./images/progress-gray.png";

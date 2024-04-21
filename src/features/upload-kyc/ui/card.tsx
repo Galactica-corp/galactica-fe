@@ -1,13 +1,21 @@
 import { ReactNode } from "react";
 import { useDropzone } from "react-dropzone";
 
-import { ImportZkCertParams } from "@galactica-net/snap-api";
+import {
+  EncryptedZkCert,
+  ImportZkCertParams,
+  ZkCertMetadataList,
+} from "@galactica-net/snap-api";
+import { useQueryClient } from "@tanstack/react-query";
 import { twMerge } from "tailwind-merge";
+import { useAccount } from "wagmi";
 
-import { useInvokeImportZkCertMutation } from "shared/snap/api";
+import { snapsKeys, useZkCerts } from "shared/snap";
+import { useInvokeSnapMutation } from "shared/snap/api/use-invoke-snap-mutation";
 import { ClassName } from "shared/types";
 import { ButtonTheme, FileInputButton } from "shared/ui/button";
 import { parseJSONFile } from "shared/utils";
+import { toastError } from "shared/utils/toasts";
 
 type Props = {
   btnClassName?: string;
@@ -25,20 +33,45 @@ export function UploadKycCard({
   className,
   btnClassName,
 }: Props) {
-  const importCertMutation = useInvokeImportZkCertMutation();
+  const { address } = useAccount();
+  const queryClient = useQueryClient();
+  const [certs, setCertsList] = useZkCerts();
+
+  const importCertMutation = useInvokeSnapMutation<
+    ImportZkCertParams,
+    ZkCertMetadataList
+  >("importZkCert");
 
   const onDrop = async (acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
     if (!file) return;
     const data = await parseJSONFile(file);
-    importCertMutation.mutate(data as ImportZkCertParams, {
-      onSuccess: (data) => {
-        onSuccessUpload?.(data);
+    importCertMutation.mutate(
+      {
+        encryptedZkCert: data as EncryptedZkCert,
+        listZkCerts: true,
       },
-      onError: () => {
-        onErrorUpload?.();
-      },
-    });
+      {
+        onSuccess: async (data) => {
+          if (Array.isArray(data.gip69)) {
+            setCertsList(certs ? [...certs, ...data.gip69] : data.gip69);
+          }
+
+          if (typeof data === "string") {
+            toastError("This zkCertificate has already been imported.");
+          }
+
+          await queryClient.invalidateQueries({
+            queryKey: snapsKeys.zkCertStorageHashes(address),
+          });
+
+          onSuccessUpload?.(data);
+        },
+        onError: () => {
+          onErrorUpload?.();
+        },
+      }
+    );
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({

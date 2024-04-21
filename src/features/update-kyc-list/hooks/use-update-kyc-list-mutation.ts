@@ -7,7 +7,7 @@ import { LS_KEYS } from "shared/config/const";
 import { useZkCertHash, useZkCerts } from "shared/snap";
 import { useGetZkCertStorageHashesQuery } from "shared/snap/api";
 import { snapsKeys } from "shared/snap/api/keys";
-import { useInvokeSnapMutation } from "shared/snap/hooks/use-invoke-snap-mutation";
+import { useInvokeSnapMutation } from "shared/snap/api/use-invoke-snap-mutation";
 
 export const useUpdateKycList = () => {
   const [isOnboardingCompleted] = useLocalStorage(

@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { ChainId, sdkConfig } from "@galactica-net/snap-api";
 import JSConfetti from "js-confetti";
 import { twMerge } from "tailwind-merge";
-import { useLocalStorage } from "usehooks-ts";
-import { useChainId } from "wagmi";
+import { useLocalStorage, useReadLocalStorage } from "usehooks-ts";
+import { useAccount, useBlockNumber, useChainId } from "wagmi";
 
 import { ChooseKycProviderCard } from "entities/kyc";
 import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
@@ -12,13 +12,17 @@ import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
 import { LS_KEYS } from "shared/config/const";
 import { default as CheckIcon } from "shared/icons/check.svg?react";
-import { useSbtsQuery, useZkCerts } from "shared/snap";
+import { useZkCerts } from "shared/snap";
+import { useSbtsQuery } from "shared/snap/api/use-sbts-query";
+import { SNAP_LS_KEYS } from "shared/snap/const";
+import { SbtDetails } from "shared/snap/types";
 import { SkeletonCard } from "shared/ui/card";
 
 const jsConfetti = new JSConfetti();
 
 export const MySbt = () => {
   const chainId = useChainId();
+  const { address } = useAccount();
   const contracts = sdkConfig.contracts[chainId as unknown as ChainId];
   const dappName = {
     [contracts.exampleDapp]: "KYC SBT",
@@ -38,6 +42,16 @@ export const MySbt = () => {
           : sbt.dApp === contracts.exampleDapp;
       }),
   });
+
+  const sbtDetails = useReadLocalStorage<SbtDetails>(
+    SNAP_LS_KEYS.sbtDetails(address)
+  );
+
+  const latestBlockChecked = useReadLocalStorage<string>(
+    SNAP_LS_KEYS.latestBlockChecked(address)
+  );
+
+  const blockNumberQuery = useBlockNumber({ chainId });
 
   const hasBasicProof = query.data?.some((sbt) => Boolean(sbt));
 
@@ -74,19 +88,24 @@ export const MySbt = () => {
             />
           </GenerationSbtCard>
         )}
-        {query.isLoading && query.isInitialLoading && <SkeletonCard />}
-        {query.isSuccess &&
-          query.data.map((sbt, idx) => {
-            return (
-              <SbtCard
-                expiration={Date.now() + sbt.expirationTime}
-                key={idx}
-                level={1}
-                provider="Example"
-                title={dappName[sbt.dApp] ?? "Unknown Proof"}
-              />
-            );
-          })}
+        {query.isLoading && query.isInitialLoading && (
+          <SkeletonCard
+            title={`${
+              latestBlockChecked || 0
+            } from ${blockNumberQuery.data?.toString()}`}
+          />
+        )}
+        {sbtDetails?.sbts.map((sbt, idx) => {
+          return (
+            <SbtCard
+              expiration={Date.now() + sbt.expirationTime}
+              key={idx}
+              level={1}
+              provider="Example"
+              title={dappName[sbt.dApp] ?? "Unknown Proof"}
+            />
+          );
+        })}
 
         <LearnSbtCard />
       </div>

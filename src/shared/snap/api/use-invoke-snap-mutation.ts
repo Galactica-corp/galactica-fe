@@ -4,7 +4,7 @@ import invariant from "tiny-invariant";
 import { SNAP_ID } from "shared/config/const";
 import { useSnapClient } from "shared/providers/wagmi";
 
-import { Method, WalletInvokeSnap } from "./types";
+import { Method, WalletInvokeSnap } from "../hooks/types";
 
 export const useInvokeSnapMutation = <
   Params extends Record<string, unknown> | undefined = Record<string, unknown>,

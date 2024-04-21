@@ -1,6 +1,75 @@
 export const verificationSBT = [
   {
     inputs: [],
+    stateMutability: "nonpayable",
+    type: "constructor",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "dApp",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "user",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "bytes32",
+        name: "humanID",
+        type: "bytes32",
+      },
+    ],
+    name: "VerificationSBTMinted",
+    type: "event",
+  },
+  {
+    inputs: [
+      {
+        internalType: "bytes32",
+        name: "",
+        type: "bytes32",
+      },
+    ],
+    name: "VerificationSBTMapping",
+    outputs: [
+      {
+        internalType: "address",
+        name: "dApp",
+        type: "address",
+      },
+      {
+        internalType: "contract IVerifierWrapper",
+        name: "verifierWrapper",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "expirationTime",
+        type: "uint256",
+      },
+      {
+        internalType: "bytes32",
+        name: "verifierCodehash",
+        type: "bytes32",
+      },
+      {
+        internalType: "bytes32",
+        name: "humanID",
+        type: "bytes32",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "deploymentBlock",
     outputs: [
       {

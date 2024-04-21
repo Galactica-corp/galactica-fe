@@ -4,8 +4,6 @@ import { Route, Routes } from "react-router-dom";
 import { withSentryReactRouterV6Routing } from "@sentry/react";
 
 import { Dev } from "pages/dev";
-import { EcosystemPage } from "pages/ecosystem";
-import { HelpPage } from "pages/help";
 import { KYCGuardiansPage } from "pages/kyc-guardians";
 import { MyKYCPage } from "pages/my-kyc";
 import { MySbtDevPage, MySbtPage } from "pages/my-sbt";
@@ -27,8 +25,6 @@ export const AppRoutes = () => {
           <Route element={<MySbtPage />} path="/my-sbt" />
           <Route element={<MySbtDevPage />} path="/my-sbt-dev" />
           <Route element={<KYCGuardiansPage />} path="/kyc-guardians" />
-          <Route element={<HelpPage />} path="/help" />
-          <Route element={<EcosystemPage />} path="/ecosystem" />
         </Route>
       </SentryRoutes>
     </Suspense>

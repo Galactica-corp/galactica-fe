@@ -1,11 +1,13 @@
 import { ChainId, sdkConfig } from "@galactica-net/snap-api";
-import { QueryKey, UseQueryOptions, useQuery } from "@tanstack/react-query";
+import { QueryKey, useQuery } from "@tanstack/react-query";
 import invariant from "tiny-invariant";
-import { Address, pad, slice } from "viem";
+import { useLocalStorage } from "usehooks-ts";
+import { Address, getContract } from "viem";
 import { useAccount, usePublicClient } from "wagmi";
 
 import { verificationSBTAbi } from "shared/config/abi";
 import { useSnapClient } from "shared/providers/wagmi";
+import { UseQueryOptions } from "shared/types";
 
 import { SNAP_LS_KEYS } from "../const";
 import { SbtDetails } from "../types";
@@ -28,7 +30,17 @@ export const useSbtsQuery = <TData = SbtDetails>(
   const client = useSnapClient();
   const pc = usePublicClient({ chainId: chainId });
 
-  return useQuery({
+  const [_, setLatestBlockChecked] = useLocalStorage<string>(
+    SNAP_LS_KEYS.latestBlockChecked(address),
+    "0"
+  );
+
+  const [__, setSbtDetails] = useLocalStorage<SbtDetails>(
+    SNAP_LS_KEYS.sbtDetails(address),
+    { sbts: [] }
+  );
+
+  return useQuery<SbtDetails, Error, TData, QueryKey>({
     queryKey: snapsKeys.allSbtByUser({
       userAddress: address,
     }),
@@ -39,63 +51,72 @@ export const useSbtsQuery = <TData = SbtDetails>(
       const sbtDetailsStringified = localStorage.getItem(
         SNAP_LS_KEYS.sbtDetails(address)
       );
+      const latestBlockChecked =
+        localStorage.getItem(SNAP_LS_KEYS.latestBlockChecked(address)) || "0";
 
       const sbtDetails: SbtDetails = sbtDetailsStringified
         ? JSON.parse(sbtDetailsStringified)
         : {
             sbts: [],
-            latestBlockChecked: 0,
           };
+
+      const contract = getContract({
+        client: client,
+        address: contracts.verificationSbt as Address,
+        abi: verificationSBTAbi,
+      });
 
       const currentBlock = await pc.getBlockNumber();
       const lastBlockTime = (await pc.getBlock({ blockNumber: currentBlock }))
         .timestamp;
-
+      //
+      console.log("currentBlock: ", currentBlock);
+      console.log("lastBlockTime: ", lastBlockTime);
+      //
       const notExpiredSbts = sbtDetails?.sbts.filter(
         (sbt) => sbt.expirationTime > lastBlockTime
       );
 
-      const filter = await pc.createContractEventFilter({
-        address: contracts.verificationSbt as Address,
-        abi: verificationSBTAbi,
-        eventName: "VerificationSBTMinted",
-        args: {
-          dappAddress: dappAddress ? pad(dappAddress, { size: 32 }) : null,
-          address: address ? pad(address, { size: 32 }) : null,
-          humanID: humanID ? pad(humanID, { size: 32 }) : null,
-        },
+      const deploymentBlock = await contract.read.deploymentBlock({
+        account: address,
       });
 
-      const deploymentBlock = await pc.readContract({
-        account: address,
-        abi: verificationSBTAbi,
-        address: contracts.verificationSbt as Address,
-        functionName: "deploymentBlock",
-      });
+      console.log("deploymentBlock: ", deploymentBlock);
 
       const firstBlock = Math.max(
-        sbtDetails.latestBlockChecked,
+        parseInt(latestBlockChecked.replaceAll('"', "")),
         Number(deploymentBlock)
       );
+
+      console.log("firstBlock: ", firstBlock);
+
       const maxBlockInterval = 10000;
 
       for (let i = firstBlock; i < currentBlock; i += maxBlockInterval) {
         const maxBlock = Math.min(i + maxBlockInterval, Number(currentBlock));
-        const logs = await pc.getFilterLogs({ filter });
+
+        const logs = await contract.getEvents.VerificationSBTMinted(
+          {
+            dApp: dappAddress ? dappAddress : null,
+            user: address ? address : null,
+            humanID: humanID ? humanID : null,
+          },
+          {
+            fromBlock: BigInt(i),
+            toBlock: BigInt(maxBlock),
+          }
+        );
 
         for (const log of logs) {
-          const dappTopic = log.topics[1];
-          if (dappTopic === undefined) {
-            continue;
-          }
-          const loggedDApp = slice(dappTopic, 12);
-          const sbtInfo = await pc.readContract({
-            account: address,
-            address: contracts.verificationSbt as Address,
-            abi: verificationSBTAbi,
-            functionName: "getVerificationSBTInfo",
-            args: [address, loggedDApp],
-          });
+          log.args.dApp;
+          if (!log.args.dApp) continue;
+
+          const sbtInfo = await contract.read.getVerificationSBTInfo(
+            [address, log.args.dApp],
+            {
+              account: address,
+            }
+          );
 
           if (sbtInfo.expirationTime < BigInt(lastBlockTime)) {
             continue; // skip expired SBT
@@ -108,21 +129,16 @@ export const useSbtsQuery = <TData = SbtDetails>(
             providerPubKey: sbtInfo.userPubKey.toString(),
           };
 
-          console.log(foundSbt);
-
-          // notExpiredSbts.push(foundSbt);
+          notExpiredSbts.push(foundSbt);
         }
+
+        setSbtDetails({ sbts: notExpiredSbts });
+        setLatestBlockChecked(maxBlock.toString());
       }
 
       const newSbtDetails: SbtDetails = {
         sbts: notExpiredSbts,
-        latestBlockChecked: 0,
       };
-
-      localStorage.setItem(
-        SNAP_LS_KEYS.sbtDetails(address),
-        JSON.stringify(newSbtDetails)
-      );
 
       return newSbtDetails;
     },

@@ -13,17 +13,16 @@ export type GetSnapsResponse = Record<string, Snap>;
 export type ZkCertStandard = "gip69";
 
 export type SBT = {
-  dApp: Address | string;
-  encryptedData: (Address | string)[];
+  dApp: Address;
+  encryptedData: readonly Address[];
   expirationTime: number;
-  humanID: string;
+  humanID: Address;
   providerPubKey: string;
   userPubKey: string[];
-  verifierCodehash: string;
-  verifierWrapper: string;
+  verifierCodehash: Address;
+  verifierWrapper: Address;
 };
 
 export type SbtDetails = {
-  latestBlockChecked: number;
   sbts: SBT[];
 };

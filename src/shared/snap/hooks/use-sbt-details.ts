@@ -8,7 +8,6 @@ export const useSbtDetails = () => {
   const { address } = useAccount();
   const result = useLocalStorage<SbtDetails>(SNAP_LS_KEYS.sbtDetails(address), {
     sbts: [],
-    latestBlockChecked: 0,
   });
 
   return result;

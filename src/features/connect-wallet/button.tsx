@@ -16,7 +16,6 @@ export function ConnectWalletButton() {
       disconnect();
     }
     if (isDisconnected) {
-      console.log(connectors);
       const metamaskConnector = connectors.find(
         (connector) => connector.name === "MetaMask"
       );

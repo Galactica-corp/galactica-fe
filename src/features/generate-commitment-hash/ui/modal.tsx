@@ -4,7 +4,7 @@ import { captureException } from "@sentry/react";
 
 import { LearnKycLink } from "entities/kyc";
 import { default as LogoMetamask } from "shared/icons/metamask-outline.svg?react";
-import { useInvokeSnapMutation } from "shared/snap/hooks/use-invoke-snap-mutation";
+import { useInvokeSnapMutation } from "shared/snap/api/use-invoke-snap-mutation";
 import { Button } from "shared/ui/button";
 import { Modal } from "shared/ui/modal";
 import { GradientSpinner } from "shared/ui/spinner";
