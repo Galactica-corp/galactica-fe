@@ -1,3 +1,4 @@
+import { ZkCertMetadataList } from "@galactica-net/snap-api";
 import { useQueryClient } from "@tanstack/react-query";
 import { useLocalStorage } from "usehooks-ts";
 import { useAccountEffect } from "wagmi";
@@ -14,13 +15,21 @@ export const useUpdateKycList = () => {
     false
   );
 
-  const [zkCerts] = useZkCerts();
-  const [zkHash] = useZkCertHash();
+  const [zkCerts, setCertsList] = useZkCerts();
+  const [zkHash, setZkHash] = useZkCertHash();
   const hashQuery = useGetZkCertStorageHashesQuery();
 
-  const listZkCertsMutation = useInvokeSnapMutation("listZkCerts", {
+  const listZkCertsMutation = useInvokeSnapMutation<
+    undefined,
+    ZkCertMetadataList
+  >("listZkCerts", {
     onError: (err) => {
       console.error(err);
+    },
+    onSuccess(data) {
+      if (!hashQuery.data) return;
+      setCertsList(data.gip69 ?? []);
+      setZkHash(hashQuery.data.gip69 ?? "");
     },
   });
 

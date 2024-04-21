@@ -19,9 +19,9 @@
 // };
 
 // export const useZkCertsMutation = () => {
-//   // const [_, setCertsList] = useZkCerts();
-//   // const [_h, setZkHash] = useZkCertHash();
-//   // const hashQuery = useGetZkCertStorageHashesQuery();
+//   const [_, setCertsList] = useZkCerts();
+//   const [_h, setZkHash] = useZkCertHash();
+//   const hashQuery = useGetZkCertStorageHashesQuery();
 
 //   const chainId = useChainId();
 //   const { data: client } = useConnectorClient({ chainId });
@@ -44,9 +44,9 @@
 //     },
 //     onSuccess: (data) => {
 //       console.log(data);
-//       // if (!hashQuery.data) return;
-//       // setCertsList(data.gip69 ?? []);
-//       // setZkHash(hashQuery.data.gip69 ?? "");
+//       if (!hashQuery.data) return;
+//       setCertsList(data.gip69 ?? []);
+//       setZkHash(hashQuery.data.gip69 ?? "");
 //     },
 //   });
 // };

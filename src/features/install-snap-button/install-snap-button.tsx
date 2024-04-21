@@ -1,14 +1,11 @@
-import { SNAP_ID } from "shared/config/const";
+import { useUpdateKycList } from "features/update-kyc-list/hooks";
 import { default as MetamaskIcon } from "shared/icons/metamask.svg?react";
 import { useGetSnapQuery, useInstallSnapMutation } from "shared/snap/api";
 import { Button } from "shared/ui/button";
 
-type Props = {
-  onInstall?: () => void;
-};
-
-export const InstallSnapButton = ({ onInstall }: Props) => {
+export const InstallSnapButton = () => {
   const query = useGetSnapQuery();
+  const [_, listZkCertsMutation] = useUpdateKycList();
   const mutation = useInstallSnapMutation();
 
   const handleInstall = () => {
@@ -18,7 +15,9 @@ export const InstallSnapButton = ({ onInstall }: Props) => {
         onError: (error) => {
           console.error(error);
         },
-        onSuccess: onInstall,
+        onSuccess: () => {
+          listZkCertsMutation.mutate(undefined);
+        },
       }
     );
   };

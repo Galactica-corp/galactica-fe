@@ -1,10 +1,6 @@
 import { InstallSnapButton } from "features/install-snap-button/install-snap-button";
 
-type Props = {
-  onInstall?: () => void;
-};
-
-export const SnapStep = ({ onInstall }: Props) => {
+export const SnapStep = () => {
   return (
     <div className="flex h-screen w-full flex-col items-center justify-center bg-opacity-20 bg-onboarding bg-cover bg-center font-light">
       <div className="mb-2.5 text-center text-[5.25rem] leading-[120%] tracking-[-4.2px]">
@@ -23,7 +19,7 @@ export const SnapStep = ({ onInstall }: Props) => {
         is required in order to access core features of Galactica Network such
         as <br /> zkCertificates, Protocol Governance, & Reputation.
       </p>
-      <InstallSnapButton onInstall={onInstall} />
+      <InstallSnapButton />
     </div>
   );
 };

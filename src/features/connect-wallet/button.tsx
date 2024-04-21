@@ -16,9 +16,16 @@ export function ConnectWalletButton() {
       disconnect();
     }
     if (isDisconnected) {
-      const connector = connectors.find(
+      console.log(connectors);
+      const metamaskConnector = connectors.find(
         (connector) => connector.name === "MetaMask"
       );
+      const flaskConnector = connectors.find((connector) => {
+        return connector.name === "MetaMask Flask";
+      });
+
+      const connector = metamaskConnector ?? flaskConnector;
+
       connector && connect({ connector });
     }
   };
