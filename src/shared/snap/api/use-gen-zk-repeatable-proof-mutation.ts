@@ -118,3 +118,9 @@ export const useGenZkRepeatableProofMutation = ({
     },
   });
 };
+
+type ProofMaps = {
+  walletAddress: ["0x..", "0x...", "0x..."];
+};
+
+0 - 1000000;

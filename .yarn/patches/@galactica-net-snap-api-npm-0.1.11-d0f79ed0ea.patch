@@ -1,5 +1,5 @@
 diff --git a/dist/main.d.mts b/dist/main.d.mts
-index b8a6b58e5bcdb97c0d8b0aaff372b90977bc2a92..fab878a9a9b54e4239bac68c64b96e40f75bdc78 100644
+index b8a6b58e5bcdb97c0d8b0aaff372b90977bc2a92..1b4e5f9affd71660d37aa3ac0099a9b02f89049a 100644
 --- a/dist/main.d.mts
 +++ b/dist/main.d.mts
 @@ -1,5 +1,17 @@
@@ -349,7 +349,7 @@ index b8a6b58e5bcdb97c0d8b0aaff372b90977bc2a92..fab878a9a9b54e4239bac68c64b96e40
 +) => Promise<Snap | undefined>;
  declare const isLocalSnap: (snapId: string) => boolean;
  
-+export type ChainId = 9302 | 41238;
++export type ChainId = "9302" | "41238";
 +
  type SdkConfig = {
 -    contracts: {
@@ -499,7 +499,7 @@ index b8a6b58e5bcdb97c0d8b0aaff372b90977bc2a92..fab878a9a9b54e4239bac68c64b96e40
 +  updateMerkleProofURL,
 +};
 diff --git a/dist/main.d.ts b/dist/main.d.ts
-index b8a6b58e5bcdb97c0d8b0aaff372b90977bc2a92..fab878a9a9b54e4239bac68c64b96e40f75bdc78 100644
+index b8a6b58e5bcdb97c0d8b0aaff372b90977bc2a92..1b4e5f9affd71660d37aa3ac0099a9b02f89049a 100644
 --- a/dist/main.d.ts
 +++ b/dist/main.d.ts
 @@ -1,5 +1,17 @@
@@ -849,7 +849,7 @@ index b8a6b58e5bcdb97c0d8b0aaff372b90977bc2a92..fab878a9a9b54e4239bac68c64b96e40
 +) => Promise<Snap | undefined>;
  declare const isLocalSnap: (snapId: string) => boolean;
  
-+export type ChainId = 9302 | 41238;
++export type ChainId = "9302" | "41238";
 +
  type SdkConfig = {
 -    contracts: {
@@ -999,7 +999,7 @@ index b8a6b58e5bcdb97c0d8b0aaff372b90977bc2a92..fab878a9a9b54e4239bac68c64b96e40
 +  updateMerkleProofURL,
 +};
 diff --git a/dist/main.js b/dist/main.js
-index 89fe8d8607e74768b6f8417f2c0800a6bb9e47c6..1f11c632ebb6b91d54b5bc3d3f1945723c6a32d6 100644
+index 89fe8d8607e74768b6f8417f2c0800a6bb9e47c6..080fa6cdefe70b735232b246117fae8bc53277f7 100644
 --- a/dist/main.js
 +++ b/dist/main.js
 @@ -5,15 +5,21 @@ var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -1070,9 +1070,12 @@ index 89fe8d8607e74768b6f8417f2c0800a6bb9e47c6..1f11c632ebb6b91d54b5bc3d3f194572
    RpcResponseErr2["RejectedConnect"] = "User rejected the request.";
    RpcResponseErr2["RejectedSignature"] = "User denied message signature.";
    RpcResponseErr2["RejectedSelect"] = "User did not choose a zkCertificate.";
-@@ -89,23 +100,41 @@ var RpcResponseErr = /* @__PURE__ */ ((RpcResponseErr2) => {
+@@ -88,24 +99,42 @@ var RpcResponseErr = /* @__PURE__ */ ((RpcResponseErr2) => {
+ 
  // src/config/index.ts
  var sdkConfig = {
++  defaultSnapOrigin: "npm:@galactica-net/snap",
++  defaultSnapVersion: "0.6.1",
    contracts: {
 -    kycGuardianWhitelist: "0xB95314E42d8Da05b1D805039F7b96e3935584543",
 -    zkKycRegistry: "0x0415E990e55071F0d448F87CD170528C7783A484",
@@ -1121,9 +1124,8 @@ index 89fe8d8607e74768b6f8417f2c0800a6bb9e47c6..1f11c632ebb6b91d54b5bc3d3f194572
 +      devnetGuardian: "0xEcE0BBeB552710718A1bD5E028443ff9B2f26BE5",
 +    },
    },
-   defaultSnapOrigin: "npm:@galactica-net/snap",
+-  defaultSnapOrigin: "npm:@galactica-net/snap",
 -  defaultSnapVersion: "0.6.1"
-+  defaultSnapVersion: "0.6.1",
  };
  
  // src/utils/invoke-snap.ts
@@ -1376,7 +1378,7 @@ index 89fe8d8607e74768b6f8417f2c0800a6bb9e47c6..1f11c632ebb6b91d54b5bc3d3f194572
 +  });
  //# sourceMappingURL=main.js.map
 diff --git a/dist/main.mjs b/dist/main.mjs
-index e2105650c1a1c24c077e6956f5e2a37e26fed17b..8a48d42d4753015d532b8a47fbb0de373c2b83fe 100644
+index e2105650c1a1c24c077e6956f5e2a37e26fed17b..4972ca8485d4922a6c71182d061db12bb42cc5f2 100644
 --- a/dist/main.mjs
 +++ b/dist/main.mjs
 @@ -2,15 +2,21 @@ var __defProp = Object.defineProperty;
@@ -1416,9 +1418,12 @@ index e2105650c1a1c24c077e6956f5e2a37e26fed17b..8a48d42d4753015d532b8a47fbb0de37
    RpcResponseErr2["RejectedConnect"] = "User rejected the request.";
    RpcResponseErr2["RejectedSignature"] = "User denied message signature.";
    RpcResponseErr2["RejectedSelect"] = "User did not choose a zkCertificate.";
-@@ -43,23 +50,41 @@ var RpcResponseErr = /* @__PURE__ */ ((RpcResponseErr2) => {
+@@ -42,24 +49,42 @@ var RpcResponseErr = /* @__PURE__ */ ((RpcResponseErr2) => {
+ 
  // src/config/index.ts
  var sdkConfig = {
++  defaultSnapOrigin: "npm:@galactica-net/snap",
++  defaultSnapVersion: "0.6.1",
    contracts: {
 -    kycGuardianWhitelist: "0xB95314E42d8Da05b1D805039F7b96e3935584543",
 -    zkKycRegistry: "0x0415E990e55071F0d448F87CD170528C7783A484",
@@ -1467,9 +1472,8 @@ index e2105650c1a1c24c077e6956f5e2a37e26fed17b..8a48d42d4753015d532b8a47fbb0de37
 +      devnetGuardian: "0xEcE0BBeB552710718A1bD5E028443ff9B2f26BE5",
 +    },
    },
-   defaultSnapOrigin: "npm:@galactica-net/snap",
+-  defaultSnapOrigin: "npm:@galactica-net/snap",
 -  defaultSnapVersion: "0.6.1"
-+  defaultSnapVersion: "0.6.1",
  };
  
  // src/utils/invoke-snap.ts

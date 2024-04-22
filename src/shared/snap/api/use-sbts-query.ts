@@ -108,7 +108,6 @@ export const useSbtsQuery = <TData = SbtDetails>(
         );
 
         for (const log of logs) {
-          log.args.dApp;
           if (!log.args.dApp) continue;
 
           const sbtInfo = await contract.read.getVerificationSBTInfo(
@@ -147,3 +146,5 @@ export const useSbtsQuery = <TData = SbtDetails>(
     ...options,
   });
 };
+
+// мультиколл на фронте

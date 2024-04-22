@@ -767,12 +767,12 @@ __metadata:
 
 "@galactica-net/snap-api@patch:@galactica-net/snap-api@npm%3A0.1.11#~/.yarn/patches/@galactica-net-snap-api-npm-0.1.11-d0f79ed0ea.patch":
   version: 0.1.11
-  resolution: "@galactica-net/snap-api@patch:@galactica-net/snap-api@npm%3A0.1.11#~/.yarn/patches/@galactica-net-snap-api-npm-0.1.11-d0f79ed0ea.patch::version=0.1.11&hash=b30b8c"
+  resolution: "@galactica-net/snap-api@patch:@galactica-net/snap-api@npm%3A0.1.11#~/.yarn/patches/@galactica-net-snap-api-npm-0.1.11-d0f79ed0ea.patch::version=0.1.11&hash=64dd1a"
   dependencies:
     "@galactica-net/galactica-types": "npm:^0.2.4"
     "@types/node": "npm:^20.4.6"
     typescript: "npm:^5.1.6"
-  checksum: 10/f112fa62602460c52f0372d9bc78e7bf39d72cf51210bf3cc2745945c3853ec254fad6cc1737aab905b1f7c46c5aceb01f9569ee4e857c1da9a76ab4809182a5
+  checksum: 10/f2d9dbffde64adba16be1f3623485c0a9476e522ee2a9c0263103bf04cef21a96bd74e483028637afc1d63831a5634c6d38e0d6b8f9e5791040c376deebcadfd
   languageName: node
   linkType: hard
 
