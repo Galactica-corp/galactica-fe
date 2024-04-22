@@ -1,7 +1,10 @@
 import { PropsWithChildren } from "react";
+
 import { twMerge } from "tailwind-merge";
+
 import { default as InfoIcon } from "shared/icons/info.svg?react";
 import { ClassName } from "shared/types";
+
 import { Tooltip } from "../tooltip";
 
 type Props = {
@@ -23,8 +26,8 @@ export const Info = ({
         {tip && (
           <InfoIcon
             className="ml-1.5 inline-flex outline-none"
-            data-tooltip-id={`card-info-${label}`}
             data-tooltip-content={tip}
+            data-tooltip-id={`card-info-${label}`}
           />
         )}
       </div>

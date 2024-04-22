@@ -18,13 +18,13 @@ export const UploadKycStep = ({ onUpload, onChooseKycProvider }: Props) => {
       </p>
 
       <div className="flex gap-8">
-        <Button onClick={onUpload} className="w-[216px]" theme="primary">
+        <Button className="w-[216px]" onClick={onUpload} theme="primary">
           Upload secret file
         </Button>
         <Button
           className="w-[216px]"
-          theme="primaryTransparent"
           onClick={onChooseKycProvider}
+          theme="primaryTransparent"
         >
           Get zkKYC
         </Button>

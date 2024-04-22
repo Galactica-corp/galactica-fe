@@ -1,17 +1,19 @@
 import { useEffect } from "react";
+
 import { ChainId, sdkConfig } from "@galactica-net/snap-api";
-import { ChooseKycProviderCard } from "entities/kyc";
-import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
 import JSConfetti from "js-confetti";
 import { twMerge } from "tailwind-merge";
 import { useLocalStorage, useReadLocalStorage } from "usehooks-ts";
-import { useAccount, useBlockNumber } from "wagmi";
+import { useAccount, useBlockNumber, useChainId } from "wagmi";
+
+import { ChooseKycProviderCard } from "entities/kyc";
+import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
 import { LS_KEYS } from "shared/config/const";
-import { useChain } from "shared/config/hooks";
 import { default as CheckIcon } from "shared/icons/check.svg?react";
-import { useSbtsQuery, useZkCerts } from "shared/snap";
+import { useZkCerts } from "shared/snap";
+import { useSbtsQuery } from "shared/snap/api/use-sbts-query";
 import { SNAP_LS_KEYS } from "shared/snap/const";
 import { SbtDetails } from "shared/snap/types";
 import { SkeletonCard } from "shared/ui/card";
@@ -19,8 +21,9 @@ import { SkeletonCard } from "shared/ui/card";
 const jsConfetti = new JSConfetti();
 
 export const MySbt = () => {
-  const chain = useChain();
-  const contracts = sdkConfig.contracts[chain.id as unknown as ChainId];
+  const chainId = useChainId();
+  const { address } = useAccount();
+  const contracts = sdkConfig.contracts[chainId as unknown as ChainId];
   const dappName = {
     [contracts.exampleDapp]: "KYC SBT",
     [contracts.repeatableZkpTest]: "KYC SBT (Repeatable)",
@@ -29,13 +32,16 @@ export const MySbt = () => {
     LS_KEYS.shouldCallConfetti,
     false
   );
-  const { address } = useAccount();
 
   const latestBlockChecked = useReadLocalStorage<string>(
     SNAP_LS_KEYS.latestBlockChecked(address)
   );
 
-  const blockNumberQuery = useBlockNumber({ chainId: chain.id });
+  const sbtDetails = useReadLocalStorage<SbtDetails>(
+    SNAP_LS_KEYS.sbtDetails(address)
+  );
+
+  const blockNumberQuery = useBlockNumber({ chainId });
   const [zkCerts] = useZkCerts();
 
   const query = useSbtsQuery({
@@ -55,15 +61,11 @@ export const MySbt = () => {
     setShouldCallConfetti(false);
   }, [setShouldCallConfetti, shouldCallConfetti, query.data?.length]);
 
-  const sbtDetails = useReadLocalStorage<SbtDetails>(
-    SNAP_LS_KEYS.sbtDetails(address)
-  );
-
   return (
     <>
       <UpdateKycListAlert className="mb-10" />
 
-      <div className={twMerge("grid grid-cols-3 gap-[1rem] pb-8")}>
+      <div className={twMerge("grid grid-cols-3 gap-4 pb-8")}>
         {zkCerts?.length === 0 && <ChooseKycProviderCard />}
         {query.isSuccess && !hasBasicProof && zkCerts?.length !== 0 && (
           <GenerationSbtCard>
@@ -96,11 +98,11 @@ export const MySbt = () => {
         {sbtDetails?.sbts.map((sbt, idx) => {
           return (
             <SbtCard
-              title={dappName[sbt.dApp as unknown as number] ?? "Unknown Proof"}
-              key={idx}
-              provider="Example"
               expiration={Date.now() + sbt.expirationTime}
+              key={idx}
               level={1}
+              provider="Example"
+              title={dappName[sbt.dApp] ?? "Unknown Proof"}
             />
           );
         })}

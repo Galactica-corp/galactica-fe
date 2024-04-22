@@ -1,13 +1,14 @@
 import { twMerge } from "tailwind-merge";
+
 import { ClassName } from "shared/types";
 import { Card as UICard } from "shared/ui/card";
 import { dateX } from "shared/utils";
 
 type Props = {
-  title: string;
-  provider: string;
   expiration: number;
   level: number | string;
+  provider: string;
+  title: string;
 } & ClassName;
 
 export const Card = ({
@@ -20,8 +21,8 @@ export const Card = ({
   return (
     <UICard
       className={twMerge("min-h-[238px]", className)}
-      title={title}
       desc="This SBT contains a zkProof demonstrating that you hold a valid KYC."
+      title={title}
     >
       <div className="mt-auto flex justify-between">
         <UICard.Info label="KYC Guardian">{provider}</UICard.Info>

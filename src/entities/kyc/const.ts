@@ -7,19 +7,19 @@ import swissborgBgPng from "shared/images/cards/kyc/swissborg-bg.png";
 
 export type KycType =
   | "binance"
-  | "coinbase"
-  | "swissborg"
   | "bitfinex"
   | "bitsamp"
+  | "coinbase"
+  | "example"
   | "kraken"
-  | "example";
+  | "swissborg";
 
 export const KYC_MAP: Record<
   KycType,
   {
+    background: string;
     name: string;
     title: string;
-    background: string;
     // logo?: string;
   }
 > = {

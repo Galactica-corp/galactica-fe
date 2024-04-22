@@ -1,21 +1,22 @@
 import { cloneElement, useMemo } from "react";
+
 import { default as DiscordIcon } from "shared/icons/social/discord.svg?react";
 import { default as MediumIcon } from "shared/icons/social/medium.svg?react";
 import { default as TelegramIcon } from "shared/icons/social/telegram.svg?react";
 import { default as TwitterIcon } from "shared/icons/social/twitter.svg?react";
 
 export type SocialLinkIconType =
-  | "telegram"
-  | "medium"
-  | "twitter"
   | "discord"
+  | "medium"
+  | "telegram"
+  | "twitter"
   | string;
 
 export type SocialLinkProps = {
-  url?: string | null;
+  className?: string;
   // name?: string
   icon?: SocialLinkIconType;
-  className?: string;
+  url?: null | string;
   wrapClassName?: string;
 };
 
@@ -47,7 +48,7 @@ export function SocialLink({
   };
 
   return (
-    <div onClick={handleClick} className={`cursor-pointer ${wrapClassName}`}>
+    <div className={`cursor-pointer ${wrapClassName}`} onClick={handleClick}>
       {iconComp
         ? cloneElement(iconComp, {
             className: `fill-current w-[1.125rem] ${className}`,

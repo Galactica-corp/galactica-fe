@@ -1,6 +1,6 @@
 import { DateObjectUnits, DateTime } from "luxon";
 
-export type DateXInput = Date | string | DateObjectUnits | number | DateTime;
+export type DateXInput = Date | DateObjectUnits | DateTime | number | string;
 
 // TODO: maybe it will be better to remove this
 class DateX {

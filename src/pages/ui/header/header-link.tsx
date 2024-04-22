@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "react";
 import { NavLink, NavLinkProps } from "react-router-dom";
+
 import { twMerge } from "tailwind-merge";
 
 type Props = {
@@ -15,9 +16,8 @@ export const HeaderLink = ({
     <NavLink
       className={({ isActive }) => {
         return twMerge(
-          "inline-flex items-center rounded px-5 py-2.5 font-publicoTextMono text-mineShaft/50  transition-colors hover:bg-sandyBrown hover:bg-opacity-5",
-          isActive &&
-            "rounded-md bg-sandyBrown bg-opacity-5 text-sandyBrown/100",
+          "inline-flex items-center rounded px-5 py-2.5 font-publicoTextMono text-mineShaft/50  transition-colors hover:bg-sandyBrown/5",
+          isActive && "rounded-md bg-sandyBrown/5 text-sandyBrown/100",
           className
         );
       }}
