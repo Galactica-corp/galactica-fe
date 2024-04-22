@@ -1,6 +1,6 @@
 import { ZkCertProof } from "@galactica-net/snap-api";
 import { default as BigNumber } from "bignumber.js";
-import { Address, PublicClient } from "viem";
+import { PublicClient } from "viem";
 
 export function fromHexToDec(hexIn: string): string {
   if (hexIn.startsWith("0x")) {

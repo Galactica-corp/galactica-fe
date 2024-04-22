@@ -5,7 +5,7 @@ import { useAccount, useChainId, usePublicClient } from "wagmi";
 import { UseQueryOptions } from "shared/types";
 
 import { snapsKeys } from "./keys";
-import { SBT, SbtDetails } from "./types";
+import { SbtDetails } from "./types";
 
 // const dappAddress = null;
 // const humanID = null;
