@@ -1,7 +1,7 @@
 import { ZkCertStorageHashes } from "@galactica-net/snap-api";
 import { useQuery } from "@tanstack/react-query";
 import invariant from "tiny-invariant";
-import { useAccount, useConnectorClient } from "wagmi";
+import { useAccount, useChainId, useConnectorClient } from "wagmi";
 
 import { SNAP_ID } from "shared/config/const";
 
@@ -10,7 +10,8 @@ import { useZkCertHash } from "../hooks/use-zk-cert-hash";
 import { snapsKeys } from "./keys";
 
 export const useGetZkCertStorageHashesQuery = () => {
-  const { address, chainId } = useAccount();
+  const { address } = useAccount();
+  const chainId = useChainId();
   const { data: client } = useConnectorClient({ chainId });
 
   const [hash, setHash] = useZkCertHash();

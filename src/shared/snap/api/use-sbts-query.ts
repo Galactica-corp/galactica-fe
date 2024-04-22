@@ -3,7 +3,7 @@ import { QueryKey, useQuery } from "@tanstack/react-query";
 import invariant from "tiny-invariant";
 import { useLocalStorage } from "usehooks-ts";
 import { Address, getContract } from "viem";
-import { useAccount, usePublicClient } from "wagmi";
+import { useAccount, useChainId, usePublicClient } from "wagmi";
 
 import { verificationSBTAbi } from "shared/config/abi";
 import { useSnapClient } from "shared/providers/wagmi";
@@ -25,7 +25,8 @@ export const useSbtsQuery = <TData = SbtDetails>(
     QueryKey
   >
 ) => {
-  const { address, isConnected, chainId } = useAccount();
+  const { address, isConnected } = useAccount();
+  const chainId = useChainId();
   const contracts = sdkConfig.contracts[chainId as unknown as ChainId];
 
   const client = useSnapClient();
