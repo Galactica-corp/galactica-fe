@@ -1,7 +1,9 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+
 import { sdkConfig } from "@galactica-net/snap-api";
 import { BrowserTracing, Replay, init } from "@sentry/react";
+import { createRoot } from "react-dom/client";
+
 import { App } from "app/app";
 
 sdkConfig.defaultSnapOrigin = import.meta.env.VITE_SNAP_ID;
@@ -28,6 +30,6 @@ if (import.meta.env.VITE_SENTRY === "on" && import.meta.env.PROD) {
 createRoot(document.getElementById("root") as HTMLElement).render(
   <StrictMode>
     <App />
-    <div id="portal-root" className="relative z-10" />
+    <div className="relative z-10" id="portal-root" />
   </StrictMode>
 );

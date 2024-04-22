@@ -1,8 +1,8 @@
 import { twMerge } from "tailwind-merge";
 
 type Props = {
-  value: number;
   className?: string;
+  value: number;
 };
 
 export const Score = ({ value, className }: Props) => {

@@ -5,10 +5,10 @@ export const Card = () => {
   return (
     <UICard
       className="bg-systemCard bg-cover bg-center bg-no-repeat shadow-cardRed"
-      title="Get your zkKYC"
       desc="Passing the KYC is required in order to generate zkKYC that will be required by dApps."
+      title="Get your zkKYC"
     >
-      <LinkButton to="/kyc-guardians" className="mt-auto w-full">
+      <LinkButton className="mt-auto w-full" to="/kyc-guardians">
         Select KYC Guardian
       </LinkButton>
     </UICard>

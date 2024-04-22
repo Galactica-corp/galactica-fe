@@ -1,10 +1,12 @@
 import { ComponentProps, forwardRef } from "react";
+
 import { twMerge } from "tailwind-merge";
+
 import { Spinner } from "../spinner";
 import { THEME, baseCls } from "./styles";
 import { CommonButtonProps } from "./types";
 
-type Props = CommonButtonProps & Omit<ComponentProps<"input">, "type" | "ref">;
+type Props = CommonButtonProps & Omit<ComponentProps<"input">, "ref" | "type">;
 
 export const FileInputButton = forwardRef<HTMLInputElement, Props>(
   (
@@ -22,9 +24,9 @@ export const FileInputButton = forwardRef<HTMLInputElement, Props>(
       <label className={twMerge(baseCls, THEME[theme], className)}>
         <input
           {...props}
-          ref={ref}
           className="invisible absolute"
           disabled={disabled}
+          ref={ref}
           type="file"
         />
         {isLoading ? (

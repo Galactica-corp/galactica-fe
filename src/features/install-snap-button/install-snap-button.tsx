@@ -1,14 +1,11 @@
+import { useUpdateKycList } from "features/update-kyc-list/hooks";
 import { default as MetamaskIcon } from "shared/icons/metamask.svg?react";
-import { useGetSnapQuery } from "shared/snap";
-import { useInstallSnapMutation } from "shared/snap/use-install-snap-mutation";
+import { useGetSnapQuery, useInstallSnapMutation } from "shared/snap/api";
 import { Button } from "shared/ui/button";
 
-type Props = {
-  onInstall?: () => void;
-};
-
-export const InstallSnapButton = ({ onInstall }: Props) => {
+export const InstallSnapButton = () => {
   const query = useGetSnapQuery();
+  const [_, listZkCertsMutation] = useUpdateKycList();
   const mutation = useInstallSnapMutation();
 
   const handleInstall = () => {
@@ -18,7 +15,9 @@ export const InstallSnapButton = ({ onInstall }: Props) => {
         onError: (error) => {
           console.error(error);
         },
-        onSuccess: onInstall,
+        onSuccess: () => {
+          listZkCertsMutation.mutate(undefined);
+        },
       }
     );
   };
@@ -31,11 +30,11 @@ export const InstallSnapButton = ({ onInstall }: Props) => {
 
   return (
     <Button
-      onClick={handleInstall}
-      isLoading={mutation.isLoading || query.isLoading}
-      disabled={!query.isSuccess}
-      theme="primary"
       className="px-14"
+      disabled={!query.isSuccess}
+      isLoading={mutation.isPending || query.isPending}
+      onClick={handleInstall}
+      theme="primary"
     >
       {disabled ? (
         "Enable galactica snap"

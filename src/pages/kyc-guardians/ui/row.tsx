@@ -1,17 +1,19 @@
 import { twMerge } from "tailwind-merge";
+
 import { ClassName } from "shared/types";
+
 import { Score } from "./score";
 
 type RowProps = {
-  number: number;
-  title: string;
-  score: string;
-  totalDocs: string;
   avgTime: string;
+  number: number;
   onStart: () => void;
+  score: string;
+  title: string;
+  totalDocs: string;
 };
 
-export const Row = ({ className, onStart, ...mock }: RowProps & ClassName) => {
+export const Row = ({ className, onStart, ...mock }: ClassName & RowProps) => {
   return (
     <div
       className={twMerge(

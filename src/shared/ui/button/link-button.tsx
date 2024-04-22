@@ -1,10 +1,12 @@
 import { Link, LinkProps } from "react-router-dom";
+
 import { twMerge } from "tailwind-merge";
+
 import { Spinner } from "../spinner";
 import { baseCls, primaryCls, primaryTransparentCls } from "./styles";
 import { CommonButtonProps } from "./types";
 
-type Props = LinkProps & CommonButtonProps;
+type Props = CommonButtonProps & LinkProps;
 
 export const LinkButton = ({
   children,
@@ -17,15 +19,15 @@ export const LinkButton = ({
   return (
     <Link
       {...props}
-      onClick={(e) => {
-        disabled && e.preventDefault();
-      }}
       className={twMerge(
         baseCls,
         theme === "primary" && primaryCls,
         theme === "primaryTransparent" && primaryTransparentCls,
         className
       )}
+      onClick={(e) => {
+        disabled && e.preventDefault();
+      }}
     >
       {isLoading ? (
         // Avoid reflow button width

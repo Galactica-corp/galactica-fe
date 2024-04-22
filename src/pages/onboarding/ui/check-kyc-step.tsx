@@ -23,8 +23,8 @@ export const CheckKycStep = ({ onHaveKyc, onChooseKycProvider }: Props) => {
         </Button>
         <Button
           className="w-[200px] whitespace-nowrap px-14"
-          theme="primaryTransparent"
           onClick={onHaveKyc}
+          theme="primaryTransparent"
         >
           I have zkKYC
         </Button>

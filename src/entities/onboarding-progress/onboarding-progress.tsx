@@ -1,5 +1,7 @@
 import { default as CheckGrayIcon } from "shared/icons/check-gray.svg?react";
-import { useGetSnapQuery, useSbtsQuery, useZkCerts } from "shared/snap";
+import { useGetSnapQuery, useZkCerts } from "shared/snap";
+import { useSbtsQuery } from "shared/snap/api/use-sbts-query";
+
 import { default as ProgressArrowIcon } from "./images/progress-arrow.svg?react";
 import progressGrayUrl from "./images/progress-gray.png";
 import progressOrangeUrl from "./images/progress-orange.png";
@@ -37,11 +39,7 @@ export function OnboardingProgress() {
     select: ({ sbts }) => sbts,
   });
 
-  if (
-    (snapQuery.isLoading && snapQuery.isInitialLoading) ||
-    (query.isLoading && query.isInitialLoading)
-  )
-    return null;
+  if (snapQuery.isLoading || query.isLoading) return null;
 
   let currentStep = 0;
 
@@ -52,13 +50,10 @@ export function OnboardingProgress() {
   if (!currentStep) return null;
 
   return (
-    <div className="fixed bottom-0 z-10 w-full space-y-[1rem] bg-transparent pt-[0.8rem]">
-      <div className="flex w-full items-center justify-center gap-x-[2.25rem]">
+    <div className="fixed bottom-0 z-10 w-full space-y-4 bg-transparent pt-[0.8rem]">
+      <div className="flex w-full items-center justify-center gap-x-9">
         {STEPS_MAP.map((step, i) => (
-          <div
-            key={i}
-            className="flex items-center gap-[2.25rem] transition-colors"
-          >
+          <div className="flex items-center gap-9 transition-colors" key={i}>
             <div
               className={`
                 flex items-center
@@ -67,7 +62,7 @@ export function OnboardingProgress() {
                 }
               `}
             >
-              <div className="flex items-center gap-[0.625rem] text-[1.25rem]">
+              <div className="flex items-center gap-2.5 text-[1.25rem]">
                 {step.name}
                 <div className="w-[2.1rem]">
                   {i + 1 < currentStep ? (
@@ -94,23 +89,23 @@ export function OnboardingProgress() {
         ))}
       </div>
       <div
+        className="h-[4px] w-full bg-repeat-x"
         style={{
           backgroundImage: `url(${progressGrayUrl})`,
           backgroundColor: "#F9F8F6",
         }}
-        className="h-[4px] w-full bg-repeat-x"
       >
         <div
+          className={`relative right-1/2 h-[4px] w-full bg-repeat-x transition-transform ${
+            STEPS_MAP[currentStep - 1].position
+          }`}
           style={{
             backgroundImage: `url(${progressOrangeUrl})`,
             backgroundColor: "#F5B3A6",
           }}
-          className={`relative right-[50%] h-[4px] w-full bg-repeat-x transition-transform ${
-            STEPS_MAP[currentStep - 1].position
-          }`}
         >
           <div className="absolute bottom-0 right-0 h-[0.7rem] w-[0.187rem] bg-salmon">
-            <div className="absolute left-1/2 top-0 h-[0.375rem] w-[0.375rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-salmon"></div>
+            <div className="absolute left-1/2 top-0 size-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-salmon"></div>
           </div>
         </div>
       </div>
