@@ -9,7 +9,7 @@ import {
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import invariant from "tiny-invariant";
 import { Address, getContract } from "viem";
-import { useAccount, usePublicClient } from "wagmi";
+import { useAccount, useChainId, usePublicClient } from "wagmi";
 
 import { basicKYCExampleDappAbi } from "shared/config/abi";
 import { useSnapClient } from "shared/providers/wagmi";
@@ -27,7 +27,8 @@ type Options = {
 };
 
 export const useGenBasicProofMutation = ({ onPublish }: Options = {}) => {
-  const { address, chainId } = useAccount();
+  const { address } = useAccount();
+  const chainId = useChainId();
   const contracts = sdkConfig.contracts[chainId as unknown as ChainId];
   const pc = usePublicClient({ chainId });
 
