@@ -12,6 +12,4 @@ export function shortAddress(
       (endCount > 0 ? `...${address.substring(address.length - endCount)}` : "")
     );
   }
-
-  return address;
 }

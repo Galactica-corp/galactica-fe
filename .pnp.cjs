@@ -34,7 +34,6 @@ const RAW_RUNTIME_STATE =
           ["@tanstack/react-query", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:5.29.2"],\
           ["@tanstack/react-query-devtools", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:5.29.2"],\
           ["@total-typescript/ts-reset", "npm:0.5.1"],\
-          ["@trivago/prettier-plugin-sort-imports", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:4.3.0"],\
           ["@types/eslint", "npm:8.56.9"],\
           ["@types/luxon", "npm:3.4.2"],\
           ["@types/node", "npm:20.12.7"],\
@@ -64,7 +63,6 @@ const RAW_RUNTIME_STATE =
           ["luxon", "npm:3.4.4"],\
           ["postcss", "npm:8.4.38"],\
           ["prettier", "npm:3.2.5"],\
-          ["prettier-plugin-tailwindcss", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:0.5.14"],\
           ["react", "npm:18.2.0"],\
           ["react-content-loader", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:7.0.0"],\
           ["react-dom", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:18.2.0"],\
@@ -175,16 +173,6 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@babel/generator", [\
-      ["npm:7.17.7", {\
-        "packageLocation": "./.yarn/cache/@babel-generator-npm-7.17.7-43f079aca0-3303afa2b1.zip/node_modules/@babel/generator/",\
-        "packageDependencies": [\
-          ["@babel/generator", "npm:7.17.7"],\
-          ["@babel/types", "npm:7.24.0"],\
-          ["jsesc", "npm:2.5.2"],\
-          ["source-map", "npm:0.5.7"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:7.24.4", {\
         "packageLocation": "./.yarn/cache/@babel-generator-npm-7.24.4-0bda5be79e-69e1772dcf.zip/node_modules/@babel/generator/",\
         "packageDependencies": [\
@@ -383,23 +371,6 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@babel/traverse", [\
-      ["npm:7.23.2", {\
-        "packageLocation": "./.yarn/cache/@babel-traverse-npm-7.23.2-4758feee42-e4fcb8f839.zip/node_modules/@babel/traverse/",\
-        "packageDependencies": [\
-          ["@babel/traverse", "npm:7.23.2"],\
-          ["@babel/code-frame", "npm:7.24.2"],\
-          ["@babel/generator", "npm:7.24.4"],\
-          ["@babel/helper-environment-visitor", "npm:7.22.20"],\
-          ["@babel/helper-function-name", "npm:7.23.0"],\
-          ["@babel/helper-hoist-variables", "npm:7.22.5"],\
-          ["@babel/helper-split-export-declaration", "npm:7.22.6"],\
-          ["@babel/parser", "npm:7.24.4"],\
-          ["@babel/types", "npm:7.24.0"],\
-          ["debug", "virtual:8b235322a8a24e48c015315ac31d9a45375a931d446b3d9b05b3960f64165451979d09fb0441934c12e21122cff6f3cbc821971e2170239ee8406b043c8fdde4#npm:4.3.4"],\
-          ["globals", "npm:11.12.0"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:7.24.1", {\
         "packageLocation": "./.yarn/cache/@babel-traverse-npm-7.24.1-8b235322a8-b9b0173c28.zip/node_modules/@babel/traverse/",\
         "packageDependencies": [\
@@ -419,15 +390,6 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@babel/types", [\
-      ["npm:7.17.0", {\
-        "packageLocation": "./.yarn/cache/@babel-types-npm-7.17.0-3c936b54e4-535ccef360.zip/node_modules/@babel/types/",\
-        "packageDependencies": [\
-          ["@babel/types", "npm:7.17.0"],\
-          ["@babel/helper-validator-identifier", "npm:7.22.20"],\
-          ["to-fast-properties", "npm:2.0.0"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:7.24.0", {\
         "packageLocation": "./.yarn/cache/@babel-types-npm-7.24.0-a0508cb308-a0b4875ce2.zip/node_modules/@babel/types/",\
         "packageDependencies": [\
@@ -3103,38 +3065,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@total-typescript-ts-reset-npm-0.5.1-532bff4f05-f773a2b917.zip/node_modules/@total-typescript/ts-reset/",\
         "packageDependencies": [\
           ["@total-typescript/ts-reset", "npm:0.5.1"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@trivago/prettier-plugin-sort-imports", [\
-      ["npm:4.3.0", {\
-        "packageLocation": "./.yarn/cache/@trivago-prettier-plugin-sort-imports-npm-4.3.0-622c28680b-eb25cbeeaf.zip/node_modules/@trivago/prettier-plugin-sort-imports/",\
-        "packageDependencies": [\
-          ["@trivago/prettier-plugin-sort-imports", "npm:4.3.0"]\
-        ],\
-        "linkType": "SOFT"\
-      }],\
-      ["virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:4.3.0", {\
-        "packageLocation": "./.yarn/__virtual__/@trivago-prettier-plugin-sort-imports-virtual-56b792cfa2/0/cache/@trivago-prettier-plugin-sort-imports-npm-4.3.0-622c28680b-eb25cbeeaf.zip/node_modules/@trivago/prettier-plugin-sort-imports/",\
-        "packageDependencies": [\
-          ["@trivago/prettier-plugin-sort-imports", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:4.3.0"],\
-          ["@babel/generator", "npm:7.17.7"],\
-          ["@babel/parser", "npm:7.24.4"],\
-          ["@babel/traverse", "npm:7.23.2"],\
-          ["@babel/types", "npm:7.17.0"],\
-          ["@types/prettier", null],\
-          ["@types/vue__compiler-sfc", null],\
-          ["@vue/compiler-sfc", null],\
-          ["javascript-natural-sort", "npm:0.7.1"],\
-          ["lodash", "npm:4.17.21"],\
-          ["prettier", "npm:3.2.5"]\
-        ],\
-        "packagePeers": [\
-          "@types/prettier",\
-          "@types/vue__compiler-sfc",\
-          "@vue/compiler-sfc",\
-          "prettier"\
         ],\
         "linkType": "HARD"\
       }]\
@@ -7214,7 +7144,6 @@ const RAW_RUNTIME_STATE =
           ["@tanstack/react-query", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:5.29.2"],\
           ["@tanstack/react-query-devtools", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:5.29.2"],\
           ["@total-typescript/ts-reset", "npm:0.5.1"],\
-          ["@trivago/prettier-plugin-sort-imports", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:4.3.0"],\
           ["@types/eslint", "npm:8.56.9"],\
           ["@types/luxon", "npm:3.4.2"],\
           ["@types/node", "npm:20.12.7"],\
@@ -7244,7 +7173,6 @@ const RAW_RUNTIME_STATE =
           ["luxon", "npm:3.4.4"],\
           ["postcss", "npm:8.4.38"],\
           ["prettier", "npm:3.2.5"],\
-          ["prettier-plugin-tailwindcss", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:0.5.14"],\
           ["react", "npm:18.2.0"],\
           ["react-content-loader", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:7.0.0"],\
           ["react-dom", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:18.2.0"],\
@@ -8387,15 +8315,6 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["javascript-natural-sort", [\
-      ["npm:0.7.1", {\
-        "packageLocation": "./.yarn/cache/javascript-natural-sort-npm-0.7.1-9018625996-7bf6eab678.zip/node_modules/javascript-natural-sort/",\
-        "packageDependencies": [\
-          ["javascript-natural-sort", "npm:0.7.1"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["jiti", [\
       ["npm:1.21.0", {\
         "packageLocation": "./.yarn/cache/jiti-npm-1.21.0-baebd5985a-005a0239e5.zip/node_modules/jiti/",\
@@ -8720,15 +8639,6 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["locate-path", "npm:6.0.0"],\
           ["p-locate", "npm:5.0.0"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["lodash", [\
-      ["npm:4.17.21", {\
-        "packageLocation": "./.yarn/cache/lodash-npm-4.17.21-6382451519-c08619c038.zip/node_modules/lodash/",\
-        "packageDependencies": [\
-          ["lodash", "npm:4.17.21"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -10172,88 +10082,6 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["prettier-linter-helpers", "npm:1.0.0"],\
           ["fast-diff", "npm:1.3.0"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["prettier-plugin-tailwindcss", [\
-      ["npm:0.5.14", {\
-        "packageLocation": "./.yarn/cache/prettier-plugin-tailwindcss-npm-0.5.14-4c72a3a392-8cb1e9d914.zip/node_modules/prettier-plugin-tailwindcss/",\
-        "packageDependencies": [\
-          ["prettier-plugin-tailwindcss", "npm:0.5.14"]\
-        ],\
-        "linkType": "SOFT"\
-      }],\
-      ["virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:0.5.14", {\
-        "packageLocation": "./.yarn/__virtual__/prettier-plugin-tailwindcss-virtual-da6baa4950/0/cache/prettier-plugin-tailwindcss-npm-0.5.14-4c72a3a392-8cb1e9d914.zip/node_modules/prettier-plugin-tailwindcss/",\
-        "packageDependencies": [\
-          ["prettier-plugin-tailwindcss", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:0.5.14"],\
-          ["@ianvs/prettier-plugin-sort-imports", null],\
-          ["@prettier/plugin-pug", null],\
-          ["@shopify/prettier-plugin-liquid", null],\
-          ["@trivago/prettier-plugin-sort-imports", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:4.3.0"],\
-          ["@types/ianvs__prettier-plugin-sort-imports", null],\
-          ["@types/prettier", null],\
-          ["@types/prettier-plugin-astro", null],\
-          ["@types/prettier-plugin-css-order", null],\
-          ["@types/prettier-plugin-import-sort", null],\
-          ["@types/prettier-plugin-jsdoc", null],\
-          ["@types/prettier-plugin-marko", null],\
-          ["@types/prettier-plugin-organize-attributes", null],\
-          ["@types/prettier-plugin-organize-imports", null],\
-          ["@types/prettier-plugin-sort-imports", null],\
-          ["@types/prettier-plugin-style-order", null],\
-          ["@types/prettier-plugin-svelte", null],\
-          ["@types/prettier__plugin-pug", null],\
-          ["@types/shopify__prettier-plugin-liquid", null],\
-          ["@types/trivago__prettier-plugin-sort-imports", null],\
-          ["@types/zackad__prettier-plugin-twig-melody", null],\
-          ["@zackad/prettier-plugin-twig-melody", null],\
-          ["prettier", "npm:3.2.5"],\
-          ["prettier-plugin-astro", null],\
-          ["prettier-plugin-css-order", null],\
-          ["prettier-plugin-import-sort", null],\
-          ["prettier-plugin-jsdoc", null],\
-          ["prettier-plugin-marko", null],\
-          ["prettier-plugin-organize-attributes", null],\
-          ["prettier-plugin-organize-imports", null],\
-          ["prettier-plugin-sort-imports", null],\
-          ["prettier-plugin-style-order", null],\
-          ["prettier-plugin-svelte", null]\
-        ],\
-        "packagePeers": [\
-          "@ianvs/prettier-plugin-sort-imports",\
-          "@prettier/plugin-pug",\
-          "@shopify/prettier-plugin-liquid",\
-          "@trivago/prettier-plugin-sort-imports",\
-          "@types/ianvs__prettier-plugin-sort-imports",\
-          "@types/prettier-plugin-astro",\
-          "@types/prettier-plugin-css-order",\
-          "@types/prettier-plugin-import-sort",\
-          "@types/prettier-plugin-jsdoc",\
-          "@types/prettier-plugin-marko",\
-          "@types/prettier-plugin-organize-attributes",\
-          "@types/prettier-plugin-organize-imports",\
-          "@types/prettier-plugin-sort-imports",\
-          "@types/prettier-plugin-style-order",\
-          "@types/prettier-plugin-svelte",\
-          "@types/prettier",\
-          "@types/prettier__plugin-pug",\
-          "@types/shopify__prettier-plugin-liquid",\
-          "@types/trivago__prettier-plugin-sort-imports",\
-          "@types/zackad__prettier-plugin-twig-melody",\
-          "@zackad/prettier-plugin-twig-melody",\
-          "prettier-plugin-astro",\
-          "prettier-plugin-css-order",\
-          "prettier-plugin-import-sort",\
-          "prettier-plugin-jsdoc",\
-          "prettier-plugin-marko",\
-          "prettier-plugin-organize-attributes",\
-          "prettier-plugin-organize-imports",\
-          "prettier-plugin-sort-imports",\
-          "prettier-plugin-style-order",\
-          "prettier-plugin-svelte",\
-          "prettier"\
         ],\
         "linkType": "HARD"\
       }]\

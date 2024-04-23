@@ -88,7 +88,7 @@ export const MySbt = () => {
             />
           </GenerationSbtCard>
         )}
-        {query.isLoading && query.isInitialLoading && (
+        {query.isLoading && zkCerts?.length !== 0 && (
           <SkeletonCard
             title={`${
               latestBlockChecked || 0
