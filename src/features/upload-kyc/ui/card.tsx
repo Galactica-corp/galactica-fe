@@ -1,17 +1,28 @@
 import { ReactNode } from "react";
 import { useDropzone } from "react-dropzone";
+
+import {
+  EncryptedZkCert,
+  ImportZkCertParams,
+  ZkCertMetadataList,
+} from "@galactica-net/snap-api";
+import { useQueryClient } from "@tanstack/react-query";
 import { twMerge } from "tailwind-merge";
-import { useImportZkCertMutation } from "shared/snap/use-import-zk-cert-mutation";
+import { useAccount } from "wagmi";
+
+import { snapsKeys, useZkCerts } from "shared/snap";
+import { useInvokeSnapMutation } from "shared/snap/api/use-invoke-snap-mutation";
 import { ClassName } from "shared/types";
 import { ButtonTheme, FileInputButton } from "shared/ui/button";
 import { parseJSONFile } from "shared/utils";
+import { toastError } from "shared/utils/toasts";
 
 type Props = {
-  title?: ReactNode;
-  theme?: ButtonTheme;
   btnClassName?: string;
-  onSuccessUpload?: (data: unknown) => void;
   onErrorUpload?: () => void;
+  onSuccessUpload?: (data: unknown) => void;
+  theme?: ButtonTheme;
+  title?: ReactNode;
 } & ClassName;
 
 export function UploadKycCard({
@@ -22,20 +33,45 @@ export function UploadKycCard({
   className,
   btnClassName,
 }: Props) {
-  const importCertMutation = useImportZkCertMutation();
+  const { address } = useAccount();
+  const queryClient = useQueryClient();
+  const [certs, setCertsList] = useZkCerts();
+
+  const importCertMutation = useInvokeSnapMutation<
+    ImportZkCertParams,
+    ZkCertMetadataList
+  >("importZkCert");
 
   const onDrop = async (acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
     if (!file) return;
     const data = await parseJSONFile(file);
-    importCertMutation.mutate(data, {
-      onSuccess: (data) => {
-        onSuccessUpload?.(data);
+    importCertMutation.mutate(
+      {
+        encryptedZkCert: data as EncryptedZkCert,
+        listZkCerts: true,
       },
-      onError: () => {
-        onErrorUpload?.();
-      },
-    });
+      {
+        onSuccess: async (data) => {
+          if (Array.isArray(data.gip69)) {
+            setCertsList(certs ? [...certs, ...data.gip69] : data.gip69);
+          }
+
+          if (typeof data === "string") {
+            toastError("This zkCertificate has already been imported.");
+          }
+
+          await queryClient.invalidateQueries({
+            queryKey: snapsKeys.zkCertStorageHashes(address),
+          });
+
+          onSuccessUpload?.(data);
+        },
+        onError: () => {
+          onErrorUpload?.();
+        },
+      }
+    );
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -66,10 +102,10 @@ export function UploadKycCard({
         or
       </span>
       <FileInputButton
-        className={btnClassName}
-        isLoading={importCertMutation.isLoading}
-        theme={theme}
         accept=".json"
+        className={btnClassName}
+        isLoading={importCertMutation.isPending}
+        theme={theme}
         {...getInputProps()}
       >
         Browse files

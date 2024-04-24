@@ -1,14 +1,15 @@
 import { ChainId, sdkConfig } from "@galactica-net/snap-api";
+import { twMerge } from "tailwind-merge";
+import { useChainId } from "wagmi";
+
 import { ChooseKycProviderCard } from "entities/kyc";
 import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
-import { twMerge } from "tailwind-merge";
 import { GenerateSbtButton } from "features/generate-sbt";
-import { useChain } from "shared/config/hooks";
 import { useSbtsQuery, useZkCerts } from "shared/snap";
 
 export const MySbtDev = () => {
-  const chain = useChain();
-  const contracts = sdkConfig.contracts[chain.id as unknown as ChainId];
+  const chainId = useChainId();
+  const contracts = sdkConfig.contracts[chainId as unknown as ChainId];
   const [zkCerts] = useZkCerts();
 
   const query = useSbtsQuery({
@@ -16,7 +17,7 @@ export const MySbtDev = () => {
   });
 
   return (
-    <div className={twMerge("grid grid-cols-3 gap-[1rem] pb-8")}>
+    <div className={twMerge("grid grid-cols-3 gap-4 pb-8")}>
       {zkCerts?.length === 0 && <ChooseKycProviderCard />}
       {zkCerts?.length > 0 && (
         <GenerationSbtCard>
@@ -26,15 +27,15 @@ export const MySbtDev = () => {
       {query.data?.map((sbt, idx) => {
         return (
           <SbtCard
+            expiration={Date.now() + sbt.expirationTime}
+            key={idx}
+            level={1}
+            provider="Example"
             title={
               sbt.dApp === contracts.repeatableZkpTest
                 ? "KYC SBT"
                 : "KYC SBT (Age > 18)"
             }
-            key={idx}
-            provider="Example"
-            expiration={Date.now() + sbt.expirationTime}
-            level={1}
           />
         );
       })}

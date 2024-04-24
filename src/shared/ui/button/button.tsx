@@ -1,5 +1,7 @@
 import { ComponentProps } from "react";
+
 import { twMerge } from "tailwind-merge";
+
 import { Spinner } from "../spinner";
 import { THEME, baseCls } from "./styles";
 import { CommonButtonProps } from "./types";
@@ -21,8 +23,8 @@ export function Button({
     <button
       {...btnProps}
       className={twMerge(baseCls, THEME[theme], className)}
-      onClick={onClick}
       disabled={disabled}
+      onClick={onClick}
     >
       {isLoading ? (
         // Avoid reflow button width

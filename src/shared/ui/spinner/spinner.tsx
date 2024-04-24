@@ -1,11 +1,13 @@
 import { twMerge } from "tailwind-merge";
+
 import { SIZES, Size, THEMES, Theme } from "./styles";
+
 import styles from "./styles.module.css";
 
 type Props = {
-  theme?: Theme;
-  size?: Size;
   className?: string;
+  size?: Size;
+  theme?: Theme;
 };
 
 export const Spinner = ({

@@ -1,1 +1,0 @@
-export { RQProvider } from "./provider";

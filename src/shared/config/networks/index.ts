@@ -1,3 +1,5 @@
+import { Chain } from "viem";
+
 import { galacticaReticulumTestnet } from "./galactica-reticulum";
 import { galacticaAndromedaTestnet } from "./galactica-testnet";
 
@@ -6,7 +8,6 @@ const galacticaTestnet =
     ? galacticaReticulumTestnet
     : galacticaAndromedaTestnet;
 
-const supportedChains = [galacticaTestnet];
-const DEFAULT_CHAIN = galacticaTestnet;
+const supportedChains: [Chain, ...Chain[]] = [galacticaTestnet];
 
-export { galacticaTestnet, supportedChains, DEFAULT_CHAIN };
+export { galacticaTestnet, supportedChains };

@@ -1,35 +1,44 @@
+import { ZkCertMetadataList } from "@galactica-net/snap-api";
 import { useQueryClient } from "@tanstack/react-query";
 import { useLocalStorage } from "usehooks-ts";
+import { useAccountEffect } from "wagmi";
+
 import { LS_KEYS } from "shared/config/const";
-import { useAccountChange } from "shared/hooks";
-import {
-  useGetZkCertStorageHashesQuery,
-  useListZkCertsMutation,
-  useZkCertHash,
-  useZkCerts,
-} from "shared/snap";
-import { snapsKeys } from "shared/snap/keys";
+import { useZkCertHash, useZkCerts } from "shared/snap";
+import { useGetZkCertStorageHashesQuery } from "shared/snap/api";
+import { snapsKeys } from "shared/snap/api/keys";
+import { useInvokeSnapMutation } from "shared/snap/api/use-invoke-snap-mutation";
 
 export const useUpdateKycList = () => {
-  const queryClient = useQueryClient();
   const [isOnboardingCompleted] = useLocalStorage(
     LS_KEYS.isOnboardingCompleted,
     false
   );
 
-  const [zkCerts] = useZkCerts();
-  const [zkHash] = useZkCertHash();
+  const [zkCerts, setCertsList] = useZkCerts();
+  const [zkHash, setZkHash] = useZkCertHash();
   const hashQuery = useGetZkCertStorageHashesQuery();
 
-  const listZkCertsMutation = useListZkCertsMutation({
+  const listZkCertsMutation = useInvokeSnapMutation<
+    undefined,
+    ZkCertMetadataList
+  >("listZkCerts", {
     onError: (err) => {
       console.error(err);
     },
+    onSuccess(data) {
+      if (!hashQuery.data) return;
+      setCertsList(data.gip69 ?? []);
+      setZkHash(hashQuery.data.gip69 ?? "");
+    },
   });
 
-  useAccountChange(({ account }) => {
-    if (!account) return;
-    queryClient.invalidateQueries(snapsKeys.allSbt());
+  const queryClient = useQueryClient();
+
+  useAccountEffect({
+    onConnect: () => {
+      queryClient.invalidateQueries({ queryKey: snapsKeys.allSbt() });
+    },
   });
 
   const isUpdateNeeded =

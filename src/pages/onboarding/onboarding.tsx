@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+
 import { useLocalStorage } from "usehooks-ts";
+
 import { LS_KEYS } from "shared/config/const";
 import { useZkCerts } from "shared/snap";
+
 import { CheckKycStep } from "./ui/check-kyc-step";
 import { UploadKycStep } from "./ui/upload-kyc-step";
 

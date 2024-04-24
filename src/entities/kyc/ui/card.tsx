@@ -1,13 +1,14 @@
 import { default as CheckIcon } from "shared/icons/check.svg?react";
 import { Card as UICard } from "shared/ui/card";
 import { dateX } from "shared/utils";
+
 import { KYC_MAP, type KycType } from "../const";
 
 type Props = {
-  type: KycType;
-  level: string;
   expiration: number;
   isActive?: boolean;
+  level: string;
+  type: KycType;
 };
 
 export const Card = ({ type, level, expiration }: Props) => {
@@ -17,9 +18,9 @@ export const Card = ({ type, level, expiration }: Props) => {
 
   return (
     <UICard
-      title={kyc.title}
       className="card min-h-[238px] bg-[length:210px_210px] bg-right-top bg-no-repeat"
       style={{ backgroundImage: `url(${kyc.background})` }}
+      title={kyc.title}
     >
       <div className="mt-auto flex justify-between">
         <UICard.Info
@@ -28,7 +29,7 @@ export const Card = ({ type, level, expiration }: Props) => {
         >
           {isActive ? (
             <div className="flex items-center text-sandyBrown">
-              Active <CheckIcon className="ml-[0.5rem]" />
+              Active <CheckIcon className="ml-2" />
             </div>
           ) : (
             "Expired"
