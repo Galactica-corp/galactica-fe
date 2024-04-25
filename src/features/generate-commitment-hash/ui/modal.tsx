@@ -10,7 +10,17 @@ import { Modal } from "shared/ui/modal";
 import { GradientSpinner } from "shared/ui/spinner";
 import { toastError, toastSuccess } from "shared/utils/toasts";
 
+export type Guardian = {
+  avgTime: string;
+  link: string;
+  number: number;
+  score: string;
+  title: string;
+  totalDocs: string;
+};
+
 type Props = {
+  guardian: Guardian;
   onClose: () => void;
   onError?: () => void;
 };
@@ -20,7 +30,7 @@ type HolderCommitmentData = {
   holderCommitment: string;
 };
 
-export const GenerateModal = ({ onClose, onError }: Props) => {
+export const GenerateModal = ({ guardian, onClose, onError }: Props) => {
   const [url, setUrl] = useState<string>("");
   const mutation = useInvokeSnapMutation<undefined, HolderCommitmentData>(
     "getHolderCommitment"
@@ -59,12 +69,9 @@ export const GenerateModal = ({ onClose, onError }: Props) => {
             onClick={() => {
               mutation.mutate(undefined, {
                 onSuccess: (data) => {
-                  const url = new URL(
-                    "/",
-                    import.meta.env.VITE_EXAMPLE_KYC_PROVIDER_ORIGIN
-                  );
+                  const url = new URL("/", guardian.link);
                   url.searchParams.append(
-                    "commitmentHash",
+                    "holderCommitment",
                     data.holderCommitment
                   );
                   url.searchParams.append(
