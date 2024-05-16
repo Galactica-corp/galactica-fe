@@ -39,7 +39,7 @@ export function UploadKycCard({
 
   const importCertMutation = useInvokeSnapMutation<
     ImportZkCertParams,
-    ZkCertMetadataList
+    { message: string } | ZkCertMetadataList
   >("importZkCert");
 
   const onDrop = async (acceptedFiles: File[]) => {
@@ -53,13 +53,16 @@ export function UploadKycCard({
       },
       {
         onSuccess: async (data) => {
-          if (Array.isArray(data.gip69)) {
-            setCertsList(certs ? [...certs, ...data.gip69] : data.gip69);
+          console.log(data);
+          if ("message" in data) {
+            throw new Error(data.message);
           }
 
-          if (typeof data === "string") {
-            toastError("This zkCertificate has already been imported.");
-          }
+          setCertsList(
+            certs
+              ? [...certs, ...Object.values(data).flat()]
+              : Object.values(data).flat()
+          );
 
           await queryClient.invalidateQueries({
             queryKey: snapsKeys.zkCertStorageHashes(address),
@@ -67,7 +70,8 @@ export function UploadKycCard({
 
           onSuccessUpload?.(data);
         },
-        onError: () => {
+        onError: (error) => {
+          toastError(error.message);
           onErrorUpload?.();
         },
       }

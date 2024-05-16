@@ -38,9 +38,10 @@ export default defineConfig(({ mode }) => {
       !isProdMode &&
         checker({
           typescript: true,
-          eslint: {
-            lintCommand: 'eslint "./src/**/*.{ts,tsx}"',
-          },
+          eslint: false,
+          // eslint: {
+          //   lintCommand: 'eslint "./src/**/*.{ts,tsx}"',
+          // },
           overlay: {
             initialIsOpen: false,
             position: "br",

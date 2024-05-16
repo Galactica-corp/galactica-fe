@@ -10,8 +10,6 @@ export type Snap = {
 
 export type GetSnapsResponse = Record<string, Snap>;
 
-export type ZkCertStandard = "gip69";
-
 export type SBT = {
   dApp: Address;
   encryptedData: readonly Address[];

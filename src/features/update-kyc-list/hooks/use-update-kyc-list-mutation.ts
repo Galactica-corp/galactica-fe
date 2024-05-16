@@ -4,7 +4,7 @@ import { useLocalStorage } from "usehooks-ts";
 import { useAccountEffect } from "wagmi";
 
 import { LS_KEYS } from "shared/config/const";
-import { useZkCertHash, useZkCerts } from "shared/snap";
+import { useZkCertHashes, useZkCerts } from "shared/snap";
 import { useGetZkCertStorageHashesQuery } from "shared/snap/api";
 import { snapsKeys } from "shared/snap/api/keys";
 import { useInvokeSnapMutation } from "shared/snap/api/use-invoke-snap-mutation";
@@ -16,7 +16,7 @@ export const useUpdateKycList = () => {
   );
 
   const [zkCerts, setCertsList] = useZkCerts();
-  const [zkHash, setZkHash] = useZkCertHash();
+  const [hashes, setHashes] = useZkCertHashes();
   const hashQuery = useGetZkCertStorageHashesQuery();
 
   const listZkCertsMutation = useInvokeSnapMutation<
@@ -28,8 +28,8 @@ export const useUpdateKycList = () => {
     },
     onSuccess(data) {
       if (!hashQuery.data) return;
-      setCertsList(data.gip69 ?? []);
-      setZkHash(hashQuery.data.gip69 ?? "");
+      setCertsList(Object.values(data).flat());
+      setHashes(hashQuery.data);
     },
   });
 
@@ -46,10 +46,12 @@ export const useUpdateKycList = () => {
       hashQuery.isSuccess &&
         hashQuery.data &&
         isOnboardingCompleted &&
-        zkHash &&
-        zkHash !== hashQuery.data.gip69
+        hashes &&
+        Object.entries(hashQuery.data).some(
+          ([key, value]) => hashes[key] !== value
+        )
     ) ||
-    (zkHash && zkCerts.length === 0);
+    (hashes && !zkCerts);
 
   return [isUpdateNeeded, listZkCertsMutation] as const;
 };

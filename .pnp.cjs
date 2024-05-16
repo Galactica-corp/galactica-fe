@@ -26,7 +26,7 @@ const RAW_RUNTIME_STATE =
       [null, {\
         "packageLocation": "./",\
         "packageDependencies": [\
-          ["@galactica-net/snap-api", "patch:@galactica-net/snap-api@npm%3A0.1.11#~/.yarn/patches/@galactica-net-snap-api-npm-0.1.11-d0f79ed0ea.patch::version=0.1.11&hash=64dd1a"],\
+          ["@galactica-net/snap-api", "npm:0.2.1"],\
           ["@react-spring/web", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:9.7.3"],\
           ["@sentry/react", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:7.111.0"],\
           ["@sentry/vite-plugin", "npm:2.16.1"],\
@@ -985,10 +985,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@galactica-net/galactica-types", [\
-      ["npm:0.2.4", {\
-        "packageLocation": "./.yarn/cache/@galactica-net-galactica-types-npm-0.2.4-6bb0048b81-9d4bbe1d84.zip/node_modules/@galactica-net/galactica-types/",\
+      ["npm:0.3.0", {\
+        "packageLocation": "./.yarn/cache/@galactica-net-galactica-types-npm-0.3.0-dfb0d55286-231e7ee1ac.zip/node_modules/@galactica-net/galactica-types/",\
         "packageDependencies": [\
-          ["@galactica-net/galactica-types", "npm:0.2.4"],\
+          ["@galactica-net/galactica-types", "npm:0.3.0"],\
           ["@types/circomlibjs", "npm:0.1.6"],\
           ["buffer", "npm:6.0.3"]\
         ],\
@@ -996,11 +996,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@galactica-net/snap-api", [\
-      ["patch:@galactica-net/snap-api@npm%3A0.1.11#~/.yarn/patches/@galactica-net-snap-api-npm-0.1.11-d0f79ed0ea.patch::version=0.1.11&hash=64dd1a", {\
-        "packageLocation": "./.yarn/cache/@galactica-net-snap-api-patch-7a360168de-f2d9dbffde.zip/node_modules/@galactica-net/snap-api/",\
+      ["npm:0.2.1", {\
+        "packageLocation": "./.yarn/cache/@galactica-net-snap-api-npm-0.2.1-f4cbf74042-1a45ca3249.zip/node_modules/@galactica-net/snap-api/",\
         "packageDependencies": [\
-          ["@galactica-net/snap-api", "patch:@galactica-net/snap-api@npm%3A0.1.11#~/.yarn/patches/@galactica-net-snap-api-npm-0.1.11-d0f79ed0ea.patch::version=0.1.11&hash=64dd1a"],\
-          ["@galactica-net/galactica-types", "npm:0.2.4"],\
+          ["@galactica-net/snap-api", "npm:0.2.1"],\
+          ["@galactica-net/galactica-types", "npm:0.3.0"],\
           ["@types/node", "npm:20.12.7"],\
           ["typescript", "patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"]\
         ],\
@@ -7136,7 +7136,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./",\
         "packageDependencies": [\
           ["galactica", "workspace:."],\
-          ["@galactica-net/snap-api", "patch:@galactica-net/snap-api@npm%3A0.1.11#~/.yarn/patches/@galactica-net-snap-api-npm-0.1.11-d0f79ed0ea.patch::version=0.1.11&hash=64dd1a"],\
+          ["@galactica-net/snap-api", "npm:0.2.1"],\
           ["@react-spring/web", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:9.7.3"],\
           ["@sentry/react", "virtual:e1f34849a0954b196a3c88dce7e847a42eb2426fba3e6e0c7547f4c4a7d07f7076b64f4e1cec6045ab01d49a244c183a398a85d6247ad9fe027a4696ef51cf44#npm:7.111.0"],\
           ["@sentry/vite-plugin", "npm:2.16.1"],\
