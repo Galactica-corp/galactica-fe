@@ -4,7 +4,7 @@ import { captureException } from "@sentry/react";
 
 import { LearnKycLink } from "entities/kyc";
 import { default as LogoMetamask } from "shared/icons/metamask-outline.svg?react";
-import { useInvokeSnapMutation } from "shared/snap/api/use-invoke-snap-mutation";
+import { useInvokeSnapMutation } from "shared/snap2/rq";
 import { Button } from "shared/ui/button";
 import { Modal } from "shared/ui/modal";
 import { GradientSpinner } from "shared/ui/spinner";
@@ -32,9 +32,7 @@ type HolderCommitmentData = {
 
 export const GenerateModal = ({ guardian, onClose, onError }: Props) => {
   const [url, setUrl] = useState<string>("");
-  const mutation = useInvokeSnapMutation<undefined, HolderCommitmentData>(
-    "getHolderCommitment"
-  );
+  const mutation = useInvokeSnapMutation("getHolderCommitment");
 
   return (
     <Modal onClose={onClose}>

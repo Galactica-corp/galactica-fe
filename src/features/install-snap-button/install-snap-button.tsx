@@ -16,7 +16,7 @@ export const InstallSnapButton = () => {
           console.error(error);
         },
         onSuccess: () => {
-          listZkCertsMutation.mutate(undefined);
+          listZkCertsMutation.mutate({});
         },
       }
     );

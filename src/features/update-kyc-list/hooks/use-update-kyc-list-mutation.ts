@@ -1,4 +1,4 @@
-import { ZkCertMetadataList } from "@galactica-net/snap-api";
+import { ZkCertListItem } from "@galactica-net/snap-api";
 import { useQueryClient } from "@tanstack/react-query";
 import { useLocalStorage } from "usehooks-ts";
 import { useAccountEffect } from "wagmi";
@@ -7,7 +7,7 @@ import { LS_KEYS } from "shared/config/const";
 import { useZkCertHashes, useZkCerts } from "shared/snap";
 import { useGetZkCertStorageHashesQuery } from "shared/snap/api";
 import { snapsKeys } from "shared/snap/api/keys";
-import { useInvokeSnapMutation } from "shared/snap/api/use-invoke-snap-mutation";
+import { useInvokeSnapMutation } from "shared/snap2/rq";
 
 export const useUpdateKycList = () => {
   const [isOnboardingCompleted] = useLocalStorage(
@@ -19,16 +19,14 @@ export const useUpdateKycList = () => {
   const [hashes, setHashes] = useZkCertHashes();
   const hashQuery = useGetZkCertStorageHashesQuery();
 
-  const listZkCertsMutation = useInvokeSnapMutation<
-    undefined,
-    ZkCertMetadataList
-  >("listZkCerts", {
+  const listZkCertsMutation = useInvokeSnapMutation("listZkCerts", {
     onError: (err) => {
       console.error(err);
     },
     onSuccess(data) {
       if (!hashQuery.data) return;
-      setCertsList(Object.values(data).flat());
+      const newCerts: ZkCertListItem[] = [...Object.values(data).flat()];
+      setCertsList(newCerts);
       setHashes(hashQuery.data);
     },
   });

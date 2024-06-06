@@ -1,17 +1,14 @@
 import { ReactNode } from "react";
 import { useDropzone } from "react-dropzone";
 
-import {
-  EncryptedZkCert,
-  ImportZkCertParams,
-  ZkCertMetadataList,
-} from "@galactica-net/snap-api";
+import { EncryptedZkCert, ZkCertListItem } from "@galactica-net/snap-api";
 import { useQueryClient } from "@tanstack/react-query";
 import { twMerge } from "tailwind-merge";
+import { RpcError } from "viem";
 import { useAccount } from "wagmi";
 
 import { snapsKeys, useZkCerts } from "shared/snap";
-import { useInvokeSnapMutation } from "shared/snap/api/use-invoke-snap-mutation";
+import { useInvokeSnapMutation } from "shared/snap2/rq";
 import { ClassName } from "shared/types";
 import { ButtonTheme, FileInputButton } from "shared/ui/button";
 import { parseJSONFile } from "shared/utils";
@@ -37,10 +34,7 @@ export function UploadKycCard({
   const queryClient = useQueryClient();
   const [certs, setCertsList] = useZkCerts();
 
-  const importCertMutation = useInvokeSnapMutation<
-    ImportZkCertParams,
-    { message: string } | ZkCertMetadataList
-  >("importZkCert");
+  const importCertMutation = useInvokeSnapMutation("importZkCert");
 
   const onDrop = async (acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
@@ -58,11 +52,9 @@ export function UploadKycCard({
             throw new Error(data.message);
           }
 
-          setCertsList(
-            certs
-              ? [...certs, ...Object.values(data).flat()]
-              : Object.values(data).flat()
-          );
+          const newCerts: ZkCertListItem[] = [...Object.values(data).flat()];
+
+          setCertsList(newCerts);
 
           await queryClient.invalidateQueries({
             queryKey: snapsKeys.zkCertStorageHashes(address),
@@ -71,7 +63,11 @@ export function UploadKycCard({
           onSuccessUpload?.(data);
         },
         onError: (error) => {
-          toastError(error.message);
+          console.error(error);
+          if (error instanceof RpcError) {
+            toastError(error.message);
+          }
+
           onErrorUpload?.();
         },
       }
