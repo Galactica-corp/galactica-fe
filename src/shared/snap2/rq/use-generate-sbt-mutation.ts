@@ -14,7 +14,6 @@ import { fromDecToHex } from "shared/snap/utils";
 
 import { basicKYCExampleDapp } from "../abi/basic-kyc-example-dapp";
 import { ZkCertProof, ZkKYCProofInput } from "../types/types";
-import prover from "../zkKYC.json";
 import { useInvokeSnapMutation } from "./use-invoke-snap-mutation";
 
 const publicInputDescriptions = [
@@ -60,8 +59,8 @@ export const useGenerateSBTMutation = (options: Options = {}) => {
         investigationInstitutionPubKey: [],
       };
 
-      // const response = await fetch(import.meta.env.VITE_PROOF_FILE);
-      // const prover = await response.json();
+      const response = await fetch(import.meta.env.VITE_PROOF_FILE);
+      const prover = await response.json();
 
       const requirements = {
         // TODO: user have to be able to select kyc-cert
