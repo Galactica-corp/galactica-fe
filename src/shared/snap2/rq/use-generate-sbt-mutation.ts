@@ -65,7 +65,7 @@ export const useGenerateSBTMutation = (options: Options = {}) => {
       const requirements = {
         // TODO: user have to be able to select kyc-cert
         zkCertStandard: ZkCertStandard.ZkKYC,
-        registryAddress: "0xE09961D6df906C5D2b59B20E29683D154d053919",
+        registryAddress: "0x326014429DfC880Bf34073dA0f8c664DFd6E0DE7",
       };
 
       const { proof, publicSignals } = await mutation.mutateAsync({
