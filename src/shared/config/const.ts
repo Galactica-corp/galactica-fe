@@ -1,3 +1,5 @@
+import { Address } from "viem";
+
 export const SNAP_ID =
   import.meta.env.VITE_SNAP_ID ?? "npm:@galactica-net/snap";
 
@@ -9,15 +11,15 @@ export const LS_KEYS = {
 };
 
 type Contracts = {
-  KYCRecordRegistry: "0xeE80930F1982C4962bE19c4A3d7803D2E6Cd85e0";
-  VerificationSBT: "0x69AEed769f064400f0e372C1f50d6424e0755F44";
-  BasicKYCExampleDApp: "0x70B5fB320b261C2Df354CC25f3Bba33Df41093B9";
+  KYCRecordRegistry: Address;
+  VerificationSBT: Address;
+  BasicKYCExampleDApp: Address;
 };
 
 export const config: Record<number | string, Contracts> = {
   "41238": {
-    KYCRecordRegistry: "0xeE80930F1982C4962bE19c4A3d7803D2E6Cd85e0",
-    VerificationSBT: "0x69AEed769f064400f0e372C1f50d6424e0755F44",
-    BasicKYCExampleDApp: "0x70B5fB320b261C2Df354CC25f3Bba33Df41093B9",
+    KYCRecordRegistry: "0x72ea42283075a462000a84e021D3CFb1E1078FcC",
+    VerificationSBT: "0xEfE69EE1A05039224c331481EfA2F8319138EbB8",
+    BasicKYCExampleDApp: "0x84FF2BE2516e83E7F02ac6B9D32C64783d98e0e1",
   },
 };

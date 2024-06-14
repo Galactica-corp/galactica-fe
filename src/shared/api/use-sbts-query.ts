@@ -25,7 +25,7 @@ type Pagination = {
   prev_page: null | number;
 };
 
-type Response = SBTInfo;
+type Response = SBTInfo | null;
 
 const getQueryOptions = <TData = Response>(
   pc: ReturnType<typeof usePublicClient>,
@@ -58,7 +58,7 @@ const getQueryOptions = <TData = Response>(
 
       console.log(sbtInfo);
 
-      sbtInfo.expirationTime;
+      if (sbtInfo.dApp !== contractAddresses.BasicKYCExampleDApp) return null;
 
       const metaLink = await contract.read.tokenURI([sbtInfo.tokenId]);
 
@@ -67,7 +67,7 @@ const getQueryOptions = <TData = Response>(
       const metaResponse = await fetch(metaLink);
       const meta: { description: string } = await metaResponse.json();
 
-      console.log(meta);
+      console.log("meta", meta);
 
       // const response = await fetch(
       //   `${import.meta.env.VITE_SBT_INDEXER_URL}/api/sbts?account=${accountAddress}`,

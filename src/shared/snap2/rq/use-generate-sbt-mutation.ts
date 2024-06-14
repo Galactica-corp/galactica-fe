@@ -1,23 +1,13 @@
-import {
-  ChainId,
-  type SdkConfig,
-  ZkCertStandard,
-  sdkConfig,
-} from "@galactica-net/snap-api";
-import { useMutation } from "@tanstack/react-query";
+import { ZkCertStandard } from "@galactica-net/snap-api";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import invariant from "tiny-invariant";
-import {
-  Address,
-  PublicClient,
-  TransactionExecutionError,
-  getContract,
-} from "viem";
+import { PublicClient, TransactionExecutionError, getContract } from "viem";
 import { useAccount, usePublicClient, useWalletClient } from "wagmi";
 
 import { basicKYCExampleDapp } from "../abi/basic-kyc-example-dapp";
 import { ZkCertProof, ZkKYCProofInput } from "../types/types";
 import { useInvokeSnapMutation } from "./use-invoke-snap-mutation";
-import prover from "./zkKYC.0xdedc286dAaaECccAA8a7E9c07A5A5893F9D8abf6.prover.json";
+import { config } from "shared/config/const";
 
 const publicInputDescriptions = [
   "user pubkey Ax",
@@ -38,6 +28,7 @@ type Options = {
 };
 
 export const useGenerateSBTMutation = (options: Options = {}) => {
+  const queryClient = useQueryClient();
   const pc = usePublicClient();
   const wc = useWalletClient();
   const mutation = useInvokeSnapMutation("genZkCertProof");
@@ -50,28 +41,27 @@ export const useGenerateSBTMutation = (options: Options = {}) => {
       invariant(wc.data, "wc is undefined");
       invariant(chain, "chain is udnefined");
       invariant(address, "address is undefined. Connect your wallet");
-      const contracts: SdkConfig["contracts"][ChainId] | undefined =
-        sdkConfig.contracts[chain.id as unknown as ChainId];
 
-      invariant(contracts, "contracts is undefined, wrong network");
+      const contractAddresses = config[chain.id];
+
+      invariant(contractAddresses, "contracts is undefined, wrong network");
 
       const expectedValidationTimestamp =
         await getExpectedValidationTimestamp(pc);
 
       const input: ZkKYCProofInput = {
         currentTime: expectedValidationTimestamp,
-        dAppAddress: "0x70B5fB320b261C2Df354CC25f3Bba33Df41093B9",
+        dAppAddress: contractAddresses.BasicKYCExampleDApp,
         investigationInstitutionPubKey: [],
       };
 
-      // const response = await fetch(import.meta.env.VITE_PROOF_FILE);
-      // const prover = await response.json();
+      const response = await fetch(import.meta.env.VITE_PROOF_FILE);
+      const prover = await response.json();
 
       const requirements = {
         // TODO: user have to be able to select kyc-cert
         zkCertStandard: ZkCertStandard.ZkKYC,
-        registryAddress:
-          "0xeE80930F1982C4962bE19c4A3d7803D2E6Cd85e0".toLowerCase(),
+        registryAddress: contractAddresses.KYCRecordRegistry.toLowerCase(),
       };
 
       const { proof, publicSignals } = await mutation.mutateAsync({
@@ -94,7 +84,7 @@ export const useGenerateSBTMutation = (options: Options = {}) => {
 
       const contract = getContract({
         abi: basicKYCExampleDapp,
-        address: "0x70B5fB320b261C2Df354CC25f3Bba33Df41093B9" as Address,
+        address: contractAddresses.BasicKYCExampleDApp,
         client: wc.data,
       });
       const gas = await contract.estimateGas.registerKYC(
@@ -106,6 +96,7 @@ export const useGenerateSBTMutation = (options: Options = {}) => {
         request: { args, ...options },
       } = await contract.simulate.registerKYC([a, b, c, publicInputs], {
         account: address,
+        gas,
       });
 
       const txHash = await contract.write.registerKYC(args, options);
@@ -123,6 +114,11 @@ export const useGenerateSBTMutation = (options: Options = {}) => {
         console.dir(error);
       }
       console.error(error);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["sbts", chain?.id, address],
+      });
     },
   });
 };
