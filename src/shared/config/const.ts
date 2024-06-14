@@ -18,8 +18,8 @@ type Contracts = {
 
 export const config: Record<number | string, Contracts> = {
   "41238": {
-    KYCRecordRegistry: "0x72ea42283075a462000a84e021D3CFb1E1078FcC",
-    VerificationSBT: "0xEfE69EE1A05039224c331481EfA2F8319138EbB8",
-    BasicKYCExampleDApp: "0x84FF2BE2516e83E7F02ac6B9D32C64783d98e0e1",
+    KYCRecordRegistry: "0x454d8a0B2abdc7bAfef7FCbfb6B4c538c6F11C3b",
+    VerificationSBT: "0x8eB78221742a837AD71f329b28e9AEd5C2397824",
+    BasicKYCExampleDApp: "0x69D473FE859adEb89ec7EA6047f929c64316Ba70",
   },
 };
