@@ -58,7 +58,7 @@ export const GenerateModal = ({ guardian, onClose, onError }: Props) => {
             rel="noreferrer"
             target="_blank"
           >
-            <Button onClick={onClose}>Pass zkKYC</Button>
+            <Button>Pass zkKYC</Button>
           </a>
         )}
         {!url && (
@@ -78,9 +78,8 @@ export const GenerateModal = ({ guardian, onClose, onError }: Props) => {
                   );
                   setUrl(url.toString());
 
-                  window.open(url.toString(), "_self");
-
                   toastSuccess("Commitment Hash has been generated");
+                  window.open(url.toString(), "_blank");
                 },
                 onError: (error) => {
                   captureException(error);

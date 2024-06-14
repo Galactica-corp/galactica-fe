@@ -5,9 +5,3 @@ export const MySbtPage = lazy(() =>
     default: module.MySbt,
   }))
 );
-
-export const MySbtDevPage = lazy(() =>
-  import("./my-sbt-dev").then((module) => ({
-    default: module.MySbtDev,
-  }))
-);

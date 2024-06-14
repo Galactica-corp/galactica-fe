@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   ChainId,
   type SdkConfig,
@@ -7,14 +6,18 @@ import {
 } from "@galactica-net/snap-api";
 import { useMutation } from "@tanstack/react-query";
 import invariant from "tiny-invariant";
-import { Address, PublicClient, getContract } from "viem";
-import { useAccount, usePublicClient } from "wagmi";
-
-import { fromDecToHex } from "shared/snap/utils";
+import {
+  Address,
+  PublicClient,
+  TransactionExecutionError,
+  getContract,
+} from "viem";
+import { useAccount, usePublicClient, useWalletClient } from "wagmi";
 
 import { basicKYCExampleDapp } from "../abi/basic-kyc-example-dapp";
 import { ZkCertProof, ZkKYCProofInput } from "../types/types";
 import { useInvokeSnapMutation } from "./use-invoke-snap-mutation";
+import prover from "./zkKYC.0xdedc286dAaaECccAA8a7E9c07A5A5893F9D8abf6.prover.json";
 
 const publicInputDescriptions = [
   "user pubkey Ax",
@@ -36,6 +39,7 @@ type Options = {
 
 export const useGenerateSBTMutation = (options: Options = {}) => {
   const pc = usePublicClient();
+  const wc = useWalletClient();
   const mutation = useInvokeSnapMutation("genZkCertProof");
   const { onPublish } = options;
 
@@ -43,6 +47,7 @@ export const useGenerateSBTMutation = (options: Options = {}) => {
   return useMutation({
     mutationFn: async () => {
       invariant(pc, "public client is undefined");
+      invariant(wc.data, "wc is undefined");
       invariant(chain, "chain is udnefined");
       invariant(address, "address is undefined. Connect your wallet");
       const contracts: SdkConfig["contracts"][ChainId] | undefined =
@@ -55,12 +60,12 @@ export const useGenerateSBTMutation = (options: Options = {}) => {
 
       const input: ZkKYCProofInput = {
         currentTime: expectedValidationTimestamp,
-        dAppAddress: contracts.exampleDapp,
+        dAppAddress: "0x70B5fB320b261C2Df354CC25f3Bba33Df41093B9",
         investigationInstitutionPubKey: [],
       };
 
-      const response = await fetch(import.meta.env.VITE_PROOF_FILE);
-      const prover = await response.json();
+      // const response = await fetch(import.meta.env.VITE_PROOF_FILE);
+      // const prover = await response.json();
 
       const requirements = {
         // TODO: user have to be able to select kyc-cert
@@ -83,15 +88,15 @@ export const useGenerateSBTMutation = (options: Options = {}) => {
       });
 
       onPublish?.();
+
       const [a, b, c] = processProof(proof);
       const publicInputs = processPublicSignals(publicSignals);
 
       const contract = getContract({
         abi: basicKYCExampleDapp,
         address: "0x70B5fB320b261C2Df354CC25f3Bba33Df41093B9" as Address,
-        client: pc,
+        client: wc.data,
       });
-
       const gas = await contract.estimateGas.registerKYC(
         [a, b, c, publicInputs],
         { account: address }
@@ -101,7 +106,6 @@ export const useGenerateSBTMutation = (options: Options = {}) => {
         request: { args, ...options },
       } = await contract.simulate.registerKYC([a, b, c, publicInputs], {
         account: address,
-        gas,
       });
 
       const txHash = await contract.write.registerKYC(args, options);
@@ -112,8 +116,32 @@ export const useGenerateSBTMutation = (options: Options = {}) => {
 
       return receipt;
     },
+    onError: (error) => {
+      console.dir(error);
+
+      if (error instanceof TransactionExecutionError) {
+        console.dir(error);
+      }
+      console.error(error);
+    },
   });
 };
+
+function processPublicSignals(publicSignals: string[]) {
+  const formatedInputs = publicSignals.map((value) => BigInt(value));
+  return formatedInputs;
+}
+
+function processProof(proof: ZkCertProof["proof"]) {
+  const piA = [BigInt(proof.pi_a[0]), BigInt(proof.pi_a[1])] as const;
+  const piB = [
+    [BigInt(proof.pi_b[0][1]), BigInt(proof.pi_b[0][0])],
+    [BigInt(proof.pi_b[1][1]), BigInt(proof.pi_b[1][0])],
+  ] as const;
+
+  const piC = [BigInt(proof.pi_c[0]), BigInt(proof.pi_c[1])] as const;
+  return [piA, piB, piC] as const;
+}
 
 async function getExpectedValidationTimestamp(pc: PublicClient) {
   const latestBlock = await pc.getBlock({ blockTag: "latest" });
@@ -125,32 +153,4 @@ async function getExpectedValidationTimestamp(pc: PublicClient) {
     timestamp + estimatedProofCreationDuration;
 
   return Number(expectedValidationTimestamp);
-}
-
-function processProof(proof: ZkCertProof["proof"]): any {
-  const piA = proof.pi_a
-    .slice(0, 2)
-    .map((value: string) => fromDecToHex(value, true));
-  // for some reason the order of coordinate is reverse
-  const piB = [
-    [proof.pi_b[0][1], proof.pi_b[0][0]].map((value) =>
-      fromDecToHex(value, true)
-    ),
-    [proof.pi_b[1][1], proof.pi_b[1][0]].map((value) =>
-      fromDecToHex(value, true)
-    ),
-  ];
-
-  const piC = proof.pi_c
-    .slice(0, 2)
-    .map((value: string) => fromDecToHex(value, true));
-
-  return [piA, piB, piC] as const;
-}
-
-function processPublicSignals(publicSignals: string[]): any {
-  const formatedInputs = publicSignals.map((value) =>
-    fromDecToHex(value, true)
-  );
-  return formatedInputs;
 }

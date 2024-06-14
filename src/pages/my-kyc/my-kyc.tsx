@@ -11,7 +11,8 @@ import { UpdateKycListAlert } from "features/update-kyc-list";
 import { UploadKycCard } from "features/upload-kyc";
 import { LS_KEYS } from "shared/config/const";
 import { default as CheckIcon } from "shared/icons/check.svg?react";
-import { useSbtsQuery, useZkCerts } from "shared/snap";
+import { useZkCerts } from "shared/snap";
+import { useSBTsQuery } from "shared/api/use-sbts-query";
 
 export const MyKYC = () => {
   const chainId = useChainId();
@@ -26,16 +27,9 @@ export const MyKYC = () => {
   const showWideUploading = searchParams.get("showWideUploading");
   const [zkCerts] = useZkCerts();
 
-  const query = useSbtsQuery({
-    select: ({ sbts }) =>
-      sbts.filter((sbt) =>
-        import.meta.env.VITE_ACTIVE_KYC === "repeatable"
-          ? sbt.dApp === contracts.repeatableZkpTest
-          : sbt.dApp === contracts.exampleDapp
-      ),
-  });
+  const query = useSBTsQuery();
 
-  const hasBasicProof = query.data?.some((sbt) => Boolean(sbt));
+  const hasBasicProof = Boolean(query.data);
 
   if (showWideUploading) {
     return (

@@ -24,7 +24,6 @@ export const useUpdateKycList = () => {
       console.error(err);
     },
     onSuccess(data) {
-      if (!hashQuery.data) return;
       const newCerts: ZkCertListItem[] = [...Object.values(data).flat()];
       setCertsList(newCerts);
       setHashes(hashQuery.data);
