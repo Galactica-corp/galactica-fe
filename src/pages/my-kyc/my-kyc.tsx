@@ -9,10 +9,10 @@ import { GenerationSbtCard } from "entities/sbt";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
 import { UploadKycCard } from "features/upload-kyc";
+import { useSBTsQuery } from "shared/api/use-sbts-query";
 import { LS_KEYS } from "shared/config/const";
 import { default as CheckIcon } from "shared/icons/check.svg?react";
 import { useZkCerts } from "shared/snap";
-import { useSBTsQuery } from "shared/api/use-sbts-query";
 
 export const MyKYC = () => {
   const chainId = useChainId();
@@ -37,6 +37,7 @@ export const MyKYC = () => {
         btnClassName="w-[256px]"
         className="mb-16 grow border-2"
         onSuccessUpload={() => {
+          navigate("/", { replace: true });
           searchParams.set("showWideUploading", "");
         }}
         theme="primary"

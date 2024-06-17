@@ -4,10 +4,11 @@ import invariant from "tiny-invariant";
 import { PublicClient, TransactionExecutionError, getContract } from "viem";
 import { useAccount, usePublicClient, useWalletClient } from "wagmi";
 
+import { config } from "shared/config/const";
+
 import { basicKYCExampleDapp } from "../abi/basic-kyc-example-dapp";
 import { ZkCertProof, ZkKYCProofInput } from "../types/types";
 import { useInvokeSnapMutation } from "./use-invoke-snap-mutation";
-import { config } from "shared/config/const";
 
 const publicInputDescriptions = [
   "user pubkey Ax",
