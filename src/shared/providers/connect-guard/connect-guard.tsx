@@ -21,11 +21,7 @@ export const ConnectGuard = ({ children }: PropsWithChildren) => {
 
   const { connectors } = useConnect();
 
-  if (
-    !connectors.some(
-      (c) => c.name === "MetaMask" || c.name === "MetaMask Flask"
-    )
-  ) {
+  if (!connectors.some((c) => c.name === "MetaMask Flask")) {
     return <InstallFlaskStep />;
   }
 
