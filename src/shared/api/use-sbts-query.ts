@@ -1,29 +1,13 @@
 import { queryOptions, useQuery } from "@tanstack/react-query";
-import { verificationSBTAbi } from "shared/config/abi";
-import { config } from "shared/config/const";
-import { QueryOptions } from "shared/types";
 import invariant from "tiny-invariant";
 import { Address, getContract } from "viem";
 import { useAccount, usePublicClient } from "wagmi";
 
-type SBT = {
-  Account: Address;
-  Contract: Address;
-  TokenID: string;
-  BlockNumber: number;
-  TxHash: string;
-};
+import { verificationSBTAbi } from "shared/config/abi";
+import { config } from "shared/config/const";
+import { QueryOptions } from "shared/types";
 
-type SBTInfo = { tokenId: bigint; description: string; expirationTime: bigint };
-
-type Pagination = {
-  total_records: number;
-  records_per_page: number;
-  current_page: number;
-  total_pages: number;
-  next_page: null | number;
-  prev_page: null | number;
-};
+type SBTInfo = { description: string; expirationTime: bigint; tokenId: bigint };
 
 type Response = SBTInfo | null;
 
@@ -68,23 +52,6 @@ const getQueryOptions = <TData = Response>(
       const meta: { description: string } = await metaResponse.json();
 
       console.log("meta", meta);
-
-      // const response = await fetch(
-      //   `${import.meta.env.VITE_SBT_INDEXER_URL}/api/sbts?account=${accountAddress}`,
-      //   {
-      //     headers: {
-      //       "content-type": "application/json",
-      //     },
-      //   }
-      // );
-      // const data: Response = await response.json();
-
-      // const sbtInfo = await contract.read.getVerificationSBTInfo(
-      //   [accountAddress, contractAddresses.BasicKYCExampleDApp],
-      //   {
-      //     account: accountAddress,
-      //   }
-      // );
 
       return {
         ...meta,

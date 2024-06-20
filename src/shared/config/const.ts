@@ -3,7 +3,7 @@ import { Address } from "viem";
 export const SNAP_ID =
   import.meta.env.VITE_SNAP_ID ?? "npm:@galactica-net/snap";
 
-export const SNAP_VERSION = "0.7.3-test";
+export const SNAP_VERSION = "0.7.3";
 
 export const LS_KEYS = {
   isOnboardingCompleted: `isOnboardingCompleted-v2`,
@@ -11,9 +11,9 @@ export const LS_KEYS = {
 };
 
 type Contracts = {
+  BasicKYCExampleDApp: Address;
   KYCRecordRegistry: Address;
   VerificationSBT: Address;
-  BasicKYCExampleDApp: Address;
 };
 
 export const config: Record<number | string, Contracts> = {
