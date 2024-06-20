@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 
-import { useAccount, useChainId } from "wagmi";
+import { useAccount, useChainId, useConnect } from "wagmi";
 
 import { useGetSnapQuery } from "shared/snap";
 import { Spinner } from "shared/ui/spinner";
@@ -17,6 +17,14 @@ export const ConnectGuard = ({ children }: PropsWithChildren) => {
   const chainId = useChainId();
 
   const snapQuery = useGetSnapQuery();
+
+  const { connectors } = useConnect();
+
+  if (
+    connectors.some((c) => c.name === "MetaMask" || c.name === "MetaMask Flask")
+  ) {
+    return <div>hello</div>;
+  }
 
   if (isDisconnected || isConnecting || chainId !== currentChainId)
     return <WalletStep />;
