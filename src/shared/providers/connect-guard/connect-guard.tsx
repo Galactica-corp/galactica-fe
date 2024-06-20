@@ -5,6 +5,7 @@ import { useAccount, useChainId, useConnect } from "wagmi";
 import { useGetSnapQuery } from "shared/snap";
 import { Spinner } from "shared/ui/spinner";
 
+import { InstallFlaskStep } from "./ui/install-flask-step";
 import { SnapStep } from "./ui/snap-step";
 import { WalletStep } from "./ui/wallet-step";
 
@@ -21,9 +22,11 @@ export const ConnectGuard = ({ children }: PropsWithChildren) => {
   const { connectors } = useConnect();
 
   if (
-    connectors.some((c) => c.name === "MetaMask" || c.name === "MetaMask Flask")
+    !connectors.some(
+      (c) => c.name === "MetaMask" || c.name === "MetaMask Flask"
+    )
   ) {
-    return <div>hello</div>;
+    return <InstallFlaskStep />;
   }
 
   if (isDisconnected || isConnecting || chainId !== currentChainId)
