@@ -19,7 +19,7 @@ export const InstallFlaskStep = () => {
           className="flex w-[300px] items-center"
           rel="noreferrer"
           target="_blank"
-          to="https://metamask.io/flask/"
+          to="https://chromewebstore.google.com/detail/metamask-flask-developmen/ljfoeinjpaedjfecbmggjgodbgkmjkjk?hl=en-GB"
         >
           <MetamaskIcon className="relative top-[-0.15rem] mr-3" />
           Install metamask flask
