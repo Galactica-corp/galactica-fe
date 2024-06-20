@@ -62,7 +62,7 @@ export const MyKYC = () => {
           zkCerts?.map((cert, i) => {
             return (
               <KycCard
-                expiration={cert.expirationDate}
+                expiration={cert.expirationDate * 1000}
                 key={`${cert.expirationDate}-${i}`}
                 level={cert.verificationLevel}
                 type="example"

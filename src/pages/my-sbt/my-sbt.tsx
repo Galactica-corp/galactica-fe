@@ -9,12 +9,12 @@ import { ChooseKycProviderCard } from "entities/kyc";
 import { GenerationSbtCard, LearnSbtCard, SbtCard } from "entities/sbt";
 import { GenerateSbtButton } from "features/generate-sbt";
 import { UpdateKycListAlert } from "features/update-kyc-list";
+import { useSBTsQuery } from "shared/api/use-sbts-query";
 import { LS_KEYS } from "shared/config/const";
 import { default as CheckIcon } from "shared/icons/check.svg?react";
 import { useZkCerts } from "shared/snap";
 import { SNAP_LS_KEYS } from "shared/snap/const";
 import { SkeletonCard } from "shared/ui/card";
-import { useSBTsQuery } from "shared/api/use-sbts-query";
 
 const jsConfetti = new JSConfetti();
 
@@ -79,9 +79,9 @@ export const MySbt = () => {
         )}
         {sbtInfoQuery.data && (
           <SbtCard
-            level={1}
             description={sbtInfoQuery.data.description}
-            expiration={sbtInfoQuery.data.expirationTime}
+            expiration={sbtInfoQuery.data.expirationTime * 1000n}
+            level={1}
             provider="Example"
             title={"KYC SBT"}
           />
