@@ -5,7 +5,8 @@ import { Card as UICard } from "shared/ui/card";
 import { dateX } from "shared/utils";
 
 type Props = {
-  expiration: number;
+  expiration: bigint;
+  description: string;
   level: number | string;
   provider: string;
   title: string;
@@ -13,6 +14,7 @@ type Props = {
 
 export const Card = ({
   title = "zkKYC Proof",
+  description,
   provider = "Example",
   className,
   level,
@@ -21,7 +23,10 @@ export const Card = ({
   return (
     <UICard
       className={twMerge("min-h-[238px]", className)}
-      desc="This SBT contains a zkProof demonstrating that you hold a valid KYC."
+      desc={
+        description ||
+        "This SBT contains a zkProof demonstrating that you hold a valid KYC."
+      }
       title={title}
     >
       <div className="mt-auto flex justify-between">
@@ -38,7 +43,7 @@ export const Card = ({
           label="Expiration Date"
           tip="This is the expiration date of your ID (e.g. passport)."
         >
-          {dateX.toDMY(expiration)}
+          {dateX.toDMY(Number(expiration))}
         </UICard.Info>
       </div>
     </UICard>

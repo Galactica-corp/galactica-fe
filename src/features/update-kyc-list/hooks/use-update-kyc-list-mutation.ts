@@ -1,13 +1,13 @@
-import { ZkCertMetadataList } from "@galactica-net/snap-api";
+import { ZkCertListItem } from "@galactica-net/snap-api";
 import { useQueryClient } from "@tanstack/react-query";
 import { useLocalStorage } from "usehooks-ts";
 import { useAccountEffect } from "wagmi";
 
 import { LS_KEYS } from "shared/config/const";
-import { useZkCertHash, useZkCerts } from "shared/snap";
+import { useZkCertHashes, useZkCerts } from "shared/snap";
 import { useGetZkCertStorageHashesQuery } from "shared/snap/api";
 import { snapsKeys } from "shared/snap/api/keys";
-import { useInvokeSnapMutation } from "shared/snap/api/use-invoke-snap-mutation";
+import { useInvokeSnapMutation } from "shared/snap2/rq";
 
 export const useUpdateKycList = () => {
   const [isOnboardingCompleted] = useLocalStorage(
@@ -16,20 +16,17 @@ export const useUpdateKycList = () => {
   );
 
   const [zkCerts, setCertsList] = useZkCerts();
-  const [zkHash, setZkHash] = useZkCertHash();
+  const [hashes, setHashes] = useZkCertHashes();
   const hashQuery = useGetZkCertStorageHashesQuery();
 
-  const listZkCertsMutation = useInvokeSnapMutation<
-    undefined,
-    ZkCertMetadataList
-  >("listZkCerts", {
+  const listZkCertsMutation = useInvokeSnapMutation("listZkCerts", {
     onError: (err) => {
       console.error(err);
     },
     onSuccess(data) {
-      if (!hashQuery.data) return;
-      setCertsList(data.gip69 ?? []);
-      setZkHash(hashQuery.data.gip69 ?? "");
+      const newCerts: ZkCertListItem[] = [...Object.values(data).flat()];
+      setCertsList(newCerts);
+      setHashes(hashQuery.data);
     },
   });
 
@@ -46,10 +43,12 @@ export const useUpdateKycList = () => {
       hashQuery.isSuccess &&
         hashQuery.data &&
         isOnboardingCompleted &&
-        zkHash &&
-        zkHash !== hashQuery.data.gip69
+        hashes &&
+        Object.entries(hashQuery.data).some(
+          ([key, value]) => hashes[key] !== value
+        )
     ) ||
-    (zkHash && zkCerts.length === 0);
+    (hashes && !zkCerts);
 
   return [isUpdateNeeded, listZkCertsMutation] as const;
 };

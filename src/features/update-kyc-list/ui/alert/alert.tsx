@@ -19,7 +19,7 @@ export const Alert = ({ className }: ClassName) => {
       share the actual state of your zkKYC&apos;s to the application.
       <button
         className="ml-1 inline-flex border-none bg-none text-sandyBrown hover:underline"
-        onClick={() => mutation.mutate(undefined)}
+        onClick={() => mutation.mutate({})}
       >
         Update now
       </button>

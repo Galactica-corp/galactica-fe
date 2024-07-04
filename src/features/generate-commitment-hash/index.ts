@@ -1,1 +1,4 @@
-export { GenerateModal as GenerateCommitmentHashModal } from "./ui/modal";
+export {
+  GenerateModal as GenerateCommitmentHashModal,
+  type Guardian,
+} from "./ui/modal";
