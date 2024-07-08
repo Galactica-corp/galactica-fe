@@ -14,8 +14,7 @@ type Props = {
 export const Card = ({ type, level, expiration }: Props) => {
   const kyc = KYC_MAP[type];
 
-  const isActive =
-    dateX.createDT(Date.now() + expiration) > dateX.createDT(Date.now());
+  const isActive = dateX.createDT(expiration) > dateX.createDT(Date.now());
 
   return (
     <UICard
@@ -48,7 +47,7 @@ export const Card = ({ type, level, expiration }: Props) => {
           label="Expiration Date"
           tip="This is the expiration date of your zkKYC (set by the KYC Guardian)."
         >
-          {dateX.toDMY(Date.now() + expiration)}
+          {dateX.toDMY(expiration)}
         </UICard.Info>
       </div>
     </UICard>

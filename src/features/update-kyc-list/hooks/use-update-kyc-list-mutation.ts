@@ -38,17 +38,15 @@ export const useUpdateKycList = () => {
     },
   });
 
-  const isUpdateNeeded =
-    Boolean(
-      hashQuery.isSuccess &&
-        hashQuery.data &&
-        isOnboardingCompleted &&
-        hashes &&
-        Object.entries(hashQuery.data).some(
-          ([key, value]) => hashes[key] !== value
-        )
-    ) ||
-    (hashes && !zkCerts);
+  const isUpdateNeeded = Boolean(
+    hashQuery.isSuccess &&
+      hashQuery.data &&
+      isOnboardingCompleted &&
+      hashes &&
+      Object.entries(hashQuery.data).some(
+        ([key, value]) => hashes[key] !== value
+      )
+  );
 
   return [isUpdateNeeded, listZkCertsMutation] as const;
 };

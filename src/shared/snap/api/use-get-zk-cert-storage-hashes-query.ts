@@ -6,15 +6,12 @@ import { useAccount, useChainId, useConnectorClient } from "wagmi";
 import { SNAP_ID } from "shared/config/const";
 
 import { WalletInvokeSnap } from "../hooks/types";
-import { useZkCertHashes } from "../hooks/use-zk-cert-hashes";
 import { snapsKeys } from "./keys";
 
 export const useGetZkCertStorageHashesQuery = () => {
   const { address } = useAccount();
   const chainId = useChainId();
   const { data: client } = useConnectorClient({ chainId });
-
-  const [hashes, setHashes] = useZkCertHashes();
 
   return useQuery({
     queryKey: snapsKeys.zkCertStorageHashes(address),
@@ -33,8 +30,6 @@ export const useGetZkCertStorageHashesQuery = () => {
           },
         },
       });
-
-      if (!hashes) setHashes(response);
 
       return response ?? null;
     },
