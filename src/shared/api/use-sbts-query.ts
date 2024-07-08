@@ -1,7 +1,7 @@
 import { queryOptions, useQuery } from "@tanstack/react-query";
 import invariant from "tiny-invariant";
 import { Address, getContract } from "viem";
-import { useAccount, usePublicClient } from "wagmi";
+import { useAccount, useChainId, usePublicClient } from "wagmi";
 
 import { verificationSBTAbi } from "shared/config/abi";
 import { config } from "shared/config/const";
@@ -21,6 +21,7 @@ const getQueryOptions = <TData = Response>(
     queryKey: ["sbts", chainId, accountAddress] as const,
     staleTime: Infinity,
     queryFn: async () => {
+      console.log("hello world!!");
       invariant(pc, "pc is undefined");
       invariant(chainId, "chainId is undefined");
       invariant(accountAddress, "accountAddress is undefined");
@@ -39,8 +40,6 @@ const getQueryOptions = <TData = Response>(
           account: accountAddress,
         }
       );
-
-      console.log(sbtInfo);
 
       if (sbtInfo.dApp !== contractAddresses.BasicKYCExampleDApp) return null;
 
@@ -66,7 +65,9 @@ const getQueryOptions = <TData = Response>(
 export const useSBTsQuery = <TData = Response>(
   options?: QueryOptions<Response, unknown, TData>
 ) => {
-  const pc = usePublicClient();
-  const { address, chainId } = useAccount();
+  const { address } = useAccount();
+  const chainId = useChainId();
+  const pc = usePublicClient({ chainId });
+
   return useQuery(getQueryOptions(pc, chainId, address, options));
 };
