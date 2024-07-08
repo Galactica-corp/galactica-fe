@@ -9,16 +9,16 @@ import { Row } from "./row";
 import { TableHeader } from "./table-header";
 
 const mocks: Guardian[] = [
+  // {
+  //   number: 1,
+  //   title: "Swissborg KYC Guardian",
+  //   score: "9.9",
+  //   totalDocs: "63,482",
+  //   avgTime: "~5 mins",
+  //   link: "https://stage-swissborg.galactica.com",
+  // },
   {
     number: 1,
-    title: "Swissborg KYC Guardian",
-    score: "9.9",
-    totalDocs: "63,482",
-    avgTime: "~5 mins",
-    link: "https://stage-swissborg.galactica.com",
-  },
-  {
-    number: 2,
     title: "Test KYC Guardian 1",
     score: "9.9",
     totalDocs: "122,933",
