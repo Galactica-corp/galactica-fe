@@ -1,4 +1,5 @@
 import { twMerge } from "tailwind-merge";
+import { useLocalStorage } from "usehooks-ts";
 
 import { useUpdateKycList } from "features/update-kyc-list/hooks";
 import { useInvokeSnapMutation } from "shared/snap2/rq";
@@ -6,6 +7,7 @@ import { ClassName } from "shared/types";
 
 export const Alert = ({ className }: ClassName) => {
   const [isUpdateNeeded, mutation, isClearNeeded] = useUpdateKycList();
+  const [oldZkCerts, setOldCerts] = useLocalStorage("zk-certs-list-v2", []);
 
   const clearStorageMutation = useInvokeSnapMutation("clearStorage");
 
@@ -24,7 +26,12 @@ export const Alert = ({ className }: ClassName) => {
         className="ml-1 inline-flex border-none bg-none text-sandyBrown hover:underline"
         onClick={() => {
           if (isClearNeeded) {
-            clearStorageMutation.mutate();
+            clearStorageMutation.mutate(undefined, {
+              onSuccess: () => {
+                setOldCerts([]);
+              },
+            });
+
             return;
           }
 
