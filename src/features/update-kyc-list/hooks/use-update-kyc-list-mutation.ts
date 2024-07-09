@@ -15,6 +15,8 @@ export const useUpdateKycList = () => {
     false
   );
 
+  const [oldZkCerts] = useLocalStorage("zk-certs-list-v2", []);
+
   const [zkCerts, setCertsList] = useZkCerts();
   const [hashes, setHashes] = useZkCertHashes();
   const hashQuery = useGetZkCertStorageHashesQuery();
@@ -48,5 +50,7 @@ export const useUpdateKycList = () => {
       )
   );
 
-  return [isUpdateNeeded, listZkCertsMutation] as const;
+  const isClearNeeded = Boolean(oldZkCerts.length > 0);
+
+  return [isUpdateNeeded, listZkCertsMutation, isClearNeeded] as const;
 };

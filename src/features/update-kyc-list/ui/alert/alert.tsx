@@ -1,12 +1,15 @@
 import { twMerge } from "tailwind-merge";
 
 import { useUpdateKycList } from "features/update-kyc-list/hooks";
+import { useInvokeSnapMutation } from "shared/snap2/rq";
 import { ClassName } from "shared/types";
 
 export const Alert = ({ className }: ClassName) => {
-  const [isUpdateNeeded, mutation] = useUpdateKycList();
+  const [isUpdateNeeded, mutation, isClearNeeded] = useUpdateKycList();
 
-  if (!isUpdateNeeded) return null;
+  const clearStorageMutation = useInvokeSnapMutation("clearStorage");
+
+  if (!isUpdateNeeded && !isClearNeeded) return null;
 
   return (
     <div
@@ -19,7 +22,14 @@ export const Alert = ({ className }: ClassName) => {
       share the actual state of your zkKYC&apos;s to the application.
       <button
         className="ml-1 inline-flex border-none bg-none text-sandyBrown hover:underline"
-        onClick={() => mutation.mutate({})}
+        onClick={() => {
+          if (isClearNeeded) {
+            clearStorageMutation.mutate();
+            return;
+          }
+
+          mutation.mutate({});
+        }}
       >
         Update now
       </button>
